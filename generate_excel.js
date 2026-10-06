@@ -742,7 +742,7 @@ async function createWorkbook() {
     }
   });
 
-  const targetPath = path.resolve('C:/Users/seif.elawamry/.gemini/antigravity/scratch/egy_nutri_sales_review/Egy_Nutri_Sales_Analysis_Template.xlsx');
+  const targetPath = path.join(__dirname, 'Egy_Nutri_Sales_Analysis_Template.xlsx');
   await wb.xlsx.writeFile(targetPath);
   console.log(`Excel Workbook successfully generated at: ${targetPath}`);
 }

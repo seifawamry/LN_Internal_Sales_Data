@@ -583,7 +583,7 @@ async function createPowerPoint() {
     fontSize: 8.5, color: '7D6608'
   });
 
-  const targetPath = path.resolve('C:/Users/seif.elawamry/.gemini/antigravity/scratch/egy_nutri_sales_review/Egy_Nutri_Business_Review_Deck.pptx');
+  const targetPath = path.join(__dirname, 'Egy_Nutri_Business_Review_Deck.pptx');
   await pptx.writeFile({ fileName: targetPath });
   console.log(`PowerPoint Presentation successfully updated at: ${targetPath}`);
 }

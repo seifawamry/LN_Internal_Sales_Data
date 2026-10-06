@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const chartJsContent = fs.readFileSync('C:/Users/seif.elawamry/.gemini/antigravity/scratch/egy_nutri_sales_review/chart.umd.min.js', 'utf8');
+const chartJsContent = fs.readFileSync(path.join(__dirname, 'chart.umd.min.js'), 'utf8');
 
 const htmlTemplate = `<!DOCTYPE html>
 <html lang="en">
@@ -2320,5 +2320,8 @@ ${chartJsContent}
 </html>
 `;
 
-fs.writeFileSync('C:/Users/seif.elawamry/.gemini/antigravity/scratch/egy_nutri_sales_review/Egy_Nutri_Business_Review.html', htmlTemplate, 'utf8');
-console.log('Final standalone HTML successfully built and written!');
+const htmlPath = path.join(__dirname, 'Egy_Nutri_Business_Review.html');
+const indexPath = path.join(__dirname, 'index.html');
+fs.writeFileSync(htmlPath, htmlTemplate, 'utf8');
+fs.writeFileSync(indexPath, htmlTemplate, 'utf8');
+console.log('Final standalone HTML successfully built and written to Egy_Nutri_Business_Review.html and index.html!');
