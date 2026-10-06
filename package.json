@@ -1,0 +1,27 @@
+{
+  "name": "ln-internal-sales-data",
+  "version": "1.0.0",
+  "description": "Liptis Nutrition (Egy Nutri.) Infant Nutrition Commercial Sales Review & Business Analytics",
+  "main": "build_html.js",
+  "scripts": {
+    "build": "node build_html.js && node generate_pptx.js && node generate_excel.js",
+    "build:html": "node build_html.js",
+    "build:pptx": "node generate_pptx.js",
+    "build:excel": "node generate_excel.js"
+  },
+  "keywords": [
+    "liptis-nutrition",
+    "egy-nutri",
+    "sales-analytics",
+    "business-review",
+    "infant-nutrition",
+    "pediamil",
+    "pedia-start"
+  ],
+  "author": "Seif Elawamry",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "exceljs": "^4.4.0",
+    "pptxgenjs": "^4.0.1"
+  }
+}
