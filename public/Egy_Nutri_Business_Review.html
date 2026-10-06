@@ -565,6 +565,499 @@
       align-items: center;
     }
 
+    /* ==========================================================================
+       FULLSCREEN & PRESENTATION MODE STYLES
+       ========================================================================== */
+    body.is-fullscreen {
+      background-color: #0F172A;
+    }
+
+    body.is-fullscreen header {
+      padding: 8px 18px;
+      background: #0F172A;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    }
+
+    body.is-fullscreen .slide-tabs {
+      background: #1E293B;
+      border-bottom: 1px solid #334155;
+    }
+
+    body.is-fullscreen .tab-btn {
+      color: #94A3B8;
+    }
+
+    body.is-fullscreen .tab-btn:hover {
+      color: white;
+      background: rgba(255,255,255,0.05);
+    }
+
+    body.is-fullscreen .tab-btn.active {
+      color: #38BDF8;
+      border-bottom-color: #38BDF8;
+    }
+
+    body.is-fullscreen main {
+      padding: 12px 16px 80px 16px;
+      max-width: 98vw;
+    }
+
+    body.is-fullscreen .slide-container {
+      background: white;
+      border-radius: 12px;
+      padding: 20px 24px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+      outline: 3px solid #2563EB;
+      outline-offset: 2px;
+      min-height: calc(100vh - 160px);
+    }
+
+    body.is-fullscreen footer {
+      display: none;
+    }
+
+    /* Floating Presentation HUD (Active only in Fullscreen) */
+    .fullscreen-hud {
+      display: none;
+      position: fixed;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(15, 23, 42, 0.94);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 30px;
+      padding: 8px 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      z-index: 1000;
+      align-items: center;
+      gap: 12px;
+      color: white;
+    }
+
+    body.is-fullscreen .fullscreen-hud {
+      display: flex;
+    }
+
+    .fullscreen-hud button {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: white;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .fullscreen-hud button:hover {
+      background: rgba(255,255,255,0.25);
+      transform: translateY(-1px);
+    }
+
+    .fullscreen-hud .hud-badge {
+      font-size: 13px;
+      font-weight: 800;
+      color: #38BDF8;
+      padding: 0 6px;
+    }
+
+    /* ==========================================================================
+       SLIDE OUTLINE DRAWER
+       ========================================================================== */
+    .outline-drawer {
+      position: fixed;
+      top: 0;
+      right: -360px;
+      width: 350px;
+      height: 100vh;
+      background: white;
+      box-shadow: -5px 0 25px rgba(0,0,0,0.25);
+      z-index: 1200;
+      transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .outline-drawer.open {
+      right: 0;
+    }
+
+    .outline-header {
+      background: var(--primary);
+      color: white;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .outline-header h3 {
+      font-size: 15px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .outline-header button {
+      background: rgba(255,255,255,0.2);
+      border: none;
+      color: white;
+      font-size: 18px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .outline-list {
+      flex: 1;
+      overflow-y: auto;
+      padding: 12px;
+    }
+
+    .outline-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      margin-bottom: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .outline-item:hover {
+      background: #F1F5F9;
+      border-color: #CBD5E1;
+    }
+
+    .outline-item.active {
+      background: #EFF6FF;
+      border-color: #3B82F6;
+      box-shadow: 0 2px 8px rgba(59, 130, 246, 0.15);
+    }
+
+    .outline-num {
+      background: var(--primary);
+      color: white;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 6px;
+      white-space: nowrap;
+    }
+
+    .outline-item.active .outline-num {
+      background: #2563EB;
+    }
+
+    .outline-info h4 {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    .outline-info span {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    /* ==========================================================================
+       DATA EDITOR MODAL STYLES
+       ========================================================================== */
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(4px);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .data-modal {
+      background: white;
+      border-radius: 14px;
+      width: 95vw;
+      max-width: 1320px;
+      max-height: 92vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+      overflow: hidden;
+      animation: modalFadeIn 0.25s ease-out;
+    }
+
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: scale(0.97); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .data-modal-header {
+      background: linear-gradient(135deg, var(--primary) 0%, #0F172A 100%);
+      color: white;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .data-modal-header h2 {
+      font-size: 16.5px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .data-modal-header p {
+      font-size: 11.5px;
+      color: #94A3B8;
+      margin-top: 3px;
+    }
+
+    .data-modal-close {
+      background: rgba(255,255,255,0.15);
+      border: none;
+      color: white;
+      font-size: 20px;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+
+    .data-modal-close:hover {
+      background: rgba(255,255,255,0.3);
+    }
+
+    .data-modal-tabs {
+      background: #F8FAFC;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      padding: 0 20px;
+      gap: 8px;
+      overflow-x: auto;
+    }
+
+    .modal-tab-btn {
+      padding: 12px 18px;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--text-muted);
+      border: none;
+      background: transparent;
+      border-bottom: 3px solid transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+    }
+
+    .modal-tab-btn.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+      background: white;
+    }
+
+    .data-modal-body {
+      flex: 1;
+      overflow: auto;
+      padding: 16px 20px;
+      background: #FAFAFA;
+    }
+
+    .data-edit-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      background: white;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      font-size: 12px;
+    }
+
+    .data-edit-table th {
+      background: #F1F5F9;
+      color: var(--primary);
+      font-weight: 700;
+      padding: 8px 8px;
+      text-align: right;
+      border-bottom: 2px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 5;
+    }
+
+    .data-edit-table th:first-child,
+    .data-edit-table th:nth-child(2),
+    .data-edit-table th:nth-child(3) {
+      text-align: left;
+    }
+
+    .data-edit-table td {
+      padding: 5px 6px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+
+    .data-edit-table input[type="number"],
+    .data-edit-table input[type="text"] {
+      width: 100%;
+      padding: 5px 6px;
+      border: 1px solid #CBD5E1;
+      border-radius: 5px;
+      font-size: 11.5px;
+      font-weight: 600;
+      text-align: right;
+      color: #0F172A;
+      box-sizing: border-box;
+      transition: border-color 0.2s;
+    }
+
+    .data-edit-table input[type="text"] {
+      text-align: left;
+    }
+
+    .data-edit-table input:focus {
+      outline: none;
+      border-color: #2563EB;
+      box-shadow: 0 0 0 2.5px rgba(37, 99, 235, 0.15);
+      background: #EFF6FF;
+    }
+
+    .data-edit-table tr:hover td {
+      background: #F8FAFC;
+    }
+
+    .data-edit-table tr.total-calc-row td {
+      background: #F1F5F9;
+      font-weight: 800;
+      color: var(--primary);
+      border-top: 2px solid var(--primary);
+    }
+
+    .data-modal-footer {
+      background: white;
+      border-top: 1px solid var(--border);
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .footer-left-btns, .footer-right-btns {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-apply-data {
+      background: #10B981;
+      color: white;
+      border: none;
+      padding: 9px 18px;
+      border-radius: 7px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 2px 6px rgba(16, 185, 129, 0.3);
+      transition: all 0.2s;
+    }
+
+    .btn-apply-data:hover {
+      background: #059669;
+      transform: translateY(-1px);
+    }
+
+    .btn-reset-data {
+      background: white;
+      border: 1px solid #EF4444;
+      color: #EF4444;
+      padding: 9px 14px;
+      border-radius: 7px;
+      font-size: 12.5px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-reset-data:hover {
+      background: #FEF2F2;
+    }
+
+    .btn-export-data, .btn-cancel-modal {
+      background: white;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 9px 14px;
+      border-radius: 7px;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .btn-export-data:hover, .btn-cancel-modal:hover {
+      background: #F1F5F9;
+    }
+
+    /* Toast Notification */
+    .toast-msg {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #0F172A;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 10px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      border-left: 5px solid #10B981;
+      font-size: 13px;
+      font-weight: 600;
+      display: none;
+      align-items: center;
+      gap: 10px;
+      z-index: 3000;
+      animation: toastSlideUp 0.3s ease-out;
+    }
+
+    @keyframes toastSlideUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
     @media (max-width: 1024px) {
       .grid-2 {
         grid-template-columns: 1fr;
@@ -624,8 +1117,11 @@
 
       <div class="slide-counter" id="slideIndicator">Slide 1 of 10</div>
 
-      <button class="nav-btn" onclick="prevSlide()">❮ Prev</button>
-      <button class="nav-btn" onclick="nextSlide()">Next ❯</button>
+      <button class="nav-btn" onclick="prevSlide()" title="Previous Slide (Left Arrow)">❮ Prev</button>
+      <button class="nav-btn" onclick="nextSlide()" title="Next Slide (Right Arrow)">Next ❯</button>
+      <button class="nav-btn" id="btnToggleOutline" onclick="toggleSlideOutline()" title="Executive Slide Outline (Shortcut: O)">📑 Outline</button>
+      <button class="nav-btn" id="btnOpenDataEditor" onclick="openDataEditor()" title="Edit Sales Volumes & Recalculate Model (Shortcut: E)" style="background:#059669; border-color:#10B981;">✏️ Edit Data</button>
+      <button class="nav-btn" id="fullscreenToggleBtn" onclick="toggleFullscreen()" title="Toggle Fullscreen Presentation Mode (Shortcut: F)" style="background:#2563EB; border-color:#60A5FA;">⛶ Fullscreen</button>
       <a href="Egy_Nutri_Business_Review_Deck.pptx" download class="nav-btn" style="text-decoration: none;" title="Download PowerPoint Deck">📥 PPTX</a>
       <a href="Egy_Nutri_Sales_Analysis_Template.xlsx" download class="nav-btn" style="text-decoration: none;" title="Download Excel Model">📊 Excel</a>
       <button class="nav-btn" onclick="window.print()">🖨️ Print / PDF</button>
@@ -1229,12 +1725,75 @@
     <div>Shortage Flattening Applied: Monthly Averages (YTD 2026 ÷ 6 vs 2025 ÷ 12)</div>
   </footer>
 
+  <!-- Floating Fullscreen Presentation HUD -->
+  <div class="fullscreen-hud" id="fullscreenHud">
+    <button onclick="prevSlide()" title="Previous Slide (Left Arrow)">❮ Prev</button>
+    <span class="hud-badge" id="hudSlideIndicator">Slide 1 / 10</span>
+    <button onclick="nextSlide()" title="Next Slide (Right Arrow / Space)">Next ❯</button>
+    <button onclick="toggleSlideOutline()" title="Executive Slide Outline (O)">📑 Outline</button>
+    <button onclick="openDataEditor()" title="Edit Sales Volumes (E)">✏️ Edit Data</button>
+    <button onclick="toggleFullscreen()" title="Exit Fullscreen (Esc)">🗕 Exit Fullscreen</button>
+  </div>
+
+  <!-- Slide Outline Drawer -->
+  <div class="outline-drawer" id="slideOutlineDrawer">
+    <div class="outline-header">
+      <h3>📑 Executive Slide Outline</h3>
+      <button onclick="toggleSlideOutline()" title="Close Outline">✕</button>
+    </div>
+    <div class="outline-list" id="outlineList">
+      <!-- Generated dynamically by renderSlideOutline() -->
+    </div>
+  </div>
+
+  <!-- Data Editor Modal -->
+  <div class="modal-backdrop" id="dataEditorBackdrop" onclick="if(event.target===this) closeDataEditor()">
+    <div class="data-modal">
+      <div class="data-modal-header">
+        <div>
+          <h2>✏️ Sales Data Manager & Live Model Updater</h2>
+          <p>Modify territory volumes, Geo Share potentials, or manager assignments. All 10 slides and charts recalculate live.</p>
+        </div>
+        <button class="data-modal-close" onclick="closeDataEditor()" title="Close">✕</button>
+      </div>
+
+      <div class="data-modal-tabs">
+        <button class="modal-tab-btn active" id="modalTab2026" onclick="switchEditorTab('2026')">📅 2026 YTD June Actuals (M06)</button>
+        <button class="modal-tab-btn" id="modalTab2025" onclick="switchEditorTab('2025')">📅 2025 Full-Year Actuals (M12)</button>
+        <button class="modal-tab-btn" id="modalTabMeta" onclick="switchEditorTab('meta')">👤 Managers & Geo Share %</button>
+        <button class="modal-tab-btn" id="modalTabJson" onclick="switchEditorTab('json')">💾 Backup / JSON Transfer</button>
+      </div>
+
+      <div class="data-modal-body" id="dataModalBody">
+        <!-- Rendered dynamically by renderEditorBody() -->
+      </div>
+
+      <div class="data-modal-footer">
+        <div class="footer-left-btns">
+          <button class="btn-apply-data" onclick="applyDataEditorChanges()">💾 Save & Recalculate Dashboard</button>
+          <button class="btn-reset-data" onclick="resetDataToBaseline()">🔄 Reset to Baseline</button>
+          <button class="btn-export-data" onclick="exportDataToJson()">📥 Export JSON</button>
+        </div>
+        <div class="footer-right-btns">
+          <button class="btn-cancel-modal" onclick="closeDataEditor()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Popup -->
+  <div class="toast-msg" id="toastNotification">
+    <span id="toastIcon">✅</span>
+    <span id="toastText">Data successfully updated!</span>
+  </div>
+
   <!-- Embedded Application Data & Logic -->
   <script>
     // Ensure Chart is available in scope
     var ChartLib = window.Chart || Chart;
 
-    const rawData2026 = [
+    // Factory Verified Baseline Data
+    const DEFAULT_DATA_2026 = [
       { territory: 'Alx', dm: 'Ahmed Hassan Abd-Elmonem Abdallah', p1: 19436, p2: 8869, pg3: 2538, lf: 1527, ha: 2260, ar: 1895, ac: 2136, mum: 350, ps1: 12955, ps2: 6562, lbw: 2707, sum: 61235, geoShare: 0.10101, contrIdx: 0.730478862, contrDiff: -0.0272 },
       { territory: 'Behera & Dakahlia', dm: 'Ahmed Mohamed Sakr', p1: 23500, p2: 11046, pg3: 2651, lf: 2578, ha: 4457, ar: 3572, ac: 4660, mum: 387, ps1: 17403, ps2: 10976, lbw: 4581, sum: 85811, geoShare: 0.09754, contrIdx: 1.06014107, contrDiff: 0.0059 },
       { territory: 'Cairo', dm: 'NOHER ADEL ABD EL- HAKEEM HASSAN', p1: 15452, p2: 11024, pg3: 3206, lf: 2574, ha: 2990, ar: 2240, ac: 3813, mum: 561, ps1: 5169, ps2: 3030, lbw: 2486, sum: 52545, geoShare: 0.14619, contrIdx: 0.433104767, contrDiff: -0.0829 },
@@ -1246,7 +1805,7 @@
       { territory: 'KFR EL.SHK', dm: 'Karim Shehab', p1: 15157, p2: 9447, pg3: 3685, lf: 1370, ha: 1902, ar: 1129, ac: 2450, mum: 185, ps1: 15329, ps2: 9174, lbw: 2935, sum: 62763, geoShare: 0.01763, contrIdx: 4.290709151, contrDiff: 0.0580 }
     ];
 
-    const rawData2025 = [
+    const DEFAULT_DATA_2025 = [
       { territory: 'Alx', dm: 'Ahmed Hassan Abd-Elmonem Abdallah', p1: 20546, p2: 9779, pg3: 2744, lf: 2121, ha: 3399, ar: 3693, ac: 3692, mum: 417, ps1: 29953, ps2: 11360, lbw: 0, sum: 87704 },
       { territory: 'Behera & Dakahlia', dm: 'Ahmed Mohamed Sakr', p1: 39810, p2: 16384, pg3: 4620, lf: 4913, ha: 8259, ar: 8974, ac: 7073, mum: 807, ps1: 42949, ps2: 15508, lbw: 0, sum: 149297 },
       { territory: 'Cairo', dm: 'NOHER ADEL ABD EL- HAKEEM HASSAN', p1: 23625, p2: 14442, pg3: 4076, lf: 3372, ha: 6241, ar: 8039, ac: 5551, mum: 1473, ps1: 11402, ps2: 7597, lbw: 0, sum: 85818 },
@@ -1258,15 +1817,26 @@
       { territory: 'KFR EL.SHK', dm: 'Karim Shehab', p1: 21796, p2: 14599, pg3: 3268, lf: 3250, ha: 4931, ar: 5085, ac: 4643, mum: 508, ps1: 34372, ps2: 19586, lbw: 0, sum: 112038 }
     ];
 
-    const company2026 = {
-      p1: 234147, p2: 146500, pg3: 32024, lf: 26008, ha: 35394, ar: 28061, ac: 45113, mum: 4328, ps1: 145674, ps2: 97406, lbw: 35227, sum: 829882
-    };
+    // Active Dataset (Loaded from localStorage or initialized from baseline)
+    let rawData2026 = null;
+    let rawData2025 = null;
+    try {
+      rawData2026 = JSON.parse(localStorage.getItem('egy_nutri_data_2026') || 'null');
+      rawData2025 = JSON.parse(localStorage.getItem('egy_nutri_data_2025') || 'null');
+    } catch (e) {
+      console.warn('localStorage read error:', e);
+    }
+    if (!rawData2026 || !Array.isArray(rawData2026) || rawData2026.length === 0) {
+      rawData2026 = JSON.parse(JSON.stringify(DEFAULT_DATA_2026));
+    }
+    if (!rawData2025 || !Array.isArray(rawData2025) || rawData2025.length === 0) {
+      rawData2025 = JSON.parse(JSON.stringify(DEFAULT_DATA_2025));
+    }
 
-    const company2025 = {
-      p1: 334693, p2: 177294, pg3: 42179, lf: 36880, ha: 65237, ar: 74439, ac: 63129, mum: 9992, ps1: 297486, ps2: 139286, lbw: 0, sum: 1240615
-    };
-
-    const compTotalPpg = ((company2026.sum / 6) / (company2025.sum / 12) - 1) * 100;
+    let company2026 = {};
+    let company2025 = {};
+    let compTotalPpg = 33.79;
+    const compProductMetrics = {};
 
     const productMeta = [
       { key: 'p1', name: 'Pediamil 1', isCore: true },
@@ -1280,16 +1850,97 @@
       { key: 'mum', name: 'Pediamum', isCore: false }
     ];
 
-    const compProductMetrics = {};
-    productMeta.forEach(p => {
-      const v26 = company2026[p.key];
-      const v25 = company2025[p.key];
-      const avg26 = v26 / 6;
-      const avg25 = v25 / 12;
-      const ppg = avg25 > 0 ? ((avg26 / avg25) - 1) * 100 : 100;
-      const lnAvgAdm = avg26 / 9;
-      compProductMetrics[p.key] = { avg26, avg25, ppg, lnAvgAdm };
-    });
+    function calculateRowSum(r) {
+      return (Number(r.p1)||0) + (Number(r.p2)||0) + (Number(r.pg3)||0) + 
+             (Number(r.lf)||0) + (Number(r.ha)||0) + (Number(r.ar)||0) + 
+             (Number(r.ac)||0) + (Number(r.mum)||0) + (Number(r.ps1)||0) + 
+             (Number(r.ps2)||0) + (Number(r.lbw)||0);
+    }
+
+    function recalculateAllModelData() {
+      // 1. Recalculate Row Sums
+      rawData2026.forEach(r => { r.sum = calculateRowSum(r); });
+      rawData2025.forEach(r => { r.sum = calculateRowSum(r); });
+
+      // 2. Company 2026 Totals
+      company2026 = { p1: 0, p2: 0, pg3: 0, lf: 0, ha: 0, ar: 0, ac: 0, mum: 0, ps1: 0, ps2: 0, lbw: 0, sum: 0 };
+      rawData2026.forEach(r => {
+        company2026.p1 += (Number(r.p1) || 0);
+        company2026.p2 += (Number(r.p2) || 0);
+        company2026.pg3 += (Number(r.pg3) || 0);
+        company2026.lf += (Number(r.lf) || 0);
+        company2026.ha += (Number(r.ha) || 0);
+        company2026.ar += (Number(r.ar) || 0);
+        company2026.ac += (Number(r.ac) || 0);
+        company2026.mum += (Number(r.mum) || 0);
+        company2026.ps1 += (Number(r.ps1) || 0);
+        company2026.ps2 += (Number(r.ps2) || 0);
+        company2026.lbw += (Number(r.lbw) || 0);
+        company2026.sum += r.sum;
+      });
+
+      // 3. Company 2025 Totals
+      company2025 = { p1: 0, p2: 0, pg3: 0, lf: 0, ha: 0, ar: 0, ac: 0, mum: 0, ps1: 0, ps2: 0, lbw: 0, sum: 0 };
+      rawData2025.forEach(r => {
+        company2025.p1 += (Number(r.p1) || 0);
+        company2025.p2 += (Number(r.p2) || 0);
+        company2025.pg3 += (Number(r.pg3) || 0);
+        company2025.lf += (Number(r.lf) || 0);
+        company2025.ha += (Number(r.ha) || 0);
+        company2025.ar += (Number(r.ar) || 0);
+        company2025.ac += (Number(r.ac) || 0);
+        company2025.mum += (Number(r.mum) || 0);
+        company2025.ps1 += (Number(r.ps1) || 0);
+        company2025.ps2 += (Number(r.ps2) || 0);
+        company2025.lbw += (Number(r.lbw) || 0);
+        company2025.sum += r.sum;
+      });
+
+      // 4. Update contrDiff & contrIdx
+      rawData2026.forEach((r, i) => {
+        const r25 = rawData2025[i] || { sum: 0 };
+        const c26 = company2026.sum > 0 ? (r.sum / company2026.sum) * 100 : 0;
+        const c25 = company2025.sum > 0 ? (r25.sum / company2025.sum) * 100 : 0;
+        r.contrDiff = (c26 - c25) / 100;
+        r.contrIdx = (r.geoShare && r.geoShare > 0) ? ((c26 / 100) / r.geoShare) : 1;
+      });
+
+      // 5. Total Company Benchmark PPG%
+      const compAvg26 = company2026.sum / 6;
+      const compAvg25 = company2025.sum / 12;
+      compTotalPpg = compAvg25 > 0 ? ((compAvg26 / compAvg25) - 1) * 100 : 33.79;
+
+      // 6. Product Metrics Benchmarks
+      productMeta.forEach(p => {
+        const v26 = company2026[p.key] || 0;
+        const v25 = company2025[p.key] || 0;
+        const avg26 = v26 / 6;
+        const avg25 = v25 / 12;
+        const ppg = avg25 > 0 ? ((avg26 / avg25) - 1) * 100 : 0;
+        const lnAvgAdm = avg26 / Math.max(1, rawData2026.length);
+        compProductMetrics[p.key] = { avg26, avg25, ppg, lnAvgAdm };
+      });
+
+      // 7. Refresh ADM Selector Dropdown options
+      refreshAdmSelectOptions();
+    }
+
+    function refreshAdmSelectOptions() {
+      const sel = document.getElementById('chosenAdmSelect');
+      if (!sel) return;
+      const prevVal = parseInt(sel.value, 10);
+      sel.innerHTML = '';
+      rawData2026.forEach((r, idx) => {
+        const opt = document.createElement('option');
+        opt.value = idx;
+        const shortName = r.dm ? r.dm.split(' ').slice(0, 2).join(' ') : 'ADM ' + (idx + 1);
+        opt.text = shortName + ' (' + r.territory + ')';
+        if (idx === prevVal || (isNaN(prevVal) && idx === 7)) {
+          opt.selected = true;
+        }
+        sel.appendChild(opt);
+      });
+    }
 
     let currentSlide = 1;
     const totalSlides = 10;
@@ -1314,8 +1965,16 @@
         btn.classList.toggle('active', idx + 1 === slideNum);
       });
 
-      document.getElementById('slideIndicator').innerText = 'Slide ' + slideNum + ' of ' + totalSlides;
-      
+      const indicator = document.getElementById('slideIndicator');
+      if (indicator) indicator.innerText = 'Slide ' + slideNum + ' of ' + totalSlides;
+
+      const hudInd = document.getElementById('hudSlideIndicator');
+      if (hudInd) hudInd.innerText = 'Slide ' + slideNum + ' / ' + totalSlides;
+
+      document.querySelectorAll('.outline-item').forEach((item, idx) => {
+        item.classList.toggle('active', idx + 1 === slideNum);
+      });
+
       requestAnimationFrame(() => {
         renderSlide(slideNum);
       });
@@ -1329,16 +1988,132 @@
       if (currentSlide < totalSlides) goToSlide(currentSlide + 1);
     }
 
+    /* Fullscreen Mode Controller */
+    function toggleFullscreen() {
+      if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+        const docEl = document.documentElement;
+        if (docEl.requestFullscreen) {
+          docEl.requestFullscreen().catch(() => {
+            document.body.classList.toggle('is-fullscreen');
+            onFullscreenChange();
+          });
+        } else if (docEl.webkitRequestFullscreen) {
+          docEl.webkitRequestFullscreen();
+        } else {
+          document.body.classList.toggle('is-fullscreen');
+          onFullscreenChange();
+        }
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) {
+          document.webkitExitFullscreen();
+        } else {
+          document.body.classList.remove('is-fullscreen');
+          onFullscreenChange();
+        }
+      }
+    }
+
+    function onFullscreenChange() {
+      const isFull = !!(document.fullscreenElement || document.webkitFullscreenElement || document.body.classList.contains('is-fullscreen'));
+      document.body.classList.toggle('is-fullscreen', isFull);
+      const btn = document.getElementById('fullscreenToggleBtn');
+      if (btn) {
+        btn.innerHTML = isFull ? '🗕 Exit Fullscreen' : '⛶ Fullscreen';
+      }
+      setTimeout(() => {
+        window.dispatchEvent(new Event('resize'));
+        renderSlide(currentSlide);
+      }, 150);
+    }
+    document.addEventListener('fullscreenchange', onFullscreenChange);
+    document.addEventListener('webkitfullscreenchange', onFullscreenChange);
+
+    /* Slide Outline Drawer Controller */
+    const slideOutlineData = [
+      { num: 1, title: 'Territorial Contribution & Geo Share %', category: 'Selected ADM Contribution' },
+      { num: 2, title: 'Pediamil 1 & 2, Pedia-Start 1 & 2 Monthly Volumes', category: 'Core Formulas' },
+      { num: 3, title: 'Specialty Infant Formulas Monthly Averages', category: 'Specialty Lines' },
+      { num: 4, title: 'Dual-Axis Combo: Volume & Growth %', category: 'Strategic Deep Dive' },
+      { num: 5, title: 'Total PPG% Growth Ranking', category: 'National Ranking' },
+      { num: 6, title: 'Pediamil 1 PPG% Growth Ranking', category: 'Product League Table' },
+      { num: 7, title: 'Pediamil 2 PPG% Growth Ranking', category: 'Product League Table' },
+      { num: 8, title: 'Pedia-Start 1 PPG% Growth Ranking', category: 'Product League Table' },
+      { num: 9, title: 'Pedia-Start 2 PPG% Growth Ranking', category: 'Product League Table' },
+      { num: 10, title: 'Strategic Performance Quadrant Matrix (ABCD)', category: 'Growth vs Contribution' }
+    ];
+
+    function toggleSlideOutline() {
+      const drawer = document.getElementById('slideOutlineDrawer');
+      if (!drawer) return;
+      drawer.classList.toggle('open');
+      if (drawer.classList.contains('open')) {
+        renderSlideOutline();
+      }
+    }
+
+    function closeSlideOutline() {
+      const drawer = document.getElementById('slideOutlineDrawer');
+      if (drawer) drawer.classList.remove('open');
+    }
+
+    function renderSlideOutline() {
+      const container = document.getElementById('outlineList');
+      if (!container) return;
+      container.innerHTML = '';
+
+      slideOutlineData.forEach(s => {
+        const item = document.createElement('div');
+        item.className = 'outline-item' + (s.num === currentSlide ? ' active' : '');
+        item.onclick = () => {
+          goToSlide(s.num);
+          closeSlideOutline();
+        };
+        item.innerHTML =
+          '<div class="outline-num">Slide ' + (s.num < 10 ? '0' + s.num : s.num) + '</div>' +
+          '<div class="outline-info">' +
+            '<h4>' + s.title + '</h4>' +
+            '<span>' + s.category + '</span>' +
+          '</div>';
+        container.appendChild(item);
+      });
+    }
+
+    /* Global Keyboard Navigation */
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowRight' || e.key === ' ') {
+      if (['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target.tagName)) {
+        if (e.key === 'Escape') closeDataEditor();
+        return;
+      }
+
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
         nextSlide();
-      } else if (e.key === 'ArrowLeft') {
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
         prevSlide();
+      } else if (e.key === 'f' || e.key === 'F') {
+        toggleFullscreen();
+      } else if (e.key === 'o' || e.key === 'O') {
+        toggleSlideOutline();
+      } else if (e.key === 'e' || e.key === 'E') {
+        openDataEditor();
+      } else if (e.key === 'Escape') {
+        closeDataEditor();
+        closeSlideOutline();
+        if (document.fullscreenElement) {
+          document.exitFullscreen();
+        }
+      } else if (e.key === 'Home') {
+        goToSlide(1);
+      } else if (e.key === 'End') {
+        goToSlide(10);
       }
     });
 
     function getChosenPerson() {
-      const idx = parseInt(document.getElementById('chosenAdmSelect').value, 10);
+      const sel = document.getElementById('chosenAdmSelect');
+      let idx = sel ? parseInt(sel.value, 10) : 7;
+      if (isNaN(idx) || idx < 0 || idx >= rawData2026.length) idx = 0;
       const r26 = rawData2026[idx];
       const r25 = rawData2025[idx];
       const avg26 = r26.sum / 6;
@@ -2328,8 +3103,324 @@
       });
     }
 
+    /* ==========================================================================
+       DATA EDITOR & MODEL UPDATE SYSTEM
+       ========================================================================== */
+    let tempEditData2026 = [];
+    let tempEditData2025 = [];
+    let editorActiveTab = '2026';
+
+    const skuFields = [
+      { key: 'p1', name: 'Pediamil 1' },
+      { key: 'p2', name: 'Pediamil 2' },
+      { key: 'pg3', name: 'PG3' },
+      { key: 'lf', name: 'LF' },
+      { key: 'ha', name: 'HA' },
+      { key: 'ar', name: 'AR' },
+      { key: 'ac', name: 'AC' },
+      { key: 'mum', name: 'Mum' },
+      { key: 'ps1', name: 'P-Start 1' },
+      { key: 'ps2', name: 'P-Start 2' },
+      { key: 'lbw', name: 'LBW' }
+    ];
+
+    function openDataEditor() {
+      tempEditData2026 = JSON.parse(JSON.stringify(rawData2026));
+      tempEditData2025 = JSON.parse(JSON.stringify(rawData2025));
+      editorActiveTab = '2026';
+      switchEditorTab('2026');
+      const backdrop = document.getElementById('dataEditorBackdrop');
+      if (backdrop) backdrop.classList.add('open');
+    }
+
+    function closeDataEditor() {
+      const backdrop = document.getElementById('dataEditorBackdrop');
+      if (backdrop) backdrop.classList.remove('open');
+    }
+
+    function switchEditorTab(tabKey) {
+      editorActiveTab = tabKey;
+      ['2026', '2025', 'meta', 'json'].forEach(k => {
+        const btn = document.getElementById('modalTab' + (k.charAt(0).toUpperCase() + k.slice(1)));
+        if (btn) btn.classList.toggle('active', k === tabKey);
+      });
+      renderEditorBody();
+    }
+
+    function renderEditorBody() {
+      const container = document.getElementById('dataModalBody');
+      if (!container) return;
+
+      if (editorActiveTab === '2026' || editorActiveTab === '2025') {
+        const yr = editorActiveTab;
+        const dataset = (yr === '2026') ? tempEditData2026 : tempEditData2025;
+        const divisor = (yr === '2026') ? 6 : 12;
+
+        let thHtml = '<th>#</th><th>Territory</th><th>Manager (ADM)</th>';
+        skuFields.forEach(f => {
+          thHtml += '<th>' + f.name + '</th>';
+        });
+        thHtml += '<th style="background:#E2E8F0;">Total Vol</th><th style="background:#E2E8F0;">M. Avg</th>';
+
+        let rowsHtml = '';
+        dataset.forEach((r, idx) => {
+          const rowSum = calculateRowSum(r);
+          r.sum = rowSum;
+          const rowAvg = rowSum / divisor;
+
+          let skuInputs = '';
+          skuFields.forEach(f => {
+            const val = r[f.key] !== undefined ? r[f.key] : 0;
+            skuInputs +=
+              '<td>' +
+                '<input type="number" min="0" value="' + val + '" ' +
+                  'oninput="onEditorCellChange(&quot;' + yr + '&quot;, ' + idx + ', &quot;' + f.key + '&quot;, this.value)">' +
+              '</td>';
+          });
+
+          rowsHtml +=
+            '<tr>' +
+              '<td><strong>' + (idx + 1) + '</strong></td>' +
+              '<td><strong>' + r.territory + '</strong></td>' +
+              '<td><small>' + (r.dm ? r.dm.split(' ').slice(0, 2).join(' ') : '') + '</small></td>' +
+              skuInputs +
+              '<td class="num" style="font-weight:700;" id="calc-' + yr + '-total-' + idx + '">' + Math.round(rowSum).toLocaleString() + '</td>' +
+              '<td class="num" style="font-weight:700; color:var(--primary);" id="calc-' + yr + '-avg-' + idx + '">' + Math.round(rowAvg).toLocaleString() + '</td>' +
+            '</tr>';
+        });
+
+        // Totals Footer Row
+        let footerCols = '';
+        let compSum = 0;
+        skuFields.forEach(f => {
+          let colSum = 0;
+          dataset.forEach(r => { colSum += (Number(r[f.key]) || 0); });
+          compSum += colSum;
+          footerCols += '<td class="num" id="calc-' + yr + '-col-' + f.key + '">' + Math.round(colSum).toLocaleString() + '</td>';
+        });
+
+        const footerRow =
+          '<tr class="total-calc-row">' +
+            '<td colspan="3"><strong>TOTAL EGYPT (COMPANY)</strong></td>' +
+            footerCols +
+            '<td class="num" id="calc-' + yr + '-comp-total">' + Math.round(compSum).toLocaleString() + '</td>' +
+            '<td class="num" id="calc-' + yr + '-comp-avg">' + Math.round(compSum / divisor).toLocaleString() + '</td>' +
+          '</tr>';
+
+        container.innerHTML =
+          '<div style="margin-bottom:10px; font-size:12px; color:var(--text-muted); display:flex; justify-content:space-between; align-items:center;">' +
+            '<span>Editing <strong>' + (yr === '2026' ? '2026 YTD June Actuals (6 Months)' : '2025 Full-Year Actuals (12 Months)') + '</strong>. Row totals and company benchmarks recalculate dynamically as you type.</span>' +
+            '<span style="font-weight:700; color:var(--primary);">Divisor: ' + divisor + ' months</span>' +
+          '</div>' +
+          '<table class="data-edit-table">' +
+            '<thead><tr>' + thHtml + '</tr></thead>' +
+            '<tbody>' + rowsHtml + footerRow + '</tbody>' +
+          '</table>';
+      } else if (editorActiveTab === 'meta') {
+        let rowsHtml = '';
+        tempEditData2026.forEach((r, idx) => {
+          const geoPct = (r.geoShare ? r.geoShare * 100 : 0).toFixed(2);
+          rowsHtml +=
+            '<tr>' +
+              '<td><strong>' + (idx + 1) + '</strong></td>' +
+              '<td>' +
+                '<input type="text" value="' + r.territory + '" ' +
+                  'oninput="tempEditData2026[' + idx + '].territory = this.value; if(tempEditData2025[' + idx + ']) tempEditData2025[' + idx + '].territory = this.value;">' +
+              '</td>' +
+              '<td>' +
+                '<input type="text" value="' + r.dm + '" ' +
+                  'oninput="tempEditData2026[' + idx + '].dm = this.value; if(tempEditData2025[' + idx + ']) tempEditData2025[' + idx + '].dm = this.value;">' +
+              '</td>' +
+              '<td>' +
+                '<input type="number" step="0.01" min="0" max="100" value="' + geoPct + '" ' +
+                  'oninput="tempEditData2026[' + idx + '].geoShare = (parseFloat(this.value) || 0) / 100;">' +
+              '</td>' +
+            '</tr>';
+        });
+
+        container.innerHTML =
+          '<div style="margin-bottom:10px; font-size:12px; color:var(--text-muted);">' +
+            'Customize territory names, assigned Assistant District Managers, and territorial Geo Share % potential.' +
+          '</div>' +
+          '<table class="data-edit-table" style="max-width:850px;">' +
+            '<thead>' +
+              '<tr>' +
+                '<th style="width:40px;">#</th>' +
+                '<th style="width:200px;">Territory Name</th>' +
+                '<th>Manager (ADM) Name</th>' +
+                '<th style="width:160px;">Geo Share % (2025 Market Potential)</th>' +
+              '</tr>' +
+            '</thead>' +
+            '<tbody>' + rowsHtml + '</tbody>' +
+          '</table>';
+      } else if (editorActiveTab === 'json') {
+        const fullPayload = {
+          exportDate: new Date().toISOString(),
+          data2026: tempEditData2026,
+          data2025: tempEditData2025
+        };
+        const jsonStr = JSON.stringify(fullPayload, null, 2);
+
+        container.innerHTML =
+          '<div style="display:flex; flex-direction:column; gap:12px;">' +
+            '<div style="font-size:12.5px; color:var(--text-muted);">' +
+              'Export current model numbers to JSON or paste a new JSON dataset below to update the entire review template instantly.' +
+            '</div>' +
+            '<textarea id="jsonEditorArea" style="width:100%; height:320px; font-family:monospace; font-size:12px; padding:12px; border:1px solid #CBD5E1; border-radius:8px; resize:vertical;">' + jsonStr + '</textarea>' +
+            '<div style="display:flex; gap:10px;">' +
+              '<button class="nav-btn" style="background:#1B365D; color:white;" onclick="copyJsonToClipboard()">📋 Copy JSON to Clipboard</button>' +
+              '<button class="nav-btn" style="background:#0D9488; color:white;" onclick="importJsonFromTextarea()">📥 Load Pasted JSON into Model</button>' +
+            '</div>' +
+          '</div>';
+      }
+    }
+
+    function onEditorCellChange(year, rowIndex, field, value) {
+      const val = parseFloat(value) || 0;
+      const dataset = (year === '2026') ? tempEditData2026 : tempEditData2025;
+      if (!dataset || !dataset[rowIndex]) return;
+      dataset[rowIndex][field] = val;
+
+      const rowSum = calculateRowSum(dataset[rowIndex]);
+      dataset[rowIndex].sum = rowSum;
+      const divisor = (year === '2026') ? 6 : 12;
+      const rowAvg = rowSum / divisor;
+
+      const totalCell = document.getElementById('calc-' + year + '-total-' + rowIndex);
+      if (totalCell) totalCell.innerText = Math.round(rowSum).toLocaleString();
+
+      const avgCell = document.getElementById('calc-' + year + '-avg-' + rowIndex);
+      if (avgCell) avgCell.innerText = Math.round(rowAvg).toLocaleString();
+
+      updateEditorColumnSums(year);
+    }
+
+    function updateEditorColumnSums(year) {
+      const dataset = (year === '2026') ? tempEditData2026 : tempEditData2025;
+      const divisor = (year === '2026') ? 6 : 12;
+      let compSum = 0;
+
+      skuFields.forEach(f => {
+        let colSum = 0;
+        dataset.forEach(r => { colSum += (Number(r[f.key]) || 0); });
+        compSum += colSum;
+        const colCell = document.getElementById('calc-' + year + '-col-' + f.key);
+        if (colCell) colCell.innerText = Math.round(colSum).toLocaleString();
+      });
+
+      const compTotalCell = document.getElementById('calc-' + year + '-comp-total');
+      if (compTotalCell) compTotalCell.innerText = Math.round(compSum).toLocaleString();
+
+      const compAvgCell = document.getElementById('calc-' + year + '-comp-avg');
+      if (compAvgCell) compAvgCell.innerText = Math.round(compSum / divisor).toLocaleString();
+    }
+
+    function applyDataEditorChanges() {
+      rawData2026 = JSON.parse(JSON.stringify(tempEditData2026));
+      rawData2025 = JSON.parse(JSON.stringify(tempEditData2025));
+
+      try {
+        localStorage.setItem('egy_nutri_data_2026', JSON.stringify(rawData2026));
+        localStorage.setItem('egy_nutri_data_2025', JSON.stringify(rawData2025));
+      } catch (e) {
+        console.warn('localStorage save error:', e);
+      }
+
+      recalculateAllModelData();
+      renderSlide(currentSlide);
+      closeDataEditor();
+      showToast('✅ Sales data saved & recalculated! All 10 slides and charts updated.', '✅');
+    }
+
+    function resetDataToBaseline() {
+      if (!confirm('Are you sure you want to reset all data back to factory baseline figures?')) return;
+      try {
+        localStorage.removeItem('egy_nutri_data_2026');
+        localStorage.removeItem('egy_nutri_data_2025');
+      } catch (e) {}
+
+      rawData2026 = JSON.parse(JSON.stringify(DEFAULT_DATA_2026));
+      rawData2025 = JSON.parse(JSON.stringify(DEFAULT_DATA_2025));
+      tempEditData2026 = JSON.parse(JSON.stringify(rawData2026));
+      tempEditData2025 = JSON.parse(JSON.stringify(rawData2025));
+
+      recalculateAllModelData();
+      renderEditorBody();
+      renderSlide(currentSlide);
+      showToast('🔄 Restored verified factory baseline data.', '🔄');
+    }
+
+    function exportDataToJson() {
+      const exportPayload = {
+        version: '1.0.0',
+        exportDate: new Date().toISOString(),
+        data2026: rawData2026,
+        data2025: rawData2025
+      };
+      const blob = new Blob([JSON.stringify(exportPayload, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'Egy_Nutri_Sales_Data_' + new Date().toISOString().slice(0, 10) + '.json';
+      a.click();
+      URL.revokeObjectURL(url);
+      showToast('📥 Data exported successfully to JSON.', '📥');
+    }
+
+    function copyJsonToClipboard() {
+      const area = document.getElementById('jsonEditorArea');
+      if (!area) return;
+      area.select();
+      navigator.clipboard.writeText(area.value).then(() => {
+        showToast('📋 JSON copied to clipboard!', '📋');
+      }).catch(() => {
+        document.execCommand('copy');
+        showToast('📋 JSON copied to clipboard!', '📋');
+      });
+    }
+
+    function importJsonFromTextarea() {
+      const area = document.getElementById('jsonEditorArea');
+      if (!area) return;
+      try {
+        const parsed = JSON.parse(area.value);
+        if (parsed.data2026 && Array.isArray(parsed.data2026)) {
+          tempEditData2026 = parsed.data2026;
+        } else if (Array.isArray(parsed)) {
+          tempEditData2026 = parsed;
+        }
+        if (parsed.data2025 && Array.isArray(parsed.data2025)) {
+          tempEditData2025 = parsed.data2025;
+        }
+        showToast('📥 JSON loaded into editor. Click Save to apply.', '📥');
+        switchEditorTab('2026');
+      } catch (err) {
+        alert('Invalid JSON format: ' + err.message);
+      }
+    }
+
+    /* Toast Notification Controller */
+    let toastTimeout = null;
+    function showToast(msg, icon = '✅') {
+      const toast = document.getElementById('toastNotification');
+      const iconSpan = document.getElementById('toastIcon');
+      const textSpan = document.getElementById('toastText');
+      if (!toast) return;
+
+      if (iconSpan) iconSpan.innerText = icon;
+      if (textSpan) textSpan.innerText = msg;
+
+      toast.style.display = 'flex';
+      if (toastTimeout) clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.style.display = 'none';
+      }, 3500);
+    }
+
     window.addEventListener('DOMContentLoaded', () => {
       initSlideTabs();
+      recalculateAllModelData();
+      renderSlideOutline();
       goToSlide(1);
     });
   </script>

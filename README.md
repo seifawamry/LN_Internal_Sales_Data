@@ -141,7 +141,43 @@ npm run build:excel    # Compiles Egy_Nutri_Sales_Analysis_Template.xlsx
 
 ---
 
+## 🖥️ Interactive Web Dashboard Features
+
+### 1. ⛶ Fullscreen Presentation Mode
+- **Instant Fullscreen Toggle:** Click the **`⛶ Fullscreen`** button in the header or press **`F`** anytime to enter an executive presentation view.
+- **Slide Frame & Outline View:** The dashboard centers on the active slide with an executive blue accent frame, responsive card scaling, and clean outlines.
+- **Floating Presentation HUD:** Provides presentation controls at the bottom center of the screen during meetings (Previous, Slide Counter, Next, Outline Drawer, Edit Data, Exit Fullscreen).
+- **Keyboard Shortcuts:**
+  - `F`: Toggle Fullscreen
+  - `O`: Open / Close Executive Slide Outline Drawer
+  - `E`: Open Live Sales Data Manager
+  - `ArrowRight` / `Space` / `PageDown`: Next Slide
+  - `ArrowLeft` / `PageUp`: Previous Slide
+  - `Home` / `End`: Jump to Slide 01 / Slide 10
+  - `Esc`: Close Modals / Exit Fullscreen
+
+### 2. 📑 Slide Outline Drawer
+- Click **`📑 Outline`** to open a slide navigation drawer on the right.
+- View all 10 slide titles, categories, and direct jump links without leaving presentation mode.
+
+### 3. ✏️ Live Sales Data Manager & Model Updater
+- Click **`✏️ Edit Data`** to open the interactive data management modal.
+- **Live Spreadsheet Editor:**
+  - Modify actual volumes for any SKU across all 9 territories for either **2026 YTD June** (6 months) or **2025 Full-Year** (12 months).
+  - Modify territory names, manager assignments, and Geo Share % potentials.
+  - Row totals, monthly averages, and national company totals update live in the table as numbers are typed.
+- **Dynamic Recalculation Engine:**
+  - Clicking **`💾 Save & Recalculate Dashboard`** recalculates the entire model: national benchmarks (+33.8% PPG or updated), SKU line averages, ranking positions, and quadrant scatter plot coordinates.
+  - Updates are persisted in the browser via `localStorage` so changes remain saved across page refreshes.
+- **Backup & Portability:**
+  - **`📥 Export JSON`**: Download updated sales figures as a JSON file.
+  - **`📤 Load JSON`**: Paste or import a JSON payload to load new quarters or sales cycles instantly.
+  - **`🔄 Reset to Baseline`**: One-click restore back to factory verified baseline numbers.
+
+---
+
 ## 🏢 Organization & Author
 - **Organization:** Liptis Nutrition (LN) / Egy Nutri. Commercial Analytics Division
 - **Repository:** [`seifawamry/LN_Internal_Sales_Data`](https://github.com/seifawamry/LN_Internal_Sales_Data)
 - **Author:** Seif Elawamry
+
