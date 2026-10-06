@@ -1,5 +1,6 @@
 const PptxGenJS = require('pptxgenjs');
 const path = require('path');
+const fs = require('fs');
 const { rawData2026, rawData2025 } = require('./data');
 
 async function createPowerPoint() {
@@ -585,7 +586,12 @@ async function createPowerPoint() {
 
   const targetPath = path.join(__dirname, 'Egy_Nutri_Business_Review_Deck.pptx');
   await pptx.writeFile({ fileName: targetPath });
-  console.log(`PowerPoint Presentation successfully updated at: ${targetPath}`);
+  const distDir = path.join(__dirname, 'public');
+  if (!fs.existsSync(distDir)) {
+    fs.mkdirSync(distDir, { recursive: true });
+  }
+  fs.copyFileSync(targetPath, path.join(distDir, 'Egy_Nutri_Business_Review_Deck.pptx'));
+  console.log(`PowerPoint Presentation successfully updated at root and public/: ${targetPath}`);
 }
 
 createPowerPoint().catch(err => console.error(err));

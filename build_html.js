@@ -611,6 +611,8 @@ ${chartJsContent}
 
       <button class="nav-btn" onclick="prevSlide()">❮ Prev</button>
       <button class="nav-btn" onclick="nextSlide()">Next ❯</button>
+      <a href="Egy_Nutri_Business_Review_Deck.pptx" download class="nav-btn" style="text-decoration: none;" title="Download PowerPoint Deck">📥 PPTX</a>
+      <a href="Egy_Nutri_Sales_Analysis_Template.xlsx" download class="nav-btn" style="text-decoration: none;" title="Download Excel Model">📊 Excel</a>
       <button class="nav-btn" onclick="window.print()">🖨️ Print / PDF</button>
     </div>
   </header>
@@ -2320,8 +2322,18 @@ ${chartJsContent}
 </html>
 `;
 
+const distDir = path.join(__dirname, 'public');
+if (!fs.existsSync(distDir)) {
+  fs.mkdirSync(distDir, { recursive: true });
+}
+
 const htmlPath = path.join(__dirname, 'Egy_Nutri_Business_Review.html');
 const indexPath = path.join(__dirname, 'index.html');
+const publicHtmlPath = path.join(distDir, 'Egy_Nutri_Business_Review.html');
+const publicIndexPath = path.join(distDir, 'index.html');
+
 fs.writeFileSync(htmlPath, htmlTemplate, 'utf8');
 fs.writeFileSync(indexPath, htmlTemplate, 'utf8');
-console.log('Final standalone HTML successfully built and written to Egy_Nutri_Business_Review.html and index.html!');
+fs.writeFileSync(publicHtmlPath, htmlTemplate, 'utf8');
+fs.writeFileSync(publicIndexPath, htmlTemplate, 'utf8');
+console.log('Final standalone HTML successfully built and written to root and public/ directory!');

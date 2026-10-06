@@ -1,5 +1,6 @@
 const ExcelJS = require('exceljs');
 const path = require('path');
+const fs = require('fs');
 const { rawData2026, rawData2025 } = require('./data');
 
 async function createWorkbook() {
@@ -744,7 +745,12 @@ async function createWorkbook() {
 
   const targetPath = path.join(__dirname, 'Egy_Nutri_Sales_Analysis_Template.xlsx');
   await wb.xlsx.writeFile(targetPath);
-  console.log(`Excel Workbook successfully generated at: ${targetPath}`);
+  const distDir = path.join(__dirname, 'public');
+  if (!fs.existsSync(distDir)) {
+    fs.mkdirSync(distDir, { recursive: true });
+  }
+  fs.copyFileSync(targetPath, path.join(distDir, 'Egy_Nutri_Sales_Analysis_Template.xlsx'));
+  console.log(`Excel Workbook successfully generated at root and public/: ${targetPath}`);
 }
 
 createWorkbook().catch(err => console.error(err));
