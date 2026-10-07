@@ -1043,6 +1043,100 @@ ${chartJsContent}
       to { transform: translateY(0); opacity: 1; }
     }
 
+    /* Table Horizontal Scroll with Frozen Territory Column */
+    .data-table-wrapper {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      position: relative;
+      max-width: 100%;
+      border-radius: 8px;
+    }
+
+    .data-table-wrapper table {
+      min-width: 580px;
+      border-collapse: separate;
+      border-spacing: 0;
+    }
+
+    .data-table-wrapper table th:first-child,
+    .data-table-wrapper table td:first-child {
+      position: sticky;
+      left: 0;
+      background: #FFFFFF;
+      z-index: 2;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.06);
+    }
+
+    .data-table-wrapper table thead th:first-child {
+      background: #F1F5F9;
+      z-index: 3;
+    }
+
+    .data-table-wrapper table tr.chosen-row td:first-child {
+      background: #EDE9FE;
+    }
+
+    .data-table-wrapper table tr.company-top-row td:first-child {
+      background: #1B365D;
+      color: white;
+    }
+
+    .data-table-wrapper table tr:hover td:first-child {
+      background: #F8FAFC;
+    }
+
+    /* Mobile Bottom Navigation Bar */
+    .mobile-bottom-bar {
+      display: none;
+    }
+
+    /* Drag & Drop Overlay */
+    .drag-drop-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(15, 23, 42, 0.88);
+      backdrop-filter: blur(8px);
+      z-index: 5000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    .drag-drop-overlay.active {
+      display: flex;
+    }
+
+    .drag-drop-box {
+      background: white;
+      border: 3px dashed #2563EB;
+      border-radius: 16px;
+      padding: 36px 28px;
+      text-align: center;
+      max-width: 460px;
+      width: 90vw;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+      animation: modalFadeIn 0.2s ease-out;
+    }
+
+    .drag-drop-box h3 {
+      font-size: 19px;
+      color: var(--primary);
+      margin-top: 14px;
+      font-weight: 800;
+    }
+
+    .drag-drop-box p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 6px;
+      line-height: 1.5;
+    }
+
+    /* Tablet & Medium Screens */
     @media (max-width: 1024px) {
       .grid-2 {
         grid-template-columns: 1fr;
@@ -1050,10 +1144,296 @@ ${chartJsContent}
       .controls-area {
         flex-wrap: wrap;
       }
+      .quadrant-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    /* Mobile Phone Responsive Rules (< 768px) */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 10px 14px;
+        gap: 10px;
+      }
+
+      .brand-area {
+        justify-content: space-between;
+        width: 100%;
+      }
+
+      .brand-title h1 {
+        font-size: 15px;
+      }
+
+      .brand-title p {
+        font-size: 10px;
+      }
+
+      .controls-area {
+        flex-direction: column;
+        width: 100%;
+        gap: 8px;
+      }
+
+      .selector-group {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 6px 10px;
+      }
+
+      .selector-group label {
+        font-size: 10.5px;
+        margin-right: 6px;
+        white-space: nowrap;
+      }
+
+      .selector-group select {
+        flex: 1;
+        min-width: 0;
+        font-size: 13px;
+        height: 38px;
+      }
+
+      .desktop-only-controls {
+        display: none !important;
+      }
+
+      .header-action-buttons {
+        display: flex;
+        gap: 6px;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .header-action-buttons .nav-btn {
+        flex: 1;
+        justify-content: center;
+        padding: 8px 10px;
+        font-size: 12px;
+        white-space: nowrap;
+      }
+
+      .slide-tabs {
+        top: 0;
+        padding: 6px 8px;
+        gap: 6px;
+        background: #F1F5F9;
+        border-bottom: 2px solid var(--border);
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+
+      .slide-tabs::-webkit-scrollbar {
+        display: none;
+      }
+
+      .tab-btn {
+        padding: 7px 12px;
+        font-size: 11px;
+        border-radius: 6px;
+        border-bottom: none;
+        background: white;
+        border: 1px solid var(--border);
+      }
+
+      .tab-btn.active {
+        background: var(--primary);
+        color: white;
+        border-color: var(--primary);
+      }
+
+      main {
+        padding: 12px 10px 85px 10px !important;
+      }
+
+      .slide-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        padding: 12px 14px;
+      }
+
+      .slide-header-left h2 {
+        font-size: 15.5px;
+        line-height: 1.3;
+      }
+
+      .slide-header-left p {
+        font-size: 12px;
+      }
+
+      .kpi-pills {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+
+      .kpi-pill {
+        text-align: left;
+        padding: 8px 10px;
+      }
+
+      .card {
+        padding: 14px 12px;
+      }
+
+      .card-title {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+        margin-bottom: 10px;
+      }
+
+      /* Slide 4 Frozen Chart becomes static on mobile to avoid covering screen */
+      .sticky-chart-wrapper {
+        position: static !important;
+        padding: 12px 10px;
+        margin-bottom: 14px;
+        top: auto;
+      }
+
+      .chart-box {
+        height: 290px !important;
+      }
+
+      .chart-box-tall {
+        height: 380px !important;
+      }
+
+      /* Quadrant Matrix on mobile */
+      .quadrant-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      /* Mobile Bottom Navigation Bar */
+      .mobile-bottom-bar {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 58px;
+        background: rgba(15, 23, 42, 0.96);
+        backdrop-filter: blur(12px);
+        border-top: 1px solid rgba(255,255,255,0.15);
+        z-index: 1500;
+        align-items: center;
+        justify-content: space-around;
+        padding: 0 4px;
+        box-shadow: 0 -4px 16px rgba(0,0,0,0.3);
+      }
+
+      .mob-nav-btn {
+        background: transparent;
+        border: none;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2px;
+        padding: 4px 8px;
+        font-size: 10px;
+        font-weight: 600;
+        cursor: pointer;
+        border-radius: 6px;
+        min-width: 46px;
+        transition: background 0.15s;
+      }
+
+      .mob-nav-btn:active {
+        background: rgba(255,255,255,0.2);
+      }
+
+      .mob-nav-btn .mob-icon {
+        font-size: 17px;
+        line-height: 1.1;
+      }
+
+      .mob-counter-pill {
+        background: rgba(255,255,255,0.12);
+        border: 1px solid rgba(255,255,255,0.25);
+        color: #38BDF8;
+        padding: 6px 10px;
+        border-radius: 16px;
+        font-size: 11px;
+        font-weight: 800;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+
+      /* Outline Drawer on small screen */
+      .outline-drawer {
+        width: 85vw;
+        max-width: 340px;
+      }
+
+      /* Fullscreen Data Editor Modal on Mobile */
+      .modal-backdrop {
+        padding: 0;
+      }
+
+      .data-modal {
+        width: 100vw;
+        height: 100vh;
+        max-width: 100vw;
+        max-height: 100vh;
+        border-radius: 0;
+      }
+
+      .data-modal-header {
+        padding: 12px 14px;
+      }
+
+      .data-modal-header h2 {
+        font-size: 14.5px;
+      }
+
+      .data-modal-tabs {
+        padding: 0 8px;
+      }
+
+      .modal-tab-btn {
+        padding: 10px 12px;
+        font-size: 11.5px;
+      }
+
+      .data-modal-body {
+        padding: 10px;
+      }
+
+      .data-modal-footer {
+        padding: 10px 14px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+      }
+
+      .footer-left-btns, .footer-right-btns {
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+
+      .footer-left-btns button, .footer-right-btns button {
+        flex: 1;
+        min-width: 120px;
+        justify-content: center;
+        padding: 8px 10px;
+        font-size: 11.5px;
+      }
     }
 
     @media print {
-      header, .slide-tabs, footer, .controls-area {
+      header, .slide-tabs, footer, .controls-area, .mobile-bottom-bar, .fullscreen-hud {
         display: none !important;
       }
       .slide-container {
@@ -1061,7 +1441,7 @@ ${chartJsContent}
         page-break-after: always;
       }
       main {
-        padding: 0;
+        padding: 0 !important;
         max-width: 100%;
       }
       .card, .sticky-chart-wrapper {
@@ -1100,18 +1480,24 @@ ${chartJsContent}
         </select>
       </div>
 
-      <div class="slide-counter" id="slideIndicator">Slide 1 of 10</div>
+      <div class="slide-counter desktop-only-controls" id="slideIndicator">Slide 1 of 10</div>
 
-      <button class="nav-btn" onclick="prevSlide()" title="Previous Slide (Left Arrow)">❮ Prev</button>
-      <button class="nav-btn" onclick="nextSlide()" title="Next Slide (Right Arrow)">Next ❯</button>
-      <button class="nav-btn" id="btnToggleOutline" onclick="toggleSlideOutline()" title="Executive Slide Outline (Shortcut: O)">📑 Outline</button>
-      <button class="nav-btn" id="btnOpenDataEditor" onclick="openDataEditor()" title="Edit Sales Volumes & Recalculate Model (Shortcut: E)" style="background:#059669; border-color:#10B981;">✏️ Edit Data</button>
-      <button class="nav-btn" id="fullscreenToggleBtn" onclick="toggleFullscreen()" title="Toggle Fullscreen Presentation Mode (Shortcut: F)" style="background:#2563EB; border-color:#60A5FA;">⛶ Fullscreen</button>
-      <a href="Egy_Nutri_Business_Review_Deck.pptx" download class="nav-btn" style="text-decoration: none;" title="Download PowerPoint Deck">📥 PPTX</a>
-      <a href="Egy_Nutri_Sales_Analysis_Template.xlsx" download class="nav-btn" style="text-decoration: none;" title="Download Excel Model">📊 Excel</a>
-      <button class="nav-btn" onclick="window.print()">🖨️ Print / PDF</button>
+      <div class="header-action-buttons">
+        <button class="nav-btn desktop-only-controls" onclick="prevSlide()" title="Previous Slide (Left Arrow)">❮ Prev</button>
+        <button class="nav-btn desktop-only-controls" onclick="nextSlide()" title="Next Slide (Right Arrow)">Next ❯</button>
+        <button class="nav-btn" id="btnUploadCsvTop" onclick="triggerCsvUpload()" style="background:#0D9488; border-color:#14B8A6;" title="Upload updated Sales CSV and recalculate dashboard">📁 Upload CSV</button>
+        <button class="nav-btn" id="btnToggleOutline" onclick="toggleSlideOutline()" title="Executive Slide Outline (Shortcut: O)">📑 Outline</button>
+        <button class="nav-btn" id="btnOpenDataEditor" onclick="openDataEditor()" title="Edit Sales Volumes & Recalculate Model (Shortcut: E)" style="background:#059669; border-color:#10B981;">✏️ Edit Data</button>
+        <button class="nav-btn desktop-only-controls" id="fullscreenToggleBtn" onclick="toggleFullscreen()" title="Toggle Fullscreen Presentation Mode (Shortcut: F)" style="background:#2563EB; border-color:#60A5FA;">⛶ Fullscreen</button>
+        <a href="Egy_Nutri_Business_Review_Deck.pptx" download class="nav-btn desktop-only-controls" style="text-decoration: none;" title="Download PowerPoint Deck">📥 PPTX</a>
+        <a href="Egy_Nutri_Sales_Analysis_Template.xlsx" download class="nav-btn desktop-only-controls" style="text-decoration: none;" title="Download Excel Model">📊 Excel</a>
+        <button class="nav-btn desktop-only-controls" onclick="window.print()">🖨️ Print</button>
+      </div>
     </div>
   </header>
+
+  <!-- Hidden CSV File Input -->
+  <input type="file" id="csvFileInput" accept=".csv,text/csv,text/plain" style="display:none;" onchange="handleCsvFileSelect(this)">
 
   <!-- Slide Tabs Navigation -->
   <nav class="slide-tabs" id="slideTabs">
@@ -1308,7 +1694,7 @@ ${chartJsContent}
         <div class="kpi-pills">
           <div class="kpi-pill">
             <span>Company Benchmark PPG</span>
-            <strong style="color:var(--primary);">+33.79%</strong>
+            <strong id="s4CompanyBenchmarkPpg" style="color:var(--primary);">+33.79%</strong>
           </div>
           <div class="kpi-pill">
             <span>Selected ADM PPG</span>
@@ -1377,7 +1763,7 @@ ${chartJsContent}
         <div class="kpi-pills">
           <div class="kpi-pill">
             <span>National Total PPG</span>
-            <strong>+33.79%</strong>
+            <strong id="s5NationalBenchmarkPpg">+33.79%</strong>
           </div>
         </div>
       </div>
@@ -1613,12 +1999,12 @@ ${chartJsContent}
       <div class="slide-header">
         <div class="slide-header-left">
           <h2><span class="slide-badge">SLIDE 10</span> STRATEGIC PERFORMANCE QUADRANT MATRIX</h2>
-          <p>Horizontal Axis Intercept positioned at <strong>Company Total PPG (+33.79%)</strong> | Vertical Axis at <strong>Contribution Diff (0.00%)</strong> | <strong>Selected ADM Bubble Highlighted</strong>.</p>
+          <p>Horizontal Axis Intercept positioned at <strong>Company Total PPG Benchmark</strong> | Vertical Axis at <strong>Contribution Diff (0.00%)</strong> | <strong>Selected ADM Bubble Highlighted</strong>.</p>
         </div>
         <div class="kpi-pills">
           <div class="kpi-pill">
             <span>X-Axis Intercept</span>
-            <strong style="color:var(--primary);">+33.79% (Company PPG)</strong>
+            <strong id="s10CompanyInterceptLabel" style="color:var(--primary);">+33.79% (Company PPG)</strong>
           </div>
           <div class="kpi-pill">
             <span>Y-Axis Intercept</span>
@@ -1648,7 +2034,8 @@ ${chartJsContent}
           <div id="chosenQuadDiagnosticCard" class="chosen-quad-highlight">
           </div>
 
-          <div class="quadrant-grid">
+          <!-- Dynamic Quadrant Grid: ABCD Cards populated dynamically based on data -->
+          <div class="quadrant-grid" id="quadrantCardsGrid">
             <div class="quad-card quad-b">
               <div class="quad-header">
                 <h4>QUADRANT B: CHALLENGERS 🚀</h4>
@@ -1694,7 +2081,7 @@ ${chartJsContent}
                 <li><strong>DELTA I (Shimaa Tarek):</strong> +32.2% PPG, +7.3% Diff (120.9k units).</li>
                 <li><strong>KFR EL.SHK (Karim Shehab):</strong> +12.0% PPG, +5.8% Diff (62.8k units).</li>
                 <li><strong>Behera & Dak. (Ahmed Sakr):</strong> +15.0% PPG, +0.6% Diff (85.8k units).</li>
-                <li><em>Core Action:</em> Strong baseline share defenders. Focus detailing on high-growth formulations to re-ignite velocity above +33.8%.</li>
+                <li><em>Core Action:</em> Strong baseline share defenders. Focus detailing on high-growth formulations to re-ignite velocity above national target.</li>
               </ul>
             </div>
           </div>
@@ -1710,11 +2097,48 @@ ${chartJsContent}
     <div>Shortage Flattening Applied: Monthly Averages (YTD 2026 ÷ 6 vs 2025 ÷ 12)</div>
   </footer>
 
+  <!-- Dedicated Mobile Persistent Bottom Navigation Bar -->
+  <nav class="mobile-bottom-bar" id="mobileBottomBar">
+    <button class="mob-nav-btn" onclick="prevSlide()" title="Previous Slide">
+      <span class="mob-icon">❮</span>
+      <span>Prev</span>
+    </button>
+    <button class="mob-nav-btn" onclick="toggleSlideOutline()" title="Slide Outline">
+      <span class="mob-icon">📑</span>
+      <span>Outline</span>
+    </button>
+    <div class="mob-counter-pill" id="mobSlideIndicator" onclick="toggleSlideOutline()" title="View Outline">
+      Slide 1 / 10
+    </div>
+    <button class="mob-nav-btn" onclick="triggerCsvUpload()" title="Upload Sales CSV">
+      <span class="mob-icon">📁</span>
+      <span>CSV</span>
+    </button>
+    <button class="mob-nav-btn" onclick="openDataEditor()" title="Edit Data">
+      <span class="mob-icon">✏️</span>
+      <span>Data</span>
+    </button>
+    <button class="mob-nav-btn" onclick="nextSlide()" title="Next Slide">
+      <span class="mob-icon">❯</span>
+      <span>Next</span>
+    </button>
+  </nav>
+
+  <!-- Drag and Drop Fullscreen Dropzone Overlay -->
+  <div class="drag-drop-overlay" id="dragDropOverlay">
+    <div class="drag-drop-box">
+      <div style="font-size: 54px;">📂</div>
+      <h3>Drop Sales CSV Here</h3>
+      <p>Release to parse 2026/2025 actuals and automatically recalculate all 10 slides!</p>
+    </div>
+  </div>
+
   <!-- Floating Fullscreen Presentation HUD -->
   <div class="fullscreen-hud" id="fullscreenHud">
     <button onclick="prevSlide()" title="Previous Slide (Left Arrow)">❮ Prev</button>
     <span class="hud-badge" id="hudSlideIndicator">Slide 1 / 10</span>
     <button onclick="nextSlide()" title="Next Slide (Right Arrow / Space)">Next ❯</button>
+    <button onclick="triggerCsvUpload()" title="Upload Sales CSV">📁 CSV</button>
     <button onclick="toggleSlideOutline()" title="Executive Slide Outline (O)">📑 Outline</button>
     <button onclick="openDataEditor()" title="Edit Sales Volumes (E)">✏️ Edit Data</button>
     <button onclick="toggleFullscreen()" title="Exit Fullscreen (Esc)">🗕 Exit Fullscreen</button>
@@ -1737,7 +2161,7 @@ ${chartJsContent}
       <div class="data-modal-header">
         <div>
           <h2>✏️ Sales Data Manager & Live Model Updater</h2>
-          <p>Modify territory volumes, Geo Share potentials, or manager assignments. All 10 slides and charts recalculate live.</p>
+          <p>Modify territory volumes, upload newer CSV files, or customize manager assignments. All 10 slides and charts recalculate live.</p>
         </div>
         <button class="data-modal-close" onclick="closeDataEditor()" title="Close">✕</button>
       </div>
@@ -1746,6 +2170,7 @@ ${chartJsContent}
         <button class="modal-tab-btn active" id="modalTab2026" onclick="switchEditorTab('2026')">📅 2026 YTD June Actuals (M06)</button>
         <button class="modal-tab-btn" id="modalTab2025" onclick="switchEditorTab('2025')">📅 2025 Full-Year Actuals (M12)</button>
         <button class="modal-tab-btn" id="modalTabMeta" onclick="switchEditorTab('meta')">👤 Managers & Geo Share %</button>
+        <button class="modal-tab-btn" id="modalTabCsv" onclick="switchEditorTab('csv')">📁 CSV Import & Auto-Calculate</button>
         <button class="modal-tab-btn" id="modalTabJson" onclick="switchEditorTab('json')">💾 Backup / JSON Transfer</button>
       </div>
 
@@ -1756,6 +2181,7 @@ ${chartJsContent}
       <div class="data-modal-footer">
         <div class="footer-left-btns">
           <button class="btn-apply-data" onclick="applyDataEditorChanges()">💾 Save & Recalculate Dashboard</button>
+          <button class="nav-btn" style="background:#0D9488; border-color:#0D9488; color:white;" onclick="triggerCsvUpload()">📁 Upload CSV File</button>
           <button class="btn-reset-data" onclick="resetDataToBaseline()">🔄 Reset to Baseline</button>
           <button class="btn-export-data" onclick="exportDataToJson()">📥 Export JSON</button>
         </div>
@@ -1842,6 +2268,253 @@ ${chartJsContent}
              (Number(r.ps2)||0) + (Number(r.lbw)||0);
     }
 
+    /* CSV Parsing & Upload Engine */
+    function parseCsvTokens(text) {
+      const lines = [];
+      let row = [];
+      let cell = '';
+      let inQuotes = false;
+      
+      for (let i = 0; i < text.length; i++) {
+        const c = text[i];
+        const next = text[i + 1];
+        
+        if (c === '"') {
+          if (inQuotes && next === '"') {
+            cell += '"';
+            i++;
+          } else {
+            inQuotes = !inQuotes;
+          }
+        } else if (c === ',' && !inQuotes) {
+          row.push(cell.trim());
+          cell = '';
+        } else if ((c === String.fromCharCode(13) || c === String.fromCharCode(10)) && !inQuotes) {
+          if (c === String.fromCharCode(13) && next === String.fromCharCode(10)) i++;
+          row.push(cell.trim());
+          if (row.some(x => x !== '')) {
+            lines.push(row);
+          }
+          row = [];
+          cell = '';
+        } else {
+          cell += c;
+        }
+      }
+      if (cell !== '' || row.length > 0) {
+        row.push(cell.trim());
+        if (row.some(x => x !== '')) lines.push(row);
+      }
+      return lines;
+    }
+
+    function cleanNum(val) {
+      if (val === undefined || val === null) return 0;
+      if (typeof val === 'number') return isNaN(val) ? 0 : val;
+      const s = String(val).replace(/["'\\s,]/g, '');
+      if (s.endsWith('%')) {
+        const p = parseFloat(s.slice(0, -1));
+        return isNaN(p) ? 0 : p / 100;
+      }
+      const n = parseFloat(s);
+      return isNaN(n) ? 0 : n;
+    }
+
+    function parseSalesCsv(text) {
+      const rows = parseCsvTokens(text);
+      let currentYear = '2026';
+      const data2026 = [];
+      const data2025 = [];
+      let currentHeader = null;
+
+      for (let i = 0; i < rows.length; i++) {
+        const r = rows[i];
+        const firstCell = (r[0] || '').trim();
+        const joinedRow = r.join(' ').toLowerCase();
+
+        // Check for section markers
+        if (joinedRow.includes('total unit sales 2025') || (firstCell.toLowerCase().includes('total unit sales') && firstCell.includes('2025'))) {
+          currentYear = '2025';
+          currentHeader = null;
+          continue;
+        }
+        if (joinedRow.includes('total unit sales ytd') || (firstCell.toLowerCase().includes('total unit sales') && firstCell.includes('2026'))) {
+          currentYear = '2026';
+          currentHeader = null;
+          continue;
+        }
+
+        // Check for table header row
+        if (joinedRow.includes('territory') && (joinedRow.includes('pediamil') || joinedRow.includes('dm'))) {
+          currentHeader = r.map(c => c.trim().toLowerCase());
+          continue;
+        }
+
+        // Skip summary / Total rows
+        if (firstCell.toLowerCase().includes('total') || firstCell.toLowerCase() === 'egypt' || firstCell === '') {
+          continue;
+        }
+
+        // Territory data row
+        if (currentHeader) {
+          const getColVal = (patterns) => {
+            for (let colIdx = 0; colIdx < currentHeader.length; colIdx++) {
+              const h = currentHeader[colIdx];
+              for (let p of patterns) {
+                if (p.test ? p.test(h) : h.includes(p)) {
+                  return r[colIdx];
+                }
+              }
+            }
+            return undefined;
+          };
+
+          const territory = getColVal([/territory/i]) || firstCell;
+          const dm = getColVal([/dm[\\s_]*name/i, /manager/i, /[^a-z]dm[^a-z]/i, /^dm$/i]) || (r[1] || territory);
+          const p1 = cleanNum(getColVal([/pediamil[\\s_-]*1/i, /p1$/i, /p1[^0-9]/i]) || r[2]);
+          const p2 = cleanNum(getColVal([/pediamil[\\s_-]*2/i, /p2$/i, /p2[^0-9]/i]) || r[3]);
+          const pg3 = cleanNum(getColVal([/pediagrow[\\s_-]*3/i, /pg[\\s_-]*3/i, /grow[\\s_-]*3/i]) || r[4]);
+          const lf = cleanNum(getColVal([/pediamil[\\s_-]*lf/i, /[^a-z]lf[^a-z]/i, /^lf$/i]) || r[5]);
+          const ha = cleanNum(getColVal([/pediamil[\\s_-]*ha/i, /[^a-z]ha[^a-z]/i, /^ha$/i]) || r[6]);
+          const ar = cleanNum(getColVal([/pediamil[\\s_-]*ar/i, /[^a-z]ar[^a-z]/i, /^ar$/i]) || r[7]);
+          const ac = cleanNum(getColVal([/pediamil[\\s_-]*ac/i, /[^a-z]ac[^a-z]/i, /^ac$/i]) || r[8]);
+          const mum = cleanNum(getColVal([/pediamum/i, /[^a-z]mum[^a-z]/i, /^mum$/i]) || r[9]);
+          const ps1 = cleanNum(getColVal([/pedia[\\s_-]*start[\\s_-]*1/i, /ps[\\s_-]*1/i]) || r[10]);
+          const ps2 = cleanNum(getColVal([/pedia[\\s_-]*start[\\s_-]*2/i, /ps[\\s_-]*2/i]) || r[11]);
+          const lbw = cleanNum(getColVal([/lbw/i]) || r[12]);
+
+          const sumVal = getColVal([/sum/i, /total/i]);
+          const sum = sumVal !== undefined ? cleanNum(sumVal) : (p1 + p2 + pg3 + lf + ha + ar + ac + mum + ps1 + ps2 + lbw);
+
+          const geoShareVal = getColVal([/geo[\\s_]*share/i]);
+          const geoShare = geoShareVal !== undefined ? cleanNum(geoShareVal) : undefined;
+
+          const contrIdxVal = getColVal([/controbution[\\s_]*index|contribution[\\s_]*index|contr.*idx/i]);
+          const contrIdx = contrIdxVal !== undefined ? cleanNum(contrIdxVal) : undefined;
+
+          const contrDiffVal = getColVal([/contribution[\\s_]*diff|contr.*diff/i]);
+          const contrDiff = contrDiffVal !== undefined ? cleanNum(contrDiffVal) : undefined;
+
+          const record = {
+            territory,
+            dm,
+            p1, p2, pg3, lf, ha, ar, ac, mum, ps1, ps2, lbw,
+            sum
+          };
+          if (geoShare !== undefined) record.geoShare = geoShare;
+          if (contrIdx !== undefined) record.contrIdx = contrIdx;
+          if (contrDiff !== undefined) record.contrDiff = contrDiff;
+
+          if (currentYear === '2026') {
+            data2026.push(record);
+          } else {
+            data2025.push(record);
+          }
+        }
+      }
+
+      return { data2026, data2025 };
+    }
+
+    function triggerCsvUpload() {
+      const fileInput = document.getElementById('csvFileInput');
+      if (fileInput) {
+        fileInput.value = '';
+        fileInput.click();
+      }
+    }
+
+    function handleCsvFileSelect(input) {
+      if (!input.files || input.files.length === 0) return;
+      processCsvFile(input.files[0]);
+    }
+
+    function processCsvFile(file) {
+      if (!file.name.toLowerCase().endsWith('.csv') && file.type !== 'text/csv' && file.type !== 'text/plain') {
+        alert('Please select a valid CSV (.csv) file.');
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        loadCsvText(evt.target.result, file.name);
+      };
+      reader.onerror = function() {
+        alert('Error reading the selected file.');
+      };
+      reader.readAsText(file);
+    }
+
+    function loadCsvText(text, filename) {
+      try {
+        const parsed = parseSalesCsv(text);
+        const c26 = parsed.data2026.length;
+        const c25 = parsed.data2025.length;
+
+        if (c26 === 0 && c25 === 0) {
+          alert('Could not detect valid territory sales rows. Please ensure your CSV has territory names and SKU sales columns.');
+          return;
+        }
+
+        if (c26 > 0) {
+          parsed.data2026.forEach((r, idx) => {
+            if (r.geoShare === undefined && rawData2026[idx]) {
+              r.geoShare = rawData2026[idx].geoShare;
+            }
+          });
+          rawData2026 = parsed.data2026;
+          tempEditData2026 = JSON.parse(JSON.stringify(rawData2026));
+          try { localStorage.setItem('egy_nutri_data_2026', JSON.stringify(rawData2026)); } catch(e) {}
+        }
+
+        if (c25 > 0) {
+          rawData2025 = parsed.data2025;
+          tempEditData2025 = JSON.parse(JSON.stringify(rawData2025));
+          try { localStorage.setItem('egy_nutri_data_2025', JSON.stringify(rawData2025)); } catch(e) {}
+        }
+
+        recalculateAllModelData();
+        renderSlide(currentSlide);
+        if (document.getElementById('dataEditorBackdrop').classList.contains('open')) {
+          renderEditorBody();
+        }
+
+        let msg = '✅ CSV Imported: ';
+        if (c26 > 0) msg += c26 + ' territories (2026). ';
+        if (c25 > 0) msg += c25 + ' territories (2025). ';
+        msg += 'Egypt PPG updated to ' + (compTotalPpg >= 0 ? '+' : '') + compTotalPpg.toFixed(1) + '%.';
+        showToast(msg, '📁');
+      } catch (err) {
+        console.error('Error importing CSV:', err);
+        alert('Failed to parse CSV: ' + err.message);
+      }
+    }
+
+    function downloadCsvTemplate() {
+      let csv = 'Egy Nutri. Total Unit Sales YTD M06-2026,,,,,,,,,,,,,,,,,\\r\\n';
+      csv += 'Territory Name,DM Name,Pediamil 1 400 GM,Pediamil 2 400 GM,PediaGrow 3 400 GM,Pediamil LF 400 GM,Pediamil HA 400 GM,Pediamil AR 400 GM,Pediamil AC 400 GM,Pediamum 400 GM,Pedia-Start 1,Pedia-Start 2,LBW- Egy,Sum YTD 6/2026,Contribution % YTD 6-2026, GEO Share % 2025,Controbution Index,Contribution Diff.\\r\\n';
+      rawData2026.forEach(r => {
+        const geo = (r.geoShare ? (r.geoShare * 100).toFixed(3) + '%' : '');
+        const diff = (r.contrDiff !== undefined ? (r.contrDiff * 100).toFixed(2) + '%' : '');
+        const idx = (r.contrIdx !== undefined ? r.contrIdx.toFixed(4) : '');
+        csv += '"' + r.territory + '","' + r.dm + '",' + r.p1 + ',' + r.p2 + ',' + r.pg3 + ',' + r.lf + ',' + r.ha + ',' + r.ar + ',' + r.ac + ',' + r.mum + ',' + r.ps1 + ',' + r.ps2 + ',' + r.lbw + ',' + r.sum + ',,' + geo + ',' + idx + ',' + diff + '\\r\\n';
+      });
+      csv += '\\r\\n\\r\\n\\r\\n';
+      csv += 'Egy Nutri. Total Unit Sales 2025,,,,,,,,,,,,,,,,,\\r\\n';
+      csv += 'Territory Name,DM Name,Pediamil 1 400 GM,Pediamil 2 400 GM,PediaGrow 3 400 GM,Pediamil LF 400 GM,Pediamil HA 400 GM,Pediamil AR 400 GM,Pediamil AC 400 GM,Pediamum 400 GM,Pedia-Start 1,Pedia-Start 2,LBW- Egy,Sum 2025,Contribution % 2025,,,\\r\\n';
+      rawData2025.forEach(r => {
+        csv += '"' + r.territory + '","' + r.dm + '",' + r.p1 + ',' + r.p2 + ',' + r.pg3 + ',' + r.lf + ',' + r.ha + ',' + r.ar + ',' + r.ac + ',' + r.mum + ',' + r.ps1 + ',' + r.ps2 + ',' + r.lbw + ',' + r.sum + ',,,,\\r\\n';
+      });
+
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'Egy_Nutri_Sales_Template.csv';
+      a.click();
+      URL.revokeObjectURL(url);
+      showToast('📥 CSV template downloaded.', '📥');
+    }
+
     function recalculateAllModelData() {
       // 1. Recalculate Row Sums
       rawData2026.forEach(r => { r.sum = calculateRowSum(r); });
@@ -1886,8 +2559,13 @@ ${chartJsContent}
         const r25 = rawData2025[i] || { sum: 0 };
         const c26 = company2026.sum > 0 ? (r.sum / company2026.sum) * 100 : 0;
         const c25 = company2025.sum > 0 ? (r25.sum / company2025.sum) * 100 : 0;
-        r.contrDiff = (c26 - c25) / 100;
-        r.contrIdx = (r.geoShare && r.geoShare > 0) ? ((c26 / 100) / r.geoShare) : 1;
+        if (r.contrDiff === undefined) {
+          const geoPct = (r.geoShare ? r.geoShare * 100 : c25);
+          r.contrDiff = (c26 - geoPct) / 100;
+        }
+        if (r.contrIdx === undefined) {
+          r.contrIdx = (r.geoShare && r.geoShare > 0) ? ((c26 / 100) / r.geoShare) : (c25 > 0 ? c26 / c25 : 1);
+        }
       });
 
       // 5. Total Company Benchmark PPG%
@@ -1955,6 +2633,14 @@ ${chartJsContent}
 
       const hudInd = document.getElementById('hudSlideIndicator');
       if (hudInd) hudInd.innerText = 'Slide ' + slideNum + ' / ' + totalSlides;
+
+      const mobInd = document.getElementById('mobSlideIndicator');
+      if (mobInd) mobInd.innerText = 'Slide ' + slideNum + ' / ' + totalSlides;
+
+      const tabs = document.querySelectorAll('.tab-btn');
+      if (tabs[slideNum - 1]) {
+        try { tabs[slideNum - 1].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' }); } catch(e) {}
+      }
 
       document.querySelectorAll('.outline-item').forEach((item, idx) => {
         item.classList.toggle('active', idx + 1 === slideNum);
@@ -2092,6 +2778,66 @@ ${chartJsContent}
         goToSlide(1);
       } else if (e.key === 'End') {
         goToSlide(10);
+      }
+    });
+
+    /* Mobile Touch Swipe Gestures */
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let touchEndX = 0;
+    let touchEndY = 0;
+
+    document.addEventListener('touchstart', (e) => {
+      if (e.target.closest('input, select, textarea, .data-edit-table, #outlineList, .data-table-wrapper')) return;
+      touchStartX = e.changedTouches[0].screenX;
+      touchStartY = e.changedTouches[0].screenY;
+    }, { passive: true });
+
+    document.addEventListener('touchend', (e) => {
+      if (e.target.closest('input, select, textarea, .data-edit-table, #outlineList, .data-table-wrapper')) return;
+      touchEndX = e.changedTouches[0].screenX;
+      touchEndY = e.changedTouches[0].screenY;
+      const deltaX = touchEndX - touchStartX;
+      const deltaY = touchEndY - touchStartY;
+      if (Math.abs(deltaX) > 55 && Math.abs(deltaY) < 65) {
+        if (deltaX < 0) {
+          nextSlide();
+        } else {
+          prevSlide();
+        }
+      }
+    }, { passive: true });
+
+    /* Global Window Drag & Drop for CSV */
+    let globalDragCounter = 0;
+    window.addEventListener('dragenter', (e) => {
+      e.preventDefault();
+      globalDragCounter++;
+      const overlay = document.getElementById('dragDropOverlay');
+      if (overlay) overlay.classList.add('active');
+    });
+
+    window.addEventListener('dragleave', (e) => {
+      e.preventDefault();
+      globalDragCounter--;
+      if (globalDragCounter <= 0) {
+        globalDragCounter = 0;
+        const overlay = document.getElementById('dragDropOverlay');
+        if (overlay) overlay.classList.remove('active');
+      }
+    });
+
+    window.addEventListener('dragover', (e) => {
+      e.preventDefault();
+    });
+
+    window.addEventListener('drop', (e) => {
+      e.preventDefault();
+      globalDragCounter = 0;
+      const overlay = document.getElementById('dragDropOverlay');
+      if (overlay) overlay.classList.remove('active');
+      if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+        processCsvFile(e.dataTransfer.files[0]);
       }
     });
 
@@ -2249,28 +2995,28 @@ ${chartJsContent}
           ctx.textAlign = 'left';
           ctx.fillText('QUADRANT B: CHALLENGERS 🚀', left + 14, top + 30);
           ctx.font = '10.5px sans-serif';
-          ctx.fillText('(High Growth > +33.8%, Negative Diff < 0%)', left + 14, top + 46);
+          ctx.fillText('(High Growth > +' + compTotalPpg.toFixed(1) + '%, Negative Diff < 0%)', left + 14, top + 46);
 
           ctx.font = 'bold 13px sans-serif';
           ctx.fillStyle = 'rgba(6, 95, 70, 0.75)';
           ctx.textAlign = 'right';
           ctx.fillText('QUADRANT A: STARS 🌟', right - 14, top + 30);
           ctx.font = '10.5px sans-serif';
-          ctx.fillText('(High Growth > +33.8%, Positive Diff > 0%)', right - 14, top + 46);
+          ctx.fillText('(High Growth > +' + compTotalPpg.toFixed(1) + '%, Positive Diff > 0%)', right - 14, top + 46);
 
           ctx.font = 'bold 13px sans-serif';
           ctx.fillStyle = 'rgba(153, 27, 27, 0.75)';
           ctx.textAlign = 'left';
           ctx.fillText('QUADRANT D: LOWEST PERFORMERS ⚠️', left + 14, bottom - 30);
           ctx.font = '10.5px sans-serif';
-          ctx.fillText('(Low Growth < +33.8%, Negative Diff < 0%)', left + 14, bottom - 14);
+          ctx.fillText('(Low Growth < +' + compTotalPpg.toFixed(1) + '%, Negative Diff < 0%)', left + 14, bottom - 14);
 
           ctx.font = 'bold 13px sans-serif';
           ctx.fillStyle = 'rgba(146, 64, 14, 0.75)';
           ctx.textAlign = 'right';
           ctx.fillText('QUADRANT C: VOLUME PILLARS 🛡️', right - 14, bottom - 30);
           ctx.font = '10.5px sans-serif';
-          ctx.fillText('(Moderate Growth < +33.8%, Positive Diff > 0%)', right - 14, bottom - 14);
+          ctx.fillText('(Moderate Growth < +' + compTotalPpg.toFixed(1) + '%, Positive Diff > 0%)', right - 14, bottom - 14);
 
           ctx.restore();
         } catch (e) {
@@ -2574,6 +3320,9 @@ ${chartJsContent}
       const isAbove = personPpg >= compTotalPpg;
       const gap = Math.abs(personPpg - compTotalPpg);
 
+      const s4CompBench = document.getElementById('s4CompanyBenchmarkPpg');
+      if (s4CompBench) s4CompBench.innerText = (compTotalPpg >= 0 ? '+' : '') + compTotalPpg.toFixed(2) + '%';
+
       document.getElementById('s4PersonTotalPpg').innerText = (personPpg > 0 ? '+' : '') + personPpg.toFixed(2) + '%';
       document.getElementById('s4PersonTotalPpg').style.color = isAbove ? 'var(--green-text)' : 'var(--red-text)';
       document.getElementById('s4ChartTitleText').innerText = p.territory + ' (' + p.dm.split(' ')[0] + '): Volume (Bars) vs PPG% Growth (Markers)';
@@ -2587,12 +3336,12 @@ ${chartJsContent}
         box.className = 'shape-highlight shape-green';
         icon.innerText = '🟢';
         title.innerText = 'GROWTH ABOVE COMPANY BENCHMARK (+' + gap.toFixed(2) + '% Ahead of Egypt Average)';
-        desc.innerText = p.dm + ' (' + p.territory + ') achieved +' + personPpg.toFixed(1) + '% total PPG growth, outpacing the company benchmark rate (+33.79%). Outstanding commercial momentum.';
+        desc.innerText = p.dm + ' (' + p.territory + ') achieved +' + personPpg.toFixed(1) + '% total PPG growth, outpacing the company benchmark rate (+' + compTotalPpg.toFixed(2) + '%). Outstanding commercial momentum.';
       } else {
         box.className = 'shape-highlight shape-red';
         icon.innerText = '🔻';
         title.innerText = 'GROWTH BELOW COMPANY BENCHMARK (-' + gap.toFixed(2) + '% Gap to Egypt Average)';
-        desc.innerText = p.dm + ' (' + p.territory + ') recorded +' + personPpg.toFixed(1) + '% growth, trailing the company growth target of +33.79%. Urgent attention and action plan required.';
+        desc.innerText = p.dm + ' (' + p.territory + ') recorded +' + personPpg.toFixed(1) + '% growth, trailing the company growth target of +' + compTotalPpg.toFixed(2) + '%. Urgent attention and action plan required.';
       }
 
       const displayProds = [
@@ -2884,6 +3633,8 @@ ${chartJsContent}
     }
 
     function renderSlide5() {
+      const s5CompBench = document.getElementById('s5NationalBenchmarkPpg');
+      if (s5CompBench) s5CompBench.innerText = (compTotalPpg >= 0 ? '+' : '') + compTotalPpg.toFixed(2) + '%';
       renderRankingSlide(5, 'chartSlide5', 'tbodySlide5', 'total', 'Total Unit Sales', compTotalPpg);
     }
     function renderSlide6() {
@@ -2903,6 +3654,9 @@ ${chartJsContent}
     function renderSlide10() {
       const chosenPerson = getChosenPerson();
 
+      const s10Intercept = document.getElementById('s10CompanyInterceptLabel');
+      if (s10Intercept) s10Intercept.innerText = (compTotalPpg >= 0 ? '+' : '') + compTotalPpg.toFixed(2) + '% (Company PPG)';
+
       const diagCard = document.getElementById('chosenQuadDiagnosticCard');
       let quadTitle = '';
       let quadStrategy = '';
@@ -2911,19 +3665,19 @@ ${chartJsContent}
       if (chosenPerson.quad === 'A') {
         quadTitle = 'QUADRANT A: COMPANY STAR 🌟';
         quadBadge = '<span class="badge-above">TOP PERFORMER</span>';
-        quadStrategy = '<strong>' + chosenPerson.dm + ' (' + chosenPerson.territory + ')</strong> is positioned firmly in <strong>Quadrant A</strong> with outstanding volume momentum (<strong>+' + chosenPerson.totalPpg.toFixed(1) + '% PPG</strong> vs. Company +33.8%) and a positive contribution gain (<strong>+' + chosenPerson.contrDiff.toFixed(2) + '%</strong>).<br><strong>Commercial Mandate:</strong> Defend market share against competitor detailing, secure neonatal intensive care listings for Pedia-Start & LBW, and drive multi-can specialty pharmacy bundling.';
+        quadStrategy = '<strong>' + chosenPerson.dm + ' (' + chosenPerson.territory + ')</strong> is positioned firmly in <strong>Quadrant A</strong> with outstanding volume momentum (<strong>+' + chosenPerson.totalPpg.toFixed(1) + '% PPG</strong> vs. Company +' + compTotalPpg.toFixed(1) + '%) and a positive contribution gain (<strong>+' + chosenPerson.contrDiff.toFixed(2) + '%</strong>).<br><strong>Commercial Mandate:</strong> Defend market share against competitor detailing, secure neonatal intensive care listings for Pedia-Start & LBW, and drive multi-can specialty pharmacy bundling.';
       } else if (chosenPerson.quad === 'B') {
         quadTitle = 'QUADRANT B: HIGH-GROWTH CHALLENGER 🚀';
         quadBadge = '<span class="badge-above" style="background:#DBEAFE; color:#1E40AF; border-color:#BFDBFE;">HIGH MOMENTUM</span>';
-        quadStrategy = '<strong>' + chosenPerson.dm + ' (' + chosenPerson.territory + ')</strong> is positioned in <strong>Quadrant B</strong>, generating high growth of <strong>+' + chosenPerson.totalPpg.toFixed(1) + '% PPG</strong> (exceeding company pace) while working to close an initial potential gap (<strong>' + chosenPerson.contrDiff.toFixed(2) + '%</strong> vs. GEO share).<br><strong>Commercial Mandate:</strong> Capitalize on strong prescription velocity. Prioritize hospital tender listings and key chain pharmacy coverage to fully unlock geographic potential.';
+        quadStrategy = '<strong>' + chosenPerson.dm + ' (' + chosenPerson.territory + ')</strong> is positioned in <strong>Quadrant B</strong>, generating high growth of <strong>+' + chosenPerson.totalPpg.toFixed(1) + '% PPG</strong> (exceeding company pace +' + compTotalPpg.toFixed(1) + '%) while working to close an initial potential gap (<strong>' + chosenPerson.contrDiff.toFixed(2) + '%</strong> vs. GEO share).<br><strong>Commercial Mandate:</strong> Capitalize on strong prescription velocity. Prioritize hospital tender listings and key chain pharmacy coverage to fully unlock geographic potential.';
       } else if (chosenPerson.quad === 'C') {
         quadTitle = 'QUADRANT C: VOLUME PILLAR & SHARE KEEPER 🛡️';
         quadBadge = '<span class="badge-above" style="background:#FEF3C7; color:#92400E; border-color:#FDE68A;">CORE BASELINE</span>';
-        quadStrategy = '<strong>' + chosenPerson.dm + ' (' + chosenPerson.territory + ')</strong> is positioned in <strong>Quadrant C</strong> (Volume Pillars), delivering strong baseline share exceeding geographic potential (<strong>+' + chosenPerson.contrDiff.toFixed(2) + '%</strong>), but running at a moderate growth pace (<strong>+' + chosenPerson.totalPpg.toFixed(1) + '% PPG</strong> vs. Company +33.8%).<br><strong>Commercial Mandate:</strong> Accelerate growth rate back above national benchmark (+33.8%). Drive high-growth stage-2 formulas (Pediamil 2 & Pedia-Start 2) and high-margin specialty lines (Pediamil AC & LF).';
+        quadStrategy = '<strong>' + chosenPerson.dm + ' (' + chosenPerson.territory + ')</strong> is positioned in <strong>Quadrant C</strong> (Volume Pillars), delivering strong baseline share exceeding geographic potential (<strong>+' + chosenPerson.contrDiff.toFixed(2) + '%</strong>), but running at a moderate growth pace (<strong>+' + chosenPerson.totalPpg.toFixed(1) + '% PPG</strong> vs. Company +' + compTotalPpg.toFixed(1) + '%).<br><strong>Commercial Mandate:</strong> Accelerate growth rate back above national benchmark (+' + compTotalPpg.toFixed(1) + '%). Drive high-growth stage-2 formulas (Pediamil 2 & Pedia-Start 2) and high-margin specialty lines (Pediamil AC & LF).';
       } else {
         quadTitle = 'QUADRANT D: LOWEST PERFORMERS / CRITICAL ATTENTION ⚠️';
         quadBadge = '<span class="badge-below">CRITICAL LAGGARD</span>';
-        quadStrategy = '<strong>' + chosenPerson.dm + ' (' + chosenPerson.territory + ')</strong> is in <strong>Quadrant D</strong> (Lowest Performers), experiencing sub-benchmark growth (<strong>+' + chosenPerson.totalPpg.toFixed(1) + '% PPG</strong> vs. +33.8%) alongside a severe contribution share gap (<strong>' + chosenPerson.contrDiff.toFixed(2) + '%</strong> vs. GEO share).<br><strong>Commercial Mandate:</strong> Immediate review with Commercial Director. Audit medical rep call frequency, re-align territory brick targets, and execute urgent pediatric symposiums to reverse competitor conversion.';
+        quadStrategy = '<strong>' + chosenPerson.dm + ' (' + chosenPerson.territory + ')</strong> is in <strong>Quadrant D</strong> (Lowest Performers), experiencing sub-benchmark growth (<strong>+' + chosenPerson.totalPpg.toFixed(1) + '% PPG</strong> vs. +' + compTotalPpg.toFixed(1) + '%) alongside a severe contribution share gap (<strong>' + chosenPerson.contrDiff.toFixed(2) + '%</strong> vs. GEO share).<br><strong>Commercial Mandate:</strong> Immediate review with Commercial Director. Audit medical rep call frequency, re-align territory brick targets, and execute urgent pediatric symposiums to reverse competitor conversion.';
       }
 
       diagCard.innerHTML =
@@ -2934,6 +3688,72 @@ ${chartJsContent}
         '<p style="margin-top:6px;"><strong>Strategic Classification:</strong> ' + quadTitle + '</p>' +
         '<p style="margin-top:4px;"><strong>Performance Coordinates:</strong> X (Contribution Diff) = <strong>' + (chosenPerson.contrDiff > 0 ? '+' : '') + chosenPerson.contrDiff.toFixed(2) + '%</strong> | Y (Total PPG) = <strong>+' + chosenPerson.totalPpg.toFixed(1) + '%</strong> | YTD Sales = <strong>' + chosenPerson.r26.sum.toLocaleString() + ' cans</strong></p>' +
         '<p style="margin-top:8px; border-top:1px dashed #C4B5FD; padding-top:6px;">' + quadStrategy + '</p>';
+
+      const quadGrid = document.getElementById('quadrantCardsGrid');
+      if (quadGrid) {
+        const qA = [];
+        const qB = [];
+        const qC = [];
+        const qD = [];
+
+        rawData2026.forEach((r, idx) => {
+          const r25 = rawData2025[idx] || { sum: 0 };
+          const avg26 = r.sum / 6;
+          const avg25 = r25.sum / 12;
+          const ppg = avg25 > 0 ? ((avg26 / avg25) - 1) * 100 : 0;
+          const diff = r.contrDiff * 100;
+          const shortName = r.dm ? r.dm.split(' ').slice(0, 2).join(' ') : 'ADM';
+          const isSel = (idx === chosenPerson.idx);
+          const itemText = (isSel ? '⭐ <strong>' : '<strong>') + r.territory + ' (' + shortName + '):</strong> +' + ppg.toFixed(1) + '% PPG, ' + (diff >= 0 ? '+' : '') + diff.toFixed(2) + '% Diff (' + Math.round(r.sum/1000).toFixed(1) + 'k units).' + (isSel ? '</strong>' : '');
+
+          if (diff >= 0 && ppg >= compTotalPpg) qA.push(itemText);
+          else if (diff < 0 && ppg >= compTotalPpg) qB.push(itemText);
+          else if (diff >= 0 && ppg < compTotalPpg) qC.push(itemText);
+          else qD.push(itemText);
+        });
+
+        quadGrid.innerHTML =
+          '<div class="quad-card quad-b">' +
+            '<div class="quad-header">' +
+              '<h4>QUADRANT B: CHALLENGERS 🚀</h4>' +
+              '<small style="font-weight:700;">High Growth, Neg. Diff</small>' +
+            '</div>' +
+            '<ul>' +
+              qB.map(t => '<li>' + t + '</li>').join('') +
+              '<li style="margin-top:4px;"><em>Core Action:</em> Closing the potential gap. Expand pediatrician advocacy & key pharmacy accounts.</li>' +
+            '</ul>' +
+          '</div>' +
+          '<div class="quad-card quad-a">' +
+            '<div class="quad-header">' +
+              '<h4>QUADRANT A: STARS 🌟</h4>' +
+              '<small style="font-weight:700;">High Growth, Pos. Diff</small>' +
+            '</div>' +
+            '<ul>' +
+              qA.map(t => '<li>' + t + '</li>').join('') +
+              '<li style="margin-top:4px;"><em>Core Action:</em> Core volume engines. Protect baseline share and accelerate specialty cross-selling.</li>' +
+            '</ul>' +
+          '</div>' +
+          '<div class="quad-card quad-d">' +
+            '<div class="quad-header">' +
+              '<h4>QUADRANT D: LOWEST PERFORMERS ⚠️</h4>' +
+              '<small style="font-weight:700;">Low Growth, Neg. Diff</small>' +
+            '</div>' +
+            '<ul>' +
+              qD.map(t => '<li>' + t + '</li>').join('') +
+              '<li style="margin-top:4px;"><em>Core Action:</em> Urgent commercial turnaround, field activity re-structuring, key clinic targeting.</li>' +
+            '</ul>' +
+          '</div>' +
+          '<div class="quad-card quad-c">' +
+            '<div class="quad-header">' +
+              '<h4>QUADRANT C: VOLUME PILLARS 🛡️</h4>' +
+              '<small style="font-weight:700;">Moderate Growth, Pos. Diff</small>' +
+            '</div>' +
+            '<ul>' +
+              qC.map(t => '<li>' + t + '</li>').join('') +
+              '<li style="margin-top:4px;"><em>Core Action:</em> Strong baseline share defenders. Focus detailing on high-growth formulations to re-ignite velocity above +' + compTotalPpg.toFixed(1) + '%.</li>' +
+            '</ul>' +
+          '</div>';
+      }
 
       const regularBubbles = [];
       let chosenBubble = null;
@@ -3055,7 +3875,7 @@ ${chartJsContent}
             y: {
               min: 0,
               max: 70,
-              title: { display: true, text: 'Total PPG Growth % (Horizontal Intercept at Company PPG +33.79%)' },
+              title: { display: true, text: 'Total PPG Growth % (Horizontal Intercept at Company PPG +' + compTotalPpg.toFixed(1) + '%)' },
               ticks: { callback: v => v + '%' }
             }
           }
@@ -3125,7 +3945,7 @@ ${chartJsContent}
 
     function switchEditorTab(tabKey) {
       editorActiveTab = tabKey;
-      ['2026', '2025', 'meta', 'json'].forEach(k => {
+      ['2026', '2025', 'meta', 'csv', 'json'].forEach(k => {
         const btn = document.getElementById('modalTab' + (k.charAt(0).toUpperCase() + k.slice(1)));
         if (btn) btn.classList.toggle('active', k === tabKey);
       });
@@ -3238,6 +4058,37 @@ ${chartJsContent}
             '</thead>' +
             '<tbody>' + rowsHtml + '</tbody>' +
           '</table>';
+      } else if (editorActiveTab === 'csv') {
+        container.innerHTML =
+          '<div style="max-width:760px; margin:0 auto; display:flex; flex-direction:column; gap:20px; padding:10px 0;">' +
+            '<div style="text-align:center;">' +
+              '<div style="font-size:36px; margin-bottom:8px;">📁</div>' +
+              '<h3 style="margin:0 0 6px; font-size:18px; color:var(--primary);">Upload Updated Sales CSV File</h3>' +
+              '<p style="font-size:13px; color:var(--text-muted); margin:0;">Upload the latest LN Commercial Sales Data CSV file (containing 2026 YTD June &amp; 2025 tables). All 10 slides, charts, rankings, and ABCD quadrants will recalculate dynamically.</p>' +
+            '</div>' +
+            '<div style="border:2px dashed #3B82F6; border-radius:12px; padding:32px 20px; text-align:center; background:#EFF6FF; cursor:pointer;" onclick="triggerCsvUpload()">' +
+              '<div style="font-size:28px; margin-bottom:6px;">☁️</div>' +
+              '<div style="font-size:15px; font-weight:700; color:var(--primary); margin-bottom:4px;">Drag &amp; Drop Sales CSV Here</div>' +
+              '<div style="font-size:12.5px; color:#64748B; margin-bottom:14px;">or click anywhere in this box to browse from your device</div>' +
+              '<button type="button" class="nav-btn" style="background:#2563EB; color:white; padding:8px 18px;" onclick="event.stopPropagation(); triggerCsvUpload();">📂 Choose File from Device</button>' +
+            '</div>' +
+            '<div style="display:flex; justify-content:space-between; align-items:center; background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:14px 18px;">' +
+              '<div>' +
+                '<strong style="font-size:13px; color:var(--text-main);">Need a CSV template?</strong>' +
+                '<div style="font-size:12px; color:var(--text-muted);">Download a pre-formatted CSV matching current model numbers to use as a baseline.</div>' +
+              '</div>' +
+              '<button type="button" class="nav-btn" style="background:#0D9488; color:white; font-size:12px; padding:7px 14px; white-space:nowrap;" onclick="downloadCsvTemplate()">⬇️ Download CSV Template</button>' +
+            '</div>' +
+            '<div style="background:#FFFBEB; border:1px solid #FCD34D; border-radius:10px; padding:14px 16px; font-size:12px; color:#92400E;">' +
+              '<strong style="display:block; margin-bottom:4px;">⚙️ Automatic Calculation Specifications:</strong>' +
+              '<ul style="margin:0; padding-left:18px; line-height:1.6;">' +
+                '<li><strong>Shortage Flattening Rule:</strong> 2026 Monthly Average is calculated as <code>YTD &divide; 6</code>; 2025 Monthly Average is calculated as <code>Full Year &divide; 12</code>.</li>' +
+                '<li><strong>Company Benchmark PPG:</strong> Weighted total growth comparing Egypt 2026 Monthly Average vs 2025 Monthly Average.</li>' +
+                '<li><strong>ABCD Quadrants:</strong> Evaluates Contribution Index vs PPG with horizontal intercept set to Company Total PPG and vertical intercept set to 0.</li>' +
+                '<li><strong>Persistence:</strong> Uploaded CSV data is automatically saved to your browser local storage.</li>' +
+              '</ul>' +
+            '</div>' +
+          '</div>';
       } else if (editorActiveTab === 'json') {
         const fullPayload = {
           exportDate: new Date().toISOString(),
