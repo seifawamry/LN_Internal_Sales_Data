@@ -7,8 +7,36 @@ const htmlTemplate = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Egy Nutri. - Business Review & Sales Analysis Template</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>LN Sales Review App</title>
+  
+  <!-- Mobile & PWA Metadata -->
+  <meta name="application-name" content="LN Sales Review App">
+  <meta name="apple-mobile-web-app-title" content="LN Sales Review App">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#1B365D">
+  <meta name="msapplication-TileColor" content="#1B365D">
+  <meta name="msapplication-TileImage" content="icon-192.png">
+
+  <!-- Web App Manifests -->
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Apple Touch Icons for iOS Add to Home Screen -->
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-180x180.png">
+  <link rel="apple-touch-icon" sizes="192x192" href="icon-192.png">
+  <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png">
+
+  <!-- Favicons for Browsers -->
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+  <link rel="shortcut icon" href="favicon-32x32.png">
+
   <!-- 100% Offline Embedded Chart.js Library -->
   <script>
 ${chartJsContent}
@@ -1515,9 +1543,10 @@ ${chartJsContent}
 
   <!-- App Header - Ultra-Slim Single Row -->
   <header>
-    <div class="brand-area">
-      <div class="brand-badge">EGY NUTRI.</div>
-      <span class="brand-title-compact">COMMERCIAL REVIEW</span>
+    <div class="brand-area" style="cursor:pointer;" onclick="goToSlide(1)" title="LN Sales Review App">
+      <img src="icon-192.png" alt="LN Logo" style="width:28px; height:28px; border-radius:6px; object-fit:cover; box-shadow:0 1px 3px rgba(0,0,0,0.3); border:1px solid rgba(255,255,255,0.25); flex-shrink:0;">
+      <div class="brand-badge">LN SALES</div>
+      <span class="brand-title-compact">REVIEW APP</span>
     </div>
 
     <div class="header-center-selector">
@@ -1538,6 +1567,7 @@ ${chartJsContent}
     </div>
 
     <div class="header-actions">
+      <button class="nav-btn-compact" id="btnInstallApp" onclick="promptInstallApp()" title="Install LN Sales Review App" style="background:#2563EB; border-color:#3B82F6; font-weight:600;">📲 Install</button>
       <button class="nav-btn-compact" id="btnUploadCsvTop" onclick="triggerCsvUpload()" title="Upload CSV">📁 CSV</button>
       <button class="nav-btn-compact" id="btnOpenDataEditor" onclick="openDataEditor()" title="Edit Data">✏️ Data</button>
       <button class="nav-btn-compact" id="btnToggleOutline" onclick="toggleSlideOutline()" title="Outline">📑 Outline</button>
@@ -2182,6 +2212,54 @@ ${chartJsContent}
     </div>
   </div>
 
+  <!-- Mobile Install / Add to Home Screen Modal -->
+  <div class="modal-backdrop" id="installGuideModal" onclick="if(event.target===this) closeInstallModal()" style="display:none; z-index:9999;">
+    <div class="data-modal" style="max-width:440px; padding:20px; border-radius:16px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <img src="icon-192.png" alt="LN Logo" style="width:48px; height:48px; border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.15); object-fit:cover;">
+          <div>
+            <h3 style="font-size:16px; font-weight:800; color:#1B365D; margin:0;">LN Sales Review App</h3>
+            <p style="font-size:12px; color:#64748B; margin:0;">Save to Mobile Home Screen</p>
+          </div>
+        </div>
+        <button class="data-modal-close" onclick="closeInstallModal()" style="font-size:18px;">✕</button>
+      </div>
+      
+      <div id="installAndroidContent" style="display:none;">
+        <p style="font-size:13px; color:#334155; line-height:1.5; margin-bottom:14px;">
+          Install <strong>LN Sales Review App</strong> directly on your Android device for instant 1-tap offline access, native fullscreen experience, and automatic data updates.
+        </p>
+        <button onclick="triggerAndroidInstall()" style="width:100%; background:linear-gradient(135deg, #1B365D, #2563EB); color:white; font-weight:700; padding:12px; border-radius:10px; border:none; cursor:pointer; font-size:14px; box-shadow:0 4px 10px rgba(37,99,235,0.3);">
+          📲 Add to Home Screen Now
+        </button>
+      </div>
+
+      <div id="installIosContent">
+        <p style="font-size:13px; color:#334155; line-height:1.5; margin-bottom:12px;">
+          To save <strong>LN Sales Review App</strong> to your iPhone / iPad home screen with the official 3D logo:
+        </p>
+        <div style="background:#F1F5F9; border-radius:10px; padding:12px; margin-bottom:14px; display:flex; flex-direction:column; gap:10px; font-size:12.5px; color:#1E293B;">
+          <div style="display:flex; align-items:center; gap:10px;">
+            <span style="background:#2563EB; color:white; width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:bold; font-size:11px; flex-shrink:0;">1</span>
+            <span>Tap the <strong>Share</strong> button (⎋ / ⎙) in the Safari bottom toolbar.</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <span style="background:#2563EB; color:white; width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:bold; font-size:11px; flex-shrink:0;">2</span>
+            <span>Scroll down and select <strong>"Add to Home Screen"</strong> (➕).</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <span style="background:#2563EB; color:white; width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:bold; font-size:11px; flex-shrink:0;">3</span>
+            <span>Confirm the title is <strong>LN Sales Review App</strong> and tap <strong>Add</strong>.</span>
+          </div>
+        </div>
+        <button onclick="closeInstallModal()" style="width:100%; background:#1B365D; color:white; font-weight:700; padding:10px; border-radius:10px; border:none; cursor:pointer; font-size:13px;">
+          Got it!
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- Data Editor Modal -->
   <div class="modal-backdrop" id="dataEditorBackdrop" onclick="if(event.target===this) closeDataEditor()">
     <div class="data-modal">
@@ -2786,6 +2864,23 @@ ${chartJsContent}
           '</div>';
         container.appendChild(item);
       });
+
+      const installItem = document.createElement('div');
+      installItem.className = 'outline-item';
+      installItem.style.background = 'rgba(37, 99, 235, 0.08)';
+      installItem.style.borderColor = 'rgba(37, 99, 235, 0.25)';
+      installItem.style.marginTop = '12px';
+      installItem.onclick = () => {
+        closeSlideOutline();
+        promptInstallApp();
+      };
+      installItem.innerHTML =
+        '<div class="outline-num" style="background:#2563EB; color:white;">📱</div>' +
+        '<div class="outline-info">' +
+          '<h4 style="color:#2563EB;">Save to Mobile Home Screen</h4>' +
+          '<span>Install LN Sales Review App with 3D logo</span>' +
+        '</div>';
+      container.appendChild(installItem);
     }
 
     /* Global Keyboard Navigation */
@@ -4328,6 +4423,67 @@ ${chartJsContent}
       }, 3500);
     }
 
+    /* Mobile PWA & Install / Add to Home Screen Manager */
+    let deferredInstallPrompt = null;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredInstallPrompt = e;
+      const btn = document.getElementById('btnInstallApp');
+      if (btn) btn.style.display = 'inline-flex';
+    });
+
+    window.addEventListener('appinstalled', () => {
+      deferredInstallPrompt = null;
+      const btn = document.getElementById('btnInstallApp');
+      if (btn) btn.style.display = 'none';
+      showToast('LN Sales Review App installed successfully!', '📲');
+    });
+
+    function promptInstallApp() {
+      const modal = document.getElementById('installGuideModal');
+      const androidContent = document.getElementById('installAndroidContent');
+      const iosContent = document.getElementById('installIosContent');
+      
+      const isIos = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+      if (deferredInstallPrompt) {
+        if (androidContent) androidContent.style.display = 'block';
+        if (iosContent) iosContent.style.display = 'none';
+      } else {
+        if (androidContent) androidContent.style.display = isIos ? 'none' : 'block';
+        if (iosContent) iosContent.style.display = isIos ? 'block' : 'none';
+      }
+      if (modal) modal.style.display = 'flex';
+    }
+
+    function triggerAndroidInstall() {
+      if (deferredInstallPrompt) {
+        deferredInstallPrompt.prompt();
+        deferredInstallPrompt.userChoice.then((choiceResult) => {
+          if (choiceResult.outcome === 'accepted') {
+            showToast('Adding LN Sales Review App to Home Screen...', '📲');
+          }
+          deferredInstallPrompt = null;
+          closeInstallModal();
+        });
+      } else {
+        alert('Please tap your browser menu (⋮) and select "Install app" or "Add to Home Screen".');
+        closeInstallModal();
+      }
+    }
+
+    function closeInstallModal() {
+      const modal = document.getElementById('installGuideModal');
+      if (modal) modal.style.display = 'none';
+    }
+
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch((err) => {
+          console.log('SW registration note:', err);
+        });
+      });
+    }
+
     window.addEventListener('DOMContentLoaded', () => {
       initSlideTabs();
       recalculateAllModelData();
@@ -4353,4 +4509,27 @@ fs.writeFileSync(htmlPath, htmlTemplate, 'utf8');
 fs.writeFileSync(indexPath, htmlTemplate, 'utf8');
 fs.writeFileSync(publicHtmlPath, htmlTemplate, 'utf8');
 fs.writeFileSync(publicIndexPath, htmlTemplate, 'utf8');
+
+// Copy PWA assets and icons to public/
+const staticFiles = [
+  'site.webmanifest',
+  'manifest.json',
+  'sw.js',
+  'icon-1024.png',
+  'icon-512.png',
+  'icon-192.png',
+  'apple-touch-icon.png',
+  'apple-touch-icon-180x180.png',
+  'favicon-32x32.png',
+  'favicon-16x16.png',
+  'app-icon.jpg'
+];
+for (const file of staticFiles) {
+  const src = path.join(__dirname, file);
+  const dest = path.join(distDir, file);
+  if (fs.existsSync(src)) {
+    fs.copyFileSync(src, dest);
+  }
+}
 console.log('Final standalone HTML successfully built and written to root and public/ directory!');
+console.log('PWA manifests and mobile app icons copied to public/ successfully!');
