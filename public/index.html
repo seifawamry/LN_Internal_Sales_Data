@@ -68,15 +68,17 @@
       overflow-x: hidden;
     }
 
-    /* Top App Header */
+    /* Top App Header - Ultra-Slim & Compact */
     header {
       background: linear-gradient(135deg, var(--primary) 0%, #0F172A 100%);
       color: white;
-      padding: 12px 24px;
+      padding: 6px 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+      height: 46px;
+      box-sizing: border-box;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.12);
       position: sticky;
       top: 0;
       z-index: 100;
@@ -85,120 +87,178 @@
     .brand-area {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 10px;
+      flex-shrink: 0;
     }
 
     .brand-badge {
       background: var(--gold);
       color: #78350F;
       font-weight: 800;
-      font-size: 13px;
-      padding: 4px 10px;
-      border-radius: 6px;
+      font-size: 11px;
+      padding: 3px 7px;
+      border-radius: 4px;
       letter-spacing: 0.5px;
     }
 
-    .brand-title h1 {
-      font-size: 18px;
+    .brand-title-compact {
+      font-size: 13px;
       font-weight: 700;
-      letter-spacing: -0.3px;
+      letter-spacing: -0.2px;
+      color: #F8FAFC;
+      white-space: nowrap;
     }
 
-    .brand-title p {
-      font-size: 11px;
-      color: #94A3B8;
-    }
-
-    .controls-area {
+    .header-center-selector {
       display: flex;
       align-items: center;
-      gap: 12px;
+      flex: 1;
+      max-width: 440px;
+      margin: 0 12px;
     }
 
-    .selector-group {
+    .adm-selector-box {
       display: flex;
       align-items: center;
-      background: rgba(255,255,255,0.15);
-      padding: 4px 10px;
-      border-radius: 8px;
-      border: 1px solid rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 2px 8px;
+      border-radius: 6px;
+      width: 100%;
     }
 
-    .selector-group label {
-      font-size: 11px;
-      text-transform: uppercase;
-      font-weight: 700;
-      color: #CBD5E1;
-      margin-right: 8px;
+    .adm-selector-box .adm-icon {
+      font-size: 13px;
+      margin-right: 6px;
+      opacity: 0.85;
     }
 
-    select {
+    .adm-selector-box select {
       background: #FFFFFF;
       color: var(--primary);
       border: none;
-      padding: 6px 12px;
-      font-size: 13px;
+      padding: 4px 8px;
+      font-size: 12.5px;
       font-weight: 700;
-      border-radius: 6px;
+      border-radius: 4px;
       cursor: pointer;
       outline: none;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+      width: 100%;
+      height: 30px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.15);
     }
 
-    .nav-btn {
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .nav-btn-compact {
       background: rgba(255,255,255,0.15);
       border: 1px solid rgba(255,255,255,0.25);
       color: white;
-      padding: 7px 14px;
-      border-radius: 6px;
-      font-size: 13px;
+      padding: 4px 9px;
+      border-radius: 5px;
+      font-size: 11.5px;
       font-weight: 600;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      transition: all 0.2s;
+      gap: 5px;
+      height: 30px;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+      text-decoration: none;
     }
 
-    .nav-btn:hover {
+    .nav-btn-compact:hover {
       background: rgba(255,255,255,0.25);
+      border-color: rgba(255,255,255,0.4);
     }
 
-    .slide-counter {
-      background: rgba(0,0,0,0.3);
-      padding: 6px 12px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-      color: #E2E8F0;
+    /* Export Dropdown */
+    .export-dropdown {
+      position: relative;
+      display: inline-block;
     }
 
-    /* Subheader Tabs */
-    .slide-tabs {
+    .export-menu {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 100%;
+      margin-top: 4px;
       background: white;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+      min-width: 190px;
+      z-index: 1000;
+      padding: 4px 0;
+    }
+
+    .export-menu.show {
+      display: block;
+    }
+
+    .export-menu a, .export-menu button {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      color: var(--text-main);
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      background: none;
+      border: none;
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .export-menu a:hover, .export-menu button:hover {
+      background: #F1F5F9;
+      color: var(--primary);
+    }
+
+    /* Subheader Tabs - Ultra Slim & Sticky */
+    .slide-tabs {
+      background: #FFFFFF;
       border-bottom: 1px solid var(--border);
       display: flex;
       overflow-x: auto;
-      padding: 0 16px;
-      gap: 4px;
+      padding: 0 12px;
+      gap: 3px;
       position: sticky;
-      top: 61px;
+      top: 46px;
+      height: 34px;
+      align-items: center;
       z-index: 90;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .slide-tabs::-webkit-scrollbar {
+      display: none;
     }
 
     .tab-btn {
-      padding: 10px 14px;
+      padding: 4px 9px;
       border: none;
       background: transparent;
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 600;
       color: var(--text-muted);
       cursor: pointer;
       white-space: nowrap;
-      border-bottom: 3px solid transparent;
-      transition: all 0.2s;
+      border-radius: 4px;
+      transition: all 0.15s;
+      height: 26px;
+      display: inline-flex;
+      align-items: center;
     }
 
     .tab-btn:hover {
@@ -207,16 +267,16 @@
     }
 
     .tab-btn.active {
-      color: var(--primary);
-      border-bottom-color: var(--primary);
+      color: white;
+      background: var(--primary);
       font-weight: 700;
     }
 
-    /* Main Container */
+    /* Main Container - Compact Padding */
     main {
       flex: 1;
-      padding: 20px 28px;
-      max-width: 1540px;
+      padding: 10px 16px 24px 16px;
+      max-width: 1600px;
       margin: 0 auto;
       width: 100%;
     }
@@ -229,66 +289,73 @@
       display: block;
     }
 
-    /* Slide Header */
+    /* Slide Header - Sleek 1-Row Banner */
     .slide-header {
       background: white;
-      padding: 16px 20px;
-      border-radius: 10px;
+      padding: 6px 12px;
+      border-radius: 6px;
       border: 1px solid var(--border);
-      margin-bottom: 18px;
+      margin-bottom: 10px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+      min-height: 38px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.02);
     }
 
-    .slide-header-left h2 {
-      font-size: 19px;
-      font-weight: 800;
-      color: var(--primary);
+    .slide-header-left {
       display: flex;
       align-items: center;
       gap: 10px;
     }
 
+    .slide-header-left h2 {
+      font-size: 13.5px;
+      font-weight: 800;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0;
+    }
+
     .slide-badge {
       background: var(--primary);
       color: white;
-      font-size: 11px;
-      padding: 3px 8px;
-      border-radius: 4px;
-      font-weight: 700;
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-weight: 800;
     }
 
     .slide-header-left p {
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-top: 4px;
+      display: none; /* Hide multi-line descriptions to let analysis be the hero */
     }
 
     .kpi-pills {
       display: flex;
-      gap: 12px;
+      gap: 8px;
     }
 
     .kpi-pill {
       background: #F1F5F9;
-      padding: 6px 12px;
-      border-radius: 8px;
+      padding: 3px 8px;
+      border-radius: 5px;
       text-align: right;
     }
 
     .kpi-pill span {
       display: block;
-      font-size: 10px;
+      font-size: 9px;
       color: var(--text-muted);
       text-transform: uppercase;
-      font-weight: 600;
+      font-weight: 700;
     }
 
     .kpi-pill strong {
-      font-size: 14px;
+      font-size: 12.5px;
       color: var(--primary);
+      line-height: 1.1;
     }
 
     /* Grid Layouts */
@@ -450,14 +517,14 @@
     /* FROZEN DUAL-AXIS CHART ON SLIDE 4 */
     .sticky-chart-wrapper {
       position: sticky;
-      top: 110px;
+      top: 80px;
       z-index: 80;
       background: white;
-      border-radius: 10px;
+      border-radius: 8px;
       border: 1px solid var(--border);
-      box-shadow: 0 6px 16px rgba(0,0,0,0.08);
-      padding: 16px 20px;
-      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      padding: 10px 14px;
+      margin-bottom: 12px;
     }
 
     .sticky-badge {
@@ -555,14 +622,15 @@
     }
 
     footer {
-      background: white;
-      border-top: 1px solid var(--border);
-      padding: 12px 24px;
-      font-size: 12px;
-      color: var(--text-muted);
+      background: #0F172A;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding: 6px 16px;
+      font-size: 11px;
+      color: #94A3B8;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      margin-top: auto;
     }
 
     /* ==========================================================================
@@ -1164,167 +1232,158 @@
       }
     }
 
-    /* Mobile Phone Responsive Rules (< 768px) */
+    /* Mobile Phone Responsive Rules (< 768px) - Maximum Screen Area for Analysis */
     @media (max-width: 768px) {
       header {
-        flex-direction: column;
-        align-items: stretch;
-        padding: 10px 14px;
-        gap: 10px;
+        height: 44px;
+        padding: 4px 10px;
+        gap: 8px;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
       }
 
       .brand-area {
-        justify-content: space-between;
-        width: 100%;
+        gap: 6px;
       }
 
-      .brand-title h1 {
-        font-size: 15px;
+      .brand-title-compact {
+        display: none; /* Hide subtitle text on tiny mobile headers to save space */
       }
 
-      .brand-title p {
-        font-size: 10px;
-      }
-
-      .controls-area {
-        flex-direction: column;
-        width: 100%;
-        gap: 8px;
-      }
-
-      .selector-group {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 6px 10px;
-      }
-
-      .selector-group label {
-        font-size: 10.5px;
-        margin-right: 6px;
-        white-space: nowrap;
-      }
-
-      .selector-group select {
+      .header-center-selector {
+        margin: 0;
+        max-width: 100%;
         flex: 1;
-        min-width: 0;
-        font-size: 13px;
-        height: 38px;
+      }
+
+      .adm-selector-box {
+        padding: 1px 4px;
+      }
+
+      .adm-selector-box select {
+        font-size: 12px;
+        height: 30px;
+        padding: 2px 4px;
+      }
+
+      .header-actions {
+        display: none !important; /* Actions available in sticky bottom bar */
       }
 
       .desktop-only-controls {
         display: none !important;
       }
 
-      .header-action-buttons {
-        display: flex;
-        gap: 6px;
-        width: 100%;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-      }
-
-      .header-action-buttons .nav-btn {
-        flex: 1;
-        justify-content: center;
-        padding: 8px 10px;
-        font-size: 12px;
-        white-space: nowrap;
-      }
-
       .slide-tabs {
-        top: 0;
-        padding: 6px 8px;
-        gap: 6px;
-        background: #F1F5F9;
-        border-bottom: 2px solid var(--border);
+        top: 44px;
+        height: 32px;
+        padding: 0 6px;
+        gap: 3px;
+        background: #F8FAFC;
+        border-bottom: 1px solid var(--border);
         -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-      }
-
-      .slide-tabs::-webkit-scrollbar {
-        display: none;
       }
 
       .tab-btn {
-        padding: 7px 12px;
-        font-size: 11px;
-        border-radius: 6px;
-        border-bottom: none;
-        background: white;
-        border: 1px solid var(--border);
-      }
-
-      .tab-btn.active {
-        background: var(--primary);
-        color: white;
-        border-color: var(--primary);
+        padding: 3px 8px;
+        font-size: 10.5px;
+        height: 24px;
+        border-radius: 4px;
       }
 
       main {
-        padding: 12px 10px 85px 10px !important;
+        padding: 6px 8px 65px 8px !important;
       }
 
       .slide-header {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 12px;
-        padding: 12px 14px;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 4px 8px;
+        margin-bottom: 8px;
+        min-height: 32px;
       }
 
       .slide-header-left h2 {
-        font-size: 15.5px;
-        line-height: 1.3;
+        font-size: 11.5px;
+        margin: 0;
+      }
+
+      .slide-badge {
+        font-size: 9px;
+        padding: 2px 5px;
       }
 
       .slide-header-left p {
-        font-size: 12px;
+        display: none !important;
       }
 
       .kpi-pills {
-        width: 100%;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 8px;
+        gap: 4px;
       }
 
       .kpi-pill {
-        text-align: left;
-        padding: 8px 10px;
+        padding: 2px 6px;
+      }
+
+      .kpi-pill span {
+        font-size: 8px;
+      }
+
+      .kpi-pill strong {
+        font-size: 11px;
       }
 
       .card {
-        padding: 14px 12px;
+        padding: 8px 10px;
+        border-radius: 6px;
       }
 
       .card-title {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 4px;
-        margin-bottom: 10px;
+        font-size: 12px;
+        margin-bottom: 6px;
+        padding-bottom: 4px;
       }
 
       /* Slide 4 Frozen Chart becomes static on mobile to avoid covering screen */
       .sticky-chart-wrapper {
         position: static !important;
-        padding: 12px 10px;
-        margin-bottom: 14px;
+        padding: 10px 8px;
+        margin-bottom: 10px;
         top: auto;
       }
 
       .chart-box {
-        height: 290px !important;
+        height: 260px !important;
       }
 
       .chart-box-tall {
-        height: 380px !important;
+        height: 310px !important;
+      }
+
+      /* Tables on Mobile */
+      .data-table-wrapper {
+        max-height: 340px;
+      }
+
+      table {
+        font-size: 11px;
+      }
+
+      th, td {
+        padding: 5px 6px;
       }
 
       /* Quadrant Matrix on mobile */
       .quadrant-grid {
         grid-template-columns: 1fr;
-        gap: 10px;
+        gap: 8px;
+      }
+
+      /* Hide redundant desktop footer on mobile */
+      footer {
+        display: none !important;
       }
 
       /* Mobile Bottom Navigation Bar */
@@ -1335,9 +1394,9 @@
         left: 0;
         right: 0;
         width: 100%;
-        height: 58px;
-        background: rgba(15, 23, 42, 0.96);
-        backdrop-filter: blur(12px);
+        height: 48px;
+        background: rgba(15, 23, 42, 0.95);
+        backdrop-filter: blur(14px);
         border-top: 1px solid rgba(255,255,255,0.15);
         z-index: 1500;
         align-items: center;
@@ -1354,13 +1413,13 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 2px;
-        padding: 4px 8px;
-        font-size: 10px;
+        gap: 1px;
+        padding: 3px 6px;
+        font-size: 9.5px;
         font-weight: 600;
         cursor: pointer;
-        border-radius: 6px;
-        min-width: 46px;
+        border-radius: 4px;
+        min-width: 40px;
         transition: background 0.15s;
       }
 
@@ -1369,8 +1428,8 @@
       }
 
       .mob-nav-btn .mob-icon {
-        font-size: 17px;
-        line-height: 1.1;
+        font-size: 15px;
+        line-height: 1;
       }
 
       .mob-counter-pill {
@@ -1469,22 +1528,19 @@
 </head>
 <body>
 
-  <!-- App Header -->
+  <!-- App Header - Ultra-Slim Single Row -->
   <header>
     <div class="brand-area">
       <div class="brand-badge">EGY NUTRI.</div>
-      <div class="brand-title">
-        <h1>COMMERCIAL BUSINESS REVIEW</h1>
-        <p>YTD M06-2026 vs. Full Year 2025 Performance & Strategic Diagnostics</p>
-      </div>
+      <span class="brand-title-compact">COMMERCIAL REVIEW</span>
     </div>
 
-    <div class="controls-area">
-      <div class="selector-group">
-        <label for="chosenAdmSelect">ADM IN REVIEW:</label>
+    <div class="header-center-selector">
+      <div class="adm-selector-box">
+        <span class="adm-icon">👤</span>
         <select id="chosenAdmSelect" onchange="onPersonChange()">
           <option value="0">Ahmed Hassan (Alx)</option>
-          <option value="1">Ahmed Mohamed Sakr (Behera & Dakahlia)</option>
+          <option value="1">Ahmed Mohamed Sakr (Behera &amp; Dakahlia)</option>
           <option value="2">NOHER ADEL (Cairo)</option>
           <option value="3">Youstina Farag Allah (Guiza)</option>
           <option value="4">Shimaa Tarek El-Shamy (DELTA I)</option>
@@ -1494,19 +1550,21 @@
           <option value="8">Karim Shehab (KFR EL.SHK)</option>
         </select>
       </div>
+    </div>
 
-      <div class="slide-counter desktop-only-controls" id="slideIndicator">Slide 1 of 10</div>
-
-      <div class="header-action-buttons">
-        <button class="nav-btn desktop-only-controls" onclick="prevSlide()" title="Previous Slide (Left Arrow)">❮ Prev</button>
-        <button class="nav-btn desktop-only-controls" onclick="nextSlide()" title="Next Slide (Right Arrow)">Next ❯</button>
-        <button class="nav-btn" id="btnUploadCsvTop" onclick="triggerCsvUpload()" style="background:#0D9488; border-color:#14B8A6;" title="Upload updated Sales CSV and recalculate dashboard">📁 Upload CSV</button>
-        <button class="nav-btn" id="btnToggleOutline" onclick="toggleSlideOutline()" title="Executive Slide Outline (Shortcut: O)">📑 Outline</button>
-        <button class="nav-btn" id="btnOpenDataEditor" onclick="openDataEditor()" title="Edit Sales Volumes & Recalculate Model (Shortcut: E)" style="background:#059669; border-color:#10B981;">✏️ Edit Data</button>
-        <button class="nav-btn desktop-only-controls" id="fullscreenToggleBtn" onclick="toggleFullscreen()" title="Toggle Fullscreen Presentation Mode (Shortcut: F)" style="background:#2563EB; border-color:#60A5FA;">⛶ Fullscreen</button>
-        <a href="Egy_Nutri_Business_Review_Deck.pptx" download class="nav-btn desktop-only-controls" style="text-decoration: none;" title="Download PowerPoint Deck">📥 PPTX</a>
-        <a href="Egy_Nutri_Sales_Analysis_Template.xlsx" download class="nav-btn desktop-only-controls" style="text-decoration: none;" title="Download Excel Model">📊 Excel</a>
-        <button class="nav-btn desktop-only-controls" onclick="window.print()">🖨️ Print</button>
+    <div class="header-actions">
+      <button class="nav-btn-compact" id="btnUploadCsvTop" onclick="triggerCsvUpload()" title="Upload CSV">📁 CSV</button>
+      <button class="nav-btn-compact" id="btnOpenDataEditor" onclick="openDataEditor()" title="Edit Data">✏️ Data</button>
+      <button class="nav-btn-compact" id="btnToggleOutline" onclick="toggleSlideOutline()" title="Outline">📑 Outline</button>
+      <button class="nav-btn-compact desktop-only-controls" id="fullscreenToggleBtn" onclick="toggleFullscreen()" title="Fullscreen">⛶ Full</button>
+      <div class="export-dropdown desktop-only-controls">
+        <button class="nav-btn-compact" onclick="toggleExportMenu(event)" title="Export Menu">⬇️ Export ▾</button>
+        <div class="export-menu" id="exportMenu">
+          <a href="Egy_Nutri_Business_Review_Deck.pptx" download>📥 PowerPoint (.pptx)</a>
+          <a href="Egy_Nutri_Sales_Analysis_Template.xlsx" download>📊 Excel Model (.xlsx)</a>
+          <button type="button" onclick="downloadCsvTemplate()">📁 Download CSV Template</button>
+          <button type="button" onclick="window.print()">🖨️ Print / PDF</button>
+        </div>
       </div>
     </div>
   </header>
@@ -1514,18 +1572,18 @@
   <!-- Hidden CSV File Input -->
   <input type="file" id="csvFileInput" accept=".csv,text/csv,text/plain" style="display:none;" onchange="handleCsvFileSelect(this)">
 
-  <!-- Slide Tabs Navigation -->
+  <!-- Slide Tabs Navigation - Ultra-Slim -->
   <nav class="slide-tabs" id="slideTabs">
-    <button class="tab-btn active" onclick="goToSlide(1)">01. Selected ADM Share</button>
-    <button class="tab-btn" onclick="goToSlide(2)">02. Core Formulas (Horizontal)</button>
-    <button class="tab-btn" onclick="goToSlide(3)">03. Specialty Lines (Horizontal)</button>
+    <button class="tab-btn active" onclick="goToSlide(1)">01. Share %</button>
+    <button class="tab-btn" onclick="goToSlide(2)">02. Core Formulas</button>
+    <button class="tab-btn" onclick="goToSlide(3)">03. Specialty Lines</button>
     <button class="tab-btn" onclick="goToSlide(4)">04. Dual-Axis Deep Dive</button>
-    <button class="tab-btn" onclick="goToSlide(5)">05. Total PPG% Ranking</button>
-    <button class="tab-btn" onclick="goToSlide(6)">06. Pediamil 1 Ranking</button>
-    <button class="tab-btn" onclick="goToSlide(7)">07. Pediamil 2 Ranking</button>
-    <button class="tab-btn" onclick="goToSlide(8)">08. Pedia-Start 1 Ranking</button>
-    <button class="tab-btn" onclick="goToSlide(9)">09. Pedia-Start 2 Ranking</button>
-    <button class="tab-btn" onclick="goToSlide(10)">10. Quadrant Strategic Matrix</button>
+    <button class="tab-btn" onclick="goToSlide(5)">05. Total PPG%</button>
+    <button class="tab-btn" onclick="goToSlide(6)">06. Pediamil 1</button>
+    <button class="tab-btn" onclick="goToSlide(7)">07. Pediamil 2</button>
+    <button class="tab-btn" onclick="goToSlide(8)">08. Pedia-Start 1</button>
+    <button class="tab-btn" onclick="goToSlide(9)">09. Pedia-Start 2</button>
+    <button class="tab-btn" onclick="goToSlide(10)">10. Quadrant Matrix</button>
   </nav>
 
   <!-- Main Slides Content Area -->
@@ -1535,38 +1593,27 @@
     <section class="slide-container active" id="slide-1">
       <div class="slide-header">
         <div class="slide-header-left">
-          <h2><span class="slide-badge">SLIDE 01</span> TERRITORIAL CONTRIBUTION & GEO SHARE % (SELECTED ADM)</h2>
-          <p>Horizontal 3-Bar Share Analysis for the Selected Assistant District Manager with figures plotted directly on the bars.</p>
-        </div>
-        <div class="kpi-pills">
-          <div class="kpi-pill">
-            <span>Selected ADM</span>
-            <strong id="s1PersonName">Beshoy Youhanna</strong>
-          </div>
-          <div class="kpi-pill">
-            <span>Territory</span>
-            <strong id="s1TerritoryName">Upper Egypt II</strong>
-          </div>
+          <h2><span class="slide-badge">SLIDE 01</span> TERRITORIAL CONTRIBUTION &amp; GEO SHARE %</h2>
         </div>
       </div>
 
       <div class="grid-2">
         <div class="card">
           <div class="card-title">
-            <span id="s1ChartTitle">3-Bar Share Analysis (Selected ADM)</span>
-            <small style="color:var(--text-muted); font-size:11px;">Figures plotted on bars</small>
+            <span id="s1ChartTitle">3-Bar Territorial Share Analysis (GEO vs. 2026 vs. 2025)</span>
+            <small style="color:var(--text-muted); font-size:11px;">Plotted on bars</small>
           </div>
-          <div class="chart-box" style="height: 340px;">
-            <canvas id="chartSlide1" width="600" height="340"></canvas>
+          <div class="chart-box" style="height: 330px;">
+            <canvas id="chartSlide1" width="600" height="330"></canvas>
           </div>
-          <div id="s1BarLegendNotes" style="margin-top:14px; padding:10px 14px; background:#F8FAFC; border-radius:8px; font-size:12px; line-height:1.6;">
+          <div id="s1BarLegendNotes" style="margin-top:10px; padding:8px 12px; background:#F8FAFC; border-radius:6px; font-size:11.5px; line-height:1.5;">
           </div>
         </div>
 
         <div class="card">
           <div class="card-title">
-            <span>All Territories Share & Potential Benchmark</span>
-            <small style="color:var(--text-muted); font-size:11px;">Selected ADM highlighted</small>
+            <span>All Territories Share &amp; Potential Benchmark</span>
+            <small style="color:var(--text-muted); font-size:11px;">Ranked by Geo Share</small>
           </div>
           <div class="data-table-wrapper" style="max-height: 400px;">
             <table id="tableSlide1">
@@ -1593,13 +1640,6 @@
       <div class="slide-header">
         <div class="slide-header-left">
           <h2><span class="slide-badge">SLIDE 02</span> CORE INFANT FORMULAS: MONTHLY SALES AVERAGES</h2>
-          <p>Horizontal 3-Bar Volume Comparison (2026 MoAvg vs 2025 MoAvg vs Line Avg/ADM) with exact values rendered on the bars.</p>
-        </div>
-        <div class="kpi-pills">
-          <div class="kpi-pill">
-            <span>Selected ADM</span>
-            <strong id="s2TerritoryLabel">Beshoy Youhanna (Upper Egypt II)</strong>
-          </div>
         </div>
       </div>
 
@@ -1609,14 +1649,14 @@
             <span>Core Formulas: Monthly Volume (Horizontal Bars)</span>
             <small style="color:var(--text-muted); font-size:11px;">Values plotted directly on bars</small>
           </div>
-          <div class="chart-box-tall" style="height: 440px;">
-            <canvas id="chartSlide2" width="600" height="440"></canvas>
+          <div class="chart-box-tall" style="height: 400px;">
+            <canvas id="chartSlide2" width="600" height="400"></canvas>
           </div>
         </div>
 
         <div class="card">
           <div class="card-title">
-            <span>Monthly Average Breakdown & Growth Rates</span>
+            <span>Monthly Average Breakdown &amp; Growth Rates</span>
           </div>
           <div class="data-table-wrapper">
             <table>
@@ -1634,11 +1674,8 @@
               </tbody>
             </table>
           </div>
-          <div style="margin-top:14px; font-size:11.5px; color:var(--text-muted); line-height:1.5;">
-            <strong>Flattening Rule & Line Average:</strong>
-            <br>• <strong>2026 MoAvg:</strong> YTD 6-Month Units ÷ 6.
-            <br>• <strong>2025 MoAvg:</strong> Full Year Units ÷ 12 (flattens 2025 shortage periods).
-            <br>• <strong>LN AVG 6 2026:</strong> Standard Line Average per ADM across Egypt (Total MoAvg ÷ 9).
+          <div style="margin-top:10px; font-size:11px; color:var(--text-muted); line-height:1.4;">
+            <strong>Flattening Rule:</strong> 2026 MoAvg = YTD/6 • 2025 MoAvg = Year/12 • LN AVG 6 2026 = National/9.
           </div>
         </div>
       </div>
@@ -1649,13 +1686,6 @@
       <div class="slide-header">
         <div class="slide-header-left">
           <h2><span class="slide-badge">SLIDE 03</span> SPECIALTY INFANT FORMULAS: MONTHLY SALES AVERAGES</h2>
-          <p>Horizontal 3-Bar Specialty SKU Comparison (Pediamil LF, HA, AR, AC, Pediamum) with values plotted directly on the bars.</p>
-        </div>
-        <div class="kpi-pills">
-          <div class="kpi-pill">
-            <span>Selected ADM</span>
-            <strong id="s3TerritoryLabel">Beshoy Youhanna (Upper Egypt II)</strong>
-          </div>
         </div>
       </div>
 
@@ -1665,14 +1695,14 @@
             <span>Specialty Lines: Monthly Volume (Horizontal Bars)</span>
             <small style="color:var(--text-muted); font-size:11px;">Values plotted directly on bars</small>
           </div>
-          <div class="chart-box-tall" style="height: 460px;">
-            <canvas id="chartSlide3" width="600" height="460"></canvas>
+          <div class="chart-box-tall" style="height: 420px;">
+            <canvas id="chartSlide3" width="600" height="420"></canvas>
           </div>
         </div>
 
         <div class="card">
           <div class="card-title">
-            <span>Specialty Breakdown & Benchmark Comparison</span>
+            <span>Specialty Breakdown &amp; Benchmark Comparison</span>
           </div>
           <div class="data-table-wrapper">
             <table>
@@ -1690,10 +1720,8 @@
               </tbody>
             </table>
           </div>
-          <div style="margin-top:14px; font-size:11.5px; color:var(--text-muted); line-height:1.5;">
-            <strong>Specialty Prescription Notes:</strong>
-            <br>• Pediamil AC & LF drive highest margin contributions across pediatric clinics.
-            <br>• Pediamil AR and Pediamum require dedicated detailing push in H2.
+          <div style="margin-top:10px; font-size:11px; color:var(--text-muted); line-height:1.4;">
+            <strong>Prescription Focus:</strong> AC &amp; LF drive margin contributions. AR &amp; Pediamum are key expansion targets.
           </div>
         </div>
       </div>
@@ -1703,16 +1731,15 @@
     <section class="slide-container" id="slide-4">
       <div class="slide-header">
         <div class="slide-header-left">
-          <h2><span class="slide-badge">SLIDE 04</span> DUAL-AXIS DEEP DIVE: SELECTED ADM vs COMPANY BENCHMARK</h2>
-          <p>Primary Axis: Monthly Sales Volume 2025 vs 2026 (Bars) | Secondary Axis: PPG% Growth (Line Markers). <strong>Chart is frozen at top while data scrolls below.</strong></p>
+          <h2><span class="slide-badge">SLIDE 04</span> DUAL-AXIS DEEP DIVE: VOLUME vs. PPG% GROWTH</h2>
         </div>
         <div class="kpi-pills">
           <div class="kpi-pill">
-            <span>Company Benchmark PPG</span>
+            <span>National Benchmark</span>
             <strong id="s4CompanyBenchmarkPpg" style="color:var(--primary);">+33.79%</strong>
           </div>
           <div class="kpi-pill">
-            <span>Selected ADM PPG</span>
+            <span>Territory Growth</span>
             <strong id="s4PersonTotalPpg">+50.11%</strong>
           </div>
         </div>
@@ -1723,21 +1750,21 @@
         <div class="shape-icon" id="shapeIcon">🟢</div>
         <div class="shape-content">
           <h3 id="shapeTitle">ABOVE COMPANY BENCHMARK (+16.33% Ahead of National Growth)</h3>
-          <p id="shapeDesc">Beshoy Youhanna generated +50.11% PPG growth across all portfolios, outpacing the national company benchmark of +33.79%.</p>
+          <p id="shapeDesc">Achieved +50.11% PPG growth across all portfolios, outpacing the national company benchmark of +33.79%.</p>
         </div>
       </div>
 
       <!-- FROZEN / STICKY CHART CONTAINER -->
       <div class="sticky-chart-wrapper">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
           <div style="display:flex; align-items:center; gap:8px;">
             <span class="sticky-badge">📌 FROZEN COMBO CHART</span>
-            <span style="font-size:13px; font-weight:700; color:var(--primary);" id="s4ChartTitleText">Beshoy Youhanna: Volume (Bars) vs PPG% Growth (Markers)</span>
+            <span style="font-size:12.5px; font-weight:700; color:var(--primary);" id="s4ChartTitleText">Monthly Volume (Bars) vs PPG% Growth (Markers)</span>
           </div>
-          <small style="color:var(--text-muted); font-size:11px;">Scroll down to inspect detailed figures table</small>
+          <small style="color:var(--text-muted); font-size:11px;">Scroll down for product details</small>
         </div>
-        <div class="chart-box" style="height: 310px;">
-          <canvas id="chartSlide4" width="900" height="310"></canvas>
+        <div class="chart-box" style="height: 290px;">
+          <canvas id="chartSlide4" width="900" height="290"></canvas>
         </div>
       </div>
 
@@ -2739,6 +2766,16 @@
       }
     }
 
+    function toggleExportMenu(evt) {
+      if (evt) evt.stopPropagation();
+      const menu = document.getElementById('exportMenu');
+      if (menu) menu.classList.toggle('show');
+    }
+    window.addEventListener('click', () => {
+      const menu = document.getElementById('exportMenu');
+      if (menu) menu.classList.remove('show');
+    });
+
     function closeSlideOutline() {
       const drawer = document.getElementById('slideOutlineDrawer');
       if (drawer) drawer.classList.remove('open');
@@ -2927,15 +2964,23 @@
               const barBase = element.base !== undefined ? element.base : left;
               const barWidth = Math.abs(xPos - barBase);
 
-              if (barWidth >= 65) {
+              if (barWidth >= 55) {
                 ctx.textAlign = 'right';
                 ctx.fillStyle = '#FFFFFF';
+                ctx.shadowColor = 'rgba(0, 0, 0, 0.65)';
+                ctx.shadowBlur = 3;
                 ctx.fillText(text, xPos - 8, yPos);
-              } else if (xPos + 55 < right) {
+                ctx.shadowBlur = 0;
+              } else if (xPos + 50 < right) {
                 ctx.textAlign = 'left';
-                ctx.fillStyle = '#1E293B';
-                ctx.font = 'bold 11px sans-serif';
+                ctx.fillStyle = '#0F172A';
+                ctx.shadowBlur = 0;
                 ctx.fillText(text, xPos + 6, yPos);
+              } else {
+                ctx.textAlign = 'right';
+                ctx.fillStyle = '#0F172A';
+                ctx.shadowBlur = 0;
+                ctx.fillText(text, right - 4, yPos);
               }
             });
           });
@@ -3062,9 +3107,12 @@
     // SLIDE 1
     function renderSlide1() {
       const p = getChosenPerson();
-      document.getElementById('s1PersonName').innerText = p.dm;
-      document.getElementById('s1TerritoryName').innerText = p.territory;
-      document.getElementById('s1ChartTitle').innerText = p.territory + ' (' + p.dm.split(' ')[0] + '): 3-Bar Share Comparison';
+      const s1Person = document.getElementById('s1PersonName');
+      if (s1Person) s1Person.innerText = p.dm;
+      const s1Terr = document.getElementById('s1TerritoryName');
+      if (s1Terr) s1Terr.innerText = p.territory;
+      const s1Title = document.getElementById('s1ChartTitle');
+      if (s1Title) s1Title.innerText = '3-Bar Territorial Share Analysis (GEO Potential vs. 2026 vs. 2025)';
 
       const labels = ['GEO Share % (2025 Potential)', 'YTD Contribution % 2026', 'Contribution % 2025'];
       const values = [Number(p.geo.toFixed(2)), Number(p.c26.toFixed(2)), Number(p.c25.toFixed(2))];
@@ -3163,7 +3211,8 @@
     // SLIDE 2
     function renderSlide2() {
       const p = getChosenPerson();
-      document.getElementById('s2TerritoryLabel').innerText = p.dm + ' (' + p.territory + ')';
+      const s2Label = document.getElementById('s2TerritoryLabel');
+      if (s2Label) s2Label.innerText = p.dm + ' (' + p.territory + ')';
 
       const coreKeys = ['p1', 'p2', 'ps1', 'ps2'];
       const labels = ['Pediamil 1', 'Pediamil 2', 'Pedia-Start 1', 'Pedia-Start 2'];
@@ -3247,7 +3296,8 @@
     // SLIDE 3
     function renderSlide3() {
       const p = getChosenPerson();
-      document.getElementById('s3TerritoryLabel').innerText = p.dm + ' (' + p.territory + ')';
+      const s3Label = document.getElementById('s3TerritoryLabel');
+      if (s3Label) s3Label.innerText = p.dm + ' (' + p.territory + ')';
 
       const specKeys = ['lf', 'ha', 'ar', 'ac', 'mum'];
       const labels = ['Pediamil LF', 'Pediamil HA', 'Pediamil AR', 'Pediamil AC', 'Pediamum'];
@@ -3340,7 +3390,8 @@
 
       document.getElementById('s4PersonTotalPpg').innerText = (personPpg > 0 ? '+' : '') + personPpg.toFixed(2) + '%';
       document.getElementById('s4PersonTotalPpg').style.color = isAbove ? 'var(--green-text)' : 'var(--red-text)';
-      document.getElementById('s4ChartTitleText').innerText = p.territory + ' (' + p.dm.split(' ')[0] + '): Volume (Bars) vs PPG% Growth (Markers)';
+      const s4Title = document.getElementById('s4ChartTitleText');
+      if (s4Title) s4Title.innerText = 'Monthly Volume (Bars) vs PPG% Growth (Markers) vs Company Benchmark';
 
       const box = document.getElementById('growthHighlightBox');
       const icon = document.getElementById('shapeIcon');
@@ -3348,15 +3399,15 @@
       const desc = document.getElementById('shapeDesc');
 
       if (isAbove) {
-        box.className = 'shape-highlight shape-green';
-        icon.innerText = '🟢';
-        title.innerText = 'GROWTH ABOVE COMPANY BENCHMARK (+' + gap.toFixed(2) + '% Ahead of Egypt Average)';
-        desc.innerText = p.dm + ' (' + p.territory + ') achieved +' + personPpg.toFixed(1) + '% total PPG growth, outpacing the company benchmark rate (+' + compTotalPpg.toFixed(2) + '%). Outstanding commercial momentum.';
+        if (box) box.className = 'shape-highlight shape-green';
+        if (icon) icon.innerText = '🟢';
+        if (title) title.innerText = 'GROWTH ABOVE COMPANY BENCHMARK (+' + gap.toFixed(2) + '% Ahead of Egypt Average)';
+        if (desc) desc.innerText = 'Achieved +' + personPpg.toFixed(1) + '% total PPG growth, outpacing the national company benchmark of +' + compTotalPpg.toFixed(2) + '%. Commercial momentum is ahead of plan.';
       } else {
-        box.className = 'shape-highlight shape-red';
-        icon.innerText = '🔻';
-        title.innerText = 'GROWTH BELOW COMPANY BENCHMARK (-' + gap.toFixed(2) + '% Gap to Egypt Average)';
-        desc.innerText = p.dm + ' (' + p.territory + ') recorded +' + personPpg.toFixed(1) + '% growth, trailing the company growth target of +' + compTotalPpg.toFixed(2) + '%. Urgent attention and action plan required.';
+        if (box) box.className = 'shape-highlight shape-red';
+        if (icon) icon.innerText = '🔻';
+        if (title) title.innerText = 'GROWTH BELOW COMPANY BENCHMARK (-' + gap.toFixed(2) + '% Gap to Egypt Average)';
+        if (desc) desc.innerText = 'Recorded +' + personPpg.toFixed(1) + '% total PPG growth, trailing the national company benchmark of +' + compTotalPpg.toFixed(2) + '%. Corrective commercial plan required.';
       }
 
       const displayProds = [
@@ -3627,14 +3678,23 @@
                   const barBase = element.base !== undefined ? element.base : left;
                   const barWidth = Math.abs(xPos - barBase);
 
-                  if (barWidth >= 60) {
+                  if (barWidth >= 55) {
                     ctx.textAlign = 'right';
                     ctx.fillStyle = '#FFFFFF';
+                    ctx.shadowColor = 'rgba(0, 0, 0, 0.65)';
+                    ctx.shadowBlur = 3;
                     ctx.fillText(text, xPos - 8, yPos);
-                  } else if (xPos + 55 < right) {
+                    ctx.shadowBlur = 0;
+                  } else if (xPos + 50 < right) {
                     ctx.textAlign = 'left';
-                    ctx.fillStyle = '#1E293B';
+                    ctx.fillStyle = '#0F172A';
+                    ctx.shadowBlur = 0;
                     ctx.fillText(text, xPos + 6, yPos);
+                  } else {
+                    ctx.textAlign = 'right';
+                    ctx.fillStyle = '#0F172A';
+                    ctx.shadowBlur = 0;
+                    ctx.fillText(text, right - 4, yPos);
                   }
                 });
               });
@@ -3898,20 +3958,35 @@
         plugins: [
           quadrantCrosshairPlugin,
           {
-            id: 'chosenCalloutLabel',
+            id: 'bubbleTerritoryLabels',
             afterDatasetsDraw(chart) {
               try {
                 if (!chart) return;
                 const { ctx } = chart;
-                const meta = chart.getDatasetMeta(1);
-                if (meta && meta.data && meta.data[0]) {
-                  const pt = meta.data[0];
+                const meta0 = chart.getDatasetMeta(0);
+                if (meta0 && meta0.data) {
+                  ctx.save();
+                  ctx.font = 'bold 10px -apple-system, sans-serif';
+                  ctx.fillStyle = '#1E293B';
+                  ctx.textAlign = 'center';
+                  meta0.data.forEach((pt, i) => {
+                    const bubble = regularBubbles[i];
+                    if (bubble) {
+                      const radius = pt.options && pt.options.radius ? pt.options.radius : 10;
+                      ctx.fillText(bubble.territory.split(' ')[0], pt.x, pt.y + radius + 11);
+                    }
+                  });
+                  ctx.restore();
+                }
+                const meta1 = chart.getDatasetMeta(1);
+                if (meta1 && meta1.data && meta1.data[0]) {
+                  const pt = meta1.data[0];
                   const radius = pt.options && pt.options.radius ? pt.options.radius : 15;
                   ctx.save();
-                  ctx.font = 'bold 12px sans-serif';
-                  ctx.fillStyle = '#4C1D95';
+                  ctx.font = 'bold 12px -apple-system, sans-serif';
+                  ctx.fillStyle = '#6D28D9';
                   ctx.textAlign = 'center';
-                  ctx.fillText('★ ' + chosenPerson.dm.split(' ')[0] + ' (' + chosenPerson.territory + ')', pt.x, pt.y - radius - 8);
+                  ctx.fillText('★ ' + chosenPerson.territory, pt.x, pt.y - radius - 7);
                   ctx.restore();
                 }
               } catch (e) {
