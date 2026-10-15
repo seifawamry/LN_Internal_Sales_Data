@@ -4526,7 +4526,7 @@ ${chartJsContent}
                   const q3VsH1 = vH1 > 0 ? ((vQ3 / vH1) - 1) * 100 : 0;
                   const q3Vs25 = v25 > 0 ? ((vQ3 / v25) - 1) * 100 : 100;
                   if (ctx.datasetIndex === 2) {
-                    return 'Q3 2026: ' + Number(ctx.raw).toLocaleString() + ' cans/mo (vs H1: ' + (q3VsH1 >= 0 ? '+' : '') + q3VsH1.toFixed(1) + '% | vs \'25: ' + (q3Vs25 >= 0 ? '+' : '') + q3Vs25.toFixed(1) + '%)';
+                    return "Q3 2026: " + Number(ctx.raw).toLocaleString() + " cans/mo (vs H1: " + (q3VsH1 >= 0 ? "+" : "") + q3VsH1.toFixed(1) + "% | vs 2025: " + (q3Vs25 >= 0 ? "+" : "") + q3Vs25.toFixed(1) + "%)";
                   }
                   return ctx.dataset.label + ': ' + Number(ctx.raw).toLocaleString() + ' cans/mo';
                 }
@@ -5002,12 +5002,22 @@ ${chartJsContent}
       });
     }
 
-    window.addEventListener('DOMContentLoaded', () => {
-      initSlideTabs();
-      recalculateAllModelData();
-      renderSlideOutline();
-      goToSlide(1);
-    });
+    function bootApp() {
+      try {
+        initSlideTabs();
+        recalculateAllModelData();
+        renderSlideOutline();
+        goToSlide(1);
+      } catch (err) {
+        console.error('App Boot Failure:', err);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      window.addEventListener('DOMContentLoaded', bootApp);
+    } else {
+      bootApp();
+    }
   </script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ln-sales-review-v1';
+const CACHE_NAME = 'ln-sales-review-v2';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
