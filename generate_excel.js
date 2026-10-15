@@ -1,12 +1,12 @@
 const ExcelJS = require('exceljs');
 const path = require('path');
 const fs = require('fs');
-const { rawData2026, rawData2025 } = require('./data');
+const { rawData2026, rawData2025, rawAvgQ3_2026, rawAvgH1_2026 } = require('./data');
 
 async function createWorkbook() {
   const wb = new ExcelJS.Workbook();
   wb.creator = 'Egy Nutri Commercial Analytics';
-  wb.lastModifiedBy = 'Business Review Template';
+  wb.lastModifiedBy = 'Business Review Template (YTD M09-2026)';
   wb.created = new Date();
   wb.modified = new Date();
 
@@ -18,40 +18,48 @@ async function createWorkbook() {
   const GREEN_FONT = '155724';
   const RED_FILL = 'F8D7DA';
   const RED_FONT = '721C24';
+  const YELLOW_FILL = 'FFF3CD';
+  const YELLOW_FONT = '856404';
   const GRAY_HEADER = 'F2F4F8';
+
+  const totUnits26 = rawData2026.reduce((acc, r) => acc + r.sum, 0);
+  const totUnits25 = rawData2025.reduce((acc, r) => acc + r.sum, 0);
+  const moAvg26 = totUnits26 / 9;
+  const moAvg25 = totUnits25 / 12;
+  const companyPpg = (moAvg26 / moAvg25) - 1;
 
   // 1. Executive Summary Sheet
   const wsSummary = wb.addWorksheet('Executive Summary', { views: [{ showGridLines: true }] });
   wsSummary.columns = [
     { width: 5 },
-    { width: 32 },
+    { width: 34 },
     { width: 18 },
     { width: 18 },
     { width: 18 },
     { width: 18 },
-    { width: 22 }
+    { width: 24 }
   ];
 
   wsSummary.mergeCells('B2:G2');
-  wsSummary.getCell('B2').value = 'EGY NUTRI. - BUSINESS REVIEW & SALES ANALYSIS TEMPLATE';
+  wsSummary.getCell('B2').value = 'EGY NUTRI. - BUSINESS REVIEW & SALES ANALYSIS MODEL';
   wsSummary.getCell('B2').font = { size: 16, bold: true, color: { argb: 'FFFFFFFF' } };
   wsSummary.getCell('B2').fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: NAVY } };
   wsSummary.getCell('B2').alignment = { vertical: 'middle', horizontal: 'center' };
   wsSummary.getRow(2).height = 35;
 
   wsSummary.mergeCells('B3:G3');
-  wsSummary.getCell('B3').value = 'Comparison: YTD June 2026 (6 Months Monthly Avg) vs Full Year 2025 (12 Months Monthly Avg)';
+  wsSummary.getCell('B3').value = 'Updated Review: YTD September 2026 (9 Months Monthly Avg) vs Full Year 2025 (12 Months Monthly Avg) + Q3 vs H1 Rep Velocity';
   wsSummary.getCell('B3').font = { italic: true, size: 11, color: { argb: 'FF4A5568' } };
   wsSummary.getCell('B3').alignment = { vertical: 'middle', horizontal: 'center' };
   wsSummary.getRow(3).height = 24;
 
   // KPI Cards
   const kpis = [
-    { label: 'Company YTD 2026 Units', val: 829882, fmt: '#,##0', sub: '6 Months (Jan-Jun 2026)' },
-    { label: 'Company 2026 Monthly Avg', val: 138314, fmt: '#,##0', sub: '829,882 / 6 Months' },
-    { label: 'Company 2025 Total Units', val: 1240615, fmt: '#,##0', sub: '12 Months (Full Year)' },
-    { label: 'Company 2025 Monthly Avg', val: 103385, fmt: '#,##0', sub: '1,240,615 / 12 Months' },
-    { label: 'Company Total PPG Growth', val: 0.33785, fmt: '+0.0%;-0.0%', sub: 'Benchmark Growth Rate' },
+    { label: 'Company YTD 2026 Units', val: totUnits26, fmt: '#,##0', sub: '9 Months (Jan-Sep 2026)' },
+    { label: 'Company 2026 Monthly Avg', val: Math.round(moAvg26), fmt: '#,##0', sub: '1,298,415 / 9 Months' },
+    { label: 'Company 2025 Total Units', val: totUnits25, fmt: '#,##0', sub: '12 Months (Full Year)' },
+    { label: 'Company 2025 Monthly Avg', val: Math.round(moAvg25), fmt: '#,##0', sub: '1,240,615 / 12 Months' },
+    { label: 'Company Total PPG Growth', val: companyPpg, fmt: '+0.0%;-0.0%', sub: 'Benchmark Growth Rate (+39.5%)' },
     { label: 'Total ADM Territories', val: 9, fmt: '0', sub: 'National Coverage' }
   ];
 
@@ -84,12 +92,13 @@ async function createWorkbook() {
     ['Slide 2', 'Core Nutrition Monthly Averages', 'Pediamil 1, Pediamil 2, Pedia-Start 1, Pedia-Start 2: 2026 MoAvg vs 2025 MoAvg vs Line Avg.'],
     ['Slide 3', 'Specialty Nutrition Monthly Averages', 'Pediamil LF, HA, AR, AC, Pediamum: 2026 MoAvg vs 2025 MoAvg vs Line Avg.'],
     ['Slide 4', 'Dual-Axis ADM Deep-Dive', 'Double axis: Left Axis Volume Bars, Right Axis PPG% with Red/Green indicator vs Company benchmark.'],
-    ['Slide 5', 'Total PPG% Growth Ranking', 'All 9 ADMs ranked by Total PPG%. Company at top (+33.79%), Green above, Red below.'],
-    ['Slide 6', 'Pediamil 1 PPG% Ranking', 'Ranked by Pediamil 1 growth. Company (+39.92%) at top, Green above, Red below.'],
-    ['Slide 7', 'Pediamil 2 PPG% Ranking', 'Ranked by Pediamil 2 growth. Company (+65.26%) at top, Green above, Red below.'],
-    ['Slide 8', 'Pedia-Start 1 PPG% Ranking', 'Ranked by Pedia-Start 1 growth. Company (-2.06%) at top, Green above, Red below.'],
-    ['Slide 9', 'Pedia-Start 2 PPG% Ranking', 'Ranked by Pedia-Start 2 growth. Company (+39.86%) at top, Green above, Red below.'],
-    ['Slide 10', 'Strategic Quadrant Matrix', 'Bubble matrix: X=Contribution Diff (0 baseline), Y=PPG% (+33.79% baseline). Quadrants A/B/C/D.']
+    ['Slide 5', 'Total PPG% Growth Ranking', 'All 9 ADMs ranked by Total PPG%. Company at top (+39.5%), Green above, Red below.'],
+    ['Slide 6', 'Pediamil 1 PPG% Ranking', 'Ranked by Pediamil 1 growth. Company (+46.9%) at top, Green above, Red below.'],
+    ['Slide 7', 'Pediamil 2 PPG% Ranking', 'Ranked by Pediamil 2 growth. Company (+68.5%) at top, Green above, Red below.'],
+    ['Slide 8', 'Pedia-Start 1 PPG% Ranking', 'Ranked by Pedia-Start 1 growth. Company (+9.6%) at top, Green above, Red below.'],
+    ['Slide 9', 'Pedia-Start 2 PPG% Ranking', 'Ranked by Pedia-Start 2 growth. Company (+37.6%) at top, Green above, Red below.'],
+    ['Slide 10', 'Strategic Quadrant Matrix', 'Bubble matrix: X=Contribution Diff (0 baseline), Y=PPG% (+39.5% baseline). Quadrants A/B/C/D.'],
+    ['Slide 11', 'Rep Performance Velocity (Q3 vs H1)', 'Quarterly Run-Rate Comparison: Average Monthly Sales Q3 2026 vs H1 2026 baseline. 4 Velocity Tiers.']
   ];
 
   wsSummary.getCell('B14').value = 'BUSINESS REVIEW SLIDE DECK ARCHITECTURE';
@@ -115,7 +124,7 @@ async function createWorkbook() {
   const headers2026 = [
     'Territory Name', 'DM Name', 'Pediamil 1', 'Pediamil 2', 'PediaGrow 3',
     'Pediamil LF', 'Pediamil HA', 'Pediamil AR', 'Pediamil AC', 'Pediamum',
-    'Pedia-Start 1', 'Pedia-Start 2', 'LBW- Egy', 'Sum YTD 6/2026',
+    'Pedia-Start 1', 'Pedia-Start 2', 'LBW- Egy', 'Sum YTD 9/2026',
     'Contribution % 2026', 'GEO Share % 2025', 'Contribution Index', 'Contribution Diff.'
   ];
   ws2026.addRow(headers2026);
@@ -126,19 +135,30 @@ async function createWorkbook() {
   rawData2026.forEach(r => {
     ws2026.addRow([
       r.territory, r.dm, r.p1, r.p2, r.pg3, r.lf, r.ha, r.ar, r.ac, r.mum,
-      r.ps1, r.ps2, r.lbw, r.sum, r.sum / 829882, r.geoShare, r.contrIdx, r.contrDiff
+      r.ps1, r.ps2, r.lbw, r.sum, r.sum / totUnits26, r.geoShare, r.contrIdx, r.contrDiff
     ]);
   });
-  // Total row
-  ws2026.addRow([
-    'Total Egypt', 'Total', 234147, 146500, 32024, 26008, 35394, 28061, 45113, 4328,
-    145674, 97406, 35227, 829882, 1.0, 1.0, 1.0, 0.0
-  ]);
-  const totRow26 = ws2026.getRow(11);
+
+  // Total row for 2026
+  const totals26 = [
+    'Total Egypt', 'Total',
+    rawData2026.reduce((a, r) => a + r.p1, 0),
+    rawData2026.reduce((a, r) => a + r.p2, 0),
+    rawData2026.reduce((a, r) => a + r.pg3, 0),
+    rawData2026.reduce((a, r) => a + r.lf, 0),
+    rawData2026.reduce((a, r) => a + r.ha, 0),
+    rawData2026.reduce((a, r) => a + r.ar, 0),
+    rawData2026.reduce((a, r) => a + r.ac, 0),
+    rawData2026.reduce((a, r) => a + r.mum, 0),
+    rawData2026.reduce((a, r) => a + r.ps1, 0),
+    rawData2026.reduce((a, r) => a + r.ps2, 0),
+    rawData2026.reduce((a, r) => a + r.lbw, 0),
+    totUnits26, 1.0, 1.0, 1.0, 0.0
+  ];
+  const totRow26 = ws2026.addRow(totals26);
   totRow26.font = { bold: true };
   totRow26.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: LIGHT_BLUE } };
 
-  // Format 2026
   ws2026.columns.forEach((col, idx) => {
     col.width = idx < 2 ? 26 : 16;
   });
@@ -167,14 +187,24 @@ async function createWorkbook() {
   rawData2025.forEach(r => {
     ws2025.addRow([
       r.territory, r.dm, r.p1, r.p2, r.pg3, r.lf, r.ha, r.ar, r.ac, r.mum,
-      r.ps1, r.ps2, r.lbw, r.sum, r.sum / 1240615
+      r.ps1, r.ps2, r.lbw, r.sum, r.sum / totUnits25
     ]);
   });
-  ws2025.addRow([
-    'Total Egypt', 'Total', 334693, 177294, 42179, 36880, 65237, 74439, 63129, 9992,
-    297486, 139286, 0, 1240615, 1.0
-  ]);
-  const totRow25 = ws2025.getRow(11);
+  const totals25 = [
+    'Total Egypt', 'Total',
+    rawData2025.reduce((a, r) => a + r.p1, 0),
+    rawData2025.reduce((a, r) => a + r.p2, 0),
+    rawData2025.reduce((a, r) => a + r.pg3, 0),
+    rawData2025.reduce((a, r) => a + r.lf, 0),
+    rawData2025.reduce((a, r) => a + r.ha, 0),
+    rawData2025.reduce((a, r) => a + r.ar, 0),
+    rawData2025.reduce((a, r) => a + r.ac, 0),
+    rawData2025.reduce((a, r) => a + r.mum, 0),
+    rawData2025.reduce((a, r) => a + r.ps1, 0),
+    rawData2025.reduce((a, r) => a + r.ps2, 0),
+    0, totUnits25, 1.0
+  ];
+  const totRow25 = ws2025.addRow(totals25);
   totRow25.font = { bold: true };
   totRow25.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: LIGHT_BLUE } };
 
@@ -188,18 +218,30 @@ async function createWorkbook() {
     ws2025.getCell(r, 15).numFmt = '0.0%';
   }
 
-  // 4. Slide 1 Sheet: Contribution & GEO Share Analysis
+  // 4. Raw Data Q3 2026 & H1 2026 Sheets
+  const wsQ3 = wb.addWorksheet('Data_Avg_Q3_2026', { views: [{ showGridLines: true }] });
+  wsQ3.addRow(headers2025.slice(0, 14));
+  wsQ3.getRow(1).font = { bold: true, color: { argb: 'FFFFFFFF' } };
+  wsQ3.getRow(1).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: NAVY } };
+  rawAvgQ3_2026.forEach(r => {
+    wsQ3.addRow([r.territory, r.dm, r.p1, r.p2, r.pg3, r.lf, r.ha, r.ar, r.ac, r.mum, r.ps1, r.ps2, r.lbw, r.sum]);
+  });
+  wsQ3.columns.forEach((col, idx) => { col.width = idx < 2 ? 26 : 14; });
+
+  const wsH1 = wb.addWorksheet('Data_Avg_H1_2026', { views: [{ showGridLines: true }] });
+  wsH1.addRow(headers2025.slice(0, 14));
+  wsH1.getRow(1).font = { bold: true, color: { argb: 'FFFFFFFF' } };
+  wsH1.getRow(1).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: NAVY } };
+  rawAvgH1_2026.forEach(r => {
+    wsH1.addRow([r.territory, r.dm, r.p1, r.p2, r.pg3, r.lf, r.ha, r.ar, r.ac, r.mum, r.ps1, r.ps2, r.lbw, r.sum]);
+  });
+  wsH1.columns.forEach((col, idx) => { col.width = idx < 2 ? 26 : 14; });
+
+  // 5. Slide 1 Sheet: Contribution & GEO Share Analysis
   const wsS1 = wb.addWorksheet('Slide1_Contribution', { views: [{ showGridLines: true }] });
   wsS1.columns = [
-    { width: 22 },
-    { width: 32 },
-    { width: 16 },
-    { width: 16 },
-    { width: 16 },
-    { width: 18 },
-    { width: 18 },
-    { width: 18 },
-    { width: 22 }
+    { width: 22 }, { width: 32 }, { width: 16 }, { width: 16 },
+    { width: 16 }, { width: 18 }, { width: 18 }, { width: 18 }, { width: 22 }
   ];
 
   wsS1.mergeCells('A1:I1');
@@ -219,8 +261,8 @@ async function createWorkbook() {
 
   rawData2026.forEach((r, i) => {
     const r25 = rawData2025[i];
-    const c26 = r.sum / 829882;
-    const c25 = r25.sum / 1240615;
+    const c26 = r.sum / totUnits26;
+    const c25 = r25.sum / totUnits25;
     const diffGeo = r.contrDiff;
     const diff25 = c26 - c25;
     const status = diffGeo >= 0 ? 'Above Potential (Expanding)' : 'Below Potential (Gap)';
@@ -247,7 +289,6 @@ async function createWorkbook() {
     }
   });
 
-  // Total Row
   const s1Tot = wsS1.addRow([
     'Total Egypt', 'Total', 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 'National Baseline'
   ]);
@@ -260,23 +301,14 @@ async function createWorkbook() {
   s1Tot.getCell(7).numFmt = '0.00%';
   s1Tot.getCell(8).numFmt = '0.00%';
 
-  // 5. Slide 2 Sheet: Core Nutrition Monthly Averages (Pediamil 1, 2, Pedia-Start 1, 2)
+  // 6. Slide 2 Sheet: Core Nutrition Monthly Averages
   const wsS2 = wb.addWorksheet('Slide2_Core_Averages', { views: [{ showGridLines: true }] });
   wsS2.columns = [
-    { width: 20 },
-    { width: 30 },
-    { width: 16 },
-    { width: 16 },
-    { width: 16 },
-    { width: 16 },
-    { width: 16 },
-    { width: 16 },
-    { width: 16 },
-    { width: 16 },
-    { width: 16 },
-    { width: 16 },
-    { width: 16 },
-    { width: 16 }
+    { width: 20 }, { width: 30 },
+    { width: 16 }, { width: 16 }, { width: 16 },
+    { width: 16 }, { width: 16 }, { width: 16 },
+    { width: 16 }, { width: 16 }, { width: 16 },
+    { width: 16 }, { width: 16 }, { width: 16 }
   ];
 
   wsS2.mergeCells('A1:N1');
@@ -295,20 +327,29 @@ async function createWorkbook() {
   wsS2.getRow(2).font = { bold: true };
   wsS2.getRow(2).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: GRAY_HEADER } };
 
-  // Line averages per ADM:
-  const lnP1 = (234147 / 6) / 9;
-  const lnP2 = (146500 / 6) / 9;
-  const lnPS1 = (145674 / 6) / 9;
-  const lnPS2 = (97406 / 6) / 9;
+  const totP1_26 = rawData2026.reduce((a, r) => a + r.p1, 0);
+  const totP2_26 = rawData2026.reduce((a, r) => a + r.p2, 0);
+  const totPS1_26 = rawData2026.reduce((a, r) => a + r.ps1, 0);
+  const totPS2_26 = rawData2026.reduce((a, r) => a + r.ps2, 0);
+
+  const totP1_25 = rawData2025.reduce((a, r) => a + r.p1, 0);
+  const totP2_25 = rawData2025.reduce((a, r) => a + r.p2, 0);
+  const totPS1_25 = rawData2025.reduce((a, r) => a + r.ps1, 0);
+  const totPS2_25 = rawData2025.reduce((a, r) => a + r.ps2, 0);
+
+  const lnP1 = (totP1_26 / 9) / 9;
+  const lnP2 = (totP2_26 / 9) / 9;
+  const lnPS1 = (totPS1_26 / 9) / 9;
+  const lnPS2 = (totPS2_26 / 9) / 9;
 
   rawData2026.forEach((r, i) => {
     const r25 = rawData2025[i];
     const row = wsS2.addRow([
       r.territory, r.dm,
-      r.p1 / 6, r25.p1 / 12, lnP1,
-      r.p2 / 6, r25.p2 / 12, lnP2,
-      r.ps1 / 6, r25.ps1 / 12, lnPS1,
-      r.ps2 / 6, r25.ps2 / 12, lnPS2
+      r.p1 / 9, r25.p1 / 12, lnP1,
+      r.p2 / 9, r25.p2 / 12, lnP2,
+      r.ps1 / 9, r25.ps1 / 12, lnPS1,
+      r.ps2 / 9, r25.ps2 / 12, lnPS2
     ]);
     for (let c = 3; c <= 14; c++) {
       row.getCell(c).numFmt = '#,##0';
@@ -317,10 +358,10 @@ async function createWorkbook() {
 
   const s2Tot = wsS2.addRow([
     'Total Egypt (Per Month)', 'Line Average / ADM',
-    234147 / 6, 334693 / 12, lnP1,
-    146500 / 6, 177294 / 12, lnP2,
-    145674 / 6, 297486 / 12, lnPS1,
-    97406 / 6, 139286 / 12, lnPS2
+    totP1_26 / 9, totP1_25 / 12, lnP1,
+    totP2_26 / 9, totP2_25 / 12, lnP2,
+    totPS1_26 / 9, totPS1_25 / 12, lnPS1,
+    totPS2_26 / 9, totPS2_25 / 12, lnPS2
   ]);
   s2Tot.font = { bold: true };
   s2Tot.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: LIGHT_BLUE } };
@@ -328,11 +369,10 @@ async function createWorkbook() {
     s2Tot.getCell(c).numFmt = '#,##0';
   }
 
-  // 6. Slide 3 Sheet: Specialty Nutrition Monthly Averages (LF, HA, AR, AC, Pediamum)
+  // 7. Slide 3 Sheet: Specialty Nutrition Monthly Averages
   const wsS3 = wb.addWorksheet('Slide3_Specialty_Averages', { views: [{ showGridLines: true }] });
   wsS3.columns = [
-    { width: 20 },
-    { width: 30 },
+    { width: 20 }, { width: 30 },
     { width: 15 }, { width: 15 }, { width: 15 },
     { width: 15 }, { width: 15 }, { width: 15 },
     { width: 15 }, { width: 15 }, { width: 15 },
@@ -357,21 +397,33 @@ async function createWorkbook() {
   wsS3.getRow(2).font = { bold: true };
   wsS3.getRow(2).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: GRAY_HEADER } };
 
-  const lnLF = (26008 / 6) / 9;
-  const lnHA = (35394 / 6) / 9;
-  const lnAR = (28061 / 6) / 9;
-  const lnAC = (45113 / 6) / 9;
-  const lnMUM = (4328 / 6) / 9;
+  const totLF_26 = rawData2026.reduce((a, r) => a + r.lf, 0);
+  const totHA_26 = rawData2026.reduce((a, r) => a + r.ha, 0);
+  const totAR_26 = rawData2026.reduce((a, r) => a + r.ar, 0);
+  const totAC_26 = rawData2026.reduce((a, r) => a + r.ac, 0);
+  const totMUM_26 = rawData2026.reduce((a, r) => a + r.mum, 0);
+
+  const totLF_25 = rawData2025.reduce((a, r) => a + r.lf, 0);
+  const totHA_25 = rawData2025.reduce((a, r) => a + r.ha, 0);
+  const totAR_25 = rawData2025.reduce((a, r) => a + r.ar, 0);
+  const totAC_25 = rawData2025.reduce((a, r) => a + r.ac, 0);
+  const totMUM_25 = rawData2025.reduce((a, r) => a + r.mum, 0);
+
+  const lnLF = (totLF_26 / 9) / 9;
+  const lnHA = (totHA_26 / 9) / 9;
+  const lnAR = (totAR_26 / 9) / 9;
+  const lnAC = (totAC_26 / 9) / 9;
+  const lnMUM = (totMUM_26 / 9) / 9;
 
   rawData2026.forEach((r, i) => {
     const r25 = rawData2025[i];
     const row = wsS3.addRow([
       r.territory, r.dm,
-      r.lf / 6, r25.lf / 12, lnLF,
-      r.ha / 6, r25.ha / 12, lnHA,
-      r.ar / 6, r25.ar / 12, lnAR,
-      r.ac / 6, r25.ac / 12, lnAC,
-      r.mum / 6, r25.mum / 12, lnMUM
+      r.lf / 9, r25.lf / 12, lnLF,
+      r.ha / 9, r25.ha / 12, lnHA,
+      r.ar / 9, r25.ar / 12, lnAR,
+      r.ac / 9, r25.ac / 12, lnAC,
+      r.mum / 9, r25.mum / 12, lnMUM
     ]);
     for (let c = 3; c <= 17; c++) {
       row.getCell(c).numFmt = '#,##0';
@@ -380,11 +432,11 @@ async function createWorkbook() {
 
   const s3Tot = wsS3.addRow([
     'Total Egypt (Per Month)', 'Line Average / ADM',
-    26008 / 6, 36880 / 12, lnLF,
-    35394 / 6, 65237 / 12, lnHA,
-    28061 / 6, 74439 / 12, lnAR,
-    45113 / 6, 63129 / 12, lnAC,
-    4328 / 6, 9992 / 12, lnMUM
+    totLF_26 / 9, totLF_25 / 12, lnLF,
+    totHA_26 / 9, totHA_25 / 12, lnHA,
+    totAR_26 / 9, totAR_25 / 12, lnAR,
+    totAC_26 / 9, totAC_25 / 12, lnAC,
+    totMUM_26 / 9, totMUM_25 / 12, lnMUM
   ]);
   s3Tot.font = { bold: true };
   s3Tot.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: LIGHT_BLUE } };
@@ -392,16 +444,11 @@ async function createWorkbook() {
     s3Tot.getCell(c).numFmt = '#,##0';
   }
 
-  // 7. Slide 4 Sheet: Dual-Axis Selected ADM Deep Dive Template
+  // 8. Slide 4 Sheet: Dual-Axis Selected ADM Deep Dive Template
   const wsS4 = wb.addWorksheet('Slide4_Dual_Axis_DeepDive', { views: [{ showGridLines: true }] });
   wsS4.columns = [
-    { width: 22 },
-    { width: 18 },
-    { width: 18 },
-    { width: 18 },
-    { width: 18 },
-    { width: 18 },
-    { width: 24 }
+    { width: 22 }, { width: 18 }, { width: 18 }, { width: 18 },
+    { width: 18 }, { width: 18 }, { width: 24 }
   ];
 
   wsS4.mergeCells('A1:G1');
@@ -410,26 +457,31 @@ async function createWorkbook() {
   wsS4.getCell('A1').fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: NAVY } };
   wsS4.getRow(1).height = 30;
 
-  // Example for Beshoy Youhanna (Upper Egypt II) showing how any ADM can be selected
+  const chosen26 = rawData2026[7]; // Beshoy Youhanna (Upper Egypt II)
+  const chosen25 = rawData2025[7];
+  const chosenMo26 = chosen26.sum / 9;
+  const chosenMo25 = chosen25.sum / 12;
+  const chosenPpg = (chosenMo26 / chosenMo25) - 1;
+
   wsS4.getCell('A3').value = 'Selected ADM in Review:';
   wsS4.getCell('A3').font = { bold: true, size: 12 };
-  wsS4.getCell('B3').value = 'Beshoy Youhanna (Upper Egypt II)';
+  wsS4.getCell('B3').value = `${chosen26.dm} (${chosen26.territory})`;
   wsS4.getCell('B3').font = { bold: true, size: 12, color: { argb: NAVY } };
 
   wsS4.getCell('D3').value = 'Selected ADM PPG%:';
   wsS4.getCell('D3').font = { bold: true };
-  wsS4.getCell('E3').value = 0.5011;
+  wsS4.getCell('E3').value = chosenPpg;
   wsS4.getCell('E3').numFmt = '+0.00%';
   wsS4.getCell('E3').font = { bold: true, size: 13, color: { argb: GREEN_FONT } };
 
   wsS4.getCell('F3').value = 'Company Total PPG%:';
   wsS4.getCell('F3').font = { bold: true };
-  wsS4.getCell('G3').value = 0.33785;
+  wsS4.getCell('G3').value = companyPpg;
   wsS4.getCell('G3').numFmt = '+0.00%';
   wsS4.getCell('G3').font = { bold: true, size: 13, color: { argb: NAVY } };
 
   wsS4.mergeCells('A5:G5');
-  wsS4.getCell('A5').value = 'STATUS: 🟢 ABOVE COMPANY BENCHMARK (+16.33% ahead of Egypt Growth)';
+  wsS4.getCell('A5').value = `STATUS: 🟢 ABOVE COMPANY BENCHMARK (+${((chosenPpg - companyPpg)*100).toFixed(1)}% ahead of Egypt Growth)`;
   wsS4.getCell('A5').font = { bold: true, size: 12, color: { argb: GREEN_FONT } };
   wsS4.getCell('A5').fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: GREEN_FILL } };
   wsS4.getCell('A5').alignment = { horizontal: 'center' };
@@ -444,17 +496,17 @@ async function createWorkbook() {
   wsS4.getRow(7).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: GRAY_HEADER } };
 
   const productsList = [
-    { name: 'Pediamil 1', p26: 44494/6, p25: 58524/12, cPpg: 0.3992 },
-    { name: 'Pediamil 2', p26: 28761/6, p25: 23602/12, cPpg: 0.6526 },
-    { name: 'PediaGrow 3', p26: 4173/6, p25: 4677/12, cPpg: 0.5185 },
-    { name: 'Pediamil LF', p26: 2908/6, p25: 4282/12, cPpg: 0.4104 },
-    { name: 'Pediamil HA', p26: 4618/6, p25: 6236/12, cPpg: 0.0851 },
-    { name: 'Pediamil AR', p26: 4106/6, p25: 8468/12, cPpg: -0.2461 },
-    { name: 'Pediamil AC', p26: 6659/6, p25: 8784/12, cPpg: 0.4292 },
-    { name: 'Pediamum', p26: 548/6, p25: 1150/12, cPpg: -0.1337 },
-    { name: 'Pedia-Start 1', p26: 20353/6, p25: 43061/12, cPpg: -0.0206 },
-    { name: 'Pedia-Start 2', p26: 11712/6, p25: 19528/12, cPpg: 0.3986 },
-    { name: 'LBW- Egy', p26: 5499/6, p25: 0, cPpg: 1.0 }
+    { name: 'Pediamil 1', p26: chosen26.p1/9, p25: chosen25.p1/12, cPpg: (totP1_26/9)/(totP1_25/12) - 1 },
+    { name: 'Pediamil 2', p26: chosen26.p2/9, p25: chosen25.p2/12, cPpg: (totP2_26/9)/(totP2_25/12) - 1 },
+    { name: 'PediaGrow 3', p26: chosen26.pg3/9, p25: chosen25.pg3/12, cPpg: ((rawData2026.reduce((a,r)=>a+r.pg3,0)/9)/(rawData2025.reduce((a,r)=>a+r.pg3,0)/12)) - 1 },
+    { name: 'Pediamil LF', p26: chosen26.lf/9, p25: chosen25.lf/12, cPpg: (totLF_26/9)/(totLF_25/12) - 1 },
+    { name: 'Pediamil HA', p26: chosen26.ha/9, p25: chosen25.ha/12, cPpg: (totHA_26/9)/(totHA_25/12) - 1 },
+    { name: 'Pediamil AR', p26: chosen26.ar/9, p25: chosen25.ar/12, cPpg: (totAR_26/9)/(totAR_25/12) - 1 },
+    { name: 'Pediamil AC', p26: chosen26.ac/9, p25: chosen25.ac/12, cPpg: (totAC_26/9)/(totAC_25/12) - 1 },
+    { name: 'Pediamum', p26: chosen26.mum/9, p25: chosen25.mum/12, cPpg: (totMUM_26/9)/(totMUM_25/12) - 1 },
+    { name: 'Pedia-Start 1', p26: chosen26.ps1/9, p25: chosen25.ps1/12, cPpg: (totPS1_26/9)/(totPS1_25/12) - 1 },
+    { name: 'Pedia-Start 2', p26: chosen26.ps2/9, p25: chosen25.ps2/12, cPpg: (totPS2_26/9)/(totPS2_25/12) - 1 },
+    { name: 'LBW- Egy', p26: chosen26.lbw/9, p25: 0, cPpg: 1.0 }
   ];
 
   productsList.forEach(p => {
@@ -479,9 +531,8 @@ async function createWorkbook() {
     }
   });
 
-  // Total Row
   const s4Tot = wsS4.addRow([
-    'Total Units', 178312 / 12, 133831 / 6, (133831/6) - (178312/12), 0.5011, 0.33785, '🟢 Overall Above Company'
+    'Total Units', chosenMo25, chosenMo26, chosenMo26 - chosenMo25, chosenPpg, companyPpg, '🟢 Overall Above Company'
   ]);
   s4Tot.font = { bold: true };
   s4Tot.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: LIGHT_BLUE } };
@@ -491,7 +542,7 @@ async function createWorkbook() {
   s4Tot.getCell(5).numFmt = '+0.0%;-0.0%';
   s4Tot.getCell(6).numFmt = '+0.0%;-0.0%';
 
-  // 8. Slide 5 Sheet: Total PPG% Growth Ranking
+  // 9. Slide 5 Sheet: Total PPG% Growth Ranking
   const wsS5 = wb.addWorksheet('Slide5_Total_PPG_Ranking', { views: [{ showGridLines: true }] });
   wsS5.columns = [
     { width: 8 }, { width: 22 }, { width: 32 },
@@ -511,10 +562,9 @@ async function createWorkbook() {
   wsS5.getRow(2).font = { bold: true };
   wsS5.getRow(2).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: GRAY_HEADER } };
 
-  // Company row at top
   const compRow = wsS5.addRow([
     'TOP', 'EGYPT TOTAL (COMPANY)', 'National Benchmark',
-    1240615 / 12, 829882 / 6, 0.33785, 'NATIONAL BENCHMARK', 'BLUE / GOLD (BASELINE)'
+    moAvg25, moAvg26, companyPpg, 'NATIONAL BENCHMARK', 'BLUE / GOLD (BASELINE)'
   ]);
   compRow.font = { bold: true };
   compRow.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFF0F4F8' } };
@@ -522,20 +572,16 @@ async function createWorkbook() {
   compRow.getCell(5).numFmt = '#,##0';
   compRow.getCell(6).numFmt = '+0.00%';
 
-  const totalRanks = [
-    { territory: 'Delta II', dm: 'Mohamed Yousef M.', avg25: 14224, avg26: 22783, ppg: 0.6018 },
-    { territory: 'Upper Egypt II', dm: 'Beshoy Youhanna', avg25: 14859, avg26: 22305, ppg: 0.5011 },
-    { territory: 'Alx', dm: 'Ahmed Hassan Abd-Elmonem', avg25: 7309, avg26: 10206, ppg: 0.3964 },
-    { territory: 'DELTA I', dm: 'Shimaa Tarek El- Shamy', avg25: 15235, avg26: 20146, ppg: 0.3223 },
-    { territory: 'Guiza', dm: 'Youstina Farag Allah', avg25: 9951, avg26: 12895, ppg: 0.2958 },
-    { territory: 'Upper Egypt I', dm: 'UE North', avg25: 12877, avg26: 16459, ppg: 0.2781 },
-    { territory: 'Cairo', dm: 'NOHER ADEL ABD EL- HAKEEM', avg25: 7152, avg26: 8758, ppg: 0.2246 },
-    { territory: 'Behera & Dakahlia', dm: 'Ahmed Mohamed Sakr', avg25: 12441, avg26: 14302, ppg: 0.1495 },
-    { territory: 'KFR EL.SHK', dm: 'Karim Shehab', avg25: 9337, avg26: 10461, ppg: 0.1204 }
-  ];
+  const totalRanks = rawData2026.map((r, i) => {
+    const r25 = rawData2025[i];
+    const avg25 = r25.sum / 12;
+    const avg26 = r.sum / 9;
+    const ppg = (avg26 / avg25) - 1;
+    return { territory: r.territory, dm: r.dm, avg25, avg26, ppg };
+  }).sort((a, b) => b.ppg - a.ppg);
 
   totalRanks.forEach((r, idx) => {
-    const isAbove = r.ppg >= 0.33785;
+    const isAbove = r.ppg >= companyPpg;
     const ind = isAbove ? '🟢 ABOVE COMPANY PPG' : '🔻 BELOW COMPANY PPG';
     const color = isAbove ? 'GREEN' : 'RED';
     const row = wsS5.addRow([
@@ -556,8 +602,8 @@ async function createWorkbook() {
     }
   });
 
-  // Helper function to build Product Ranking Sheets (Slides 6, 7, 8, 9)
-  function addProductRankSheet(sheetName, title, prodKey, prodName, compPpg, compAvg25, compAvg26, rankData) {
+  // Helper for Product Rank Sheets (Slides 6, 7, 8, 9)
+  function addProductRankSheet(sheetName, title, prodKey, prodName, compPpgVal, compAvg25Val, compAvg26Val) {
     const ws = wb.addWorksheet(sheetName, { views: [{ showGridLines: true }] });
     ws.columns = [
       { width: 8 }, { width: 22 }, { width: 32 },
@@ -579,7 +625,7 @@ async function createWorkbook() {
 
     const cRow = ws.addRow([
       'TOP', 'EGYPT TOTAL (COMPANY)', 'National Benchmark',
-      compAvg25, compAvg26, compPpg, 'NATIONAL BENCHMARK', 'BLUE / GOLD (BASELINE)'
+      compAvg25Val, compAvg26Val, compPpgVal, 'NATIONAL BENCHMARK', 'BLUE / GOLD (BASELINE)'
     ]);
     cRow.font = { bold: true };
     cRow.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFF0F4F8' } };
@@ -587,9 +633,17 @@ async function createWorkbook() {
     cRow.getCell(5).numFmt = '#,##0';
     cRow.getCell(6).numFmt = '+0.00%';
 
-    rankData.forEach((r, idx) => {
-      const isAbove = r.ppg >= compPpg;
-      const ind = isAbove ? `🟢 ABOVE COMPANY (${(compPpg*100).toFixed(1)}%)` : `🔻 BELOW COMPANY (${(compPpg*100).toFixed(1)}%)`;
+    const pRanks = rawData2026.map((r, i) => {
+      const r25 = rawData2025[i];
+      const a25 = (r25[prodKey] || 0) / 12;
+      const a26 = (r[prodKey] || 0) / 9;
+      const ppg = a25 > 0 ? (a26 / a25 - 1) : 1.0;
+      return { territory: r.territory, dm: r.dm, avg25: a25, avg26: a26, ppg };
+    }).sort((a, b) => b.ppg - a.ppg);
+
+    pRanks.forEach((r, idx) => {
+      const isAbove = r.ppg >= compPpgVal;
+      const ind = isAbove ? `🟢 ABOVE COMPANY (${(compPpgVal*100).toFixed(1)}%)` : `🔻 BELOW COMPANY (${(compPpgVal*100).toFixed(1)}%)`;
       const color = isAbove ? 'GREEN' : 'RED';
       const row = ws.addRow([
         idx + 1, r.territory, r.dm, r.avg25, r.avg26, r.ppg, ind, color
@@ -611,82 +665,42 @@ async function createWorkbook() {
   }
 
   // Slide 6: Pediamil 1 Ranking
-  const p1Ranks = [
-    { territory: 'Alx', dm: 'Ahmed Hassan Abd-Elmonem', avg25: 1712, avg26: 3239, ppg: 0.8919 },
-    { territory: 'Delta II', dm: 'Mohamed Yousef M.', avg25: 3800, avg26: 6091, ppg: 0.6027 },
-    { territory: 'Upper Egypt II', dm: 'Beshoy Youhanna', avg25: 4877, avg26: 7416, ppg: 0.5205 },
-    { territory: 'KFR EL.SHK', dm: 'Karim Shehab', avg25: 1816, avg26: 2526, ppg: 0.3908 },
-    { territory: 'DELTA I', dm: 'Shimaa Tarek El- Shamy', avg25: 4024, avg26: 5481, ppg: 0.3620 },
-    { territory: 'Guiza', dm: 'Youstina Farag Allah', avg25: 2608, avg26: 3418, ppg: 0.3105 },
-    { territory: 'Cairo', dm: 'NOHER ADEL ABD EL- HAKEEM', avg25: 1969, avg26: 2575, ppg: 0.3081 },
-    { territory: 'Behera & Dakahlia', dm: 'Ahmed Mohamed Sakr', avg25: 3318, avg26: 3917, ppg: 0.1806 },
-    { territory: 'Upper Egypt I', dm: 'UE North', avg25: 3767, avg26: 4361, ppg: 0.1579 }
-  ];
+  const p1CompPpg = (totP1_26/9)/(totP1_25/12) - 1;
   addProductRankSheet(
     'Slide6_Pediamil1_Ranking',
-    'SLIDE 6: PEDIAMIL 1 PPG% GROWTH RANKING (COMPANY AT TOP: +39.92%)',
-    'p1', 'Pediamil 1', 0.3992, 334693/12, 234147/6, p1Ranks
+    `SLIDE 6: PEDIAMIL 1 PPG% GROWTH RANKING (COMPANY AT TOP: +${(p1CompPpg*100).toFixed(1)}%)`,
+    'p1', 'Pediamil 1', p1CompPpg, totP1_25/12, totP1_26/9
   );
 
   // Slide 7: Pediamil 2 Ranking
-  const p2Ranks = [
-    { territory: 'Upper Egypt II', dm: 'Beshoy Youhanna', avg25: 1967, avg26: 4794, ppg: 1.4372 },
-    { territory: 'Delta II', dm: 'Mohamed Yousef M.', avg25: 2045, avg26: 3843, ppg: 0.8789 },
-    { territory: 'Alx', dm: 'Ahmed Hassan Abd-Elmonem', avg25: 815, avg26: 1478, ppg: 0.8139 },
-    { territory: 'DELTA I', dm: 'Shimaa Tarek El- Shamy', avg25: 2640, avg26: 4201, ppg: 0.5912 },
-    { territory: 'Cairo', dm: 'NOHER ADEL ABD EL- HAKEEM', avg25: 1204, avg26: 1837, ppg: 0.5267 },
-    { territory: 'Upper Egypt I', dm: 'UE North', avg25: 1920, avg26: 2808, ppg: 0.4625 },
-    { territory: 'Behera & Dakahlia', dm: 'Ahmed Mohamed Sakr', avg25: 1365, avg26: 1841, ppg: 0.3484 },
-    { territory: 'KFR EL.SHK', dm: 'Karim Shehab', avg25: 1217, avg26: 1575, ppg: 0.2942 },
-    { territory: 'Guiza', dm: 'Youstina Farag Allah', avg25: 1602, avg26: 2041, ppg: 0.2736 }
-  ];
+  const p2CompPpg = (totP2_26/9)/(totP2_25/12) - 1;
   addProductRankSheet(
     'Slide7_Pediamil2_Ranking',
-    'SLIDE 7: PEDIAMIL 2 PPG% GROWTH RANKING (COMPANY AT TOP: +65.26%)',
-    'p2', 'Pediamil 2', 0.6526, 177294/12, 146500/6, p2Ranks
+    `SLIDE 7: PEDIAMIL 2 PPG% GROWTH RANKING (COMPANY AT TOP: +${(p2CompPpg*100).toFixed(1)}%)`,
+    'p2', 'Pediamil 2', p2CompPpg, totP2_25/12, totP2_26/9
   );
 
   // Slide 8: Pedia-Start 1 Ranking
-  const ps1Ranks = [
-    { territory: 'Upper Egypt I', dm: 'UE North', avg25: 3422, avg26: 4025, ppg: 0.1762 },
-    { territory: 'Guiza', dm: 'Youstina Farag Allah', avg25: 1609, avg26: 1888, ppg: 0.1736 },
-    { territory: 'Delta II', dm: 'Mohamed Yousef M.', avg25: 3701, avg26: 3931, ppg: 0.0623 },
-    { territory: 'DELTA I', dm: 'Shimaa Tarek El- Shamy', avg25: 2581, avg26: 2567, ppg: -0.0055 },
-    { territory: 'Upper Egypt II', dm: 'Beshoy Youhanna', avg25: 3588, avg26: 3392, ppg: -0.0547 },
-    { territory: 'Cairo', dm: 'NOHER ADEL ABD EL- HAKEEM', avg25: 950, avg26: 862, ppg: -0.0933 },
-    { territory: 'KFR EL.SHK', dm: 'Karim Shehab', avg25: 2864, avg26: 2555, ppg: -0.1081 },
-    { territory: 'Alx', dm: 'Ahmed Hassan Abd-Elmonem', avg25: 2496, avg26: 2159, ppg: -0.1350 },
-    { territory: 'Behera & Dakahlia', dm: 'Ahmed Mohamed Sakr', avg25: 3579, avg26: 2901, ppg: -0.1896 }
-  ];
+  const ps1CompPpg = (totPS1_26/9)/(totPS1_25/12) - 1;
   addProductRankSheet(
     'Slide8_PediaStart1_Ranking',
-    'SLIDE 8: PEDIA-START 1 PPG% GROWTH RANKING (COMPANY AT TOP: -2.06%)',
-    'ps1', 'Pedia-Start 1', -0.0206, 297486/12, 145674/6, ps1Ranks
+    `SLIDE 8: PEDIA-START 1 PPG% GROWTH RANKING (COMPANY AT TOP: +${(ps1CompPpg*100).toFixed(1)}%)`,
+    'ps1', 'Pedia-Start 1', ps1CompPpg, totPS1_25/12, totPS1_26/9
   );
 
   // Slide 9: Pedia-Start 2 Ranking
-  const ps2Ranks = [
-    { territory: 'Delta II', dm: 'Mohamed Yousef M.', avg25: 1822, avg26: 3685, ppg: 1.0227 },
-    { territory: 'Guiza', dm: 'Youstina Farag Allah', avg25: 722, avg26: 1286, ppg: 0.7818 },
-    { territory: 'Upper Egypt I', dm: 'UE North', avg25: 1528, avg26: 2428, ppg: 0.5895 },
-    { territory: 'Behera & Dakahlia', dm: 'Ahmed Mohamed Sakr', avg25: 1292, avg26: 1829, ppg: 0.4155 },
-    { territory: 'DELTA I', dm: 'Shimaa Tarek El- Shamy', avg25: 1404, avg26: 1926, ppg: 0.3714 },
-    { territory: 'Upper Egypt II', dm: 'Beshoy Youhanna', avg25: 1627, avg26: 1952, ppg: 0.1995 },
-    { territory: 'Alx', dm: 'Ahmed Hassan Abd-Elmonem', avg25: 947, avg26: 1094, ppg: 0.1553 },
-    { territory: 'KFR EL.SHK', dm: 'Karim Shehab', avg25: 1632, avg26: 1529, ppg: -0.0632 },
-    { territory: 'Cairo', dm: 'NOHER ADEL ABD EL- HAKEEM', avg25: 633, avg26: 505, ppg: -0.2023 }
-  ];
+  const ps2CompPpg = (totPS2_26/9)/(totPS2_25/12) - 1;
   addProductRankSheet(
     'Slide9_PediaStart2_Ranking',
-    'SLIDE 9: PEDIA-START 2 PPG% GROWTH RANKING (COMPANY AT TOP: +39.86%)',
-    'ps2', 'Pedia-Start 2', 0.3986, 139286/12, 97406/6, ps2Ranks
+    `SLIDE 9: PEDIA-START 2 PPG% GROWTH RANKING (COMPANY AT TOP: +${(ps2CompPpg*100).toFixed(1)}%)`,
+    'ps2', 'Pedia-Start 2', ps2CompPpg, totPS2_25/12, totPS2_26/9
   );
 
   // 10. Slide 10 Sheet: Strategic Quadrant Matrix
   const wsS10 = wb.addWorksheet('Slide10_Quadrant_Matrix', { views: [{ showGridLines: true }] });
   wsS10.columns = [
     { width: 14 }, { width: 22 }, { width: 32 },
-    { width: 18 }, { width: 18 }, { width: 18 }, { width: 18 }, { width: 38 }
+    { width: 18 }, { width: 18 }, { width: 18 }, { width: 18 }, { width: 42 }
   ];
 
   wsS10.mergeCells('A1:H1');
@@ -696,7 +710,7 @@ async function createWorkbook() {
   wsS10.getRow(1).height = 30;
 
   wsS10.mergeCells('A2:H2');
-  wsS10.getCell('A2').value = 'Baselines: X-Axis Reference = 0.00% (Contribution Diff) | Y-Axis Reference = +33.79% (Company Total PPG)';
+  wsS10.getCell('A2').value = `Baselines: X-Axis Reference = 0.00% (Contribution Diff) | Y-Axis Reference = +${(companyPpg*100).toFixed(2)}% (Company Total PPG)`;
   wsS10.getCell('A2').font = { italic: true, size: 10, color: { argb: 'FF4A5568' } };
   wsS10.getCell('A2').alignment = { horizontal: 'center' };
 
@@ -707,39 +721,202 @@ async function createWorkbook() {
   wsS10.getRow(3).font = { bold: true };
   wsS10.getRow(3).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: GRAY_HEADER } };
 
-  const quadData = [
-    { q: 'Quadrant A', territory: 'Delta II', dm: 'Mohamed Yousef M.', s26: 136700, avg26: 22783, x: 0.0420, y: 0.6018, strat: 'COMPANY STAR: Heavy volume, stellar growth (+60.2%), expanding market share.' },
-    { q: 'Quadrant A', territory: 'Upper Egypt II', dm: 'Beshoy Youhanna', s26: 133831, avg26: 22305, x: 0.0052, y: 0.5011, strat: 'COMPANY STAR: Giant territory, outstanding growth (+50.1%), strong execution.' },
-    { q: 'Quadrant B', territory: 'Alx', dm: 'Ahmed Hassan Abd-Elmonem', s26: 61235, avg26: 10206, x: -0.0272, y: 0.3964, strat: 'FAST GROWER / CHALLENGER: High growth (+39.6%) exceeding company, closing GEO gap.' },
-    { q: 'Quadrant C', territory: 'DELTA I', dm: 'Shimaa Tarek El- Shamy', s26: 120877, avg26: 20146, x: 0.0725, y: 0.3223, strat: 'PILLAR / CORE BACKBONE: Massive contribution gain (+7.25%), solid growth (+32.2%).' },
-    { q: 'Quadrant C', territory: 'KFR EL.SHK', dm: 'Karim Shehab', s26: 62763, avg26: 10461, x: 0.0580, y: 0.1204, strat: 'SHARE GAINER: Contribution far outstripping GEO potential (7.6% vs 1.8% geo).' },
-    { q: 'Quadrant C', territory: 'Behera & Dakahlia', dm: 'Ahmed Mohamed Sakr', s26: 85811, avg26: 14302, x: 0.0059, y: 0.1495, strat: 'SHARE DEFENDER: Positive contribution diff, but growth (+14.9%) lagging company pace.' },
-    { q: 'Quadrant D', territory: 'Guiza', dm: 'Youstina Farag Allah', s26: 77368, avg26: 12895, x: -0.0520, y: 0.2958, strat: 'LOWEST PERFORMER / ATTENTION: High potential territory (14.5%) losing share (-5.2%).' },
-    { q: 'Quadrant D', territory: 'Upper Egypt I', dm: 'UE North', s26: 98752, avg26: 16459, x: -0.0214, y: 0.2781, strat: 'LOWEST PERFORMER / ATTENTION: Slower growth (+27.8%) and negative contribution diff.' },
-    { q: 'Quadrant D', territory: 'Cairo', dm: 'NOHER ADEL ABD EL- HAKEEM', s26: 52545, avg26: 8758, x: -0.0829, y: 0.2246, strat: 'CRITICAL PRIORITY: Massive capital market losing share (-8.29% diff), urgent turnaround.' }
-  ];
+  rawData2026.forEach((r, i) => {
+    const r25 = rawData2025[i];
+    const avg25 = r25.sum / 12;
+    const avg26 = r.sum / 9;
+    const ppg = (avg26 / avg25) - 1;
+    const x = r.contrDiff;
+    const y = ppg;
 
-  quadData.forEach(d => {
+    let q = 'Quadrant A';
+    let strat = '';
+    if (x >= 0 && y >= companyPpg) {
+      q = 'Quadrant A';
+      strat = 'COMPANY STAR: Heavy volume, high growth exceeding company benchmark, expanding market share.';
+    } else if (x < 0 && y >= companyPpg) {
+      q = 'Quadrant B';
+      strat = 'CHALLENGER: High growth outstripping company pace, rapidly closing territorial potential gap.';
+    } else if (x >= 0 && y < companyPpg) {
+      q = 'Quadrant C';
+      strat = 'VOLUME PILLAR: High market contribution defender; growth moderate, focus on specialty formulas.';
+    } else {
+      q = 'Quadrant D';
+      strat = 'CRITICAL ATTENTION: Lowest performer; lagging growth and contribution gap below geographic share.';
+    }
+
     const row = wsS10.addRow([
-      d.q, d.territory, d.dm, d.s26, d.avg26, d.x, d.y, d.strat
+      q, r.territory, r.dm, r.sum, avg26, x, y, strat
     ]);
     row.getCell(4).numFmt = '#,##0';
     row.getCell(5).numFmt = '#,##0';
     row.getCell(6).numFmt = '+0.00%;-0.00%';
     row.getCell(7).numFmt = '+0.00%';
 
-    if (d.q === 'Quadrant A') {
-      row.getCell(1).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFD4EDDA' } };
-      row.getCell(1).font = { color: { argb: 'FF155724' }, bold: true };
-    } else if (d.q === 'Quadrant B') {
+    if (q === 'Quadrant A') {
+      row.getCell(1).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: GREEN_FILL } };
+      row.getCell(1).font = { color: { argb: GREEN_FONT }, bold: true };
+    } else if (q === 'Quadrant B') {
       row.getCell(1).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFD1ECF1' } };
       row.getCell(1).font = { color: { argb: 'FF0C5460' }, bold: true };
-    } else if (d.q === 'Quadrant C') {
-      row.getCell(1).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFFFF3CD' } };
-      row.getCell(1).font = { color: { argb: 'FF856404' }, bold: true };
+    } else if (q === 'Quadrant C') {
+      row.getCell(1).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: YELLOW_FILL } };
+      row.getCell(1).font = { color: { argb: YELLOW_FONT }, bold: true };
     } else {
-      row.getCell(1).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFF8D7DA' } };
-      row.getCell(1).font = { color: { argb: 'FF721C24' }, bold: true };
+      row.getCell(1).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: RED_FILL } };
+      row.getCell(1).font = { color: { argb: RED_FONT }, bold: true };
+    }
+  });
+
+  // 11. Slide 11 Sheet: Medical Rep Performance Velocity (Q3 2026 vs H1 2026 Baseline)
+  const wsS11 = wb.addWorksheet('11-Q3 vs H1 Rep Velocity', { views: [{ showGridLines: true }] });
+  wsS11.columns = [
+    { width: 8 }, { width: 22 }, { width: 34 },
+    { width: 16 }, { width: 16 }, { width: 16 }, { width: 16 }, { width: 24 }, { width: 44 }
+  ];
+
+  wsS11.mergeCells('A1:I1');
+  wsS11.getCell('A1').value = 'SLIDE 11: MEDICAL REP / ADM QUARTERLY VELOCITY (AVERAGE MONTHLY Q3 2026 vs H1 2026 BASELINE)';
+  wsS11.getCell('A1').font = { size: 14, bold: true, color: { argb: 'FFFFFFFF' } };
+  wsS11.getCell('A1').fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: NAVY } };
+  wsS11.getRow(1).height = 30;
+
+  const totH1 = rawAvgH1_2026.reduce((acc, r) => acc + r.sum, 0);
+  const totQ3 = rawAvgQ3_2026.reduce((acc, r) => acc + r.sum, 0);
+  const compVelocity = (totQ3 / totH1) - 1;
+
+  wsS11.mergeCells('A2:I2');
+  wsS11.getCell('A2').value = `National Velocity Benchmark: H1 Monthly Avg = ${totH1.toLocaleString()} cans/mo | Q3 Monthly Avg = ${totQ3.toLocaleString()} cans/mo | Acceleration = +${(compVelocity*100).toFixed(1)}% (+${(totQ3 - totH1).toLocaleString()} cans/mo)`;
+  wsS11.getCell('A2').font = { italic: true, size: 10.5, color: { argb: 'FF4A5568' } };
+  wsS11.getCell('A2').alignment = { horizontal: 'center' };
+
+  wsS11.addRow([
+    'Rank', 'Territory Name', 'Medical Rep / ADM Name',
+    'H1 MoAvg (Jan-Jun)', 'Q3 MoAvg (Jul-Sep)', 'Net Diff / Mo', 'Velocity %', 'Performance Tier', 'Strategic Velocity Assessment'
+  ]);
+  wsS11.getRow(3).font = { bold: true };
+  wsS11.getRow(3).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: GRAY_HEADER } };
+  wsS11.getRow(3).height = 25;
+
+  const compVelRow = wsS11.addRow([
+    'TOP', 'EGYPT TOTAL (COMPANY)', 'National Medical Rep Team Benchmark',
+    totH1, totQ3, totQ3 - totH1, compVelocity, 'NATIONAL BENCHMARK', 'Overall company run-rate accelerated by +12.9% in Q3'
+  ]);
+  compVelRow.font = { bold: true };
+  compVelRow.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFF0F4F8' } };
+  compVelRow.getCell(4).numFmt = '#,##0';
+  compVelRow.getCell(5).numFmt = '#,##0';
+  compVelRow.getCell(6).numFmt = '+#,##0;-#,##0';
+  compVelRow.getCell(7).numFmt = '+0.0%';
+
+  const repVelocityData = rawAvgQ3_2026.map((q, idx) => {
+    const h = rawAvgH1_2026[idx];
+    const diff = q.sum - h.sum;
+    const vel = (q.sum / h.sum) - 1;
+    let tier = '';
+    let assessment = '';
+
+    if (vel >= 0.40) {
+      tier = 'Tier 1: High Accelerator 🚀';
+      assessment = 'Exceptional momentum; staged dramatic turnaround driven by core and specialty clinic expansion.';
+    } else if (vel >= 0.15) {
+      tier = 'Tier 2: Scale Compounder 📈';
+      assessment = 'High-volume scale compounder; continues building market leadership at heavy volume.';
+    } else if (vel >= 0.0) {
+      tier = 'Tier 3: Steady Consolidator 🛡️';
+      assessment = 'Stable baseline preserved; requires activation of secondary core & specialty products to reignite growth.';
+    } else {
+      tier = 'Tier 4: Contraction Watchlist ⚠️';
+      assessment = 'Quarterly run-rate deceleration; urgent trade stock replenishment and rep detailing call review.';
+    }
+
+    return {
+      territory: q.territory,
+      dm: q.dm,
+      h1: h.sum,
+      q3: q.sum,
+      diff,
+      vel,
+      tier,
+      assessment
+    };
+  }).sort((a, b) => b.vel - a.vel);
+
+  repVelocityData.forEach((r, idx) => {
+    const isAbove = r.vel >= compVelocity;
+    const row = wsS11.addRow([
+      idx + 1, r.territory, r.dm, r.h1, r.q3, r.diff, r.vel, r.tier, r.assessment
+    ]);
+    row.getCell(4).numFmt = '#,##0';
+    row.getCell(5).numFmt = '#,##0';
+    row.getCell(6).numFmt = '+#,##0;-#,##0';
+    row.getCell(7).numFmt = '+0.0%';
+
+    if (r.vel >= 0.40) {
+      row.getCell(7).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: GREEN_FILL } };
+      row.getCell(7).font = { color: { argb: GREEN_FONT }, bold: true };
+      row.getCell(8).font = { color: { argb: GREEN_FONT }, bold: true };
+    } else if (r.vel >= 0.15) {
+      row.getCell(7).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFD1ECF1' } };
+      row.getCell(7).font = { color: { argb: 'FF0C5460' }, bold: true };
+      row.getCell(8).font = { color: { argb: 'FF0C5460' }, bold: true };
+    } else if (r.vel >= 0.0) {
+      row.getCell(7).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: YELLOW_FILL } };
+      row.getCell(7).font = { color: { argb: YELLOW_FONT }, bold: true };
+      row.getCell(8).font = { color: { argb: YELLOW_FONT }, bold: true };
+    } else {
+      row.getCell(7).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: RED_FILL } };
+      row.getCell(7).font = { color: { argb: RED_FONT }, bold: true };
+      row.getCell(8).font = { color: { argb: RED_FONT }, bold: true };
+    }
+  });
+
+  // Add Product Velocity Breakdown below Rep Table
+  wsS11.addRow([]);
+  wsS11.addRow(['', 'PRODUCT PORTFOLIO VELOCITY BREAKDOWN (Q3 2026 vs H1 2026)', '', '', '', '', '', '', '']);
+  const prodHeadRowIdx = wsS11.lastRow.number;
+  wsS11.mergeCells(`B${prodHeadRowIdx}:I${prodHeadRowIdx}`);
+  wsS11.getCell(`B${prodHeadRowIdx}`).font = { bold: true, size: 12, color: { argb: NAVY } };
+
+  wsS11.addRow([
+    'SKU Code', 'Product Description', 'Category', 'H1 MoAvg (Units)', 'Q3 MoAvg (Units)', 'Diff / Mo', 'Velocity %', 'Supply / Demand Dynamic', ''
+  ]);
+  const pSubHead = wsS11.lastRow;
+  pSubHead.font = { bold: true };
+  pSubHead.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: GRAY_HEADER } };
+
+  const prodVelocityKeys = [
+    { key: 'p1', name: 'Pediamil 1', cat: 'Core Infant', supply: 'Strong demand (+10.5%), supply stable' },
+    { key: 'p2', name: 'Pediamil 2', cat: 'Core Follow-up', supply: 'Slight dip (-8.4%) from peak Q2 promotions' },
+    { key: 'pg3', name: 'PediaGrow 3', cat: 'Growing Up Milk', supply: 'Supply constraint in Q3 (-80.6%)' },
+    { key: 'lf', name: 'Pediamil LF', cat: 'Specialty Lactose Free', supply: 'Supply quota restricted (-46.2%)' },
+    { key: 'ha', name: 'Pediamil HA', cat: 'Specialty Hypoallergenic', supply: 'Surge in hospital demand (+102.4%)' },
+    { key: 'ar', name: 'Pediamil AR', cat: 'Specialty Anti-Regurgitation', supply: 'Steady pediatric adoption (+30.1%)' },
+    { key: 'ac', name: 'Pediamil AC', cat: 'Specialty Anti-Colic', supply: 'Massive surge across clinics (+101.9%)' },
+    { key: 'mum', name: 'Pediamum', cat: 'Maternal Nutrition', supply: 'Niche pharmacy detailing (-10.4%)' },
+    { key: 'ps1', name: 'Pedia-Start 1', cat: 'Economy Infant', supply: 'Heavy clinic uptake across Upper Egypt (+35.7%)' },
+    { key: 'ps2', name: 'Pedia-Start 2', cat: 'Economy Follow-up', supply: 'Stable rural demand (-6.3%)' },
+    { key: 'lbw', name: 'LBW- Egy', cat: 'Specialty Low Birth Weight', supply: 'Severe temporary stockout in Q3 (-98.8%)' }
+  ];
+
+  prodVelocityKeys.forEach(p => {
+    const sumH1 = rawAvgH1_2026.reduce((acc, r) => acc + (r[p.key] || 0), 0);
+    const sumQ3 = rawAvgQ3_2026.reduce((acc, r) => acc + (r[p.key] || 0), 0);
+    const diff = sumQ3 - sumH1;
+    const vel = sumH1 > 0 ? (sumQ3 / sumH1 - 1) : 0;
+
+    const pr = wsS11.addRow([
+      p.key.toUpperCase(), p.name, p.cat, sumH1, sumQ3, diff, vel, p.supply, ''
+    ]);
+    pr.getCell(4).numFmt = '#,##0';
+    pr.getCell(5).numFmt = '#,##0';
+    pr.getCell(6).numFmt = '+#,##0;-#,##0';
+    pr.getCell(7).numFmt = '+0.0%';
+
+    if (vel >= 0.20) {
+      pr.getCell(7).font = { color: { argb: GREEN_FONT }, bold: true };
+    } else if (vel < 0) {
+      pr.getCell(7).font = { color: { argb: RED_FONT }, bold: true };
     }
   });
 
@@ -753,4 +930,7 @@ async function createWorkbook() {
   console.log(`Excel Workbook successfully generated at root and public/: ${targetPath}`);
 }
 
-createWorkbook().catch(err => console.error(err));
+createWorkbook().catch(err => {
+  console.error(err);
+  process.exit(1);
+});
