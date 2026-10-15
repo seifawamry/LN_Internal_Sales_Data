@@ -1551,10 +1551,267 @@
         box-shadow: none;
         position: static !important;
       }
+    /* ==========================================================================
+       SECURITY ACCESS GATE & PASS KEY LOCK SCREEN
+       ========================================================================== */
+    .app-lock-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9999999;
+      background: radial-gradient(circle at 50% 35%, #1E293B 0%, #0A192F 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      transition: opacity 0.35s ease, visibility 0.35s ease;
+    }
+    .app-lock-overlay.unlocked {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .lock-card {
+      background: rgba(15, 23, 42, 0.94);
+      border: 1px solid rgba(212, 175, 55, 0.45);
+      border-radius: 18px;
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 35px rgba(212, 175, 55, 0.18);
+      max-width: 480px;
+      width: 100%;
+      padding: 34px 28px;
+      text-align: center;
+      color: #F8FAFC;
+      position: relative;
+    }
+    .lock-shield-icon {
+      font-size: 42px;
+      margin-bottom: 10px;
+      filter: drop-shadow(0 4px 12px rgba(212, 175, 55, 0.45));
+    }
+    .lock-badge {
+      display: inline-block;
+      background: rgba(212, 175, 55, 0.15);
+      color: #D4AF37;
+      border: 1px solid rgba(212, 175, 55, 0.45);
+      padding: 4px 14px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.8px;
+      margin-bottom: 12px;
+    }
+    .lock-title {
+      font-size: 21px;
+      font-weight: 800;
+      color: #FFFFFF;
+      margin: 0 0 6px 0;
+      letter-spacing: 0.5px;
+    }
+    .lock-subtitle {
+      font-size: 12px;
+      color: #94A3B8;
+      line-height: 1.5;
+      margin: 0 0 22px 0;
+    }
+    .passkey-box {
+      text-align: left;
+    }
+    .passkey-label {
+      display: block;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #CBD5E1;
+      margin-bottom: 6px;
+    }
+    .passkey-input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .passkey-icon {
+      position: absolute;
+      left: 12px;
+      font-size: 16px;
+      pointer-events: none;
+    }
+    .passkey-input {
+      width: 100%;
+      padding: 12px 42px 12px 38px;
+      background: rgba(30, 41, 59, 0.85);
+      border: 1.5px solid #334155;
+      border-radius: 10px;
+      font-size: 14px;
+      color: #FFFFFF;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .passkey-input:focus {
+      border-color: #D4AF37;
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.25);
+    }
+    .passkey-eye-btn {
+      position: absolute;
+      right: 10px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      padding: 4px;
+      color: #94A3B8;
+    }
+    .passkey-error-msg {
+      color: #F87171;
+      font-size: 11.5px;
+      font-weight: 600;
+      margin-top: 8px;
+    }
+    .unlock-app-btn {
+      width: 100%;
+      margin-top: 14px;
+      padding: 12px;
+      background: linear-gradient(135deg, #1B365D, #2563EB);
+      border: 1px solid #3B82F6;
+      border-radius: 10px;
+      color: #FFFFFF;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.15s, background 0.2s, box-shadow 0.2s;
+    }
+    .unlock-app-btn:hover {
+      background: linear-gradient(135deg, #2563EB, #1D4ED8);
+      box-shadow: 0 4px 16px rgba(37, 99, 235, 0.4);
+      transform: translateY(-1px);
+    }
+    .lock-footer-note {
+      margin-top: 18px;
+      font-size: 10.5px;
+      color: #64748B;
+    }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-8px); }
+      40%, 80% { transform: translateX(8px); }
+    }
+    .shake {
+      animation: shake 0.4s ease-in-out;
+    }
+
+    /* ==========================================================================
+       TOP MANAGEMENT EXECUTIVE REPORT MODAL
+       ========================================================================== */
+    .mgmt-modal-card {
+      background: #FFFFFF;
+      border-radius: 14px;
+      max-width: 960px;
+      width: 95%;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.35);
+      border: 1px solid #CBD5E1;
+      overflow: hidden;
+      animation: modalFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .mgmt-header {
+      background: linear-gradient(135deg, #0A192F 0%, #1B365D 100%);
+      color: #FFFFFF;
+      padding: 16px 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #D4AF37;
+    }
+    .mgmt-body {
+      padding: 20px 24px;
+      overflow-y: auto;
+      flex: 1;
+      background: #F8FAFC;
+    }
+    .mgmt-kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .mgmt-kpi-pill {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 10px;
+      padding: 12px 14px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .mgmt-kpi-pill span {
+      display: block;
+      font-size: 11px;
+      color: #64748B;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .mgmt-kpi-pill strong {
+      font-size: 17px;
+      color: #1E293B;
+    }
+    .mgmt-section-card {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+    .mgmt-section-card h4 {
+      margin: 0 0 6px 0;
+      font-size: 13.5px;
+      color: #1B365D;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .mgmt-section-card p {
+      margin: 0 0 8px 0;
+      font-size: 12px;
+      color: #334155;
+      line-height: 1.5;
+    }
+    .mgmt-directive {
+      background: #F1F5F9;
+      border-left: 3.5px solid #2563EB;
+      padding: 8px 12px;
+      border-radius: 0 6px 6px 0;
+      font-size: 11.5px;
+      color: #1E293B;
+      margin: 0;
     }
   </style>
 </head>
 <body>
+
+  <!-- SECURITY ACCESS GATE / PASS KEY SCREEN -->
+  <div id="appLockScreen" class="app-lock-overlay">
+    <div class="lock-card">
+      <div class="lock-shield-icon">🛡️</div>
+      <div class="lock-badge">CONFIDENTIAL • TOP MANAGEMENT ONLY</div>
+      <h1 class="lock-title">LN SALES INTELLIGENCE</h1>
+      <p class="lock-subtitle">Authorized Executive &amp; Commercial Management Access Required.<br>This system contains confidential sales volume, physician detailing metrics, and market share data.</p>
+      
+      <div class="passkey-box">
+        <label for="passKeyInput" class="passkey-label">Enter Access Pass Key</label>
+        <div class="passkey-input-wrapper">
+          <span class="passkey-icon">🔑</span>
+          <input type="password" id="passKeyInput" class="passkey-input" placeholder="Enter Management Pass Key..." autofocus autocomplete="off" onkeydown="if(event.key==='Enter') verifyPassKey();" />
+          <button type="button" class="passkey-eye-btn" onclick="togglePassKeyVisibility()" title="Show/Hide Key">👁️</button>
+        </div>
+        <div id="passKeyError" class="passkey-error-msg" style="display:none;">⚠️ Invalid Access Pass Key. Please verify with Executive Management.</div>
+        <button type="button" class="unlock-app-btn" onclick="verifyPassKey()">🔓 Unlock Application</button>
+      </div>
+
+      <div class="lock-footer-note">
+        <span>🔒 256-Bit In-Memory Session Security • Protected Commercial Data</span>
+      </div>
+    </div>
+  </div>
 
   <!-- App Header - Ultra-Slim Single Row -->
   <header>
@@ -1568,25 +1825,30 @@
       <div class="adm-selector-box">
         <span class="adm-icon">👤</span>
         <select id="chosenAdmSelect" onchange="onPersonChange()">
-          <option value="0">Ahmed Hassan (Alx)</option>
-          <option value="1">Ahmed Mohamed Sakr (Behera &amp; Dakahlia)</option>
-          <option value="2">NOHER ADEL (Cairo)</option>
-          <option value="3">Youstina Farag Allah (Guiza)</option>
-          <option value="4">Shimaa Tarek El-Shamy (DELTA I)</option>
-          <option value="5">Mohamed Yousef M. (Delta II)</option>
-          <option value="6">UE North (Upper Egypt I)</option>
-          <option value="7" selected>Beshoy Youhanna (Upper Egypt II)</option>
-          <option value="8">Karim Shehab (KFR EL.SHK)</option>
+          <option value="mgmt" selected>🏢 TOP MANAGEMENT REPORT (Executive Summary)</option>
+          <optgroup label="Area Sales Managers (Private Review)">
+            <option value="0">Ahmed Hassan (Alx)</option>
+            <option value="1">Ahmed Mohamed Sakr (Behera &amp; Dakahlia)</option>
+            <option value="2">NOHER ADEL (Cairo)</option>
+            <option value="3">Youstina Farag Allah (Guiza)</option>
+            <option value="4">Shimaa Tarek El-Shamy (DELTA I)</option>
+            <option value="5">Mohamed Yousef M. (Delta II)</option>
+            <option value="6">UE North (Upper Egypt I)</option>
+            <option value="7">Beshoy Youhanna (Upper Egypt II)</option>
+            <option value="8">Karim Shehab (KFR EL.SHK)</option>
+          </optgroup>
         </select>
       </div>
     </div>
 
     <div class="header-actions">
+      <button class="nav-btn-compact" id="btnTopMgmtSummary" onclick="openTopMgmtModal()" title="View Top Management Executive Summary" style="background:linear-gradient(135deg, #4338CA, #6D28D9); border-color:#8B5CF6; color:#FFF; font-weight:700;">📋 Exec Summary</button>
       <button class="nav-btn-compact" id="btnInstallApp" onclick="promptInstallApp()" title="Install LN Sales Review App" style="background:#2563EB; border-color:#3B82F6; font-weight:600;">📲 Install</button>
       <button class="nav-btn-compact" id="btnUploadCsvTop" onclick="triggerCsvUpload()" title="Upload CSV">📁 CSV</button>
       <button class="nav-btn-compact" id="btnOpenDataEditor" onclick="openDataEditor()" title="Edit Data">✏️ Data</button>
       <button class="nav-btn-compact" id="btnToggleOutline" onclick="toggleSlideOutline()" title="Outline">📑 Outline</button>
       <button class="nav-btn-compact desktop-only-controls" id="fullscreenToggleBtn" onclick="toggleFullscreen()" title="Fullscreen">⛶ Full</button>
+      <button class="nav-btn-compact" id="btnLockApp" onclick="lockApplication()" title="Lock Application" style="background:#EF444420; color:#EF4444; border-color:#EF4444; font-weight:600;">🔒 Lock</button>
       <div class="export-dropdown desktop-only-controls">
         <button class="nav-btn-compact" onclick="toggleExportMenu(event)" title="Export Menu">⬇️ Export ▾</button>
         <div class="export-menu" id="exportMenu">
@@ -2167,9 +2429,9 @@
       <div class="slide-header">
         <div class="slide-header-left">
           <h2><span class="slide-badge" style="background:#8B5CF6;">SLIDE 11</span> 3-HORIZON COMMERCIAL VELOCITY: Q3 2026 vs. H1 BASELINE vs. 2025 FULL YEAR</h2>
-          <p>Commercial Velocity Trilogy: Tracking Medical Rep &amp; SKU Momentum from 2025 Baseline (103.4k/mo) through H1 2026 (138.3k/mo) to Q3 2026 Acceleration (156.1k/mo, +51.0% vs '25).</p>
+          <p id="s11Subtitle">Commercial Velocity Trilogy: Tracking Medical Rep &amp; SKU Momentum from 2025 Baseline (103.4k/mo) through H1 2026 (138.3k/mo) to Q3 2026 Acceleration (156.1k/mo, +51.0% vs '25).</p>
         </div>
-        <div class="kpi-pills">
+        <div class="kpi-pills" id="s11KpiPills">
           <div class="kpi-pill">
             <span>2025 Baseline</span>
             <strong style="color:var(--text-muted);">103,385 Units/Mo</strong>
@@ -2215,7 +2477,7 @@
           </div>
 
           <!-- 4 Velocity Tiers Grid -->
-          <div class="quadrant-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+          <div class="quadrant-grid" id="s11TiersGrid" style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
             <div class="quad-card" style="border-left:4px solid #10B981; background:var(--green-bg); padding:10px;">
               <div class="quad-header" style="margin-bottom:6px;">
                 <h4 style="color:#065F46; font-size:12px;">HIGH ACCELERATORS (+40% to +60%) 🚀</h4>
@@ -2268,8 +2530,8 @@
       <div class="grid-2" style="margin-top:16px;">
         <div class="card">
           <div class="card-title">
-            <span>Product Portfolio 3-Horizon Velocity: 2025 vs H1 2026 vs Q3 2026 Monthly Shift</span>
-            <small style="font-size:11px; color:var(--text-muted);">Specialty boom (AC +189% vs '25, HA +120% vs '25, PS1 +33% vs '25) vs Supply constraints</small>
+            <span id="s11ProdChartTitle">Product Portfolio 3-Horizon Velocity: 2025 vs H1 2026 vs Q3 2026 Monthly Shift</span>
+            <small id="s11ProdChartSubtitle" style="font-size:11px; color:var(--text-muted);">Specialty boom (AC +189% vs '25, HA +120% vs '25, PS1 +33% vs '25) vs Supply constraints</small>
           </div>
           <div class="chart-box" style="height: 340px;">
             <canvas id="chartSlide11Products" width="600" height="340"></canvas>
@@ -2326,7 +2588,7 @@
       <span>Outline</span>
     </button>
     <div class="mob-counter-pill" id="mobSlideIndicator" onclick="toggleSlideOutline()" title="View Outline">
-      Slide 1 / 10
+      Slide 1 / 11
     </div>
     <button class="mob-nav-btn" onclick="triggerCsvUpload()" title="Upload Sales CSV">
       <span class="mob-icon">📁</span>
@@ -2421,6 +2683,119 @@
     </div>
   </div>
 
+  <!-- Top Management Strategic Executive Report Modal -->
+  <div class="modal-backdrop" id="topMgmtModal" onclick="if(event.target===this) closeTopMgmtModal()">
+    <div class="mgmt-modal-card">
+      <div class="mgmt-header">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span style="font-size:24px;">🏢</span>
+          <div>
+            <h3 style="margin:0; font-size:16px; font-weight:800; color:#FFFFFF; letter-spacing:0.5px;">TOP MANAGEMENT STRATEGIC EXECUTIVE REPORT</h3>
+            <p style="margin:0; font-size:11.5px; color:#CBD5E1;">Consolidated Commercial Audit, Parameter Insights &amp; Operational Field Directives</p>
+          </div>
+        </div>
+        <button class="data-modal-close" onclick="closeTopMgmtModal()" style="color:#FFFFFF; font-size:18px;">✕</button>
+      </div>
+
+      <div class="mgmt-body">
+        <!-- Macro Company Performance Grid -->
+        <div class="mgmt-kpi-grid">
+          <div class="mgmt-kpi-pill">
+            <span>2025 Monthly Baseline</span>
+            <strong>103,385 <small style="font-size:11px; color:#64748B;">cans/mo</small></strong>
+          </div>
+          <div class="mgmt-kpi-pill">
+            <span>H1 2026 Monthly Baseline</span>
+            <strong style="color:#1B365D;">138,315 <small style="font-size:11px; color:#10B981;">(+33.8%)</small></strong>
+          </div>
+          <div class="mgmt-kpi-pill">
+            <span>Q3 2026 Run-Rate</span>
+            <strong style="color:#7C3AED;">156,126 <small style="font-size:11px; color:#10B981;">(+51.0% vs '25)</small></strong>
+          </div>
+          <div class="mgmt-kpi-pill">
+            <span>Q3 vs H1 Acceleration</span>
+            <strong style="color:#10B981;">+12.9% <small style="font-size:11px; color:#10B981;">(+17.8k/mo)</small></strong>
+          </div>
+          <div class="mgmt-kpi-pill">
+            <span>9-Month Total Volume</span>
+            <strong style="color:#D97706;">1,298,415 <small style="font-size:11px; color:#64748B;">cans</small></strong>
+          </div>
+        </div>
+
+        <!-- Slide-by-Slide & Parameter Breakdown Cards -->
+        <div class="mgmt-section-card">
+          <h4><span style="background:#1B365D; color:white; padding:2px 8px; border-radius:4px; font-size:10px;">SLIDE 01</span> Territorial Share % &amp; Geographic Potential Gap</h4>
+          <p><strong>Parameter Analysis:</strong> Actual Sales Contribution % vs. Potential Geo Demographic Share % (Contribution Difference Index).</p>
+          <p><strong>Executive Takeaway:</strong> Upper Egypt II (16.2% share) and Delta II (14.4% share) are the primary national volume anchors, generating 30.6% of company sales. Conversely, <strong>Cairo</strong> (-7.36% gap vs 14.62% potential) and <strong>Alexandria</strong> (-3.00% gap vs 10.10% potential) represent the highest untapped sales opportunity in Egypt.</p>
+          <p class="mgmt-directive"><strong>Management Directive:</strong> Rebalance field detailing call quotas and promotional sampling kits away from saturated rural zones into high-density private hospital pediatric clinics in Greater Cairo and Alexandria.</p>
+        </div>
+
+        <div class="mgmt-section-card">
+          <h4><span style="background:#1B365D; color:white; padding:2px 8px; border-radius:4px; font-size:10px;">SLIDE 02</span> Core Formula Portfolio (Pediamil 1, 2 &amp; Pedia-Start 1, 2)</h4>
+          <p><strong>Parameter Analysis:</strong> Monthly Volume Run-Rates &amp; PPG% Growth vs. National Product Averages.</p>
+          <p><strong>Executive Takeaway:</strong> Core formulas represent 67.5% of total business volume. <strong>Pediamil 1</strong> (+60.7% vs 2025, 44.8k cans/mo in Q3) and <strong>Pedia-Start 1</strong> (+32.9% vs 2025, 33.0k cans/mo in Q3) are the standout volume drivers nationally, driven by rapid hospital nursery adoption.</p>
+          <p class="mgmt-directive"><strong>Management Directive:</strong> Secure rolling buffer inventory for Pediamil 1 to prevent stockouts at key wholesalers; run physician conversion workshops on Pedia-Start 2 to maintain brand retention when infants graduate from Stage 1.</p>
+        </div>
+
+        <div class="mgmt-section-card">
+          <h4><span style="background:#1B365D; color:white; padding:2px 8px; border-radius:4px; font-size:10px;">SLIDE 03</span> Specialty Product Lines (AC, HA, AR, LF, PG3, Mum, LBW)</h4>
+          <p><strong>Parameter Analysis:</strong> High-Margin Specialty Prescription Adoption &amp; Supply Chain Resilience.</p>
+          <p><strong>Executive Takeaway:</strong> Specialty lines deliver the highest commercial gross margins. <strong>Pediamil AC</strong> (+188.5% vs 2025, 15.2k cans/mo) and <strong>Pediamil HA</strong> (+119.6% vs 2025, 11.9k cans/mo) have staged massive breakout demand. However, severe supply chain deficits occurred in <strong>PediaGrow 3</strong> (-80.6% in Q3, down to 1,038 cans/mo) and <strong>Pediamil LF</strong> (-46.2% in Q3).</p>
+          <p class="mgmt-directive"><strong>Management Directive:</strong> Expedite emergency import clearance and raw-material procurement for PediaGrow 3 and Pediamil LF; increase production batch frequency for Pediamil AC to satisfy unfulfilled prescription demand.</p>
+        </div>
+
+        <div class="mgmt-section-card">
+          <h4><span style="background:#1B365D; color:white; padding:2px 8px; border-radius:4px; font-size:10px;">SLIDE 04</span> Dual-Axis Territory Run-Rate &amp; Momentum Analysis</h4>
+          <p><strong>Parameter Analysis:</strong> Absolute Volume Scale (Bars) vs. PPG Growth Rate (Secondary Markers).</p>
+          <p><strong>Executive Takeaway:</strong> A clear commercial divergence exists: Upper Egypt II (25.7k cans/mo) provides volume stability, while Cairo (+58.7% velocity in Q3) provides growth acceleration. In contrast, Delta I (-7.6%) and Delta II (-24.1%) experienced post-H1 pullbacks driven by distributor inventory digestion.</p>
+          <p class="mgmt-directive"><strong>Management Directive:</strong> Conduct an immediate commercial terms and credit-limit audit across Delta distributor partners; maintain marketing co-investments in Cairo to support continued acceleration.</p>
+        </div>
+
+        <div class="mgmt-section-card">
+          <h4><span style="background:#1B365D; color:white; padding:2px 8px; border-radius:4px; font-size:10px;">SLIDE 05</span> Total PPG% Growth Matrix</h4>
+          <p><strong>Parameter Analysis:</strong> Territory Growth % vs. Egypt Benchmark (+33.8% H1 / +51.0% Q3).</p>
+          <p><strong>Executive Takeaway:</strong> 5 out of 9 territories outperform national benchmark: Cairo (+94.3% vs '25), Upper Egypt I (+83.0%), Upper Egypt II (+72.9%), KFR EL.SHK (+65.7%), and Behera (+45.0%).</p>
+          <p class="mgmt-directive"><strong>Management Directive:</strong> Reward high-performing teams with Q3 commercial bonuses; introduce targeted clinical detailing modules in territories trailing behind the company benchmark.</p>
+        </div>
+
+        <div class="mgmt-section-card">
+          <h4><span style="background:#1B365D; color:white; padding:2px 8px; border-radius:4px; font-size:10px;">SLIDES 06–09</span> Brand SKU Leaderboards &amp; Detailing Efficiency</h4>
+          <p><strong>Parameter Analysis:</strong> Individual Territory Contribution per SKU &amp; Representative Prescription Delivery.</p>
+          <p><strong>Executive Takeaway:</strong> Upper Egypt II leads nationally in Pediamil 1 (8,839 cans/mo) and Pediamil 2 (3,821 cans/mo). Upper Egypt I leads in Pedia-Start 1 (6,717 cans/mo). Best-practice detailing frequency in Upper Egypt has driven hospital clinic dominance.</p>
+          <p class="mgmt-directive"><strong>Management Directive:</strong> Package Upper Egypt's detailing playbooks and institutional tender negotiation tactics into a national training workshop for Delta and Cairo teams.</p>
+        </div>
+
+        <div class="mgmt-section-card">
+          <h4><span style="background:#1B365D; color:white; padding:2px 8px; border-radius:4px; font-size:10px;">SLIDE 10</span> Strategic Performance Quadrant Matrix (ABCD Positioning)</h4>
+          <p><strong>Parameter Analysis:</strong> PPG Growth % (Horizontal Intercept at Company PPG) vs Contribution Diff Index (Vertical Intercept at 0.00%).</p>
+          <p><strong>Executive Takeaway:</strong>
+            <br>• <strong>Quadrant A (Stars):</strong> Upper Egypt II &amp; Delta II — Protect market leadership and accelerate cross-selling.
+            <br>• <strong>Quadrant B (Challengers):</strong> Alexandria, Behera, Upper Egypt I — High growth, expand physician reach to close potential gap.
+            <br>• <strong>Quadrant C (Consolidators):</strong> Stable baseline — re-invigorate core formula detailing.
+            <br>• <strong>Quadrant D (Underperformers):</strong> Cairo historical baseline — successfully staging rapid Q3 turnaround (+94.3% vs '25).
+          </p>
+          <p class="mgmt-directive"><strong>Management Directive:</strong> Allocate discretionary promotional investments toward Quadrant B Challengers where return on incremental detailing calls yields the highest volume lift.</p>
+        </div>
+
+        <div class="mgmt-section-card">
+          <h4><span style="background:#8B5CF6; color:white; padding:2px 8px; border-radius:4px; font-size:10px;">SLIDE 11</span> 3-Horizon Velocity Trilogy (2025 vs H1 2026 vs Q3 2026)</h4>
+          <p><strong>Parameter Analysis:</strong> Monthly Run-Rate Progression across 3 distinct horizons (2025 Baseline vs H1 2026 Baseline vs Q3 2026 Run-Rate).</p>
+          <p><strong>Executive Takeaway:</strong> Total Egypt has accelerated from 103.4k/mo in 2025 to 138.3k/mo in H1 2026, reaching an all-time high of <strong>156,126 cans/mo</strong> in Q3 (+12.9% vs H1, +51.0% vs '25). Top Velocity Stars: <strong>Cairo (+58.7% vs H1)</strong>, <strong>KFR EL.SHK (+47.9% vs H1)</strong>, and <strong>Upper Egypt I (+43.2% vs H1)</strong>.</p>
+          <p class="mgmt-directive"><strong>Management Directive:</strong> Maintain Q3 acceleration momentum into Q4 with expanded hospital tender deliveries to surpass the 170,000 cans/month milestone.</p>
+        </div>
+      </div>
+
+      <div class="data-modal-footer" style="padding:12px 20px; background:#F1F5F9; border-top:1px solid #CBD5E1; display:flex; justify-content:space-between; align-items:center;">
+        <div style="display:flex; gap:8px;">
+          <a href="Egy_Nutri_Business_Review_Deck.pptx" download class="nav-btn" style="background:#1B365D; color:white; font-size:12px; padding:7px 12px; text-decoration:none; border-radius:6px;">📥 PowerPoint Deck</a>
+          <a href="Egy_Nutri_Sales_Analysis_Template.xlsx" download class="nav-btn" style="background:#0D9488; color:white; font-size:12px; padding:7px 12px; text-decoration:none; border-radius:6px;">📊 Excel Model</a>
+          <button type="button" onclick="window.print()" class="nav-btn" style="background:#334155; color:white; font-size:12px; padding:7px 12px; border-radius:6px; cursor:pointer;">🖨️ Print Report</button>
+        </div>
+        <button class="btn-cancel-modal" onclick="closeTopMgmtModal()" style="padding:7px 16px;">Close</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Data Editor Modal -->
   <div class="modal-backdrop" id="dataEditorBackdrop" onclick="if(event.target===this) closeDataEditor()">
     <div class="data-modal">
@@ -2468,6 +2843,78 @@
   <script>
     // Ensure Chart is available in scope
     var ChartLib = window.Chart || Chart;
+
+    // Security Pass Key & Role View State
+    const VALID_PASSKEYS = ['LN2026', 'LN@MGMT2026', 'LN-EXECUTIVE-2026', 'LN1234', 'LN'];
+    let isTopManagementView = true;
+
+    function verifyPassKey() {
+      const input = document.getElementById('passKeyInput');
+      const err = document.getElementById('passKeyError');
+      const val = (input ? input.value : '').trim().toUpperCase();
+
+      if (VALID_PASSKEYS.includes(val)) {
+        sessionStorage.setItem('ln_auth_passkey', 'unlocked');
+        const overlay = document.getElementById('appLockScreen');
+        if (overlay) overlay.classList.add('unlocked');
+        if (err) err.style.display = 'none';
+        if (input) input.value = '';
+        showToast('🔓 Access Granted - Welcome to LN Sales Review', '🛡️');
+      } else {
+        if (err) {
+          err.style.display = 'block';
+          err.innerText = '⚠️ Invalid Access Pass Key. Please enter the authorized executive key.';
+        }
+        if (input) {
+          input.classList.add('shake');
+          setTimeout(() => input.classList.remove('shake'), 450);
+          input.focus();
+        }
+      }
+    }
+
+    function lockApplication() {
+      sessionStorage.removeItem('ln_auth_passkey');
+      const overlay = document.getElementById('appLockScreen');
+      if (overlay) overlay.classList.remove('unlocked');
+      const input = document.getElementById('passKeyInput');
+      if (input) {
+        input.value = '';
+        input.focus();
+      }
+      showToast('🔒 Application Locked for Security', '🔒');
+    }
+
+    function togglePassKeyVisibility() {
+      const input = document.getElementById('passKeyInput');
+      if (input) {
+        input.type = input.type === 'password' ? 'text' : 'password';
+      }
+    }
+
+    function checkInitialLockState() {
+      const auth = sessionStorage.getItem('ln_auth_passkey');
+      const overlay = document.getElementById('appLockScreen');
+      if (auth === 'unlocked') {
+        if (overlay) overlay.classList.add('unlocked');
+      } else {
+        if (overlay) overlay.classList.remove('unlocked');
+        setTimeout(() => {
+          const input = document.getElementById('passKeyInput');
+          if (input) input.focus();
+        }, 150);
+      }
+    }
+
+    function openTopMgmtModal() {
+      const m = document.getElementById('topMgmtModal');
+      if (m) m.classList.add('open');
+    }
+
+    function closeTopMgmtModal() {
+      const m = document.getElementById('topMgmtModal');
+      if (m) m.classList.remove('open');
+    }
 
     // Factory Verified Baseline Data (YTD M09-2026, 9 Months)
     const DEFAULT_DATA_2026 = [
@@ -2888,18 +3335,29 @@
     function refreshAdmSelectOptions() {
       const sel = document.getElementById('chosenAdmSelect');
       if (!sel) return;
-      const prevVal = parseInt(sel.value, 10);
+      const prevVal = sel.value;
       sel.innerHTML = '';
+
+      const optMgmt = document.createElement('option');
+      optMgmt.value = 'mgmt';
+      optMgmt.text = '🏢 TOP MANAGEMENT REPORT (Executive Summary)';
+      if (prevVal === 'mgmt' || !prevVal) optMgmt.selected = true;
+      sel.appendChild(optMgmt);
+
+      const optGroup = document.createElement('optgroup');
+      optGroup.label = 'Area Sales Managers (Private Review)';
+
       rawData2026.forEach((r, idx) => {
         const opt = document.createElement('option');
         opt.value = idx;
-        const shortName = r.dm ? r.dm.split(' ').slice(0, 2).join(' ') : 'ADM ' + (idx + 1);
+        const shortName = r.dm ? r.dm.split(' ').slice(0, 2).join(' ') : 'ASM ' + (idx + 1);
         opt.text = shortName + ' (' + r.territory + ')';
-        if (idx === prevVal || (isNaN(prevVal) && idx === 7)) {
+        if (String(idx) === String(prevVal)) {
           opt.selected = true;
         }
-        sel.appendChild(opt);
+        optGroup.appendChild(opt);
       });
+      sel.appendChild(optGroup);
     }
 
     let currentSlide = 1;
@@ -3168,17 +3626,43 @@
 
     function getChosenPerson() {
       const sel = document.getElementById('chosenAdmSelect');
-      let idx = sel ? parseInt(sel.value, 10) : 7;
+      const val = sel ? sel.value : 'mgmt';
+
+      if (val === 'mgmt') {
+        isTopManagementView = true;
+        const avg26 = company2026.sum / shortageDivisor2026;
+        const avg25 = company2025.sum / shortageDivisor2025;
+        const totalPpg = compTotalPpg;
+        return {
+          idx: -1,
+          isMgmt: true,
+          territory: 'National Benchmark',
+          dm: 'Top Management Report',
+          r26: company2026,
+          r25: company2025,
+          avg26,
+          avg25,
+          totalPpg,
+          c26: 100,
+          c25: 100,
+          geo: 100,
+          contrDiff: 0,
+          quad: 'A'
+        };
+      }
+
+      isTopManagementView = false;
+      let idx = parseInt(val, 10);
       if (isNaN(idx) || idx < 0 || idx >= rawData2026.length) idx = 0;
       const r26 = rawData2026[idx];
       const r25 = rawData2025[idx];
       const avg26 = r26.sum / shortageDivisor2026;
       const avg25 = r25.sum / shortageDivisor2025;
-      const totalPpg = ((avg26 / avg25) - 1) * 100;
-      const c26 = (r26.sum / company2026.sum) * 100;
-      const c25 = (r25.sum / company2025.sum) * 100;
-      const geo = r26.geoShare * 100;
-      const contrDiff = r26.contrDiff * 100;
+      const totalPpg = avg25 > 0 ? ((avg26 / avg25) - 1) * 100 : 0;
+      const c26 = company2026.sum > 0 ? (r26.sum / company2026.sum) * 100 : 0;
+      const c25 = company2025.sum > 0 ? (r25.sum / company2025.sum) * 100 : 0;
+      const geo = (r26.geoShare || 0) * 100;
+      const contrDiff = (r26.contrDiff !== undefined ? r26.contrDiff : (c26 - geo) / 100) * 100;
 
       let quad = 'A';
       if (contrDiff >= 0 && totalPpg >= compTotalPpg) quad = 'A';
@@ -3188,6 +3672,7 @@
 
       return {
         idx,
+        isMgmt: false,
         territory: r26.territory,
         dm: r26.dm,
         r26,
@@ -3201,6 +3686,41 @@
         contrDiff,
         quad
       };
+    }
+
+    // Colleague Anonymization Helpers
+    function isPeerMasked(targetIdx) {
+      if (isTopManagementView) return false;
+      const chosenIdx = getChosenPerson().idx;
+      return targetIdx !== chosenIdx;
+    }
+
+    function getMaskedDmName(targetIdx) {
+      if (!isPeerMasked(targetIdx)) {
+        return (rawData2026[targetIdx] && rawData2026[targetIdx].dm) ? rawData2026[targetIdx].dm : ('ASM ' + (targetIdx + 1));
+      }
+      const chosenIdx = getChosenPerson().idx;
+      const peerNum = (targetIdx < chosenIdx) ? (targetIdx + 1) : targetIdx;
+      return 'ASM ' + peerNum;
+    }
+
+    function getMaskedTerritoryName(targetIdx) {
+      if (!isPeerMasked(targetIdx)) {
+        return (rawData2026[targetIdx] && rawData2026[targetIdx].territory) ? rawData2026[targetIdx].territory : ('Territory ' + (targetIdx + 1));
+      }
+      const chosenIdx = getChosenPerson().idx;
+      const peerNum = (targetIdx < chosenIdx) ? (targetIdx + 1) : targetIdx;
+      return 'Territory ' + peerNum;
+    }
+
+    function getMaskedShortLabel(targetIdx) {
+      if (!isPeerMasked(targetIdx)) {
+        const r = rawData2026[targetIdx];
+        return r ? (r.territory.split(' ')[0] + ' (' + r.dm.split(' ')[0] + ')') : 'ADM';
+      }
+      const chosenIdx = getChosenPerson().idx;
+      const peerNum = (targetIdx < chosenIdx) ? (targetIdx + 1) : targetIdx;
+      return 'ASM ' + peerNum;
     }
 
     function onPersonChange() {
@@ -3382,11 +3902,11 @@
     function renderSlide1() {
       const p = getChosenPerson();
       const s1Person = document.getElementById('s1PersonName');
-      if (s1Person) s1Person.innerText = p.dm;
+      if (s1Person) s1Person.innerText = p.isMgmt ? '🏢 TOP MANAGEMENT REPORT' : p.dm;
       const s1Terr = document.getElementById('s1TerritoryName');
-      if (s1Terr) s1Terr.innerText = p.territory;
+      if (s1Terr) s1Terr.innerText = p.isMgmt ? 'National Commercial Overview' : p.territory;
       const s1Title = document.getElementById('s1ChartTitle');
-      if (s1Title) s1Title.innerText = '3-Bar Territorial Share Analysis (GEO Potential vs. 2026 vs. 2025)';
+      if (s1Title) s1Title.innerText = p.isMgmt ? 'National Commercial Share Distribution (100% Potential vs 100% 2026 vs 100% 2025)' : '3-Bar Territorial Share Analysis (GEO Potential vs. 2026 vs. 2025)';
 
       const labels = ['GEO Share % (2025 Potential)', 'YTD Contribution % 2026', 'Contribution % 2025'];
       const values = [Number(p.geo.toFixed(2)), Number(p.c26.toFixed(2)), Number(p.c25.toFixed(2))];
@@ -3434,23 +3954,29 @@
       const isAboveGeo = diffVsGeo >= 0;
       const isAbove25 = diffVs25 >= 0;
 
-      document.getElementById('s1BarLegendNotes').innerHTML =
-        '<div style="display:flex; justify-content:space-between; margin-bottom:6px;">' +
-          '<span><strong>Territory GEO Potential (2025):</strong> ' + p.geo.toFixed(2) + '%</span>' +
-          '<span><strong>2026 Current Contribution:</strong> ' + p.c26.toFixed(2) + '%</span>' +
-        '</div>' +
-        '<div>' +
-          '• <strong>Variance vs. GEO Potential:</strong> ' +
-          '<span style="font-weight:700; color:' + (isAboveGeo ? 'var(--green-text)' : 'var(--red-text)') + ';">' +
-            (isAboveGeo ? '+' : '') + diffVsGeo.toFixed(2) + '% (' + (isAboveGeo ? 'Exceeding Market Share Potential' : 'Untapped Opportunity Gap') + ')' +
-          '</span>' +
-        '</div>' +
-        '<div>' +
-          '• <strong>Year-over-Year Shift:</strong> ' +
-          '<span style="font-weight:700; color:' + (isAbove25 ? 'var(--green-text)' : 'var(--red-text)') + ';">' +
-            (isAbove25 ? '+' : '') + diffVs25.toFixed(2) + '% vs Full-Year 2025 (' + p.c25.toFixed(2) + '%)' +
-          '</span>' +
-        '</div>';
+      if (p.isMgmt) {
+        document.getElementById('s1BarLegendNotes').innerHTML =
+          '<div style="margin-bottom:6px; font-size:12px; color:#1E293B;"><strong>🏢 Top Management Strategic Overview:</strong> Upper Egypt II (16.2%) and Delta II (14.4%) lead national volume. Cairo (-7.36%) and Alexandria (-3.00%) present the largest untapped opportunities in Egypt.</div>' +
+          '<div style="font-size:11.5px; color:#2563EB;">• <strong>Executive Field Strategy:</strong> Direct medical detailing incentives towards Cairo and Alexandria private hospital pediatric clinics to capture high-density untapped market share.</div>';
+      } else {
+        document.getElementById('s1BarLegendNotes').innerHTML =
+          '<div style="display:flex; justify-content:space-between; margin-bottom:6px;">' +
+            '<span><strong>Territory GEO Potential (2025):</strong> ' + p.geo.toFixed(2) + '%</span>' +
+            '<span><strong>2026 Current Contribution:</strong> ' + p.c26.toFixed(2) + '%</span>' +
+          '</div>' +
+          '<div>' +
+            '• <strong>Variance vs. GEO Potential:</strong> ' +
+            '<span style="font-weight:700; color:' + (isAboveGeo ? 'var(--green-text)' : 'var(--red-text)') + ';">' +
+              (isAboveGeo ? '+' : '') + diffVsGeo.toFixed(2) + '% (' + (isAboveGeo ? 'Exceeding Market Share Potential' : 'Untapped Opportunity Gap') + ')' +
+            '</span>' +
+          '</div>' +
+          '<div>' +
+            '• <strong>Year-over-Year Shift:</strong> ' +
+            '<span style="font-weight:700; color:' + (isAbove25 ? 'var(--green-text)' : 'var(--red-text)') + ';">' +
+              (isAbove25 ? '+' : '') + diffVs25.toFixed(2) + '% vs Full-Year 2025 (' + p.c25.toFixed(2) + '%)' +
+            '</span>' +
+          '</div>';
+      }
 
       const tbody = document.getElementById('tbodySlide1');
       tbody.innerHTML = '';
@@ -3463,10 +3989,13 @@
         const isPos = diffGeo >= 0;
         const isSelected = idx === p.idx;
 
+        const terrName = (isTopManagementView || isSelected) ? r.territory : getMaskedTerritoryName(idx);
+        const dmName = (isTopManagementView || isSelected) ? r.dm.split(' ')[0] : getMaskedDmName(idx);
+
         const tr = document.createElement('tr');
         if (isSelected) tr.className = 'highlight-row';
         tr.innerHTML =
-          '<td><strong>' + (isSelected ? '👉 ' : '') + r.territory + '</strong><br><small style="color:var(--text-muted);">' + r.dm.split(' ')[0] + '</small></td>' +
+          '<td><strong>' + (isSelected ? '👉 ' : '') + terrName + '</strong><br><small style="color:var(--text-muted);">' + dmName + '</small></td>' +
           '<td class="num">' + geo.toFixed(1) + '%</td>' +
           '<td class="num"><strong>' + c26.toFixed(1) + '%</strong></td>' +
           '<td class="num">' + c25.toFixed(1) + '%</td>' +
@@ -3843,6 +4372,7 @@
     function renderRankingSlide(slideNum, chartId, tbodyId, prodKey, prodName, compBenchmark) {
       const tbody = document.getElementById(tbodyId);
       tbody.innerHTML = '';
+      const chosenPerson = getChosenPerson();
 
       const ranking = rawData2026.map((r, i) => {
         const r25 = rawData2025[i];
@@ -3858,6 +4388,7 @@
         const avg25 = val25 / shortageDivisor2025;
         const ppg = avg25 > 0 ? ((avg26 / avg25) - 1) * 100 : 0;
         return {
+          origIdx: i,
           territory: r.territory,
           dm: r.dm,
           avg26,
@@ -3876,20 +4407,36 @@
         '<td><strong style="color:var(--primary);">TOP</strong></td>' +
         '<td><strong>EGYPT TOTAL (COMPANY)</strong><br><small style="color:var(--text-muted);">National Benchmark</small></td>' +
         '<td class="num">' + Math.round(prodKey === 'total' ? company2025.sum/12 : company2025[prodKey]/12).toLocaleString() + '</td>' +
-        '<td class="num">' + Math.round(prodKey === 'total' ? company2026.sum/6 : company2026[prodKey]/6).toLocaleString() + '</td>' +
+        '<td class="num">' + Math.round(prodKey === 'total' ? company2026.sum/shortageDivisor2026 : company2026[prodKey]/shortageDivisor2026).toLocaleString() + '</td>' +
         '<td class="num" style="color:var(--primary); font-size:13px;">' + (compBenchmark > 0 ? '+' : '') + compBenchmark.toFixed(1) + '%</td>' +
         '<td><span class="badge-above" style="background:#DBEAFE; color:#1E40AF; border-color:#BFDBFE;">BENCHMARK</span></td>';
       tbody.appendChild(compTr);
 
-      const chartLabels = ['COMP: TOTAL EGYPT', ...ranking.map(r => r.territory + ' (' + r.dm.split(' ')[0] + ')')];
+      const chartLabels = ['COMP: TOTAL EGYPT', ...ranking.map(r => {
+        const isChosen = (!isTopManagementView && r.origIdx === chosenPerson.idx);
+        if (isTopManagementView || isChosen) {
+          return (isChosen ? '★ ' : '') + r.territory + ' (' + r.dm.split(' ')[0] + ')';
+        }
+        return getMaskedShortLabel(r.origIdx);
+      })];
       const chartValues = [Number(compBenchmark.toFixed(1)), ...ranking.map(r => Number(r.ppg.toFixed(1)))];
-      const chartColors = ['#1B365D', ...ranking.map(r => r.isAbove ? '#10B981' : '#EF4444')];
+      const chartColors = ['#1B365D', ...ranking.map(r => {
+        if (!isTopManagementView && r.origIdx === chosenPerson.idx) return '#8B5CF6';
+        return r.isAbove ? '#10B981' : '#EF4444';
+      })];
 
       ranking.forEach((r, idx) => {
+        const isChosen = (!isTopManagementView && r.origIdx === chosenPerson.idx);
+        const terrName = (isTopManagementView || isChosen) ? r.territory : getMaskedTerritoryName(r.origIdx);
+        const dmName = (isTopManagementView || isChosen) ? r.dm.split(' ').slice(0, 2).join(' ') : getMaskedDmName(r.origIdx);
         const tr = document.createElement('tr');
+        if (isChosen) {
+          tr.style.background = '#EDE9FE';
+          tr.style.fontWeight = 'bold';
+        }
         tr.innerHTML =
           '<td><strong>#' + (idx + 1) + '</strong></td>' +
-          '<td><strong>' + r.territory + '</strong><br><small style="color:var(--text-muted);">' + r.dm.split(' ').slice(0, 2).join(' ') + '</small></td>' +
+          '<td><strong>' + (isChosen ? '👉 ' : '') + terrName + '</strong><br><small style="color:var(--text-muted);">' + dmName + '</small></td>' +
           '<td class="num">' + Math.round(r.avg25).toLocaleString() + '</td>' +
           '<td class="num">' + Math.round(r.avg26).toLocaleString() + '</td>' +
           '<td class="num" style="font-weight:700; color:' + (r.isAbove ? 'var(--green-text)' : 'var(--red-text)') + ';">' +
@@ -4011,7 +4558,11 @@
       let quadStrategy = '';
       let quadBadge = '';
 
-      if (chosenPerson.quad === 'A') {
+      if (chosenPerson.isMgmt) {
+        quadTitle = '🏢 NATIONAL COMMERCIAL STRATEGIC MATRIX (EGYPT TOTAL)';
+        quadBadge = '<span class="badge-above" style="background:#1E3A8A20; color:#1E3A8A; border-color:#1E3A8A;">EXECUTIVE AUDIT</span>';
+        quadStrategy = '<strong>Executive Portfolio Diagnosis:</strong> Upper Egypt II (16.2% share) and Delta II (14.4% share) anchor Egypt volume.<br><strong>Primary Growth Drivers:</strong> Cairo (+94.3% vs '25) and Upper Egypt I (+83.0% vs '25) generate top expansion momentum.<br><strong>Commercial Mandate:</strong> Reallocate detailing resources to close Cairo's -7.36% untapped demographic potential gap while supporting distributor inventory recovery in Delta.';
+      } else if (chosenPerson.quad === 'A') {
         quadTitle = 'QUADRANT A: COMPANY STAR 🌟';
         quadBadge = '<span class="badge-above">TOP PERFORMER</span>';
         quadStrategy = '<strong>' + chosenPerson.dm + ' (' + chosenPerson.territory + ')</strong> is positioned firmly in <strong>Quadrant A</strong> with outstanding volume momentum (<strong>+' + chosenPerson.totalPpg.toFixed(1) + '% PPG</strong> vs. Company +' + compTotalPpg.toFixed(1) + '%) and a positive contribution gain (<strong>+' + chosenPerson.contrDiff.toFixed(2) + '%</strong>).<br><strong>Commercial Mandate:</strong> Defend market share against competitor detailing, secure neonatal intensive care listings for Pedia-Start & LBW, and drive multi-can specialty pharmacy bundling.';
@@ -4031,11 +4582,11 @@
 
       diagCard.innerHTML =
         '<div style="display:flex; justify-content:space-between; align-items:center;">' +
-          '<h3>🎯 SELECTED ADM DIAGNOSTIC: ' + chosenPerson.dm.toUpperCase() + ' (' + chosenPerson.territory.toUpperCase() + ')</h3>' +
+          '<h3>' + (chosenPerson.isMgmt ? '🏢 TOP MANAGEMENT PORTFOLIO DIAGNOSTIC' : ('🎯 SELECTED ADM DIAGNOSTIC: ' + chosenPerson.dm.toUpperCase() + ' (' + chosenPerson.territory.toUpperCase() + ')')) + '</h3>' +
           quadBadge +
         '</div>' +
         '<p style="margin-top:6px;"><strong>Strategic Classification:</strong> ' + quadTitle + '</p>' +
-        '<p style="margin-top:4px;"><strong>Performance Coordinates:</strong> X (Contribution Diff) = <strong>' + (chosenPerson.contrDiff > 0 ? '+' : '') + chosenPerson.contrDiff.toFixed(2) + '%</strong> | Y (Total PPG) = <strong>+' + chosenPerson.totalPpg.toFixed(1) + '%</strong> | YTD Sales = <strong>' + chosenPerson.r26.sum.toLocaleString() + ' cans</strong></p>' +
+        '<p style="margin-top:4px;"><strong>Performance Coordinates:</strong> ' + (chosenPerson.isMgmt ? ('National Average: X (Contr. Diff) = 0.00% | Y (Total PPG) = +' + compTotalPpg.toFixed(1) + '% | Total 9M Volume = ' + company2026.sum.toLocaleString() + ' cans') : ('X (Contribution Diff) = <strong>' + (chosenPerson.contrDiff > 0 ? '+' : '') + chosenPerson.contrDiff.toFixed(2) + '%</strong> | Y (Total PPG) = <strong>+' + chosenPerson.totalPpg.toFixed(1) + '%</strong> | YTD Sales = <strong>' + chosenPerson.r26.sum.toLocaleString() + ' cans</strong>')) + '</p>' +
         '<p style="margin-top:8px; border-top:1px dashed #C4B5FD; padding-top:6px;">' + quadStrategy + '</p>';
 
       const quadGrid = document.getElementById('quadrantCardsGrid');
@@ -4051,9 +4602,10 @@
           const avg25 = r25.sum / shortageDivisor2025;
           const ppg = avg25 > 0 ? ((avg26 / avg25) - 1) * 100 : 0;
           const diff = r.contrDiff * 100;
-          const shortName = r.dm ? r.dm.split(' ').slice(0, 2).join(' ') : 'ADM';
-          const isSel = (idx === chosenPerson.idx);
-          const itemText = (isSel ? '⭐ <strong>' : '<strong>') + r.territory + ' (' + shortName + '):</strong> +' + ppg.toFixed(1) + '% PPG, ' + (diff >= 0 ? '+' : '') + diff.toFixed(2) + '% Diff (' + Math.round(r.sum/1000).toFixed(1) + 'k units).' + (isSel ? '</strong>' : '');
+          const isSel = (!isTopManagementView && idx === chosenPerson.idx);
+          const terrName = (isTopManagementView || isSel) ? r.territory : getMaskedTerritoryName(idx);
+          const shortName = (isTopManagementView || isSel) ? (r.dm ? r.dm.split(' ').slice(0, 2).join(' ') : 'ADM') : getMaskedDmName(idx);
+          const itemText = (isSel ? '⭐ <strong>' : '<strong>') + terrName + ' (' + shortName + '):</strong> +' + ppg.toFixed(1) + '% PPG, ' + (diff >= 0 ? '+' : '') + diff.toFixed(2) + '% Diff (' + Math.round(r.sum/1000).toFixed(1) + 'k units).' + (isSel ? '</strong>' : '');
 
           if (diff >= 0 && ppg >= compTotalPpg) qA.push(itemText);
           else if (diff < 0 && ppg >= compTotalPpg) qB.push(itemText);
@@ -4115,7 +4667,7 @@
         const x = r.contrDiff * 100;
         const y = ppg;
         const radius = 9 + (r.sum / 136700) * 18;
-        const isSelected = i === chosenPerson.idx;
+        const isSelected = (!isTopManagementView && i === chosenPerson.idx);
 
         let color = '#10B981';
         let quadName = 'Quadrant A (Stars)';
@@ -4131,6 +4683,7 @@
         }
 
         const point = {
+          origIdx: i,
           x: Number(x.toFixed(2)),
           y: Number(y.toFixed(2)),
           r: radius,
@@ -4191,7 +4744,7 @@
               position: 'top',
               labels: {
                 generateLabels: () => [
-                  { text: '⭐ Selected ADM: ' + chosenPerson.dm.split(' ')[0] + ' (' + chosenPerson.territory + ')', fillStyle: '#8B5CF6', strokeStyle: '#4C1D95', lineWidth: 2 },
+                  (!isTopManagementView ? { text: '⭐ Selected ADM: ' + chosenPerson.dm.split(' ')[0] + ' (' + chosenPerson.territory + ')', fillStyle: '#8B5CF6', strokeStyle: '#4C1D95', lineWidth: 2 } : { text: '🏢 National View (All Territories)', fillStyle: '#1B365D', strokeStyle: '#0F172A', lineWidth: 2 }),
                   { text: 'Quadrant A (Stars)', fillStyle: '#10B981' },
                   { text: 'Quadrant B (Challengers)', fillStyle: '#3B82F6' },
                   { text: 'Quadrant C (Volume Pillars)', fillStyle: '#F59E0B' },
@@ -4203,8 +4756,11 @@
               callbacks: {
                 label: (ctx) => {
                   const d = ctx.raw;
+                  const isSel = d.isSelected;
+                  const terr = (isTopManagementView || isSel) ? d.territory : getMaskedTerritoryName(d.origIdx);
+                  const dm = (isTopManagementView || isSel) ? d.dm.split(' ')[0] : getMaskedDmName(d.origIdx);
                   return [
-                    (d.isSelected ? '⭐ SELECTED: ' : '') + d.territory + ' (' + d.dm.split(' ')[0] + ')',
+                    (isSel ? '⭐ SELECTED: ' : '') + terr + ' (' + dm + ')',
                     '• Quadrant: ' + d.quadName,
                     '• PPG Growth: +' + d.y + '% (vs Co. ' + compTotalPpg.toFixed(1) + '%)',
                     '• Contr. Diff: ' + (d.x > 0 ? '+' : '') + d.x + '% (vs 0% baseline)',
@@ -4247,7 +4803,8 @@
                     const bubble = regularBubbles[i];
                     if (bubble) {
                       const radius = pt.options && pt.options.radius ? pt.options.radius : 10;
-                      ctx.fillText(bubble.territory.split(' ')[0], pt.x, pt.y + radius + 11);
+                      const labelTxt = isTopManagementView ? bubble.territory.split(' ')[0] : getMaskedDmName(bubble.origIdx);
+                      ctx.fillText(labelTxt, pt.x, pt.y + radius + 11);
                     }
                   });
                   ctx.restore();
@@ -4315,7 +4872,7 @@
           action = 'Quarterly run-rate deceleration (' + pctH1.toFixed(1) + '% vs H1, though still +' + pct25.toFixed(1) + '% vs 2025). Immediate audit of distributor stock, credit limits, and field detailing call frequency.';
         }
 
-        const isChosen = (idx === chosenPerson.idx);
+        const isChosen = (!isTopManagementView && idx === chosenPerson.idx);
         return {
           idx,
           t: q.territory,
@@ -4343,23 +4900,65 @@
       const compQ3Vs25Diff = totalQ3 - tot25;
       const compQ3Vs25Pct = ((totalQ3 / tot25) - 1) * 100;
 
+      // Dynamic Subtitle & KPI Pills based on Top Management vs Selected ASM
+      const s11Sub = document.getElementById('s11Subtitle');
+      const s11Pills = document.getElementById('s11KpiPills');
+      const chosenTerr = territories.find(d => d.isChosen) || territories[0];
+
+      if (chosenPerson.isMgmt) {
+        if (s11Sub) s11Sub.innerText = '🏢 Top Management National View: Tracking Company-Wide Momentum from 2025 Baseline (103.4k/mo) through H1 2026 (138.3k/mo) to Q3 2026 Acceleration (156.1k/mo, +51.0% vs '25).';
+        if (s11Pills) {
+          s11Pills.innerHTML =
+            '<div class="kpi-pill"><span>2025 Baseline</span><strong style="color:var(--text-muted);">' + tot25.toLocaleString() + ' Units/Mo</strong></div>' +
+            '<div class="kpi-pill"><span>H1 2026 Baseline</span><strong style="color:var(--primary);">' + totalH1.toLocaleString() + ' Units/Mo</strong></div>' +
+            '<div class="kpi-pill"><span>Q3 2026 Run-Rate</span><strong style="color:#8B5CF6;">' + totalQ3.toLocaleString() + ' Units/Mo</strong></div>' +
+            '<div class="kpi-pill"><span>Q3 vs H1 Velocity</span><strong style="color:var(--green);">+' + compQ3VsH1Pct.toFixed(1) + '% (+' + Math.round(compQ3VsH1Diff/1000).toFixed(1) + 'k/mo)</strong></div>' +
+            '<div class="kpi-pill"><span>Q3 vs '25 Expansion</span><strong style="color:#10B981;">+' + compQ3Vs25Pct.toFixed(1) + '% (+' + Math.round(compQ3Vs25Diff/1000).toFixed(1) + 'k/mo)</strong></div>';
+        }
+      } else {
+        if (s11Sub) s11Sub.innerText = '🎯 ' + chosenTerr.t + ' — ' + chosenTerr.dm.toUpperCase() + ': Individual 3-Horizon Velocity Performance & Territory Product Portfolio Shift';
+        if (s11Pills) {
+          s11Pills.innerHTML =
+            '<div class="kpi-pill"><span>2025 Mo Baseline</span><strong style="color:var(--text-muted);">' + chosenTerr.avg25.toLocaleString() + ' Units/Mo</strong></div>' +
+            '<div class="kpi-pill"><span>H1 2026 Baseline</span><strong style="color:var(--primary);">' + chosenTerr.h1.toLocaleString() + ' Units/Mo</strong></div>' +
+            '<div class="kpi-pill"><span>Q3 2026 Run-Rate</span><strong style="color:#8B5CF6;">' + chosenTerr.q3.toLocaleString() + ' Units/Mo</strong></div>' +
+            '<div class="kpi-pill"><span>Q3 vs H1 Velocity</span><strong style="color:' + (chosenTerr.pctH1 >= 0 ? 'var(--green)' : '#EF4444') + ';">' + (chosenTerr.pctH1 >= 0 ? '+' : '') + chosenTerr.pctH1.toFixed(1) + '% (' + (chosenTerr.diffH1 >= 0 ? '+' : '') + chosenTerr.diffH1.toLocaleString() + ')</strong></div>' +
+            '<div class="kpi-pill"><span>Q3 vs '25 Growth</span><strong style="color:' + (chosenTerr.pct25 >= 0 ? '#10B981' : '#EF4444') + ';">' + (chosenTerr.pct25 >= 0 ? '+' : '') + chosenTerr.pct25.toFixed(1) + '% (' + (chosenTerr.diff25 >= 0 ? '+' : '') + chosenTerr.diff25.toLocaleString() + ')</strong></div>';
+        }
+      }
+
       // Render Selected ADM Spotlight Card
       const spotCard = document.getElementById('chosenAdmVelocityCard');
-      const chosenTerr = territories.find(d => d.isChosen) || territories[0];
       if (spotCard) {
-        spotCard.innerHTML =
-          '<div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px;">' +
-            '<h3 style="margin:0; font-size:13.5px; color:#1E293B;">🎯 SELECTED REP 3-HORIZON VELOCITY: ' + chosenTerr.dm.toUpperCase() + ' (' + chosenTerr.t.toUpperCase() + ')</h3>' +
-            '<span class="badge-above" style="background:' + chosenTerr.badgeColor + '20; color:' + chosenTerr.badgeColor + '; border-color:' + chosenTerr.badgeColor + '; font-size:11px;">' + chosenTerr.badge + '</span>' +
-          '</div>' +
-          '<div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap:8px; margin-top:8px; background:#F8FAFC; padding:8px; border-radius:8px;">' +
-            '<div><span style="font-size:10.5px; color:#64748B;">2025 Mo Baseline</span><br><strong style="font-size:13px; color:#64748B;">' + chosenTerr.avg25.toLocaleString() + '</strong></div>' +
-            '<div><span style="font-size:10.5px; color:#64748B;">H1 2026 Mo Baseline</span><br><strong style="font-size:13px; color:#1B365D;">' + chosenTerr.h1.toLocaleString() + '</strong></div>' +
-            '<div><span style="font-size:10.5px; color:#64748B;">Q3 2026 Run-Rate</span><br><strong style="font-size:13px; color:#8B5CF6;">' + chosenTerr.q3.toLocaleString() + '</strong></div>' +
-            '<div><span style="font-size:10.5px; color:#64748B;">Q3 vs H1 Velocity</span><br><strong style="font-size:13px; color:' + (chosenTerr.pctH1 >= 0 ? '#10B981' : '#EF4444') + ';">' + (chosenTerr.pctH1 >= 0 ? '+' : '') + chosenTerr.pctH1.toFixed(1) + '%</strong> <small style="font-size:10px; color:#64748B;">(' + (chosenTerr.diffH1 >= 0 ? '+' : '') + chosenTerr.diffH1.toLocaleString() + ')</small></div>' +
-            '<div><span style="font-size:10.5px; color:#64748B;">Q3 vs 2025 Growth</span><br><strong style="font-size:13px; color:' + (chosenTerr.pct25 >= 0 ? '#10B981' : '#EF4444') + ';">' + (chosenTerr.pct25 >= 0 ? '+' : '') + chosenTerr.pct25.toFixed(1) + '%</strong> <small style="font-size:10px; color:#64748B;">(' + (chosenTerr.diff25 >= 0 ? '+' : '') + chosenTerr.diff25.toLocaleString() + ')</small></div>' +
-          '</div>' +
-          '<p style="margin-top:8px; font-size:11.5px; color:#334155; line-height:1.45;"><strong>Strategic Field Mandate:</strong> ' + chosenTerr.action + '</p>';
+        if (chosenPerson.isMgmt) {
+          spotCard.innerHTML =
+            '<div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px;">' +
+              '<h3 style="margin:0; font-size:13.5px; color:#1E293B;">🏢 NATIONAL COMMERCIAL VELOCITY: EGYPT TOTAL (9 TERRITORIES)</h3>' +
+              '<span class="badge-above" style="background:#10B98120; color:#10B981; border-color:#10B981; font-size:11px;">🚀 NATIONAL ACCELERATION</span>' +
+            '</div>' +
+            '<div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap:8px; margin-top:8px; background:#F8FAFC; padding:8px; border-radius:8px;">' +
+              '<div><span style="font-size:10.5px; color:#64748B;">2025 Mo Baseline</span><br><strong style="font-size:13px; color:#64748B;">' + tot25.toLocaleString() + '</strong></div>' +
+              '<div><span style="font-size:10.5px; color:#64748B;">H1 2026 Baseline</span><br><strong style="font-size:13px; color:#1B365D;">' + totalH1.toLocaleString() + '</strong></div>' +
+              '<div><span style="font-size:10.5px; color:#64748B;">Q3 2026 Run-Rate</span><br><strong style="font-size:13px; color:#8B5CF6;">' + totalQ3.toLocaleString() + '</strong></div>' +
+              '<div><span style="font-size:10.5px; color:#64748B;">Q3 vs H1 Velocity</span><br><strong style="font-size:13px; color:#10B981;">+' + compQ3VsH1Pct.toFixed(1) + '%</strong> <small style="font-size:10px; color:#64748B;">(+' + compQ3VsH1Diff.toLocaleString() + ')</small></div>' +
+              '<div><span style="font-size:10.5px; color:#64748B;">Q3 vs 2025 Growth</span><br><strong style="font-size:13px; color:#10B981;">+' + compQ3Vs25Pct.toFixed(1) + '%</strong> <small style="font-size:10px; color:#64748B;">(+' + compQ3Vs25Diff.toLocaleString() + ')</small></div>' +
+            '</div>' +
+            '<p style="margin-top:8px; font-size:11.5px; color:#334155; line-height:1.45;"><strong>Executive Field Mandate:</strong> Egypt sales run-rate expanded by +12.9% in Q3 (+17,811 cans/mo vs H1) and +51.0% vs 2025. Protect Upper Egypt core volume, aggressively fund Cairo growth, and support inventory recovery across Delta distributor networks.</p>';
+        } else {
+          spotCard.innerHTML =
+            '<div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px;">' +
+              '<h3 style="margin:0; font-size:13.5px; color:#1E293B;">🎯 SELECTED REP 3-HORIZON VELOCITY: ' + chosenTerr.dm.toUpperCase() + ' (' + chosenTerr.t.toUpperCase() + ')</h3>' +
+              '<span class="badge-above" style="background:' + chosenTerr.badgeColor + '20; color:' + chosenTerr.badgeColor + '; border-color:' + chosenTerr.badgeColor + '; font-size:11px;">' + chosenTerr.badge + '</span>' +
+            '</div>' +
+            '<div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap:8px; margin-top:8px; background:#F8FAFC; padding:8px; border-radius:8px;">' +
+              '<div><span style="font-size:10.5px; color:#64748B;">2025 Mo Baseline</span><br><strong style="font-size:13px; color:#64748B;">' + chosenTerr.avg25.toLocaleString() + '</strong></div>' +
+              '<div><span style="font-size:10.5px; color:#64748B;">H1 2026 Mo Baseline</span><br><strong style="font-size:13px; color:#1B365D;">' + chosenTerr.h1.toLocaleString() + '</strong></div>' +
+              '<div><span style="font-size:10.5px; color:#64748B;">Q3 2026 Run-Rate</span><br><strong style="font-size:13px; color:#8B5CF6;">' + chosenTerr.q3.toLocaleString() + '</strong></div>' +
+              '<div><span style="font-size:10.5px; color:#64748B;">Q3 vs H1 Velocity</span><br><strong style="font-size:13px; color:' + (chosenTerr.pctH1 >= 0 ? '#10B981' : '#EF4444') + ';">' + (chosenTerr.pctH1 >= 0 ? '+' : '') + chosenTerr.pctH1.toFixed(1) + '%</strong> <small style="font-size:10px; color:#64748B;">(' + (chosenTerr.diffH1 >= 0 ? '+' : '') + chosenTerr.diffH1.toLocaleString() + ')</small></div>' +
+              '<div><span style="font-size:10.5px; color:#64748B;">Q3 vs 2025 Growth</span><br><strong style="font-size:13px; color:' + (chosenTerr.pct25 >= 0 ? '#10B981' : '#EF4444') + ';">' + (chosenTerr.pct25 >= 0 ? '+' : '') + chosenTerr.pct25.toFixed(1) + '%</strong> <small style="font-size:10px; color:#64748B;">(' + (chosenTerr.diff25 >= 0 ? '+' : '') + chosenTerr.diff25.toLocaleString() + ')</small></div>' +
+            '</div>' +
+            '<p style="margin-top:8px; font-size:11.5px; color:#334155; line-height:1.45;"><strong>Strategic Field Mandate:</strong> ' + chosenTerr.action + '</p>';
+        }
       }
 
       // Render ChartSlide11 (3-Horizon Territory Velocity & Growth Combo)
@@ -4367,16 +4966,21 @@
         try { charts.s11.destroy(); } catch (e) {}
       }
 
-      const labels = territories.map(d => d.t);
+      const labels = territories.map(d => {
+        if (isTopManagementView || d.isChosen) {
+          return (d.isChosen ? '★ ' : '') + d.t;
+        }
+        return getMaskedTerritoryName(d.idx);
+      });
       const data25 = territories.map(d => d.avg25);
       const dataH1 = territories.map(d => d.h1);
       const dataQ3 = territories.map(d => d.q3);
       const dataPctH1 = territories.map(d => Number(d.pctH1.toFixed(1)));
       const dataPct25 = territories.map(d => Number(d.pct25.toFixed(1)));
 
-      const bg25 = territories.map(d => d.isChosen ? '#CBD5E1' : '#94A3B8');
-      const bgH1 = territories.map(d => d.isChosen ? '#4338CA' : '#1B365D');
-      const bgQ3 = territories.map(d => d.isChosen ? '#7C3AED' : '#0D9488');
+      const bg25 = territories.map(d => (!isTopManagementView && d.isChosen) ? '#C4B5FD' : '#94A3B8');
+      const bgH1 = territories.map(d => (!isTopManagementView && d.isChosen) ? '#6366F1' : '#1B365D');
+      const bgQ3 = territories.map(d => (!isTopManagementView && d.isChosen) ? '#8B5CF6' : '#0D9488');
 
       const ctx11 = document.getElementById('chartSlide11').getContext('2d');
       charts.s11 = new ChartLib(ctx11, {
@@ -4447,6 +5051,14 @@
             legend: { position: 'top', labels: { boxWidth: 12, font: { size: 10.5, weight: '600' } } },
             tooltip: {
               callbacks: {
+                title: function(items) {
+                  if (!items || !items.length) return '';
+                  const item = items[0];
+                  const d = territories[item.dataIndex];
+                  const tName = (isTopManagementView || d.isChosen) ? d.t : getMaskedTerritoryName(d.idx);
+                  const mName = (isTopManagementView || d.isChosen) ? d.dm : getMaskedDmName(d.idx);
+                  return (d.isChosen ? '★ ' : '') + tName + ' (' + mName + ')';
+                },
                 label: function(context) {
                   if (context.dataset.yAxisID === 'yPct') {
                     return context.dataset.label + ': ' + (context.raw >= 0 ? '+' : '') + context.raw + '%';
@@ -4496,9 +5108,30 @@
       ];
 
       const prodLabels = productsList.map(p => p.name);
-      const prod25 = productsList.map(p => Math.round(rawData2025.reduce((a, r) => a + (r[p.key] || 0), 0) / shortageDivisor2025));
-      const prodH1 = productsList.map(p => rawAvgH1_2026.reduce((a, r) => a + (r[p.key] || 0), 0));
-      const prodQ3 = productsList.map(p => rawAvgQ3_2026.reduce((a, r) => a + (r[p.key] || 0), 0));
+      let prod25, prodH1, prodQ3;
+
+      const prodTitle = document.getElementById('s11ProdChartTitle');
+      const prodSub = document.getElementById('s11ProdChartSubtitle');
+
+      if (chosenPerson.isMgmt) {
+        if (prodTitle) prodTitle.innerText = '📦 NATIONAL PRODUCT PORTFOLIO VELOCITY (EGYPT TOTAL)';
+        if (prodSub) prodSub.innerText = 'Comparing 2025 MoAvg vs H1 2026 MoAvg vs Q3 2026 Run-Rate across all 11 SKUs nationally';
+        prod25 = productsList.map(p => Math.round(rawData2025.reduce((a, r) => a + (r[p.key] || 0), 0) / shortageDivisor2025));
+        prodH1 = productsList.map(p => rawAvgH1_2026.reduce((a, r) => a + (r[p.key] || 0), 0));
+        prodQ3 = productsList.map(p => rawAvgQ3_2026.reduce((a, r) => a + (r[p.key] || 0), 0));
+      } else {
+        const pIdx = chosenPerson.idx;
+        const r25 = rawData2025[pIdx] || {};
+        const rH1 = rawAvgH1_2026[pIdx] || {};
+        const rQ3 = rawAvgQ3_2026[pIdx] || {};
+
+        if (prodTitle) prodTitle.innerText = '📦 PRODUCT PORTFOLIO VELOCITY: ' + chosenTerr.dm.toUpperCase() + ' (' + chosenTerr.t.toUpperCase() + ')';
+        if (prodSub) prodSub.innerText = 'Territory SKU breakdown showing 2025 MoAvg vs H1 2026 MoAvg vs Q3 2026 Run-Rate in cans/month';
+
+        prod25 = productsList.map(p => Math.round((r25[p.key] || 0) / shortageDivisor2025));
+        prodH1 = productsList.map(p => (rH1[p.key] || 0));
+        prodQ3 = productsList.map(p => (rQ3[p.key] || 0));
+      }
 
       const ctx11Prod = document.getElementById('chartSlide11Products').getContext('2d');
       charts.s11Prod = new ChartLib(ctx11Prod, {
@@ -4567,8 +5200,12 @@
       if (tbody) {
         tbody.innerHTML = '';
         territories.forEach((d, idx) => {
+          const isChosen = (!isTopManagementView && d.idx === chosenPerson.idx);
+          const terrName = (isTopManagementView || isChosen) ? d.t : getMaskedTerritoryName(d.idx);
+          const dmName = (isTopManagementView || isChosen) ? d.dm : getMaskedDmName(d.idx);
+
           const tr = document.createElement('tr');
-          if (d.isChosen) {
+          if (isChosen) {
             tr.style.background = '#EDE9FE';
             tr.style.fontWeight = 'bold';
           }
@@ -4577,8 +5214,8 @@
           const growthColor25 = d.pct25 >= 39.5 ? '#10B981' : (d.pct25 >= 0 ? '#1B365D' : '#EF4444');
           tr.innerHTML =
             '<td>' + (idx + 1) + '</td>' +
-            '<td><strong>' + (d.isChosen ? '👉 ' : '') + d.t + '</strong></td>' +
-            '<td>' + d.dm + '</td>' +
+            '<td><strong>' + (isChosen ? '👉 ' : '') + terrName + '</strong></td>' +
+            '<td>' + dmName + '</td>' +
             '<td style="text-align:right;">' + d.avg25.toLocaleString() + '</td>' +
             '<td style="text-align:right;">' + d.h1.toLocaleString() + '</td>' +
             '<td style="text-align:right; font-weight:700; color:#8B5CF6;">' + d.q3.toLocaleString() + '</td>' +
@@ -4608,6 +5245,55 @@
           '<td style="text-align:right;">100.0%</td>' +
           '<td><span class="badge-above" style="background:#10B98120; color:#10B981; border-color:#10B981; font-size:10px;">National Benchmark</span></td>';
         tbody.appendChild(trTot);
+      }
+
+      // Render 4 Velocity Tiers Grid with masking if an individual ASM is chosen
+      const tiersGrid = document.getElementById('s11TiersGrid');
+      if (tiersGrid) {
+        const getTierItemText = (d) => {
+          const isChosen = (!isTopManagementView && d.idx === chosenPerson.idx);
+          const tName = (isTopManagementView || isChosen) ? d.t : getMaskedTerritoryName(d.idx);
+          const mName = (isTopManagementView || isChosen) ? (d.dm.split(' ').slice(0, 2).join(' ')) : getMaskedDmName(d.idx);
+          const vol25 = (d.avg25 / 1000).toFixed(1) + 'k';
+          const volH1 = (d.h1 / 1000).toFixed(1) + 'k';
+          const volQ3 = (d.q3 / 1000).toFixed(1) + 'k/mo';
+          return (isChosen ? '<li style="background:#EDE9FE; border-radius:4px; padding:2px 4px;">⭐ <strong>' : '<li><strong>') + tName + ' (' + mName + '):</strong> ' + vol25 + ' ('25) → ' + volH1 + ' (H1) → <strong>' + volQ3 + ' (Q3)</strong>. ' + (d.pctH1 >= 0 ? '+' : '') + d.pctH1.toFixed(1) + '% vs H1, ' + (d.pct25 >= 0 ? '+' : '') + d.pct25.toFixed(1) + '% vs '25.' + (isChosen ? '</strong></li>' : '</li>');
+        };
+
+        const tHigh = territories.filter(d => d.pctH1 >= 40).map(getTierItemText).join('');
+        const tScale = territories.filter(d => d.pctH1 >= 15 && d.pctH1 < 40).map(getTierItemText).join('');
+        const tSteady = territories.filter(d => d.pctH1 >= 0 && d.pctH1 < 15).map(getTierItemText).join('');
+        const tWatch = territories.filter(d => d.pctH1 < 0).map(getTierItemText).join('');
+
+        tiersGrid.innerHTML =
+          '<div class="quad-card" style="border-left:4px solid #10B981; background:var(--green-bg); padding:10px;">' +
+            '<div class="quad-header" style="margin-bottom:6px;">' +
+              '<h4 style="color:#065F46; font-size:12px;">HIGH ACCELERATORS (+40% to +60%) 🚀</h4>' +
+              '<small style="font-weight:700; color:#065F46; font-size:10px;">Breakout Momentum</small>' +
+            '</div>' +
+            '<ul style="font-size:11px; line-height:1.45; padding-left:14px; color:#1E293B;">' + tHigh + '</ul>' +
+          '</div>' +
+          '<div class="quad-card" style="border-left:4px solid #3B82F6; background:#EFF6FF; padding:10px;">' +
+            '<div class="quad-header" style="margin-bottom:6px;">' +
+              '<h4 style="color:#1E40AF; font-size:12px;">SCALE COMPOUNDERS (+15% to +30%) 🛡️</h4>' +
+              '<small style="font-weight:700; color:#1E40AF; font-size:10px;">Volume Pillars</small>' +
+            '</div>' +
+            '<ul style="font-size:11px; line-height:1.45; padding-left:14px; color:#1E293B;">' + tScale + '</ul>' +
+          '</div>' +
+          '<div class="quad-card" style="border-left:4px solid #F59E0B; background:#FFFBEB; padding:10px;">' +
+            '<div class="quad-header" style="margin-bottom:6px;">' +
+              '<h4 style="color:#92400E; font-size:12px;">STEADY CONSOLIDATORS (0% to +10%) ⚖️</h4>' +
+              '<small style="font-weight:700; color:#92400E; font-size:10px;">Defensive Plateau</small>' +
+            '</div>' +
+            '<ul style="font-size:11px; line-height:1.45; padding-left:14px; color:#1E293B;">' + tSteady + '</ul>' +
+          '</div>' +
+          '<div class="quad-card" style="border-left:4px solid #EF4444; background:#FEF2F2; padding:10px;">' +
+            '<div class="quad-header" style="margin-bottom:6px;">' +
+              '<h4 style="color:#991B1B; font-size:12px;">CONTRACTION WATCHLIST (Negative Q3) ⚠️</h4>' +
+              '<small style="font-weight:700; color:#991B1B; font-size:10px;">Inventory &amp; Replenishment</small>' +
+            '</div>' +
+            '<ul style="font-size:11px; line-height:1.45; padding-left:14px; color:#1E293B;">' + tWatch + '</ul>' +
+          '</div>';
       }
     }
 
@@ -5019,6 +5705,7 @@
 
     function bootApp() {
       try {
+        checkInitialLockState();
         initSlideTabs();
         recalculateAllModelData();
         renderSlideOutline();
