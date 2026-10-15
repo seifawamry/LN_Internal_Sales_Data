@@ -2061,8 +2061,13 @@
       <div class="slide-header">
         <div class="slide-header-left">
           <h2><span class="slide-badge">SLIDE 02</span> CORE INFANT FORMULAS: MONTHLY SALES AVERAGES</h2>
+          <p id="s2Subtitle" style="margin:4px 0 0 0; font-size:12px; color:var(--text-muted); font-weight:600;">Pediamil 1, Pediamil 2, Pedia-Start 1 &amp; Pedia-Start 2 Monthly Performance Overview</p>
         </div>
+        <div class="kpi-pills" id="s2KpiPills"></div>
       </div>
+
+      <!-- DYNAMIC STRATEGIC ANALYSIS & DIAGNOSTIC CARD FOR CORE FORMULAS -->
+      <div id="s2DiagnosticCard" class="quad-diagnostic-card" style="margin-bottom:12px;"></div>
 
       <div class="grid-2">
         <div class="card">
@@ -2081,7 +2086,7 @@
           </div>
           <div class="data-table-wrapper">
             <table>
-              <thead>
+              <thead id="theadSlide2">
                 <tr>
                   <th>Product</th>
                   <th class="num">2026 MoAvg</th>
@@ -2096,7 +2101,7 @@
             </table>
           </div>
           <div style="margin-top:10px; font-size:11px; color:var(--text-muted); line-height:1.4;">
-            <strong>Flattening Rule:</strong> 2026 MoAvg = YTD/6 • 2025 MoAvg = Year/12 • LN AVG 6 2026 = National/9.
+            <strong>Flattening Rule:</strong> 2026 MoAvg = YTD 9 / 9 • 2025 MoAvg = Year / 12 • LN AVG 9 2026 = National / 9.
           </div>
         </div>
       </div>
@@ -2107,8 +2112,13 @@
       <div class="slide-header">
         <div class="slide-header-left">
           <h2><span class="slide-badge">SLIDE 03</span> SPECIALTY INFANT FORMULAS: MONTHLY SALES AVERAGES</h2>
+          <p id="s3Subtitle" style="margin:4px 0 0 0; font-size:12px; color:var(--text-muted); font-weight:600;">Pediamil LF, HA, AR, AC &amp; Pediamum Monthly Performance Overview</p>
         </div>
+        <div class="kpi-pills" id="s3KpiPills"></div>
       </div>
+
+      <!-- DYNAMIC STRATEGIC ANALYSIS & DIAGNOSTIC CARD FOR SPECIALTY FORMULAS -->
+      <div id="s3DiagnosticCard" class="quad-diagnostic-card" style="margin-bottom:12px;"></div>
 
       <div class="grid-2">
         <div class="card">
@@ -2127,7 +2137,7 @@
           </div>
           <div class="data-table-wrapper">
             <table>
-              <thead>
+              <thead id="theadSlide3">
                 <tr>
                   <th>Specialty SKU</th>
                   <th class="num">2026 MoAvg</th>
@@ -2142,7 +2152,7 @@
             </table>
           </div>
           <div style="margin-top:10px; font-size:11px; color:var(--text-muted); line-height:1.4;">
-            <strong>Prescription Focus:</strong> AC &amp; LF drive margin contributions. AR &amp; Pediamum are key expansion targets.
+            <strong>Prescription Focus:</strong> AC &amp; LF drive margin contributions. AR &amp; Pediamum are key expansion targets • <strong>Rule:</strong> 2026 MoAvg = YTD 9 / 9 • 2025 MoAvg = Year / 12 • LN AVG 9 2026 = National / 9.
           </div>
         </div>
       </div>
@@ -2936,7 +2946,7 @@
       </div>
 
       <div class="data-modal-tabs">
-        <button class="modal-tab-btn active" id="modalTab2026" onclick="switchEditorTab('2026')">📅 2026 YTD June Actuals (M06)</button>
+        <button class="modal-tab-btn active" id="modalTab2026" onclick="switchEditorTab('2026')">📅 2026 YTD September Actuals (M09)</button>
         <button class="modal-tab-btn" id="modalTab2025" onclick="switchEditorTab('2025')">📅 2025 Full-Year Actuals (M12)</button>
         <button class="modal-tab-btn" id="modalTabMeta" onclick="switchEditorTab('meta')">👤 Managers & Geo Share %</button>
         <button class="modal-tab-btn" id="modalTabCsv" onclick="switchEditorTab('csv')">📁 CSV Import & Auto-Calculate</button>
@@ -3154,11 +3164,13 @@
       { key: 'p2', name: 'Pediamil 2', isCore: true },
       { key: 'ps1', name: 'Pedia-Start 1', isCore: true },
       { key: 'ps2', name: 'Pedia-Start 2', isCore: true },
+      { key: 'pg3', name: 'PediaGrow 3', isCore: false },
       { key: 'lf', name: 'Pediamil LF', isCore: false },
       { key: 'ha', name: 'Pediamil HA', isCore: false },
       { key: 'ar', name: 'Pediamil AR', isCore: false },
       { key: 'ac', name: 'Pediamil AC', isCore: false },
-      { key: 'mum', name: 'Pediamum', isCore: false }
+      { key: 'mum', name: 'Pediamum', isCore: false },
+      { key: 'lbw', name: 'LBW', isCore: false }
     ];
 
     function calculateRowSum(r) {
@@ -3390,8 +3402,8 @@
     }
 
     function downloadCsvTemplate() {
-      let csv = 'Egy Nutri. Total Unit Sales YTD M06-2026,,,,,,,,,,,,,,,,,\r\n';
-      csv += 'Territory Name,DM Name,Pediamil 1 400 GM,Pediamil 2 400 GM,PediaGrow 3 400 GM,Pediamil LF 400 GM,Pediamil HA 400 GM,Pediamil AR 400 GM,Pediamil AC 400 GM,Pediamum 400 GM,Pedia-Start 1,Pedia-Start 2,LBW- Egy,Sum YTD 6/2026,Contribution % YTD 6-2026, GEO Share % 2025,Controbution Index,Contribution Diff.\r\n';
+      let csv = 'Egy Nutri. Total Unit Sales YTD M09-2026,,,,,,,,,,,,,,,,,\r\n';
+      csv += 'Territory Name,DM Name,Pediamil 1 400 GM,Pediamil 2 400 GM,PediaGrow 3 400 GM,Pediamil LF 400 GM,Pediamil HA 400 GM,Pediamil AR 400 GM,Pediamil AC 400 GM,Pediamum 400 GM,Pedia-Start 1,Pedia-Start 2,LBW- Egy,Sum YTD 9/2026,Contribution % YTD 9-2026, GEO Share % 2025,Controbution Index,Contribution Diff.\r\n';
       rawData2026.forEach(r => {
         const geo = (r.geoShare ? (r.geoShare * 100).toFixed(3) + '%' : '');
         const diff = (r.contrDiff !== undefined ? (r.contrDiff * 100).toFixed(2) + '%' : '');
@@ -4167,68 +4179,290 @@
       });
     }
 
-    // SLIDE 2
+    // SLIDE 2: CORE FORMULAS
     function renderSlide2() {
       const p = getChosenPerson();
-      const s2Label = document.getElementById('s2TerritoryLabel');
-      if (s2Label) s2Label.innerText = p.dm + ' (' + p.territory + ')';
-
       const coreKeys = ['p1', 'p2', 'ps1', 'ps2'];
       const labels = ['Pediamil 1', 'Pediamil 2', 'Pedia-Start 1', 'Pedia-Start 2'];
 
-      const avg26Data = [];
-      const avg25Data = [];
-      const lnAvgData = [];
+      // 1. Calculate Core Totals and Metrics
+      let core26Sum = 0;
+      let core25Sum = 0;
+      let nationalCore26Sum = 0;
+      let nationalCore25Sum = 0;
 
+      coreKeys.forEach(k => {
+        core26Sum += (p.r26[k] || 0) / shortageDivisor2026;
+        core25Sum += (p.r25[k] || 0) / shortageDivisor2025;
+        nationalCore26Sum += (company2026[k] || 0) / shortageDivisor2026;
+        nationalCore25Sum += (company2025[k] || 0) / shortageDivisor2025;
+      });
+
+      const corePpg = core25Sum > 0 ? ((core26Sum / core25Sum) - 1) * 100 : 0;
+      const nationalCorePpg = nationalCore25Sum > 0 ? ((nationalCore26Sum / nationalCore25Sum) - 1) * 100 : 0;
+      const nationalCoreAvgPerAdm = nationalCore26Sum / Math.max(1, rawData2026.length);
+      const nationalCoreAvgPerAdm25 = nationalCore25Sum / Math.max(1, rawData2026.length);
+
+      const totVol26 = p.r26.sum / shortageDivisor2026;
+      const coreShareOfTotal = totVol26 > 0 ? (core26Sum / totVol26) * 100 : 0;
+
+      // 2. Subtitle & KPI Pills
+      const s2Sub = document.getElementById('s2Subtitle');
+      const s2Pills = document.getElementById('s2KpiPills');
+
+      if (p.isMgmt) {
+        if (s2Sub) s2Sub.innerText = '🏢 Top Management National View: Core Infant Formulas (Pediamil 1, 2 & Pedia-Start 1, 2) Volume, Growth & Averages across Egypt';
+        if (s2Pills) {
+          s2Pills.innerHTML =
+            '<div class="kpi-pill"><span>Core 2026 MoAvg Total</span><strong style="color:var(--primary);">' + Math.round(nationalCore26Sum).toLocaleString() + ' Cans/Mo</strong></div>' +
+            '<div class="kpi-pill"><span>Core 2025 Baseline</span><strong style="color:var(--text-muted);">' + Math.round(nationalCore25Sum).toLocaleString() + ' Cans/Mo</strong></div>' +
+            '<div class="kpi-pill"><span>Core National PPG</span><strong style="color:var(--green);">+' + nationalCorePpg.toFixed(1) + '%</strong></div>' +
+            '<div class="kpi-pill"><span>Core Avg / ADM</span><strong style="color:#F59E0B;">' + Math.round(nationalCoreAvgPerAdm).toLocaleString() + ' Cans/Mo</strong></div>' +
+            '<div class="kpi-pill"><span>Core Portfolio Share</span><strong style="color:#8B5CF6;">' + coreShareOfTotal.toFixed(1) + '% of Egypt</strong></div>';
+        }
+      } else {
+        if (s2Sub) s2Sub.innerText = '🎯 ' + p.territory + ' — ' + p.dm.toUpperCase() + ': Individual Core Formulas Performance, PPG% Growth & Line Average Benchmark';
+        if (s2Pills) {
+          s2Pills.innerHTML =
+            '<div class="kpi-pill"><span>ASM Core 2026 MoAvg</span><strong style="color:var(--primary);">' + Math.round(core26Sum).toLocaleString() + ' Cans/Mo</strong></div>' +
+            '<div class="kpi-pill"><span>ASM Core 2025 Baseline</span><strong style="color:var(--text-muted);">' + Math.round(core25Sum).toLocaleString() + ' Cans/Mo</strong></div>' +
+            '<div class="kpi-pill"><span>ASM Core PPG%</span><strong style="color:' + (corePpg >= nationalCorePpg ? 'var(--green)' : '#EF4444') + ';">' + (corePpg >= 0 ? '+' : '') + corePpg.toFixed(1) + '%</strong></div>' +
+            '<div class="kpi-pill"><span>Line Benchmark / ADM</span><strong style="color:#F59E0B;">' + Math.round(nationalCoreAvgPerAdm).toLocaleString() + ' Cans/Mo</strong></div>' +
+            '<div class="kpi-pill"><span>Core Territory Share</span><strong style="color:#8B5CF6;">' + coreShareOfTotal.toFixed(1) + '% of Sales</strong></div>';
+        }
+      }
+
+      // 3. Dynamic Strategic Analysis & Diagnostic Card
+      const diagCard = document.getElementById('s2DiagnosticCard');
+      if (diagCard) {
+        if (p.isMgmt) {
+          diagCard.style.background = '#F8FAFC';
+          diagCard.style.border = '1px solid #CBD5E1';
+          diagCard.innerHTML =
+            '<div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px;">' +
+              '<h3 style="margin:0; font-size:13.5px; color:#1E293B;">🏢 TOP MANAGEMENT EXECUTIVE ANALYSIS: NATIONAL CORE FORMULAS AUDIT</h3>' +
+              '<span class="badge-above" style="background:#1E3A8A20; color:#1E3A8A; border-color:#1E3A8A;">EXECUTIVE CORE AUDIT</span>' +
+            '</div>' +
+            '<p style="margin-top:8px; font-size:12px; line-height:1.5; color:#334155;">' +
+              '• <strong>Core Volume Anchor:</strong> The 4 core formulas represent <strong>' + coreShareOfTotal.toFixed(1) + '% of Egypt sales</strong> (' + Math.round(nationalCore26Sum).toLocaleString() + ' cans/month), accelerating at <strong>+' + nationalCorePpg.toFixed(1) + '% PPG</strong> over the 2025 baseline.<br>' +
+              '• <strong>Primary Growth Engines:</strong> <strong>Pediamil 2 (+68.5% PPG, 24,900 cans/mo)</strong> and <strong>Pediamil 1 (+46.9% PPG, 40,960 cans/mo)</strong> generate the largest volume and cash flow expansion nationally.<br>' +
+              '• <strong>Institutional Nursery Pillars:</strong> <strong>Pedia-Start 1 (+9.6% PPG, 27,170 cans/mo)</strong> and <strong>Pedia-Start 2 (+37.6% PPG, 15,969 cans/mo)</strong> anchor neonatal hospital listings and pediatric maternity discharge packs.<br>' +
+              '• <strong>National Average per ADM:</strong> An average ASM territory delivers <strong>' + Math.round(nationalCoreAvgPerAdm).toLocaleString() + ' cans/mo</strong> across the 4 core formulas (Pediamil 1: 4,551 | Pediamil 2: 2,767 | Pedia-Start 1: 3,019 | Pedia-Start 2: 1,774).<br>' +
+              '• <strong>Commercial Executive Mandate:</strong> Prevent distributor stockouts on Pediamil 1 & 2 in high-velocity hubs (Upper Egypt II & Delta), while intensifying stage-2 conversion detailing (Pedia-Start 2) to capture follow-on prescriptions.' +
+            '</p>';
+        } else {
+          // Identify star and lagging core formulas for this ASM
+          let bestProd = coreKeys[0];
+          let bestPpg = -999;
+          let worstProd = coreKeys[0];
+          let worstPpg = 999;
+
+          coreKeys.forEach(k => {
+            const v26 = (p.r26[k] || 0) / shortageDivisor2026;
+            const v25 = (p.r25[k] || 0) / shortageDivisor2025;
+            const ppg = v25 > 0 ? ((v26 / v25) - 1) * 100 : 0;
+            if (ppg > bestPpg) { bestPpg = ppg; bestProd = k; }
+            if (ppg < worstPpg) { worstPpg = ppg; worstProd = k; }
+          });
+
+          const nameMap = { p1: 'Pediamil 1', p2: 'Pediamil 2', ps1: 'Pedia-Start 1', ps2: 'Pedia-Start 2' };
+          const isAboveNational = corePpg >= nationalCorePpg;
+          const vsLineTotal = ((core26Sum / nationalCoreAvgPerAdm) - 1) * 100;
+
+          diagCard.style.background = isAboveNational ? '#F0FDF4' : '#FEF2F2';
+          diagCard.style.border = isAboveNational ? '1px solid #86EFAC' : '1px solid #FECACA';
+          diagCard.innerHTML =
+            '<div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px;">' +
+              '<h3 style="margin:0; font-size:13.5px; color:#1E293B;">🎯 SPECIAL ASM CORE ANALYSIS: ' + p.dm.toUpperCase() + ' (' + p.territory.toUpperCase() + ')</h3>' +
+              '<span class="' + (isAboveNational ? 'badge-above' : 'badge-below') + '">' + (isAboveNational ? '⭐ OUTPACING COMPANY CORE GROWTH' : '⚠️ CORE PERFORMANCE REVIEW') + '</span>' +
+            '</div>' +
+            '<p style="margin-top:8px; font-size:12px; line-height:1.5; color:#334155;">' +
+              '• <strong>Territory Core Volume:</strong> ' + p.dm + ' delivers <strong>' + Math.round(core26Sum).toLocaleString() + ' cans/month</strong> in core formulas (' + (vsLineTotal >= 0 ? '+' : '') + vsLineTotal.toFixed(1) + '% vs Company Line Avg of ' + Math.round(nationalCoreAvgPerAdm).toLocaleString() + ' cans/mo).<br>' +
+              '• <strong>Core Growth Rate:</strong> <strong>' + (corePpg >= 0 ? '+' : '') + corePpg.toFixed(1) + '% PPG</strong> vs Company Core pace of +' + nationalCorePpg.toFixed(1) + '%.<br>' +
+              '• <strong>Territory Star SKU:</strong> <strong>' + nameMap[bestProd] + '</strong> leading with <strong>' + (bestPpg >= 0 ? '+' : '') + bestPpg.toFixed(1) + '% PPG</strong> (' + Math.round((p.r26[bestProd]||0)/shortageDivisor2026).toLocaleString() + ' cans/mo).<br>' +
+              '• <strong>Priority Focus SKU:</strong> <strong>' + nameMap[worstProd] + '</strong> at <strong>' + (worstPpg >= 0 ? '+' : '') + worstPpg.toFixed(1) + '% PPG</strong> — targeted pediatric hospital coverage required.<br>' +
+              '• <strong>Field Action Mandate:</strong> ' + (corePpg >= nationalCorePpg ? 'Defend established preschool and hospital brand preference while aggressively driving multi-tin pharmacy bundle promotions.' : 'Audit representative call frequency in key hospital bricks and realign detailing priority toward high-growth stage-2 formulas.') +
+            '</p>';
+        }
+      }
+
+      // 4. Render Table (with Headers adapted for Mgmt vs ASM, plus Total & Average rows)
+      const thead = document.getElementById('theadSlide2');
       const tbody = document.getElementById('tbodySlide2');
       tbody.innerHTML = '';
 
-      coreKeys.forEach((key, idx) => {
-        const v26 = p.r26[key];
-        const v25 = p.r25[key];
-        const avg26 = v26 / shortageDivisor2026;
-        const avg25 = v25 / shortageDivisor2025;
-        const ppg = avg25 > 0 ? ((avg26 / avg25) - 1) * 100 : 0;
-        const lnAvg = compProductMetrics[key].lnAvgAdm;
-        const vsLnAvg = ((avg26 / lnAvg) - 1) * 100;
+      if (p.isMgmt) {
+        if (thead) {
+          thead.innerHTML =
+            '<tr>' +
+              '<th>Product Name</th>' +
+              '<th class="num">2026 National MoAvg</th>' +
+              '<th class="num">2025 National MoAvg</th>' +
+              '<th class="num">National PPG %</th>' +
+              '<th class="num">2026 Line Avg / ADM</th>' +
+              '<th class="num">2025 Line Avg / ADM</th>' +
+              '<th>Core Portfolio Share</th>' +
+            '</tr>';
+        }
 
-        avg26Data.push(Math.round(avg26));
-        avg25Data.push(Math.round(avg25));
-        lnAvgData.push(Math.round(lnAvg));
+        coreKeys.forEach((key, idx) => {
+          const nat26 = (company2026[key] || 0) / shortageDivisor2026;
+          const nat25 = (company2025[key] || 0) / shortageDivisor2025;
+          const ppg = nat25 > 0 ? ((nat26 / nat25) - 1) * 100 : 0;
+          const admAvg26 = nat26 / Math.max(1, rawData2026.length);
+          const admAvg25 = nat25 / Math.max(1, rawData2026.length);
+          const share = nationalCore26Sum > 0 ? (nat26 / nationalCore26Sum) * 100 : 0;
 
-        const isAboveLn = vsLnAvg >= 0;
-        const isAboveCompPpg = ppg >= compProductMetrics[key].ppg;
+          const tr = document.createElement('tr');
+          tr.innerHTML =
+            '<td><strong>' + labels[idx] + '</strong></td>' +
+            '<td class="num"><strong>' + Math.round(nat26).toLocaleString() + '</strong></td>' +
+            '<td class="num">' + Math.round(nat25).toLocaleString() + '</td>' +
+            '<td class="num" style="font-weight:700; color:var(--green-text);">' +
+              (ppg > 0 ? '+' : '') + ppg.toFixed(1) + '%' +
+            '</td>' +
+            '<td class="num" style="color:var(--primary); font-weight:700;">' + Math.round(admAvg26).toLocaleString() + '</td>' +
+            '<td class="num" style="color:var(--text-muted);">' + Math.round(admAvg25).toLocaleString() + '</td>' +
+            '<td><span class="badge-above">' + share.toFixed(1) + '%</span></td>';
+          tbody.appendChild(tr);
+        });
 
-        const tr = document.createElement('tr');
-        tr.innerHTML =
-          '<td><strong>' + labels[idx] + '</strong></td>' +
-          '<td class="num"><strong>' + Math.round(avg26).toLocaleString() + '</strong></td>' +
-          '<td class="num">' + Math.round(avg25).toLocaleString() + '</td>' +
-          '<td class="num" style="font-weight:700; color:' + (isAboveCompPpg ? 'var(--green-text)' : 'var(--red-text)') + ';">' +
-            (ppg > 0 ? '+' : '') + ppg.toFixed(1) + '%' +
+        // Summary Rows for Top Management
+        const totalTr = document.createElement('tr');
+        totalTr.className = 'total-row';
+        totalTr.style.background = '#F1F5F9';
+        totalTr.style.borderTop = '2px solid #1B365D';
+        totalTr.innerHTML =
+          '<td><strong>CORE PORTFOLIO TOTAL</strong></td>' +
+          '<td class="num"><strong>' + Math.round(nationalCore26Sum).toLocaleString() + '</strong></td>' +
+          '<td class="num"><strong>' + Math.round(nationalCore25Sum).toLocaleString() + '</strong></td>' +
+          '<td class="num" style="font-weight:800; color:var(--green-text);">+' + nationalCorePpg.toFixed(1) + '%</td>' +
+          '<td class="num" style="color:var(--primary); font-weight:800;">' + Math.round(nationalCoreAvgPerAdm).toLocaleString() + '</td>' +
+          '<td class="num" style="color:var(--text-muted); font-weight:700;">' + Math.round(nationalCoreAvgPerAdm25).toLocaleString() + '</td>' +
+          '<td><span class="badge-above" style="background:#1B365D; color:#FFF;">100.0%</span></td>';
+        tbody.appendChild(totalTr);
+
+        const avgTr = document.createElement('tr');
+        avgTr.style.background = '#F8FAFC';
+        avgTr.style.fontWeight = '600';
+        avgTr.innerHTML =
+          '<td><em>AVERAGE PER CORE SKU</em></td>' +
+          '<td class="num"><em>' + Math.round(nationalCore26Sum / coreKeys.length).toLocaleString() + '</em></td>' +
+          '<td class="num"><em>' + Math.round(nationalCore25Sum / coreKeys.length).toLocaleString() + '</em></td>' +
+          '<td class="num" style="color:var(--green-text);">+' + nationalCorePpg.toFixed(1) + '%</td>' +
+          '<td class="num" style="color:var(--primary);"><em>' + Math.round(nationalCoreAvgPerAdm / coreKeys.length).toLocaleString() + '</em></td>' +
+          '<td class="num" style="color:var(--text-muted);"><em>' + Math.round(nationalCoreAvgPerAdm25 / coreKeys.length).toLocaleString() + '</em></td>' +
+          '<td><em>25.0%</em></td>';
+        tbody.appendChild(avgTr);
+
+      } else {
+        // Individual ASM Table
+        if (thead) {
+          thead.innerHTML =
+            '<tr>' +
+              '<th>Product Name</th>' +
+              '<th class="num">2026 ASM MoAvg</th>' +
+              '<th class="num">2025 ASM MoAvg</th>' +
+              '<th class="num">ASM PPG %</th>' +
+              '<th class="num">LN AVG 9 2026 (Line/ADM)</th>' +
+              '<th>vs Line Avg</th>' +
+            '</tr>';
+        }
+
+        coreKeys.forEach((key, idx) => {
+          const v26 = (p.r26[key] || 0) / shortageDivisor2026;
+          const v25 = (p.r25[key] || 0) / shortageDivisor2025;
+          const ppg = v25 > 0 ? ((v26 / v25) - 1) * 100 : 0;
+          const lnAvg = compProductMetrics[key].lnAvgAdm;
+          const vsLnAvg = ((v26 / lnAvg) - 1) * 100;
+          const isAboveLn = vsLnAvg >= 0;
+          const isAboveCompPpg = ppg >= compProductMetrics[key].ppg;
+
+          const tr = document.createElement('tr');
+          tr.innerHTML =
+            '<td><strong>' + labels[idx] + '</strong></td>' +
+            '<td class="num"><strong>' + Math.round(v26).toLocaleString() + '</strong></td>' +
+            '<td class="num">' + Math.round(v25).toLocaleString() + '</td>' +
+            '<td class="num" style="font-weight:700; color:' + (isAboveCompPpg ? 'var(--green-text)' : 'var(--red-text)') + ';">' +
+              (ppg > 0 ? '+' : '') + ppg.toFixed(1) + '%' +
+            '</td>' +
+            '<td class="num" style="color:var(--primary); font-weight:600;">' + Math.round(lnAvg).toLocaleString() + '</td>' +
+            '<td>' +
+              '<span class="' + (isAboveLn ? 'badge-above' : 'badge-below') + '">' +
+                (isAboveLn ? '▲ +' + vsLnAvg.toFixed(1) + '%' : '▼ ' + vsLnAvg.toFixed(1) + '%') +
+              '</span>' +
+            '</td>';
+          tbody.appendChild(tr);
+        });
+
+        // Summary Rows for ASM
+        const vsTotalLn = ((core26Sum / nationalCoreAvgPerAdm) - 1) * 100;
+        const totalTr = document.createElement('tr');
+        totalTr.className = 'total-row';
+        totalTr.style.background = '#F1F5F9';
+        totalTr.style.borderTop = '2px solid #1B365D';
+        totalTr.innerHTML =
+          '<td><strong>CORE PORTFOLIO TOTAL</strong></td>' +
+          '<td class="num"><strong>' + Math.round(core26Sum).toLocaleString() + '</strong></td>' +
+          '<td class="num"><strong>' + Math.round(core25Sum).toLocaleString() + '</strong></td>' +
+          '<td class="num" style="font-weight:800; color:' + (corePpg >= nationalCorePpg ? 'var(--green-text)' : 'var(--red-text)') + ';">' +
+            (corePpg > 0 ? '+' : '') + corePpg.toFixed(1) + '%' +
           '</td>' +
-          '<td class="num" style="color:var(--primary); font-weight:600;">' + Math.round(lnAvg).toLocaleString() + '</td>' +
+          '<td class="num" style="color:var(--primary); font-weight:800;">' + Math.round(nationalCoreAvgPerAdm).toLocaleString() + '</td>' +
           '<td>' +
-            '<span class="' + (isAboveLn ? 'badge-above' : 'badge-below') + '">' +
-              (isAboveLn ? '▲ +' + vsLnAvg.toFixed(1) + '%' : '▼ ' + vsLnAvg.toFixed(1) + '%') +
+            '<span class="' + (vsTotalLn >= 0 ? 'badge-above' : 'badge-below') + '">' +
+              (vsTotalLn >= 0 ? '▲ +' + vsTotalLn.toFixed(1) + '%' : '▼ ' + vsTotalLn.toFixed(1) + '%') +
             '</span>' +
           '</td>';
-        tbody.appendChild(tr);
-      });
+        tbody.appendChild(totalTr);
 
+        const avgTr = document.createElement('tr');
+        avgTr.style.background = '#F8FAFC';
+        avgTr.style.fontWeight = '600';
+        avgTr.innerHTML =
+          '<td><em>AVERAGE PER CORE SKU</em></td>' +
+          '<td class="num"><em>' + Math.round(core26Sum / coreKeys.length).toLocaleString() + '</em></td>' +
+          '<td class="num"><em>' + Math.round(core25Sum / coreKeys.length).toLocaleString() + '</em></td>' +
+          '<td class="num" style="color:' + (corePpg >= nationalCorePpg ? 'var(--green-text)' : 'var(--red-text)') + ';">' +
+            (corePpg > 0 ? '+' : '') + corePpg.toFixed(1) + '%' +
+          '</td>' +
+          '<td class="num" style="color:var(--primary);"><em>' + Math.round(nationalCoreAvgPerAdm / coreKeys.length).toLocaleString() + '</em></td>' +
+          '<td><em>' + (vsTotalLn >= 0 ? '▲ +' + vsTotalLn.toFixed(1) + '%' : '▼ ' + vsTotalLn.toFixed(1) + '%') + '</em></td>';
+        tbody.appendChild(avgTr);
+      }
+
+      // 5. Chart Rendering
       if (charts.s2) {
         try { charts.s2.destroy(); } catch (e) {}
       }
       const ctx = document.getElementById('chartSlide2').getContext('2d');
+
+      let chartDatasets = [];
+      if (p.isMgmt) {
+        const nat26Data = coreKeys.map(k => Math.round((company2026[k]||0)/shortageDivisor2026));
+        const nat25Data = coreKeys.map(k => Math.round((company2025[k]||0)/shortageDivisor2025));
+
+        chartDatasets = [
+          { label: '2026 National MoAvg (Cans/Mo)', data: nat26Data, backgroundColor: '#1B365D', borderRadius: 4 },
+          { label: '2025 National MoAvg (Cans/Mo)', data: nat25Data, backgroundColor: '#60A5FA', borderRadius: 4 }
+        ];
+      } else {
+        const asm26Data = coreKeys.map(k => Math.round((p.r26[k]||0)/shortageDivisor2026));
+        const asm25Data = coreKeys.map(k => Math.round((p.r25[k]||0)/shortageDivisor2025));
+        const lnAvgData = coreKeys.map(k => Math.round(compProductMetrics[k].lnAvgAdm));
+
+        chartDatasets = [
+          { label: '2026 Monthly Avg (Units)', data: asm26Data, backgroundColor: '#1B365D', borderRadius: 4 },
+          { label: '2025 Monthly Avg (Units)', data: asm25Data, backgroundColor: '#60A5FA', borderRadius: 4 },
+          { label: 'LN AVG 9 2026 (Line Avg/ADM)', data: lnAvgData, backgroundColor: '#F59E0B', borderRadius: 4 }
+        ];
+      }
+
       charts.s2 = new ChartLib(ctx, {
         type: 'bar',
         data: {
           labels: labels,
-          datasets: [
-            { label: '2026 Monthly Avg (Units)', data: avg26Data, backgroundColor: '#1B365D', borderRadius: 4 },
-            { label: '2025 Monthly Avg (Units)', data: avg25Data, backgroundColor: '#60A5FA', borderRadius: 4 },
-            { label: 'LN AVG 6 2026 (Line Avg/ADM)', data: lnAvgData, backgroundColor: '#F59E0B', borderRadius: 4 }
-          ]
+          datasets: chartDatasets
         },
         options: {
           indexAxis: 'y',
@@ -4252,68 +4486,290 @@
       });
     }
 
-    // SLIDE 3
+    // SLIDE 3: SPECIALTY FORMULAS
     function renderSlide3() {
       const p = getChosenPerson();
-      const s3Label = document.getElementById('s3TerritoryLabel');
-      if (s3Label) s3Label.innerText = p.dm + ' (' + p.territory + ')';
-
       const specKeys = ['lf', 'ha', 'ar', 'ac', 'mum'];
       const labels = ['Pediamil LF', 'Pediamil HA', 'Pediamil AR', 'Pediamil AC', 'Pediamum'];
 
-      const avg26Data = [];
-      const avg25Data = [];
-      const lnAvgData = [];
+      // 1. Calculate Specialty Totals and Metrics
+      let spec26Sum = 0;
+      let spec25Sum = 0;
+      let nationalSpec26Sum = 0;
+      let nationalSpec25Sum = 0;
 
+      specKeys.forEach(k => {
+        spec26Sum += (p.r26[k] || 0) / shortageDivisor2026;
+        spec25Sum += (p.r25[k] || 0) / shortageDivisor2025;
+        nationalSpec26Sum += (company2026[k] || 0) / shortageDivisor2026;
+        nationalSpec25Sum += (company2025[k] || 0) / shortageDivisor2025;
+      });
+
+      const specPpg = spec25Sum > 0 ? ((spec26Sum / spec25Sum) - 1) * 100 : 0;
+      const nationalSpecPpg = nationalSpec25Sum > 0 ? ((nationalSpec26Sum / nationalSpec25Sum) - 1) * 100 : 0;
+      const nationalSpecAvgPerAdm = nationalSpec26Sum / Math.max(1, rawData2026.length);
+      const nationalSpecAvgPerAdm25 = nationalSpec25Sum / Math.max(1, rawData2026.length);
+
+      const totVol26 = p.r26.sum / shortageDivisor2026;
+      const specShareOfTotal = totVol26 > 0 ? (spec26Sum / totVol26) * 100 : 0;
+
+      // 2. Subtitle & KPI Pills
+      const s3Sub = document.getElementById('s3Subtitle');
+      const s3Pills = document.getElementById('s3KpiPills');
+
+      if (p.isMgmt) {
+        if (s3Sub) s3Sub.innerText = '🏢 Top Management National View: Specialty Infant Formulas (Pediamil LF, HA, AR, AC & Pediamum) Volume, Growth & Averages across Egypt';
+        if (s3Pills) {
+          s3Pills.innerHTML =
+            '<div class="kpi-pill"><span>Specialty 2026 MoAvg Total</span><strong style="color:#0D9488;">' + Math.round(nationalSpec26Sum).toLocaleString() + ' Cans/Mo</strong></div>' +
+            '<div class="kpi-pill"><span>Specialty 2025 Baseline</span><strong style="color:var(--text-muted);">' + Math.round(nationalSpec25Sum).toLocaleString() + ' Cans/Mo</strong></div>' +
+            '<div class="kpi-pill"><span>Specialty National PPG</span><strong style="color:var(--green);">+' + nationalSpecPpg.toFixed(1) + '%</strong></div>' +
+            '<div class="kpi-pill"><span>Specialty Avg / ADM</span><strong style="color:#F59E0B;">' + Math.round(nationalSpecAvgPerAdm).toLocaleString() + ' Cans/Mo</strong></div>' +
+            '<div class="kpi-pill"><span>Specialty Portfolio Share</span><strong style="color:#8B5CF6;">' + specShareOfTotal.toFixed(1) + '% of Egypt</strong></div>';
+        }
+      } else {
+        if (s3Sub) s3Sub.innerText = '🎯 ' + p.territory + ' — ' + p.dm.toUpperCase() + ': Individual Specialty Formulas Performance, PPG% Growth & Line Average Benchmark';
+        if (s3Pills) {
+          s3Pills.innerHTML =
+            '<div class="kpi-pill"><span>ASM Specialty 2026 MoAvg</span><strong style="color:#0D9488;">' + Math.round(spec26Sum).toLocaleString() + ' Cans/Mo</strong></div>' +
+            '<div class="kpi-pill"><span>ASM Specialty 2025 Baseline</span><strong style="color:var(--text-muted);">' + Math.round(spec25Sum).toLocaleString() + ' Cans/Mo</strong></div>' +
+            '<div class="kpi-pill"><span>ASM Specialty PPG%</span><strong style="color:' + (specPpg >= nationalSpecPpg ? 'var(--green)' : '#EF4444') + ';">' + (specPpg >= 0 ? '+' : '') + specPpg.toFixed(1) + '%</strong></div>' +
+            '<div class="kpi-pill"><span>Line Benchmark / ADM</span><strong style="color:#F59E0B;">' + Math.round(nationalSpecAvgPerAdm).toLocaleString() + ' Cans/Mo</strong></div>' +
+            '<div class="kpi-pill"><span>Specialty Share</span><strong style="color:#8B5CF6;">' + specShareOfTotal.toFixed(1) + '% of Sales</strong></div>';
+        }
+      }
+
+      // 3. Dynamic Strategic Analysis & Diagnostic Card
+      const diagCard = document.getElementById('s3DiagnosticCard');
+      if (diagCard) {
+        if (p.isMgmt) {
+          diagCard.style.background = '#F0FDFA';
+          diagCard.style.border = '1px solid #99F6E4';
+          diagCard.innerHTML =
+            '<div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px;">' +
+              '<h3 style="margin:0; font-size:13.5px; color:#115E59;">🏢 TOP MANAGEMENT EXECUTIVE ANALYSIS: SPECIALTY PORTFOLIO PROFITABILITY & DYNAMICS</h3>' +
+              '<span class="badge-above" style="background:#0D948820; color:#0D9488; border-color:#0D9488;">HIGH-MARGIN CLINICAL AUDIT</span>' +
+            '</div>' +
+            '<p style="margin-top:8px; font-size:12px; line-height:1.5; color:#334155;">' +
+              '• <strong>Clinical High-Margin Volume:</strong> Specialty lines deliver <strong>' + Math.round(nationalSpec26Sum).toLocaleString() + ' cans/month</strong> (19.0% of company sales), expanding by <strong>+' + nationalSpecPpg.toFixed(1) + '% PPG</strong> over 2025.<br>' +
+              '• <strong>Breakout Clinical Winner:</strong> <strong>Pediamil AC (+91.5% PPG, 10,073 cans/mo)</strong> has nearly doubled sales nationally, proving massive physician prescription uptake for colic/constipation management.<br>' +
+              '• <strong>Solid Expansion Drivers:</strong> <strong>Pediamil HA (+45.5% PPG, 7,912 cans/mo)</strong> and <strong>Pediamil LF (+19.3% PPG, 3,667 cans/mo)</strong> provide steady hypoallergenic and lactose intolerance detailing gains.<br>' +
+              '• <strong>Areas for Clinical Action:</strong> <strong>Pediamil AR (-17.7% PPG, 5,108 cans/mo)</strong> and <strong>Pediamum (-19.0% PPG, 675 cans/mo)</strong> require refreshed clinical messaging to gynecologists and pediatric GI specialists.<br>' +
+              '• <strong>Commercial Executive Mandate:</strong> Bundle Pediamil AC detailing with core formulas to protect margin yield; launch hospital pediatric GI symposia to reverse Pediamil AR contraction.' +
+            '</p>';
+        } else {
+          // Identify star and lagging specialty formulas for this ASM
+          let bestProd = specKeys[0];
+          let bestPpg = -999;
+          let worstProd = specKeys[0];
+          let worstPpg = 999;
+
+          specKeys.forEach(k => {
+            const v26 = (p.r26[k] || 0) / shortageDivisor2026;
+            const v25 = (p.r25[k] || 0) / shortageDivisor2025;
+            const ppg = v25 > 0 ? ((v26 / v25) - 1) * 100 : 0;
+            if (ppg > bestPpg) { bestPpg = ppg; bestProd = k; }
+            if (ppg < worstPpg) { worstPpg = ppg; worstProd = k; }
+          });
+
+          const nameMap = { lf: 'Pediamil LF', ha: 'Pediamil HA', ar: 'Pediamil AR', ac: 'Pediamil AC', mum: 'Pediamum' };
+          const isAboveNational = specPpg >= nationalSpecPpg;
+          const vsLineTotal = ((spec26Sum / nationalSpecAvgPerAdm) - 1) * 100;
+
+          diagCard.style.background = isAboveNational ? '#F0FDFA' : '#FFFBEB';
+          diagCard.style.border = isAboveNational ? '1px solid #99F6E4' : '1px solid #FDE68A';
+          diagCard.innerHTML =
+            '<div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px;">' +
+              '<h3 style="margin:0; font-size:13.5px; color:#1E293B;">🎯 SPECIAL ASM SPECIALTY ANALYSIS: ' + p.dm.toUpperCase() + ' (' + p.territory.toUpperCase() + ')</h3>' +
+              '<span class="' + (isAboveNational ? 'badge-above' : 'badge-below') + '">' + (isAboveNational ? '⭐ OUTPACING COMPANY SPECIALTY GROWTH' : '⚠️ SPECIALTY MARGIN REVIEW') + '</span>' +
+            '</div>' +
+            '<p style="margin-top:8px; font-size:12px; line-height:1.5; color:#334155;">' +
+              '• <strong>Territory Specialty Volume:</strong> ' + p.dm + ' delivers <strong>' + Math.round(spec26Sum).toLocaleString() + ' cans/month</strong> in specialty formulas (' + (vsLineTotal >= 0 ? '+' : '') + vsLineTotal.toFixed(1) + '% vs Company Line Avg of ' + Math.round(nationalSpecAvgPerAdm).toLocaleString() + ' cans/mo).<br>' +
+              '• <strong>Specialty Growth Pace:</strong> <strong>' + (specPpg >= 0 ? '+' : '') + specPpg.toFixed(1) + '% PPG</strong> vs National Specialty pace of +' + nationalSpecPpg.toFixed(1) + '%.<br>' +
+              '• <strong>Territory Clinical Star:</strong> <strong>' + nameMap[bestProd] + '</strong> leading with <strong>' + (bestPpg >= 0 ? '+' : '') + bestPpg.toFixed(1) + '% PPG</strong> (' + Math.round((p.r26[bestProd]||0)/shortageDivisor2026).toLocaleString() + ' cans/mo).<br>' +
+              '• <strong>Prescription Opportunity SKU:</strong> <strong>' + nameMap[worstProd] + '</strong> at <strong>' + (worstPpg >= 0 ? '+' : '') + worstPpg.toFixed(1) + '% PPG</strong> — targeted KOL engagement needed.<br>' +
+              '• <strong>Field Action Mandate:</strong> ' + (specPpg >= nationalSpecPpg ? 'Leverage strong pediatric specialist endorsement for Pediamil AC to secure regional pharmacy key account shelf placement.' : 'Schedule focused detailing rounds on key pediatric clinics specializing in infant gastrointestinal and allergy conditions.') +
+            '</p>';
+        }
+      }
+
+      // 4. Render Table
+      const thead = document.getElementById('theadSlide3');
       const tbody = document.getElementById('tbodySlide3');
       tbody.innerHTML = '';
 
-      specKeys.forEach((key, idx) => {
-        const v26 = p.r26[key];
-        const v25 = p.r25[key];
-        const avg26 = v26 / shortageDivisor2026;
-        const avg25 = v25 / shortageDivisor2025;
-        const ppg = avg25 > 0 ? ((avg26 / avg25) - 1) * 100 : 0;
-        const lnAvg = compProductMetrics[key].lnAvgAdm;
-        const vsLnAvg = ((avg26 / lnAvg) - 1) * 100;
+      if (p.isMgmt) {
+        if (thead) {
+          thead.innerHTML =
+            '<tr>' +
+              '<th>Specialty SKU</th>' +
+              '<th class="num">2026 National MoAvg</th>' +
+              '<th class="num">2025 National MoAvg</th>' +
+              '<th class="num">National PPG %</th>' +
+              '<th class="num">2026 Line Avg / ADM</th>' +
+              '<th class="num">2025 Line Avg / ADM</th>' +
+              '<th>Specialty Share %</th>' +
+            '</tr>';
+        }
 
-        avg26Data.push(Math.round(avg26));
-        avg25Data.push(Math.round(avg25));
-        lnAvgData.push(Math.round(lnAvg));
+        specKeys.forEach((key, idx) => {
+          const nat26 = (company2026[key] || 0) / shortageDivisor2026;
+          const nat25 = (company2025[key] || 0) / shortageDivisor2025;
+          const ppg = nat25 > 0 ? ((nat26 / nat25) - 1) * 100 : 0;
+          const admAvg26 = nat26 / Math.max(1, rawData2026.length);
+          const admAvg25 = nat25 / Math.max(1, rawData2026.length);
+          const share = nationalSpec26Sum > 0 ? (nat26 / nationalSpec26Sum) * 100 : 0;
 
-        const isAboveLn = vsLnAvg >= 0;
-        const isAboveCompPpg = ppg >= compProductMetrics[key].ppg;
+          const tr = document.createElement('tr');
+          tr.innerHTML =
+            '<td><strong>' + labels[idx] + '</strong></td>' +
+            '<td class="num"><strong>' + Math.round(nat26).toLocaleString() + '</strong></td>' +
+            '<td class="num">' + Math.round(nat25).toLocaleString() + '</td>' +
+            '<td class="num" style="font-weight:700; color:' + (ppg >= 0 ? 'var(--green-text)' : 'var(--red-text)') + ';">' +
+              (ppg > 0 ? '+' : '') + ppg.toFixed(1) + '%' +
+            '</td>' +
+            '<td class="num" style="color:var(--primary); font-weight:700;">' + Math.round(admAvg26).toLocaleString() + '</td>' +
+            '<td class="num" style="color:var(--text-muted);">' + Math.round(admAvg25).toLocaleString() + '</td>' +
+            '<td><span class="badge-above">' + share.toFixed(1) + '%</span></td>';
+          tbody.appendChild(tr);
+        });
 
-        const tr = document.createElement('tr');
-        tr.innerHTML =
-          '<td><strong>' + labels[idx] + '</strong></td>' +
-          '<td class="num"><strong>' + Math.round(avg26).toLocaleString() + '</strong></td>' +
-          '<td class="num">' + Math.round(avg25).toLocaleString() + '</td>' +
-          '<td class="num" style="font-weight:700; color:' + (isAboveCompPpg ? 'var(--green-text)' : 'var(--red-text)') + ';">' +
-            (ppg > 0 ? '+' : '') + ppg.toFixed(1) + '%' +
+        // Summary Rows for Top Management
+        const totalTr = document.createElement('tr');
+        totalTr.className = 'total-row';
+        totalTr.style.background = '#F0FDFA';
+        totalTr.style.borderTop = '2px solid #0D9488';
+        totalTr.innerHTML =
+          '<td><strong>SPECIALTY PORTFOLIO TOTAL</strong></td>' +
+          '<td class="num"><strong>' + Math.round(nationalSpec26Sum).toLocaleString() + '</strong></td>' +
+          '<td class="num"><strong>' + Math.round(nationalSpec25Sum).toLocaleString() + '</strong></td>' +
+          '<td class="num" style="font-weight:800; color:var(--green-text);">+' + nationalSpecPpg.toFixed(1) + '%</td>' +
+          '<td class="num" style="color:#0D9488; font-weight:800;">' + Math.round(nationalSpecAvgPerAdm).toLocaleString() + '</td>' +
+          '<td class="num" style="color:var(--text-muted); font-weight:700;">' + Math.round(nationalSpecAvgPerAdm25).toLocaleString() + '</td>' +
+          '<td><span class="badge-above" style="background:#0D9488; color:#FFF;">100.0%</span></td>';
+        tbody.appendChild(totalTr);
+
+        const avgTr = document.createElement('tr');
+        avgTr.style.background = '#F8FAFC';
+        avgTr.style.fontWeight = '600';
+        avgTr.innerHTML =
+          '<td><em>AVERAGE PER SPECIALTY SKU</em></td>' +
+          '<td class="num"><em>' + Math.round(nationalSpec26Sum / specKeys.length).toLocaleString() + '</em></td>' +
+          '<td class="num"><em>' + Math.round(nationalSpec25Sum / specKeys.length).toLocaleString() + '</em></td>' +
+          '<td class="num" style="color:var(--green-text);">+' + nationalSpecPpg.toFixed(1) + '%</td>' +
+          '<td class="num" style="color:#0D9488;"><em>' + Math.round(nationalSpecAvgPerAdm / specKeys.length).toLocaleString() + '</em></td>' +
+          '<td class="num" style="color:var(--text-muted);"><em>' + Math.round(nationalSpecAvgPerAdm25 / specKeys.length).toLocaleString() + '</em></td>' +
+          '<td><em>20.0%</em></td>';
+        tbody.appendChild(avgTr);
+
+      } else {
+        // Individual ASM Table
+        if (thead) {
+          thead.innerHTML =
+            '<tr>' +
+              '<th>Specialty SKU</th>' +
+              '<th class="num">2026 ASM MoAvg</th>' +
+              '<th class="num">2025 ASM MoAvg</th>' +
+              '<th class="num">ASM PPG %</th>' +
+              '<th class="num">LN AVG 9 2026 (Line/ADM)</th>' +
+              '<th>vs Line Avg</th>' +
+            '</tr>';
+        }
+
+        specKeys.forEach((key, idx) => {
+          const v26 = (p.r26[key] || 0) / shortageDivisor2026;
+          const v25 = (p.r25[key] || 0) / shortageDivisor2025;
+          const ppg = v25 > 0 ? ((v26 / v25) - 1) * 100 : 0;
+          const lnAvg = compProductMetrics[key].lnAvgAdm;
+          const vsLnAvg = ((v26 / lnAvg) - 1) * 100;
+          const isAboveLn = vsLnAvg >= 0;
+          const isAboveCompPpg = ppg >= compProductMetrics[key].ppg;
+
+          const tr = document.createElement('tr');
+          tr.innerHTML =
+            '<td><strong>' + labels[idx] + '</strong></td>' +
+            '<td class="num"><strong>' + Math.round(v26).toLocaleString() + '</strong></td>' +
+            '<td class="num">' + Math.round(v25).toLocaleString() + '</td>' +
+            '<td class="num" style="font-weight:700; color:' + (isAboveCompPpg ? 'var(--green-text)' : 'var(--red-text)') + ';">' +
+              (ppg > 0 ? '+' : '') + ppg.toFixed(1) + '%' +
+            '</td>' +
+            '<td class="num" style="color:var(--primary); font-weight:600;">' + Math.round(lnAvg).toLocaleString() + '</td>' +
+            '<td>' +
+              '<span class="' + (isAboveLn ? 'badge-above' : 'badge-below') + '">' +
+                (isAboveLn ? '▲ +' + vsLnAvg.toFixed(1) + '%' : '▼ ' + vsLnAvg.toFixed(1) + '%') +
+              '</span>' +
+            '</td>';
+          tbody.appendChild(tr);
+        });
+
+        // Summary Rows for ASM
+        const vsTotalLn = ((spec26Sum / nationalSpecAvgPerAdm) - 1) * 100;
+        const totalTr = document.createElement('tr');
+        totalTr.className = 'total-row';
+        totalTr.style.background = '#F0FDFA';
+        totalTr.style.borderTop = '2px solid #0D9488';
+        totalTr.innerHTML =
+          '<td><strong>SPECIALTY PORTFOLIO TOTAL</strong></td>' +
+          '<td class="num"><strong>' + Math.round(spec26Sum).toLocaleString() + '</strong></td>' +
+          '<td class="num"><strong>' + Math.round(spec25Sum).toLocaleString() + '</strong></td>' +
+          '<td class="num" style="font-weight:800; color:' + (specPpg >= nationalSpecPpg ? 'var(--green-text)' : 'var(--red-text)') + ';">' +
+            (specPpg > 0 ? '+' : '') + specPpg.toFixed(1) + '%' +
           '</td>' +
-          '<td class="num" style="color:var(--primary); font-weight:600;">' + Math.round(lnAvg).toLocaleString() + '</td>' +
+          '<td class="num" style="color:#0D9488; font-weight:800;">' + Math.round(nationalSpecAvgPerAdm).toLocaleString() + '</td>' +
           '<td>' +
-            '<span class="' + (isAboveLn ? 'badge-above' : 'badge-below') + '">' +
-              (isAboveLn ? '▲ +' + vsLnAvg.toFixed(1) + '%' : '▼ ' + vsLnAvg.toFixed(1) + '%') +
+            '<span class="' + (vsTotalLn >= 0 ? 'badge-above' : 'badge-below') + '">' +
+              (vsTotalLn >= 0 ? '▲ +' + vsTotalLn.toFixed(1) + '%' : '▼ ' + vsTotalLn.toFixed(1) + '%') +
             '</span>' +
           '</td>';
-        tbody.appendChild(tr);
-      });
+        tbody.appendChild(totalTr);
 
+        const avgTr = document.createElement('tr');
+        avgTr.style.background = '#F8FAFC';
+        avgTr.style.fontWeight = '600';
+        avgTr.innerHTML =
+          '<td><em>AVERAGE PER SPECIALTY SKU</em></td>' +
+          '<td class="num"><em>' + Math.round(spec26Sum / specKeys.length).toLocaleString() + '</em></td>' +
+          '<td class="num"><em>' + Math.round(spec25Sum / specKeys.length).toLocaleString() + '</em></td>' +
+          '<td class="num" style="color:' + (specPpg >= nationalSpecPpg ? 'var(--green-text)' : 'var(--red-text)') + ';">' +
+            (specPpg > 0 ? '+' : '') + specPpg.toFixed(1) + '%' +
+          '</td>' +
+          '<td class="num" style="color:#0D9488;"><em>' + Math.round(nationalSpecAvgPerAdm / specKeys.length).toLocaleString() + '</em></td>' +
+          '<td><em>' + (vsTotalLn >= 0 ? '▲ +' + vsTotalLn.toFixed(1) + '%' : '▼ ' + vsTotalLn.toFixed(1) + '%') + '</em></td>';
+        tbody.appendChild(avgTr);
+      }
+
+      // 5. Chart Rendering
       if (charts.s3) {
         try { charts.s3.destroy(); } catch (e) {}
       }
       const ctx = document.getElementById('chartSlide3').getContext('2d');
+
+      let chartDatasets = [];
+      if (p.isMgmt) {
+        const nat26Data = specKeys.map(k => Math.round((company2026[k]||0)/shortageDivisor2026));
+        const nat25Data = specKeys.map(k => Math.round((company2025[k]||0)/shortageDivisor2025));
+
+        chartDatasets = [
+          { label: '2026 National MoAvg (Cans/Mo)', data: nat26Data, backgroundColor: '#0D9488', borderRadius: 4 },
+          { label: '2025 National MoAvg (Cans/Mo)', data: nat25Data, backgroundColor: '#5EEAD4', borderRadius: 4 }
+        ];
+      } else {
+        const asm26Data = specKeys.map(k => Math.round((p.r26[k]||0)/shortageDivisor2026));
+        const asm25Data = specKeys.map(k => Math.round((p.r25[k]||0)/shortageDivisor2025));
+        const lnAvgData = specKeys.map(k => Math.round(compProductMetrics[k].lnAvgAdm));
+
+        chartDatasets = [
+          { label: '2026 Monthly Avg (Units)', data: asm26Data, backgroundColor: '#0D9488', borderRadius: 4 },
+          { label: '2025 Monthly Avg (Units)', data: asm25Data, backgroundColor: '#5EEAD4', borderRadius: 4 },
+          { label: 'LN AVG 9 2026 (Line Avg/ADM)', data: lnAvgData, backgroundColor: '#F59E0B', borderRadius: 4 }
+        ];
+      }
+
       charts.s3 = new ChartLib(ctx, {
         type: 'bar',
         data: {
           labels: labels,
-          datasets: [
-            { label: '2026 Monthly Avg (Units)', data: avg26Data, backgroundColor: '#0D9488', borderRadius: 4 },
-            { label: '2025 Monthly Avg (Units)', data: avg25Data, backgroundColor: '#5EEAD4', borderRadius: 4 },
-            { label: 'LN AVG 6 2026 (Line Avg/ADM)', data: lnAvgData, backgroundColor: '#F59E0B', borderRadius: 4 }
-          ]
+          datasets: chartDatasets
         },
         options: {
           indexAxis: 'y',
@@ -4337,7 +4793,7 @@
       });
     }
 
-    // SLIDE 4
+    // SLIDE 4: STRATEGIC DUAL-AXIS COMBO
     function renderSlide4() {
       const p = getChosenPerson();
       const personPpg = p.totalPpg;
@@ -4357,7 +4813,15 @@
       const title = document.getElementById('shapeTitle');
       const desc = document.getElementById('shapeDesc');
 
-      if (isAbove) {
+      const totAvg26 = p.r26.sum / shortageDivisor2026;
+      const totAvg25 = p.r25.sum / shortageDivisor2025;
+
+      if (p.isMgmt) {
+        if (box) box.className = 'shape-highlight shape-green';
+        if (icon) icon.innerText = '🏢';
+        if (title) title.innerText = 'NATIONAL COMMERCIAL BENCHMARK: EGYPT TOTAL (+' + compTotalPpg.toFixed(1) + '% PPG GROWTH)';
+        if (desc) desc.innerText = 'Total Egypt sales run-rate expanded from ' + Math.round(totAvg25).toLocaleString() + ' cans/mo (2025) to ' + Math.round(totAvg26).toLocaleString() + ' cans/mo (YTD Sep 2026), generating +' + compTotalPpg.toFixed(1) + '% volume growth across all 11 product portfolios.';
+      } else if (isAbove) {
         if (box) box.className = 'shape-highlight shape-green';
         if (icon) icon.innerText = '🟢';
         if (title) title.innerText = 'GROWTH ABOVE COMPANY BENCHMARK (+' + gap.toFixed(2) + '% Ahead of Egypt Average)';
@@ -4372,16 +4836,18 @@
       const displayProds = [
         { key: 'p1', name: 'Pediamil 1' },
         { key: 'p2', name: 'Pediamil 2' },
+        { key: 'pg3', name: 'PediaGrow 3' },
         { key: 'ps1', name: 'Pedia-Start 1' },
         { key: 'ps2', name: 'Pedia-Start 2' },
         { key: 'lf', name: 'Pediamil LF' },
         { key: 'ha', name: 'Pediamil HA' },
         { key: 'ar', name: 'Pediamil AR' },
         { key: 'ac', name: 'Pediamil AC' },
-        { key: 'mum', name: 'Pediamum' }
+        { key: 'mum', name: 'Pediamum' },
+        { key: 'lbw', name: 'LBW' }
       ];
 
-      const labels = displayProds.map(p => p.name);
+      const labels = displayProds.map(pr => pr.name);
       const bars25 = [];
       const bars26 = [];
       const ppgPerson = [];
@@ -4391,12 +4857,12 @@
       tbody.innerHTML = '';
 
       displayProds.forEach(item => {
-        const v26 = p.r26[item.key];
-        const v25 = p.r25[item.key];
+        const v26 = p.r26[item.key] || 0;
+        const v25 = p.r25[item.key] || 0;
         const avg26 = v26 / shortageDivisor2026;
         const avg25 = v25 / shortageDivisor2025;
         const ppg = avg25 > 0 ? ((avg26 / avg25) - 1) * 100 : 0;
-        const compPpg = compProductMetrics[item.key].ppg;
+        const compPpg = compProductMetrics[item.key] ? compProductMetrics[item.key].ppg : 0;
         const diffVol = avg26 - avg25;
         const diffPpg = ppg - compPpg;
         const pIsAbove = ppg >= compPpg;
@@ -4429,8 +4895,6 @@
         tbody.appendChild(tr);
       });
 
-      const totAvg26 = p.r26.sum / shortageDivisor2026;
-      const totAvg25 = p.r25.sum / shortageDivisor2025;
       const totDiffVol = totAvg26 - totAvg25;
       const totDiffPpg = personPpg - compTotalPpg;
 
@@ -4477,7 +4941,7 @@
             },
             {
               type: 'line',
-              label: p.dm.split(' ')[0] + ' PPG% (Right)',
+              label: (p.isMgmt ? 'National' : p.dm.split(' ')[0]) + ' PPG% (Right)',
               data: ppgPerson,
               borderColor: isAbove ? '#10B981' : '#EF4444',
               backgroundColor: isAbove ? '#10B981' : '#EF4444',
@@ -5559,7 +6023,7 @@
 
         container.innerHTML =
           '<div style="margin-bottom:10px; font-size:12px; color:var(--text-muted); display:flex; justify-content:space-between; align-items:center;">' +
-            '<span>Editing <strong>' + (yr === '2026' ? '2026 YTD June Actuals (6 Months)' : '2025 Full-Year Actuals (12 Months)') + '</strong>. Row totals and company benchmarks recalculate dynamically as you type.</span>' +
+            '<span>Editing <strong>' + (yr === '2026' ? '2026 YTD September Actuals (9 Months)' : '2025 Full-Year Actuals (12 Months)') + '</strong>. Row totals and company benchmarks recalculate dynamically as you type.</span>' +
             '<span style="font-weight:700; color:var(--primary);">Divisor: ' + divisor + ' months</span>' +
           '</div>' +
           '<table class="data-edit-table">' +
@@ -5609,7 +6073,7 @@
             '<div style="text-align:center;">' +
               '<div style="font-size:36px; margin-bottom:8px;">📁</div>' +
               '<h3 style="margin:0 0 6px; font-size:18px; color:var(--primary);">Upload Updated Sales CSV File</h3>' +
-              '<p style="font-size:13px; color:var(--text-muted); margin:0;">Upload the latest LN Commercial Sales Data CSV file (containing 2026 YTD June &amp; 2025 tables). All 10 slides, charts, rankings, and ABCD quadrants will recalculate dynamically.</p>' +
+              '<p style="font-size:13px; color:var(--text-muted); margin:0;">Upload the latest LN Commercial Sales Data CSV file (containing 2026 YTD September &amp; 2025 tables). All 10 slides, charts, rankings, and ABCD quadrants will recalculate dynamically.</p>' +
             '</div>' +
             '<div style="border:2px dashed #3B82F6; border-radius:12px; padding:32px 20px; text-align:center; background:#EFF6FF; cursor:pointer;" onclick="triggerCsvUpload()">' +
               '<div style="font-size:28px; margin-bottom:6px;">☁️</div>' +
