@@ -10,8 +10,8 @@
   <meta name="apple-mobile-web-app-title" content="LN Sales Review App">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="theme-color" content="#1B365D">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="theme-color" content="#0A192F">
   <meta name="msapplication-TileColor" content="#1B365D">
   <meta name="msapplication-TileImage" content="icon-192.png">
 
@@ -109,6 +109,15 @@
       overflow-x: hidden;
     }
 
+    /* App Top Navigation Sticky Wrapper */
+    .app-top-nav-wrapper {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      width: 100%;
+      background: var(--primary);
+    }
+
     /* Top App Header - Ultra-Slim & Compact */
     header {
       background: linear-gradient(135deg, var(--primary) 0%, #0F172A 100%);
@@ -117,12 +126,16 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 46px;
+      height: 48px;
       box-sizing: border-box;
       box-shadow: 0 2px 4px rgba(0,0,0,0.12);
-      position: sticky;
-      top: 0;
-      z-index: 100;
+      width: 100%;
+      position: relative;
+      z-index: 1001;
+    }
+
+    .header-mobile-quick-actions {
+      display: none;
     }
 
     .brand-area {
@@ -265,7 +278,7 @@
       color: var(--primary);
     }
 
-    /* Subheader Tabs - Ultra Slim & Sticky */
+    /* Subheader Tabs - Ultra Slim inside Top Nav Wrapper */
     .slide-tabs {
       background: #FFFFFF;
       border-bottom: 1px solid var(--border);
@@ -273,11 +286,11 @@
       overflow-x: auto;
       padding: 0 12px;
       gap: 3px;
-      position: sticky;
-      top: 46px;
-      height: 34px;
+      position: relative;
+      height: 36px;
       align-items: center;
-      z-index: 90;
+      z-index: 1000;
+      width: 100%;
       box-shadow: 0 1px 2px rgba(0,0,0,0.04);
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
@@ -1273,118 +1286,271 @@
       }
     }
 
-    /* Mobile Phone Responsive Rules (< 768px) - Maximum Screen Area for Analysis */
+    /* Mobile Phone Responsive Rules (< 768px) - Maximum Screen Area & Aesthetics */
     @media (max-width: 768px) {
+      .app-top-nav-wrapper {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        width: 100%;
+        background: #0A192F;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+      }
+
+      /* Mobile Header with Safe-Area Clearance */
       header {
-        height: 44px;
-        padding: 4px 10px;
+        min-height: calc(52px + env(safe-area-inset-top, 0px));
+        height: auto;
+        padding-top: max(12px, env(safe-area-inset-top, 0px));
+        padding-bottom: 8px;
+        padding-left: max(10px, env(safe-area-inset-left, 0px));
+        padding-right: max(10px, env(safe-area-inset-right, 0px));
         gap: 8px;
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
+        background: linear-gradient(135deg, #0A192F 0%, #1B365D 100%);
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        box-sizing: border-box;
       }
 
       .brand-area {
         gap: 6px;
+        flex-shrink: 0;
+        cursor: pointer;
+        touch-action: manipulation;
+      }
+
+      .brand-badge {
+        font-size: 10px;
+        padding: 2.5px 6px;
       }
 
       .brand-title-compact {
-        display: none; /* Hide subtitle text on tiny mobile headers to save space */
+        display: none; /* Hide subtitle text on mobile headers to preserve space for selector */
       }
 
       .header-center-selector {
         margin: 0;
         max-width: 100%;
         flex: 1;
+        min-width: 0;
       }
 
       .adm-selector-box {
-        padding: 1px 4px;
+        padding: 2px 6px;
+        border-radius: 8px;
+        height: 38px;
+        background: rgba(255,255,255,0.18);
+        border: 1px solid rgba(255,255,255,0.35);
+        box-sizing: border-box;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+      }
+
+      .adm-selector-box .adm-icon {
+        font-size: 14px;
+        margin-right: 4px;
       }
 
       .adm-selector-box select {
-        font-size: 12px;
-        height: 30px;
-        padding: 2px 4px;
+        font-size: 12.5px;
+        height: 32px;
+        font-weight: 700;
+        padding: 2px 6px;
+        border-radius: 6px;
+        color: #0F172A;
+        background: #FFFFFF;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.12);
+        cursor: pointer;
+        touch-action: manipulation;
       }
 
       .header-actions {
-        display: none !important; /* Actions available in sticky bottom bar */
+        display: none !important; /* Replaced by quick mobile actions */
       }
 
       .desktop-only-controls {
         display: none !important;
       }
 
+      /* Mobile Quick Actions in Header */
+      .header-mobile-quick-actions {
+        display: flex !important;
+        align-items: center;
+        gap: 6px;
+        flex-shrink: 0;
+      }
+
+      .mob-header-btn {
+        height: 36px;
+        padding: 0 10px;
+        font-size: 11.5px;
+        font-weight: 700;
+        border-radius: 8px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        white-space: nowrap;
+        cursor: pointer;
+        border: 1px solid rgba(255,255,255,0.25);
+        color: white;
+        background: rgba(255,255,255,0.14);
+        transition: transform 0.15s, background 0.15s;
+        touch-action: manipulation;
+      }
+
+      .mob-header-btn:active {
+        transform: scale(0.95);
+        background: rgba(255,255,255,0.28);
+      }
+
+      .mob-header-btn.exec-btn {
+        background: linear-gradient(135deg, #4338CA, #6D28D9);
+        border-color: #8B5CF6;
+        color: #FFFFFF;
+        box-shadow: 0 2px 6px rgba(109, 40, 217, 0.35);
+      }
+
+      /* Mobile Slide Navigation Tabs */
       .slide-tabs {
-        top: 44px;
-        height: 32px;
-        padding: 0 6px;
-        gap: 3px;
-        background: #F8FAFC;
-        border-bottom: 1px solid var(--border);
+        top: 0;
+        height: 40px;
+        padding: 4px 8px;
+        gap: 4px;
+        background: #0B192E;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
         -webkit-overflow-scrolling: touch;
+        box-sizing: border-box;
       }
 
       .tab-btn {
-        padding: 3px 8px;
-        font-size: 10.5px;
-        height: 24px;
-        border-radius: 4px;
+        padding: 4px 11px;
+        font-size: 11px;
+        font-weight: 600;
+        height: 30px;
+        border-radius: 6px;
+        background: rgba(255,255,255,0.08);
+        color: #CBD5E1;
+        border: 1px solid rgba(255,255,255,0.12);
+        white-space: nowrap;
+        touch-action: manipulation;
       }
 
+      .tab-btn.active {
+        background: #2563EB;
+        color: #FFFFFF;
+        font-weight: 700;
+        border-color: #3B82F6;
+        box-shadow: 0 2px 8px rgba(37,99,235,0.4);
+      }
+
+      /* Main container with bottom padding for mobile bar */
       main {
-        padding: 6px 8px 65px 8px !important;
+        padding: 10px 10px calc(80px + env(safe-area-inset-bottom, 0px)) 10px !important;
       }
 
+      /* Slide Header & Titles on Mobile */
       .slide-header {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        padding: 4px 8px;
-        margin-bottom: 8px;
-        min-height: 32px;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 12px;
+        margin-bottom: 10px;
+        background: #FFFFFF;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        gap: 6px;
+      }
+
+      .slide-header-left {
+        width: 100%;
       }
 
       .slide-header-left h2 {
-        font-size: 11.5px;
-        margin: 0;
+        font-size: 13.5px;
+        margin: 0 0 4px 0;
+        font-weight: 800;
+        color: var(--primary);
+        line-height: 1.35;
       }
 
       .slide-badge {
-        font-size: 9px;
-        padding: 2px 5px;
+        font-size: 9.5px;
+        padding: 2.5px 7px;
+        font-weight: 800;
       }
 
       .slide-header-left p {
-        display: none !important;
+        display: block !important;
+        font-size: 11.5px;
+        color: var(--text-muted);
+        margin: 0;
+        line-height: 1.4;
       }
 
+      /* KPI Summary Grid on Mobile */
       .kpi-pills {
-        gap: 4px;
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 6px !important;
+        width: 100% !important;
+        margin-top: 6px;
       }
 
       .kpi-pill {
-        padding: 2px 6px;
+        padding: 7px 10px !important;
+        border-radius: 8px !important;
+        background: #F8FAFC !important;
+        border: 1px solid #E2E8F0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
       }
 
       .kpi-pill span {
-        font-size: 8px;
+        font-size: 9px !important;
+        color: #64748B !important;
+        margin-bottom: 2px !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
       }
 
       .kpi-pill strong {
-        font-size: 11px;
+        font-size: 13px !important;
+        font-weight: 800 !important;
       }
 
+      /* Cards & Containers */
       .card {
-        padding: 8px 10px;
-        border-radius: 6px;
+        padding: 12px;
+        border-radius: 10px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+        margin-bottom: 12px;
       }
 
       .card-title {
-        font-size: 12px;
-        margin-bottom: 6px;
-        padding-bottom: 4px;
+        font-size: 13px;
+        margin-bottom: 8px;
+        padding-bottom: 6px;
+      }
+
+      .strategic-card {
+        padding: 12px 14px !important;
+        border-radius: 10px !important;
+        margin-bottom: 12px !important;
+        line-height: 1.55 !important;
+      }
+
+      .strategic-card h3 {
+        font-size: 13px !important;
+        line-height: 1.35 !important;
+      }
+
+      .strategic-card p {
+        font-size: 11.5px !important;
+        line-height: 1.55 !important;
       }
 
       /* Slide 4 Frozen Chart becomes static on mobile to avoid covering screen */
@@ -1396,24 +1562,51 @@
       }
 
       .chart-box {
-        height: 260px !important;
+        height: 250px !important;
+        min-height: 220px;
       }
 
       .chart-box-tall {
-        height: 310px !important;
+        height: 290px !important;
       }
 
       /* Tables on Mobile */
       .data-table-wrapper {
-        max-height: 340px;
+        max-height: 380px;
+        border-radius: 8px;
+        border: 1px solid #E2E8F0;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+        margin-bottom: 12px;
+        -webkit-overflow-scrolling: touch;
       }
 
       table {
-        font-size: 11px;
+        font-size: 11.5px;
+        min-width: 480px;
       }
 
       th, td {
-        padding: 5px 6px;
+        padding: 7px 9px;
+        white-space: nowrap;
+      }
+
+      /* Sticky First Column for Smooth Mobile Horizontal Scrolling */
+      .data-table-wrapper table th:first-child,
+      .data-table-wrapper table td:first-child {
+        position: sticky;
+        left: 0;
+        background: #FFFFFF;
+        z-index: 2;
+        box-shadow: 2px 0 4px rgba(0,0,0,0.06);
+      }
+
+      .data-table-wrapper table thead th:first-child {
+        background: #F1F5F9;
+        z-index: 3;
+      }
+
+      .data-table-wrapper table tr.total-row td:first-child {
+        background: #F1F5F9;
       }
 
       /* Quadrant Matrix on mobile */
@@ -1427,7 +1620,7 @@
         display: none !important;
       }
 
-      /* Mobile Bottom Navigation Bar */
+      /* Mobile Bottom Navigation Bar with Home Indicator Clearance */
       .mobile-bottom-bar {
         display: flex;
         position: fixed;
@@ -1435,15 +1628,21 @@
         left: 0;
         right: 0;
         width: 100%;
-        height: 48px;
-        background: rgba(15, 23, 42, 0.95);
-        backdrop-filter: blur(14px);
+        min-height: 54px;
+        height: calc(54px + env(safe-area-inset-bottom, 0px));
+        padding-bottom: max(6px, env(safe-area-inset-bottom, 0px));
+        padding-top: 4px;
+        padding-left: max(8px, env(safe-area-inset-left, 0px));
+        padding-right: max(8px, env(safe-area-inset-right, 0px));
+        background: rgba(10, 25, 47, 0.96);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
         border-top: 1px solid rgba(255,255,255,0.15);
         z-index: 1500;
         align-items: center;
         justify-content: space-around;
-        padding: 0 4px;
-        box-shadow: 0 -4px 16px rgba(0,0,0,0.3);
+        box-shadow: 0 -4px 20px rgba(0,0,0,0.35);
+        box-sizing: border-box;
       }
 
       .mob-nav-btn {
@@ -1454,22 +1653,25 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 1px;
-        padding: 3px 6px;
-        font-size: 9.5px;
+        gap: 2px;
+        padding: 4px 8px;
+        font-size: 10px;
         font-weight: 600;
         cursor: pointer;
-        border-radius: 4px;
-        min-width: 40px;
-        transition: background 0.15s;
+        border-radius: 8px;
+        min-width: 48px;
+        min-height: 44px;
+        transition: transform 0.15s, background 0.15s;
+        touch-action: manipulation;
       }
 
       .mob-nav-btn:active {
         background: rgba(255,255,255,0.2);
+        transform: scale(0.94);
       }
 
       .mob-nav-btn .mob-icon {
-        font-size: 15px;
+        font-size: 16px;
         line-height: 1;
       }
 
@@ -1477,18 +1679,58 @@
         background: rgba(255,255,255,0.12);
         border: 1px solid rgba(255,255,255,0.25);
         color: #38BDF8;
-        padding: 6px 10px;
-        border-radius: 16px;
+        padding: 6px 12px;
+        border-radius: 20px;
         font-size: 11px;
         font-weight: 800;
         cursor: pointer;
         white-space: nowrap;
+        min-height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        touch-action: manipulation;
       }
 
       /* Outline Drawer on small screen */
       .outline-drawer {
-        width: 85vw;
-        max-width: 340px;
+        width: 88vw;
+        max-width: 360px;
+        padding-top: env(safe-area-inset-top, 0px);
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+      }
+
+      /* Top Management Executive Summary Modal on Mobile */
+      .mgmt-modal-card {
+        width: 96%;
+        max-height: 92vh;
+        border-radius: 14px;
+      }
+
+      .mgmt-header {
+        padding: 12px 16px;
+      }
+
+      .mgmt-header h3 {
+        font-size: 13.5px !important;
+      }
+
+      .mgmt-header p {
+        font-size: 10.5px !important;
+      }
+
+      .mgmt-body {
+        padding: 14px 16px;
+      }
+
+      .mgmt-kpi-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+
+      .mgmt-section-card {
+        padding: 12px 14px;
+        border-radius: 10px;
       }
 
       /* Fullscreen Data Editor Modal on Mobile */
@@ -1502,6 +1744,8 @@
         max-width: 100vw;
         max-height: 100vh;
         border-radius: 0;
+        padding-top: env(safe-area-inset-top, 0px);
+        padding-bottom: env(safe-area-inset-bottom, 0px);
       }
 
       .data-modal-header {
@@ -1941,71 +2185,76 @@
     })();
   </script>
 
-  <!-- App Header - Ultra-Slim Single Row -->
-  <header>
-    <div class="brand-area" style="cursor:pointer;" onclick="goToSlide(1)" title="LN Sales Review App">
-      <img src="icon-192.png" alt="LN Logo" style="width:28px; height:28px; border-radius:6px; object-fit:cover; box-shadow:0 1px 3px rgba(0,0,0,0.3); border:1px solid rgba(255,255,255,0.25); flex-shrink:0;">
-      <div class="brand-badge">LN SALES</div>
-      <span class="brand-title-compact">REVIEW APP</span>
-    </div>
-
-    <div class="header-center-selector">
-      <div class="adm-selector-box">
-        <span class="adm-icon">👤</span>
-        <select id="chosenAdmSelect" onchange="onPersonChange()">
-          <option value="mgmt" selected>🏢 TOP MANAGEMENT REPORT (Executive Summary)</option>
-          <optgroup label="Area Sales Managers (Private Review)">
-            <option value="0">Ahmed Hassan (Alx)</option>
-            <option value="1">Ahmed Mohamed Sakr (Behera &amp; Dakahlia)</option>
-            <option value="2">NOHER ADEL (Cairo)</option>
-            <option value="3">Youstina Farag Allah (Guiza)</option>
-            <option value="4">Shimaa Tarek El-Shamy (DELTA I)</option>
-            <option value="5">Mohamed Yousef M. (Delta II)</option>
-            <option value="6">UE North (Upper Egypt I)</option>
-            <option value="7">Beshoy Youhanna (Upper Egypt II)</option>
-            <option value="8">Karim Shehab (KFR EL.SHK)</option>
-          </optgroup>
-        </select>
+  <!-- App Top Navigation Sticky Wrapper (Guaranteed Safe-Area & No Mobile Collision) -->
+  <div class="app-top-nav-wrapper">
+    <header>
+      <div class="brand-area" style="cursor:pointer;" onclick="goToSlide(1)" title="LN Sales Review App">
+        <img src="icon-192.png" alt="LN Logo" style="width:28px; height:28px; border-radius:6px; object-fit:cover; box-shadow:0 1px 3px rgba(0,0,0,0.3); border:1px solid rgba(255,255,255,0.25); flex-shrink:0;">
+        <div class="brand-badge">LN SALES</div>
+        <span class="brand-title-compact">REVIEW APP</span>
       </div>
-    </div>
 
-    <div class="header-actions">
-      <button class="nav-btn-compact" id="btnTopMgmtSummary" onclick="openTopMgmtModal()" title="View Top Management Executive Summary" style="background:linear-gradient(135deg, #4338CA, #6D28D9); border-color:#8B5CF6; color:#FFF; font-weight:700;">📋 Exec Summary</button>
-      <button class="nav-btn-compact" id="btnInstallApp" onclick="promptInstallApp()" title="Install LN Sales Review App" style="background:#2563EB; border-color:#3B82F6; font-weight:600;">📲 Install</button>
-      <button class="nav-btn-compact" id="btnUploadCsvTop" onclick="triggerCsvUpload()" title="Upload CSV">📁 CSV</button>
-      <button class="nav-btn-compact" id="btnOpenDataEditor" onclick="openDataEditor()" title="Edit Data">✏️ Data</button>
-      <button class="nav-btn-compact" id="btnToggleOutline" onclick="toggleSlideOutline()" title="Outline">📑 Outline</button>
-      <button class="nav-btn-compact desktop-only-controls" id="fullscreenToggleBtn" onclick="toggleFullscreen()" title="Fullscreen">⛶ Full</button>
-      <button class="nav-btn-compact" id="btnLockApp" onclick="lockApplication()" title="Lock Application" style="background:#EF444420; color:#EF4444; border-color:#EF4444; font-weight:600;">🔒 Lock</button>
-      <div class="export-dropdown desktop-only-controls">
-        <button class="nav-btn-compact" onclick="toggleExportMenu(event)" title="Export Menu">⬇️ Export ▾</button>
-        <div class="export-menu" id="exportMenu">
-          <a href="Egy_Nutri_Business_Review_Deck.pptx" download>📥 PowerPoint (.pptx)</a>
-          <a href="Egy_Nutri_Sales_Analysis_Template.xlsx" download>📊 Excel Model (.xlsx)</a>
-          <button type="button" onclick="downloadCsvTemplate()">📁 Download CSV Template</button>
-          <button type="button" onclick="window.print()">🖨️ Print / PDF</button>
+      <div class="header-center-selector">
+        <div class="adm-selector-box">
+          <span class="adm-icon">👤</span>
+          <select id="chosenAdmSelect" onchange="onPersonChange()">
+            <option value="mgmt" selected>🏢 TOP MANAGEMENT REPORT (Executive Summary)</option>
+            <optgroup label="Area Sales Managers (Private Review)">
+              <option value="0">Ahmed Hassan (Alx)</option>
+              <option value="1">Ahmed Mohamed Sakr (Behera &amp; Dakahlia)</option>
+              <option value="2">NOHER ADEL (Cairo)</option>
+              <option value="3">Youstina Farag Allah (Guiza)</option>
+              <option value="4">Shimaa Tarek El-Shamy (DELTA I)</option>
+              <option value="5">Mohamed Yousef M. (Delta II)</option>
+              <option value="6">UE North (Upper Egypt I)</option>
+              <option value="7">Beshoy Youhanna (Upper Egypt II)</option>
+              <option value="8">Karim Shehab (KFR EL.SHK)</option>
+            </optgroup>
+          </select>
         </div>
       </div>
-    </div>
-  </header>
 
-  <!-- Hidden CSV File Input -->
-  <input type="file" id="csvFileInput" accept=".csv,text/csv,text/plain" style="display:none;" onchange="handleCsvFileSelect(this)">
+      <!-- Mobile Quick Action Buttons (Direct 1-tap thumb access) -->
+      <div class="header-mobile-quick-actions">
+        <button type="button" class="mob-header-btn exec-btn" onclick="openTopMgmtModal()" title="Executive Summary">📋 Exec</button>
+        <button type="button" class="mob-header-btn" onclick="toggleSlideOutline()" title="Outline">📑</button>
+      </div>
 
-  <!-- Slide Tabs Navigation - Ultra-Slim -->
-  <nav class="slide-tabs" id="slideTabs">
-    <button class="tab-btn active" onclick="goToSlide(1)">01. Share %</button>
-    <button class="tab-btn" onclick="goToSlide(2)">02. Core Formulas</button>
-    <button class="tab-btn" onclick="goToSlide(3)">03. Specialty Lines</button>
-    <button class="tab-btn" onclick="goToSlide(4)">04. Dual-Axis Deep Dive</button>
-    <button class="tab-btn" onclick="goToSlide(5)">05. Total PPG%</button>
-    <button class="tab-btn" onclick="goToSlide(6)">06. Pediamil 1</button>
-    <button class="tab-btn" onclick="goToSlide(7)">07. Pediamil 2</button>
-    <button class="tab-btn" onclick="goToSlide(8)">08. Pedia-Start 1</button>
-    <button class="tab-btn" onclick="goToSlide(9)">09. Pedia-Start 2</button>
-    <button class="tab-btn" onclick="goToSlide(10)">10. Quadrant Matrix</button>
-    <button class="tab-btn" onclick="goToSlide(11)">11. 3-Horizon Velocity (Q3 vs H1 vs '25)</button>
-  </nav>
+      <div class="header-actions">
+        <button class="nav-btn-compact" id="btnTopMgmtSummary" onclick="openTopMgmtModal()" title="View Top Management Executive Summary" style="background:linear-gradient(135deg, #4338CA, #6D28D9); border-color:#8B5CF6; color:#FFF; font-weight:700;">📋 Exec Summary</button>
+        <button class="nav-btn-compact" id="btnInstallApp" onclick="promptInstallApp()" title="Install LN Sales Review App" style="background:#2563EB; border-color:#3B82F6; font-weight:600;">📲 Install</button>
+        <button class="nav-btn-compact" id="btnUploadCsvTop" onclick="triggerCsvUpload()" title="Upload CSV">📁 CSV</button>
+        <button class="nav-btn-compact" id="btnOpenDataEditor" onclick="openDataEditor()" title="Edit Data">✏️ Data</button>
+        <button class="nav-btn-compact" id="btnToggleOutline" onclick="toggleSlideOutline()" title="Outline">📑 Outline</button>
+        <button class="nav-btn-compact desktop-only-controls" id="fullscreenToggleBtn" onclick="toggleFullscreen()" title="Fullscreen">⛶ Full</button>
+        <button class="nav-btn-compact" id="btnLockApp" onclick="lockApplication()" title="Lock Application" style="background:#EF444420; color:#EF4444; border-color:#EF4444; font-weight:600;">🔒 Lock</button>
+        <div class="export-dropdown desktop-only-controls">
+          <button class="nav-btn-compact" onclick="toggleExportMenu(event)" title="Export Menu">⬇️ Export ▾</button>
+          <div class="export-menu" id="exportMenu">
+            <a href="Egy_Nutri_Business_Review_Deck.pptx" download>📥 PowerPoint (.pptx)</a>
+            <a href="Egy_Nutri_Sales_Analysis_Template.xlsx" download>📊 Excel Model (.xlsx)</a>
+            <button type="button" onclick="downloadCsvTemplate()">📁 Download CSV Template</button>
+            <button type="button" onclick="window.print()">🖨️ Print / PDF</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Slide Tabs Navigation - Ultra-Slim -->
+    <nav class="slide-tabs" id="slideTabs">
+      <button class="tab-btn active" onclick="goToSlide(1)">01. Share %</button>
+      <button class="tab-btn" onclick="goToSlide(2)">02. Core Formulas</button>
+      <button class="tab-btn" onclick="goToSlide(3)">03. Specialty Lines</button>
+      <button class="tab-btn" onclick="goToSlide(4)">04. Dual-Axis Deep Dive</button>
+      <button class="tab-btn" onclick="goToSlide(5)">05. Total PPG%</button>
+      <button class="tab-btn" onclick="goToSlide(6)">06. Pediamil 1</button>
+      <button class="tab-btn" onclick="goToSlide(7)">07. Pediamil 2</button>
+      <button class="tab-btn" onclick="goToSlide(8)">08. Pedia-Start 1</button>
+      <button class="tab-btn" onclick="goToSlide(9)">09. Pedia-Start 2</button>
+      <button class="tab-btn" onclick="goToSlide(10)">10. Quadrant Matrix</button>
+      <button class="tab-btn" onclick="goToSlide(11)">11. 3-Horizon Velocity (Q3 vs H1 vs '25)</button>
+    </nav>
+  </div>
 
   <!-- Main Slides Content Area -->
   <main>
@@ -2717,26 +2966,22 @@
 
   <!-- Dedicated Mobile Persistent Bottom Navigation Bar -->
   <nav class="mobile-bottom-bar" id="mobileBottomBar">
-    <button class="mob-nav-btn" onclick="prevSlide()" title="Previous Slide">
+    <button type="button" class="mob-nav-btn" onclick="prevSlide()" title="Previous Slide">
       <span class="mob-icon">❮</span>
       <span>Prev</span>
     </button>
-    <button class="mob-nav-btn" onclick="toggleSlideOutline()" title="Slide Outline">
-      <span class="mob-icon">📑</span>
-      <span>Outline</span>
+    <button type="button" class="mob-nav-btn" onclick="openTopMgmtModal()" title="Executive Summary">
+      <span class="mob-icon">📋</span>
+      <span>Exec</span>
     </button>
     <div class="mob-counter-pill" id="mobSlideIndicator" onclick="toggleSlideOutline()" title="View Outline">
       Slide 1 / 11
     </div>
-    <button class="mob-nav-btn" onclick="triggerCsvUpload()" title="Upload Sales CSV">
-      <span class="mob-icon">📁</span>
-      <span>CSV</span>
+    <button type="button" class="mob-nav-btn" onclick="toggleSlideOutline()" title="Slide Outline">
+      <span class="mob-icon">📑</span>
+      <span>Outline</span>
     </button>
-    <button class="mob-nav-btn" onclick="openDataEditor()" title="Edit Data">
-      <span class="mob-icon">✏️</span>
-      <span>Data</span>
-    </button>
-    <button class="mob-nav-btn" onclick="nextSlide()" title="Next Slide">
+    <button type="button" class="mob-nav-btn" onclick="nextSlide()" title="Next Slide">
       <span class="mob-icon">❯</span>
       <span>Next</span>
     </button>
@@ -3684,11 +3929,60 @@
         container.appendChild(item);
       });
 
+      // Quick Tools Section in Outline Drawer
+      const execItem = document.createElement('div');
+      execItem.className = 'outline-item';
+      execItem.style.background = 'linear-gradient(135deg, rgba(67, 56, 202, 0.12), rgba(109, 40, 217, 0.12))';
+      execItem.style.borderColor = 'rgba(139, 92, 246, 0.35)';
+      execItem.style.marginTop = '14px';
+      execItem.onclick = () => {
+        closeSlideOutline();
+        openTopMgmtModal();
+      };
+      execItem.innerHTML =
+        '<div class="outline-num" style="background:linear-gradient(135deg, #4338CA, #6D28D9); color:white;">📋</div>' +
+        '<div class="outline-info">' +
+          '<h4 style="color:#6D28D9;">Top Management Executive Report</h4>' +
+          '<span>National audit, portfolio insights & directives</span>' +
+        '</div>';
+      container.appendChild(execItem);
+
+      const dataItem = document.createElement('div');
+      dataItem.className = 'outline-item';
+      dataItem.style.background = 'rgba(15, 23, 42, 0.04)';
+      dataItem.style.borderColor = 'rgba(15, 23, 42, 0.15)';
+      dataItem.onclick = () => {
+        closeSlideOutline();
+        openDataEditor();
+      };
+      dataItem.innerHTML =
+        '<div class="outline-num" style="background:#0F172A; color:white;">✏️</div>' +
+        '<div class="outline-info">' +
+          '<h4 style="color:#0F172A;">Sales Data Manager & Model</h4>' +
+          '<span>Edit territory actuals or recalculate baseline</span>' +
+        '</div>';
+      container.appendChild(dataItem);
+
+      const csvItem = document.createElement('div');
+      csvItem.className = 'outline-item';
+      csvItem.style.background = 'rgba(13, 148, 136, 0.08)';
+      csvItem.style.borderColor = 'rgba(13, 148, 136, 0.3)';
+      csvItem.onclick = () => {
+        closeSlideOutline();
+        triggerCsvUpload();
+      };
+      csvItem.innerHTML =
+        '<div class="outline-num" style="background:#0D9488; color:white;">📁</div>' +
+        '<div class="outline-info">' +
+          '<h4 style="color:#0D9488;">Upload Sales CSV File</h4>' +
+          '<span>Import newer YTD sales reports</span>' +
+        '</div>';
+      container.appendChild(csvItem);
+
       const installItem = document.createElement('div');
       installItem.className = 'outline-item';
       installItem.style.background = 'rgba(37, 99, 235, 0.08)';
       installItem.style.borderColor = 'rgba(37, 99, 235, 0.25)';
-      installItem.style.marginTop = '12px';
       installItem.onclick = () => {
         closeSlideOutline();
         promptInstallApp();
@@ -3700,6 +3994,22 @@
           '<span>Install LN Sales Review App with 3D logo</span>' +
         '</div>';
       container.appendChild(installItem);
+
+      const lockItem = document.createElement('div');
+      lockItem.className = 'outline-item';
+      lockItem.style.background = 'rgba(239, 68, 68, 0.08)';
+      lockItem.style.borderColor = 'rgba(239, 68, 68, 0.25)';
+      lockItem.onclick = () => {
+        closeSlideOutline();
+        lockApplication();
+      };
+      lockItem.innerHTML =
+        '<div class="outline-num" style="background:#EF4444; color:white;">🔒</div>' +
+        '<div class="outline-info">' +
+          '<h4 style="color:#EF4444;">Lock Application</h4>' +
+          '<span>Return to confidential passkey gatekeeper</span>' +
+        '</div>';
+      container.appendChild(lockItem);
     }
 
     /* Global Keyboard Navigation */
