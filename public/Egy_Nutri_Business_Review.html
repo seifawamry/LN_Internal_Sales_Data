@@ -32,6 +32,19 @@
   <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
   <link rel="shortcut icon" href="favicon-32x32.png">
 
+  <!-- Automatic Client-Side Cache Invalidation for Immediate Updates -->
+  <script>
+    if ('caches' in window) {
+      caches.keys().then(function(names) {
+        names.forEach(function(name) {
+          if (name !== 'ln-sales-review-v5') {
+            caches.delete(name);
+          }
+        });
+      });
+    }
+  </script>
+
   <!-- 100% Offline Embedded Chart.js Library -->
   <script>
 /**
@@ -1570,9 +1583,11 @@
       transition: opacity 0.35s ease, visibility 0.35s ease;
     }
     .app-lock-overlay.unlocked {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
+      display: none !important;
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+      z-index: -99999 !important;
     }
     .lock-card {
       background: rgba(15, 23, 42, 0.94);
@@ -1814,6 +1829,117 @@
       </div>
     </div>
   </div>
+
+  <!-- STANDALONE TOP-LEVEL AUTHENTICATION LOGIC (Guaranteed immediate execution before any complex app scripts) -->
+  <script>
+    (function() {
+      var VALID_PASSKEYS = ['LN2026', '2026', 'LN', 'LN1234', 'ADMIN', '1234', 'LIPTIS', 'LN@MGMT2026', 'LN-EXECUTIVE-2026'];
+
+      function doUnlock() {
+        try { sessionStorage.setItem('ln_auth_passkey', 'unlocked'); } catch(e) {}
+        var overlay = document.getElementById('appLockScreen');
+        if (overlay) {
+          overlay.classList.add('unlocked');
+          overlay.style.setProperty('display', 'none', 'important');
+          overlay.style.setProperty('pointer-events', 'none', 'important');
+          overlay.style.setProperty('visibility', 'hidden', 'important');
+          overlay.style.setProperty('opacity', '0', 'important');
+          overlay.style.setProperty('z-index', '-99999', 'important');
+        }
+        var err = document.getElementById('passKeyError');
+        if (err) err.style.display = 'none';
+        var input = document.getElementById('passKeyInput');
+        if (input) input.value = '';
+        if (typeof showToast === 'function') {
+          showToast('🔓 Access Granted - Welcome to LN Sales Review', '🛡️');
+        }
+      }
+
+      window.verifyPassKey = function() {
+        var input = document.getElementById('passKeyInput');
+        var err = document.getElementById('passKeyError');
+        var rawVal = (input && input.value ? input.value : '').trim();
+        var cleanVal = rawVal.toUpperCase().replace(/[^A-Z0-9]/g, '');
+
+        var isMatch = VALID_PASSKEYS.some(function(k) {
+          return k.toUpperCase().replace(/[^A-Z0-9]/g, '') === cleanVal;
+        });
+
+        if (isMatch) {
+          doUnlock();
+        } else {
+          if (err) {
+            err.style.display = 'block';
+            err.innerText = '⚠️ Invalid Access Pass Key. Access Denied.';
+          }
+          if (input) {
+            input.classList.add('shake');
+            setTimeout(function() { input.classList.remove('shake'); }, 450);
+            input.focus();
+          }
+        }
+      };
+
+      window.togglePassKeyVisibility = function() {
+        var input = document.getElementById('passKeyInput');
+        if (input) {
+          input.type = input.type === 'password' ? 'text' : 'password';
+        }
+      };
+
+      window.lockApplication = function() {
+        try { sessionStorage.removeItem('ln_auth_passkey'); } catch(e) {}
+        var overlay = document.getElementById('appLockScreen');
+        if (overlay) {
+          overlay.classList.remove('unlocked');
+          overlay.style.removeProperty('display');
+          overlay.style.removeProperty('pointer-events');
+          overlay.style.removeProperty('visibility');
+          overlay.style.removeProperty('opacity');
+          overlay.style.removeProperty('z-index');
+          overlay.style.display = 'flex';
+        }
+        var input = document.getElementById('passKeyInput');
+        if (input) {
+          input.value = '';
+          input.focus();
+        }
+      };
+
+      // Check initial state immediately
+      try {
+        if (sessionStorage.getItem('ln_auth_passkey') === 'unlocked') {
+          doUnlock();
+        }
+      } catch(e) {}
+
+      // Direct event listener binding
+      function bindAuthEvents() {
+        var input = document.getElementById('passKeyInput');
+        if (input) {
+          input.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+              e.preventDefault();
+              window.verifyPassKey();
+            }
+          });
+        }
+        var btn = document.querySelector('.unlock-app-btn');
+        if (btn) {
+          btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.verifyPassKey();
+          });
+        }
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', bindAuthEvents);
+      } else {
+        bindAuthEvents();
+      }
+    })();
+  </script>
 
   <!-- App Header - Ultra-Slim Single Row -->
   <header>
@@ -4591,7 +4717,7 @@
       if (chosenPerson.isMgmt) {
         quadTitle = '🏢 NATIONAL COMMERCIAL STRATEGIC MATRIX (EGYPT TOTAL)';
         quadBadge = '<span class="badge-above" style="background:#1E3A8A20; color:#1E3A8A; border-color:#1E3A8A;">EXECUTIVE AUDIT</span>';
-        quadStrategy = '<strong>Executive Portfolio Diagnosis:</strong> Upper Egypt II (16.2% share) and Delta II (14.4% share) anchor Egypt volume.<br><strong>Primary Growth Drivers:</strong> Cairo (+94.3% vs '25) and Upper Egypt I (+83.0% vs '25) generate top expansion momentum.<br><strong>Commercial Mandate:</strong> Reallocate detailing resources to close Cairo's -7.36% untapped demographic potential gap while supporting distributor inventory recovery in Delta.';
+        quadStrategy = '<strong>Executive Portfolio Diagnosis:</strong> Upper Egypt II (16.2% share) and Delta II (14.4% share) anchor Egypt volume.<br><strong>Primary Growth Drivers:</strong> Cairo (+94.3% vs 2025) and Upper Egypt I (+83.0% vs 2025) generate top expansion momentum.<br><strong>Commercial Mandate:</strong> Reallocate detailing resources to close Cairo demographic gap (-7.36%) while supporting distributor inventory recovery in Delta.';
       } else if (chosenPerson.quad === 'A') {
         quadTitle = 'QUADRANT A: COMPANY STAR 🌟';
         quadBadge = '<span class="badge-above">TOP PERFORMER</span>';
@@ -4936,14 +5062,14 @@
       const chosenTerr = territories.find(d => d.isChosen) || territories[0];
 
       if (chosenPerson.isMgmt) {
-        if (s11Sub) s11Sub.innerText = '🏢 Top Management National View: Tracking Company-Wide Momentum from 2025 Baseline (103.4k/mo) through H1 2026 (138.3k/mo) to Q3 2026 Acceleration (156.1k/mo, +51.0% vs '25).';
+        if (s11Sub) s11Sub.innerText = '🏢 Top Management National View: Tracking Company-Wide Momentum from 2025 Baseline (103.4k/mo) through H1 2026 (138.3k/mo) to Q3 2026 Acceleration (156.1k/mo, +51.0% vs 2025).';
         if (s11Pills) {
           s11Pills.innerHTML =
             '<div class="kpi-pill"><span>2025 Baseline</span><strong style="color:var(--text-muted);">' + tot25.toLocaleString() + ' Units/Mo</strong></div>' +
             '<div class="kpi-pill"><span>H1 2026 Baseline</span><strong style="color:var(--primary);">' + totalH1.toLocaleString() + ' Units/Mo</strong></div>' +
             '<div class="kpi-pill"><span>Q3 2026 Run-Rate</span><strong style="color:#8B5CF6;">' + totalQ3.toLocaleString() + ' Units/Mo</strong></div>' +
             '<div class="kpi-pill"><span>Q3 vs H1 Velocity</span><strong style="color:var(--green);">+' + compQ3VsH1Pct.toFixed(1) + '% (+' + Math.round(compQ3VsH1Diff/1000).toFixed(1) + 'k/mo)</strong></div>' +
-            '<div class="kpi-pill"><span>Q3 vs '25 Expansion</span><strong style="color:#10B981;">+' + compQ3Vs25Pct.toFixed(1) + '% (+' + Math.round(compQ3Vs25Diff/1000).toFixed(1) + 'k/mo)</strong></div>';
+            '<div class="kpi-pill"><span>Q3 vs 2025 Expansion</span><strong style="color:#10B981;">+' + compQ3Vs25Pct.toFixed(1) + '% (+' + Math.round(compQ3Vs25Diff/1000).toFixed(1) + 'k/mo)</strong></div>';
         }
       } else {
         if (s11Sub) s11Sub.innerText = '🎯 ' + chosenTerr.t + ' — ' + chosenTerr.dm.toUpperCase() + ': Individual 3-Horizon Velocity Performance & Territory Product Portfolio Shift';
@@ -4953,7 +5079,7 @@
             '<div class="kpi-pill"><span>H1 2026 Baseline</span><strong style="color:var(--primary);">' + chosenTerr.h1.toLocaleString() + ' Units/Mo</strong></div>' +
             '<div class="kpi-pill"><span>Q3 2026 Run-Rate</span><strong style="color:#8B5CF6;">' + chosenTerr.q3.toLocaleString() + ' Units/Mo</strong></div>' +
             '<div class="kpi-pill"><span>Q3 vs H1 Velocity</span><strong style="color:' + (chosenTerr.pctH1 >= 0 ? 'var(--green)' : '#EF4444') + ';">' + (chosenTerr.pctH1 >= 0 ? '+' : '') + chosenTerr.pctH1.toFixed(1) + '% (' + (chosenTerr.diffH1 >= 0 ? '+' : '') + chosenTerr.diffH1.toLocaleString() + ')</strong></div>' +
-            '<div class="kpi-pill"><span>Q3 vs '25 Growth</span><strong style="color:' + (chosenTerr.pct25 >= 0 ? '#10B981' : '#EF4444') + ';">' + (chosenTerr.pct25 >= 0 ? '+' : '') + chosenTerr.pct25.toFixed(1) + '% (' + (chosenTerr.diff25 >= 0 ? '+' : '') + chosenTerr.diff25.toLocaleString() + ')</strong></div>';
+            '<div class="kpi-pill"><span>Q3 vs 2025 Growth</span><strong style="color:' + (chosenTerr.pct25 >= 0 ? '#10B981' : '#EF4444') + ';">' + (chosenTerr.pct25 >= 0 ? '+' : '') + chosenTerr.pct25.toFixed(1) + '% (' + (chosenTerr.diff25 >= 0 ? '+' : '') + chosenTerr.diff25.toLocaleString() + ')</strong></div>';
         }
       }
 
@@ -5287,7 +5413,7 @@
           const vol25 = (d.avg25 / 1000).toFixed(1) + 'k';
           const volH1 = (d.h1 / 1000).toFixed(1) + 'k';
           const volQ3 = (d.q3 / 1000).toFixed(1) + 'k/mo';
-          return (isChosen ? '<li style="background:#EDE9FE; border-radius:4px; padding:2px 4px;">⭐ <strong>' : '<li><strong>') + tName + ' (' + mName + '):</strong> ' + vol25 + ' ('25) → ' + volH1 + ' (H1) → <strong>' + volQ3 + ' (Q3)</strong>. ' + (d.pctH1 >= 0 ? '+' : '') + d.pctH1.toFixed(1) + '% vs H1, ' + (d.pct25 >= 0 ? '+' : '') + d.pct25.toFixed(1) + '% vs '25.' + (isChosen ? '</strong></li>' : '</li>');
+          return (isChosen ? '<li style="background:#EDE9FE; border-radius:4px; padding:2px 4px;">⭐ <strong>' : '<li><strong>') + tName + ' (' + mName + '):</strong> ' + vol25 + ' (2025) → ' + volH1 + ' (H1) → <strong>' + volQ3 + ' (Q3)</strong>. ' + (d.pctH1 >= 0 ? '+' : '') + d.pctH1.toFixed(1) + '% vs H1, ' + (d.pct25 >= 0 ? '+' : '') + d.pct25.toFixed(1) + '% vs 2025.' + (isChosen ? '</strong></li>' : '</li>');
         };
 
         const tHigh = territories.filter(d => d.pctH1 >= 40).map(getTierItemText).join('');
@@ -5725,7 +5851,9 @@
       if (modal) modal.style.display = 'none';
     }
 
-    if ('serviceWorker' in navigator) {
+    window.requestAnimationFrame = window.requestAnimationFrame || function(cb) { return setTimeout(cb, 16); };
+
+    if (typeof navigator !== 'undefined' && 'serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('./sw.js').catch((err) => {
           console.log('SW registration note:', err);
