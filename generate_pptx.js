@@ -594,20 +594,22 @@ async function createPowerPoint() {
     fontSize: 8.5, color: '7D6608'
   });
 
-  // ==================== SLIDE 11 (NEW: Rep Velocity Q3 vs H1) ====================
+  // ==================== SLIDE 11 (3-HORIZON RUN-RATE VELOCITY: Q3 2026 vs H1 2026 vs 2025) ====================
   const s11 = pptx.addSlide();
-  addHeader(s11, '11', 'MEDICAL REP / ADM QUARTERLY VELOCITY: Q3 2026 vs H1 2026 BASELINE', 'Evaluating Run-Rate Acceleration: National Monthly Average grew from 138,315 to 156,126 cans/mo (+12.9%)');
+  addHeader(s11, '11', '3-HORIZON RUN-RATE VELOCITY: Q3 2026 vs H1 2026 BASELINE vs 2025', 'Commercial Velocity Trilogy: Tracking Medical Rep Momentum from 2025 Baseline through H1 2026 to Q3 2026 (+51.0% vs \'25)');
 
   const totH1 = rawAvgH1_2026.reduce((acc, r) => acc + r.sum, 0);
   const totQ3 = rawAvgQ3_2026.reduce((acc, r) => acc + r.sum, 0);
-  const compVel = ((totQ3 / totH1) - 1) * 100;
+  const tot25Mo = Math.round(rawData2025.reduce((acc, r) => acc + r.sum, 0) / 12);
+  const compVelH1 = ((totQ3 / totH1) - 1) * 100;
+  const compVel25 = ((totQ3 / tot25Mo) - 1) * 100;
 
   // 4 Top KPI Cards
   const kpiData = [
-    { title: 'H1 2026 BASELINE', val: '138,315', sub: 'National Monthly Avg', bg: 'F0F4F8', border: 'B0C4DE', col: C_NAVY },
-    { title: 'Q3 2026 RUN-RATE', val: '156,126', sub: `+12.9% (+${(totQ3 - totH1).toLocaleString()} cans/mo)`, bg: 'ECFDF5', border: '10B981', col: '065F46' },
-    { title: 'TOP ACCELERATOR REP', val: 'Cairo (+58.7%)', sub: 'Noher Adel: 8,758 → 13,898', bg: 'EFF6FF', border: '3B82F6', col: '1E40AF' },
-    { title: 'NATIONAL VOLUME LEADER', val: 'UE II (25,694/mo)', sub: 'Beshoy Youhanna (+15.2%)', bg: 'FAF5FF', border: '8B5CF6', col: '5B21B6' }
+    { title: '2025 MO. BASELINE', val: tot25Mo.toLocaleString(), sub: 'Full Year Baseline (Cans/Mo)', bg: 'F8FAFC', border: 'CBD5E1', col: '64748B' },
+    { title: 'H1 2026 BASELINE', val: totH1.toLocaleString(), sub: '+33.8% over 2025 baseline', bg: 'F0F4F8', border: 'B0C4DE', col: C_NAVY },
+    { title: 'Q3 2026 RUN-RATE', val: totQ3.toLocaleString(), sub: `+12.9% vs H1 | +51.0% vs '25`, bg: 'ECFDF5', border: '10B981', col: '065F46' },
+    { title: 'TOP ACCELERATOR REP', val: 'Cairo (+58.7% vs H1)', sub: `Noher Adel: +94.3% vs '25`, bg: 'FAF5FF', border: '8B5CF6', col: '5B21B6' }
   ];
 
   kpiData.forEach((kpi, idx) => {
@@ -630,112 +632,124 @@ async function createPowerPoint() {
     });
   });
 
-  // Table on Left: Rep Velocity Scorecard
+  // Table on Left: 3-Horizon Rep Velocity Scorecard
   const repVelocityRows = rawAvgQ3_2026.map((q, idx) => {
     const h = rawAvgH1_2026[idx];
-    const diff = q.sum - h.sum;
-    const vel = ((q.sum / h.sum) - 1) * 100;
+    const y25 = rawData2025[idx];
+    const avg25 = Math.round(y25.sum / 12);
+    const diffH1 = q.sum - h.sum;
+    const velH1 = ((q.sum / h.sum) - 1) * 100;
+    const vel25 = ((q.sum / avg25) - 1) * 100;
+
     let tier = '';
-    if (vel >= 40) tier = 'Tier 1: Accelerator 🚀';
-    else if (vel >= 15) tier = 'Tier 2: Compounder 📈';
-    else if (vel >= 0) tier = 'Tier 3: Consolidator 🛡️';
+    if (velH1 >= 40) tier = 'Tier 1: Accelerator 🚀';
+    else if (velH1 >= 15) tier = 'Tier 2: Compounder 📈';
+    else if (velH1 >= 0) tier = 'Tier 3: Consolidator 🛡️';
     else tier = 'Tier 4: Contraction ⚠️';
 
     return {
       territory: q.territory,
       dm: q.dm.split(' ').slice(0, 2).join(' '),
+      avg25,
       h1: h.sum,
       q3: q.sum,
-      diff,
-      vel,
+      diffH1,
+      velH1,
+      vel25,
       tier
     };
-  }).sort((a, b) => b.vel - a.vel);
+  }).sort((a, b) => b.velH1 - a.velH1);
 
   const tS11Rows = [
     [
       { text: 'Rank', options: { bold: true, fill: C_NAVY, color: 'FFFFFF' } },
       { text: 'Territory', options: { bold: true, fill: C_NAVY, color: 'FFFFFF' } },
       { text: 'Medical Rep / ADM', options: { bold: true, fill: C_NAVY, color: 'FFFFFF' } },
-      { text: 'H1 MoAvg', options: { bold: true, fill: C_NAVY, color: 'FFFFFF' } },
-      { text: 'Q3 MoAvg', options: { bold: true, fill: C_NAVY, color: 'FFFFFF' } },
-      { text: 'Diff / Mo', options: { bold: true, fill: C_NAVY, color: 'FFFFFF' } },
-      { text: 'Velocity %', options: { bold: true, fill: C_NAVY, color: 'FFFFFF' } },
-      { text: 'Performance Tier', options: { bold: true, fill: C_NAVY, color: 'FFFFFF' } }
+      { text: '2025 Mo', options: { bold: true, fill: C_NAVY, color: 'FFFFFF' } },
+      { text: 'H1 2026', options: { bold: true, fill: C_NAVY, color: 'FFFFFF' } },
+      { text: 'Q3 2026', options: { bold: true, fill: C_NAVY, color: 'FFFFFF' } },
+      { text: 'Q3 vs H1', options: { bold: true, fill: C_NAVY, color: 'FFFFFF' } },
+      { text: 'Q3 vs \'25', options: { bold: true, fill: C_NAVY, color: 'FFFFFF' } },
+      { text: 'Velocity Tier', options: { bold: true, fill: C_NAVY, color: 'FFFFFF' } }
     ],
     [
       { text: 'TOP', options: { bold: true, fill: 'E8EEF5' } },
       { text: 'EGYPT TOTAL', options: { bold: true, fill: 'E8EEF5' } },
       { text: 'National Rep Benchmark', options: { italic: true, fill: 'E8EEF5' } },
+      { text: tot25Mo.toLocaleString(), options: { bold: true, fill: 'E8EEF5' } },
       { text: totH1.toLocaleString(), options: { bold: true, fill: 'E8EEF5' } },
-      { text: totQ3.toLocaleString(), options: { bold: true, fill: 'E8EEF5' } },
-      { text: '+' + (totQ3 - totH1).toLocaleString(), options: { bold: true, fill: 'E8EEF5' } },
-      { text: '+' + compVel.toFixed(1) + '%', options: { bold: true, fill: 'E8EEF5', color: C_GREEN } },
+      { text: totQ3.toLocaleString(), options: { bold: true, fill: 'E8EEF5', color: '#8B5CF6' } },
+      { text: '+' + compVelH1.toFixed(1) + '%', options: { bold: true, fill: 'E8EEF5', color: C_GREEN } },
+      { text: '+' + compVel25.toFixed(1) + '%', options: { bold: true, fill: 'E8EEF5', color: C_GREEN } },
       { text: 'NATIONAL BENCHMARK', options: { bold: true, fill: 'E8EEF5', color: C_NAVY } }
     ]
   ];
 
   repVelocityRows.forEach((r, idx) => {
-    const isAbove = r.vel >= compVel;
-    const isPos = r.vel >= 0;
+    const isAboveH1 = r.velH1 >= compVelH1;
+    const isPosH1 = r.velH1 >= 0;
     tS11Rows.push([
       { text: String(idx + 1), options: { fontSize: 8, bold: true } },
       { text: r.territory, options: { fontSize: 8 } },
       { text: r.dm, options: { fontSize: 8 } },
+      { text: r.avg25.toLocaleString(), options: { fontSize: 8 } },
       { text: r.h1.toLocaleString(), options: { fontSize: 8 } },
-      { text: r.q3.toLocaleString(), options: { fontSize: 8, bold: true } },
-      { text: (r.diff > 0 ? '+' : '') + r.diff.toLocaleString(), options: { fontSize: 8, color: isPos ? C_GREEN : C_RED } },
+      { text: r.q3.toLocaleString(), options: { fontSize: 8, bold: true, color: '#8B5CF6' } },
       {
-        text: (r.vel > 0 ? '+' : '') + r.vel.toFixed(1) + '%',
-        options: { fontSize: 8.5, bold: true, color: isAbove ? C_GREEN : (isPos ? 'B45309' : C_RED) }
+        text: (r.velH1 > 0 ? '+' : '') + r.velH1.toFixed(1) + '%',
+        options: { fontSize: 8.5, bold: true, color: isAboveH1 ? C_GREEN : (isPosH1 ? 'B45309' : C_RED) }
+      },
+      {
+        text: (r.vel25 > 0 ? '+' : '') + r.vel25.toFixed(1) + '%',
+        options: { fontSize: 8.5, bold: true, color: r.vel25 >= compVel25 ? C_GREEN : C_NAVY }
       },
       { text: r.tier, options: { fontSize: 7.5, bold: true } }
     ]);
   });
 
   s11.addTable(tS11Rows, {
-    x: 0.5, y: 2.30, w: 7.3, h: 4.8,
-    colW: [0.5, 1.2, 1.2, 0.8, 0.8, 0.8, 0.8, 1.2],
+    x: 0.5, y: 2.30, w: 7.4, h: 4.8,
+    colW: [0.45, 1.1, 1.15, 0.75, 0.75, 0.75, 0.75, 0.75, 1.0],
     border: { pt: '0.5', color: C_BORDER_GRAY },
     align: 'center', valign: 'middle'
   });
 
-  // Right Side: 4 Strategic Velocity Tiers Boxes
+  // Right Side: 4 Strategic Velocity Tiers Boxes (with 3-Horizon Insights)
   const tiers = [
     {
       title: 'TIER 1: HIGH ACCELERATORS (+40% to +60%) 🚀',
       color: '155724', bg: 'D4EDDA', border: '28A745',
-      bullets: '• Cairo (Noher Adel): 8,758 → 13,898 (+58.7%) | Pediamil AC (+225%)\n• KFR EL.SHK (Karim Shehab): 10,461 → 15,472 (+47.9%)\n• Upper Egypt I (UE North): 16,459 → 23,564 (+43.2%)\nStrategic Action: Capitalize on doctor adoption; expand clinic quotas.'
+      bullets: '• Cairo (Noher Adel): 7.2k (\'25) → 8.8k (H1) → 13.9k/mo (Q3) (+58.7% vs H1 | +94.3% vs \'25!)\n• KFR EL.SHK (Karim Shehab): 9.3k → 10.5k → 15.5k/mo (+47.9% vs H1 | +65.7% vs \'25)\n• Upper Egypt I (UE North): 12.9k → 16.5k → 23.6k/mo (+43.2% vs H1 | +83.0% vs \'25)\nStrategic Action: Capitalize on breakout doctor adoption; expand NICU & clinic quotas.'
     },
     {
       title: 'TIER 2: SCALE COMPOUNDERS (+15% to +30%) 📈',
       color: '0C5460', bg: 'D1ECF1', border: '17A2B8',
-      bullets: '• Behera & Dakahlia (Ahmed Sakr): 14,302 → 18,041 (+26.1%)\n• Upper Egypt II (Beshoy Youhanna): 22,305 → 25,694 (+15.2%)\nStrategic Action: Maintain mega-volume leadership, defend hospital listings.'
+      bullets: '• Upper Egypt II (Beshoy Youhanna): 14.9k → 22.3k → 25.7k/mo (+15.2% vs H1 | +72.9% vs \'25!)\n• Behera & Dakahlia (Ahmed Sakr): 12.4k → 14.3k → 18.0k/mo (+26.1% vs H1 | +45.0% vs \'25)\nStrategic Action: Maintain national volume engine, defend hospital contracts.'
     },
     {
       title: 'TIER 3: STEADY CONSOLIDATORS (0% to +10%) 🛡️',
       color: '856404', bg: 'FFF3CD', border: 'FFC107',
-      bullets: '• Guiza (Youstina Farag): 12,895 → 13,858 (+7.5%)\n• Alexandria (Ahmed Hassan): 10,206 → 10,314 (+1.1%)\nStrategic Action: Stable run-rates preserved; activate P1 & PS2 detailing.'
+      bullets: '• Guiza (Youstina Farag): 10.0k → 12.9k → 13.9k/mo (+7.5% vs H1 | +39.3% vs \'25)\n• Alexandria (Ahmed Hassan): 7.3k → 10.2k → 10.3k/mo (+1.1% vs H1 | +41.1% vs \'25)\nStrategic Action: Stable run-rates preserved; activate P1 & PS2 detailing.'
     },
     {
       title: 'TIER 4: CONTRACTION WATCHLIST (NEGATIVE Q3) ⚠️',
       color: '721C24', bg: 'F8D7DA', border: 'DC3545',
-      bullets: '• DELTA I (Shimaa Tarek): 20,146 → 18,614 (-7.6%)\n• Delta II (Mohamed Yousef): 22,783 → 16,671 (-26.8%)\nStrategic Action: High H1 baseline dip; audit stock availability & rep calls.'
+      bullets: '• DELTA I (Shimaa Tarek): 15.2k → 20.1k → 18.6k/mo (-7.6% vs H1, but +22.2% vs \'25)\n• Delta II (Mohamed Yousef): 14.2k → 22.8k → 16.7k/mo (-26.8% vs H1, but +17.2% vs \'25)\nStrategic Action: High H1 baseline dip; audit stock availability & rep calls.'
     }
   ];
 
   tiers.forEach((tier, i) => {
     const y = 2.30 + i * 1.20;
     s11.addShape(pptx.ShapeType.roundRect, {
-      x: 8.0, y, w: 4.8, h: 1.12,
+      x: 8.1, y, w: 4.7, h: 1.12,
       fill: { color: tier.bg }, line: { color: tier.border, width: 1.5 }
     });
     s11.addText(tier.title, {
-      x: 8.15, y: y + 0.08, w: 4.5, h: 0.25,
+      x: 8.25, y: y + 0.08, w: 4.4, h: 0.25,
       fontSize: 9.5, bold: true, color: tier.color
     });
     s11.addText(tier.bullets, {
-      x: 8.15, y: y + 0.35, w: 4.5, h: 0.70,
+      x: 8.25, y: y + 0.35, w: 4.4, h: 0.70,
       fontSize: 8, color: tier.color
     });
   });

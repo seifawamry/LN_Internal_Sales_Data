@@ -768,31 +768,33 @@ async function createWorkbook() {
     }
   });
 
-  // 11. Slide 11 Sheet: Medical Rep Performance Velocity (Q3 2026 vs H1 2026 Baseline)
-  const wsS11 = wb.addWorksheet('11-Q3 vs H1 Rep Velocity', { views: [{ showGridLines: true }] });
+  // 11. Slide 11 Sheet: Medical Rep 3-Horizon Performance Velocity (Q3 2026 vs H1 2026 vs 2025)
+  const wsS11 = wb.addWorksheet('11-3-Horizon Rep Velocity', { views: [{ showGridLines: true }] });
   wsS11.columns = [
     { width: 8 }, { width: 22 }, { width: 34 },
-    { width: 16 }, { width: 16 }, { width: 16 }, { width: 16 }, { width: 24 }, { width: 44 }
+    { width: 16 }, { width: 16 }, { width: 16 }, { width: 16 }, { width: 16 }, { width: 16 }, { width: 16 }, { width: 24 }, { width: 44 }
   ];
 
-  wsS11.mergeCells('A1:I1');
-  wsS11.getCell('A1').value = 'SLIDE 11: MEDICAL REP / ADM QUARTERLY VELOCITY (AVERAGE MONTHLY Q3 2026 vs H1 2026 BASELINE)';
+  wsS11.mergeCells('A1:L1');
+  wsS11.getCell('A1').value = 'SLIDE 11: 3-HORIZON RUN-RATE VELOCITY: Q3 2026 vs H1 2026 BASELINE vs 2025 FULL YEAR';
   wsS11.getCell('A1').font = { size: 14, bold: true, color: { argb: 'FFFFFFFF' } };
   wsS11.getCell('A1').fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: NAVY } };
   wsS11.getRow(1).height = 30;
 
   const totH1 = rawAvgH1_2026.reduce((acc, r) => acc + r.sum, 0);
   const totQ3 = rawAvgQ3_2026.reduce((acc, r) => acc + r.sum, 0);
-  const compVelocity = (totQ3 / totH1) - 1;
+  const tot25Mo = Math.round(rawData2025.reduce((acc, r) => acc + r.sum, 0) / 12);
+  const compVelocityH1 = (totQ3 / totH1) - 1;
+  const compVelocity25 = (totQ3 / tot25Mo) - 1;
 
-  wsS11.mergeCells('A2:I2');
-  wsS11.getCell('A2').value = `National Velocity Benchmark: H1 Monthly Avg = ${totH1.toLocaleString()} cans/mo | Q3 Monthly Avg = ${totQ3.toLocaleString()} cans/mo | Acceleration = +${(compVelocity*100).toFixed(1)}% (+${(totQ3 - totH1).toLocaleString()} cans/mo)`;
+  wsS11.mergeCells('A2:L2');
+  wsS11.getCell('A2').value = `National Velocity Benchmark: 2025 MoAvg = ${tot25Mo.toLocaleString()} | H1 MoAvg = ${totH1.toLocaleString()} | Q3 MoAvg = ${totQ3.toLocaleString()} | Acceleration vs H1 = +${(compVelocityH1*100).toFixed(1)}% | Expansion vs '25 = +${(compVelocity25*100).toFixed(1)}%`;
   wsS11.getCell('A2').font = { italic: true, size: 10.5, color: { argb: 'FF4A5568' } };
   wsS11.getCell('A2').alignment = { horizontal: 'center' };
 
   wsS11.addRow([
     'Rank', 'Territory Name', 'Medical Rep / ADM Name',
-    'H1 MoAvg (Jan-Jun)', 'Q3 MoAvg (Jul-Sep)', 'Net Diff / Mo', 'Velocity %', 'Performance Tier', 'Strategic Velocity Assessment'
+    '2025 MoAvg', 'H1 MoAvg (Jan-Jun)', 'Q3 MoAvg (Jul-Sep)', 'Net Diff vs H1', 'Q3 vs H1 Vel.%', 'Q3 vs \'25 Grw.%', 'Q3 Share %', 'Performance Tier', 'Strategic Velocity Assessment'
   ]);
   wsS11.getRow(3).font = { bold: true };
   wsS11.getRow(3).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: GRAY_HEADER } };
@@ -800,29 +802,37 @@ async function createWorkbook() {
 
   const compVelRow = wsS11.addRow([
     'TOP', 'EGYPT TOTAL (COMPANY)', 'National Medical Rep Team Benchmark',
-    totH1, totQ3, totQ3 - totH1, compVelocity, 'NATIONAL BENCHMARK', 'Overall company run-rate accelerated by +12.9% in Q3'
+    tot25Mo, totH1, totQ3, totQ3 - totH1, compVelocityH1, compVelocity25, 1.0, 'NATIONAL BENCHMARK', 'Overall company run-rate accelerated by +12.9% in Q3 (+51.0% vs 2025 baseline)'
   ]);
   compVelRow.font = { bold: true };
   compVelRow.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFF0F4F8' } };
   compVelRow.getCell(4).numFmt = '#,##0';
   compVelRow.getCell(5).numFmt = '#,##0';
-  compVelRow.getCell(6).numFmt = '+#,##0;-#,##0';
-  compVelRow.getCell(7).numFmt = '+0.0%';
+  compVelRow.getCell(6).numFmt = '#,##0';
+  compVelRow.getCell(7).numFmt = '+#,##0;-#,##0';
+  compVelRow.getCell(8).numFmt = '+0.0%';
+  compVelRow.getCell(9).numFmt = '+0.0%';
+  compVelRow.getCell(10).numFmt = '0.0%';
 
   const repVelocityData = rawAvgQ3_2026.map((q, idx) => {
     const h = rawAvgH1_2026[idx];
-    const diff = q.sum - h.sum;
-    const vel = (q.sum / h.sum) - 1;
+    const y25 = rawData2025[idx];
+    const avg25 = Math.round(y25.sum / 12);
+    const diffH1 = q.sum - h.sum;
+    const velH1 = (q.sum / h.sum) - 1;
+    const vel25 = (q.sum / avg25) - 1;
+    const shareQ3 = q.sum / totQ3;
+
     let tier = '';
     let assessment = '';
 
-    if (vel >= 0.40) {
+    if (velH1 >= 0.40) {
       tier = 'Tier 1: High Accelerator 🚀';
       assessment = 'Exceptional momentum; staged dramatic turnaround driven by core and specialty clinic expansion.';
-    } else if (vel >= 0.15) {
+    } else if (velH1 >= 0.15) {
       tier = 'Tier 2: Scale Compounder 📈';
       assessment = 'High-volume scale compounder; continues building market leadership at heavy volume.';
-    } else if (vel >= 0.0) {
+    } else if (velH1 >= 0.0) {
       tier = 'Tier 3: Steady Consolidator 🛡️';
       assessment = 'Stable baseline preserved; requires activation of secondary core & specialty products to reignite growth.';
     } else {
@@ -833,90 +843,99 @@ async function createWorkbook() {
     return {
       territory: q.territory,
       dm: q.dm,
+      avg25,
       h1: h.sum,
       q3: q.sum,
-      diff,
-      vel,
+      diffH1,
+      velH1,
+      vel25,
+      shareQ3,
       tier,
       assessment
     };
-  }).sort((a, b) => b.vel - a.vel);
+  }).sort((a, b) => b.velH1 - a.velH1);
 
   repVelocityData.forEach((r, idx) => {
-    const isAbove = r.vel >= compVelocity;
     const row = wsS11.addRow([
-      idx + 1, r.territory, r.dm, r.h1, r.q3, r.diff, r.vel, r.tier, r.assessment
+      idx + 1, r.territory, r.dm, r.avg25, r.h1, r.q3, r.diffH1, r.velH1, r.vel25, r.shareQ3, r.tier, r.assessment
     ]);
     row.getCell(4).numFmt = '#,##0';
     row.getCell(5).numFmt = '#,##0';
-    row.getCell(6).numFmt = '+#,##0;-#,##0';
-    row.getCell(7).numFmt = '+0.0%';
+    row.getCell(6).numFmt = '#,##0';
+    row.getCell(7).numFmt = '+#,##0;-#,##0';
+    row.getCell(8).numFmt = '+0.0%';
+    row.getCell(9).numFmt = '+0.0%';
+    row.getCell(10).numFmt = '0.0%';
 
-    if (r.vel >= 0.40) {
-      row.getCell(7).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: GREEN_FILL } };
-      row.getCell(7).font = { color: { argb: GREEN_FONT }, bold: true };
+    if (r.velH1 >= 0.40) {
+      row.getCell(8).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: GREEN_FILL } };
       row.getCell(8).font = { color: { argb: GREEN_FONT }, bold: true };
-    } else if (r.vel >= 0.15) {
-      row.getCell(7).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFD1ECF1' } };
-      row.getCell(7).font = { color: { argb: 'FF0C5460' }, bold: true };
+      row.getCell(11).font = { color: { argb: GREEN_FONT }, bold: true };
+    } else if (r.velH1 >= 0.15) {
+      row.getCell(8).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFD1ECF1' } };
       row.getCell(8).font = { color: { argb: 'FF0C5460' }, bold: true };
-    } else if (r.vel >= 0.0) {
-      row.getCell(7).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: YELLOW_FILL } };
-      row.getCell(7).font = { color: { argb: YELLOW_FONT }, bold: true };
+      row.getCell(11).font = { color: { argb: 'FF0C5460' }, bold: true };
+    } else if (r.velH1 >= 0.0) {
+      row.getCell(8).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: YELLOW_FILL } };
       row.getCell(8).font = { color: { argb: YELLOW_FONT }, bold: true };
+      row.getCell(11).font = { color: { argb: YELLOW_FONT }, bold: true };
     } else {
-      row.getCell(7).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: RED_FILL } };
-      row.getCell(7).font = { color: { argb: RED_FONT }, bold: true };
+      row.getCell(8).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: RED_FILL } };
       row.getCell(8).font = { color: { argb: RED_FONT }, bold: true };
+      row.getCell(11).font = { color: { argb: RED_FONT }, bold: true };
     }
   });
 
   // Add Product Velocity Breakdown below Rep Table
   wsS11.addRow([]);
-  wsS11.addRow(['', 'PRODUCT PORTFOLIO VELOCITY BREAKDOWN (Q3 2026 vs H1 2026)', '', '', '', '', '', '', '']);
+  wsS11.addRow(['', 'PRODUCT PORTFOLIO 3-HORIZON VELOCITY BREAKDOWN (2025 vs H1 2026 vs Q3 2026)', '', '', '', '', '', '', '', '', '']);
   const prodHeadRowIdx = wsS11.lastRow.number;
-  wsS11.mergeCells(`B${prodHeadRowIdx}:I${prodHeadRowIdx}`);
+  wsS11.mergeCells(`B${prodHeadRowIdx}:L${prodHeadRowIdx}`);
   wsS11.getCell(`B${prodHeadRowIdx}`).font = { bold: true, size: 12, color: { argb: NAVY } };
 
   wsS11.addRow([
-    'SKU Code', 'Product Description', 'Category', 'H1 MoAvg (Units)', 'Q3 MoAvg (Units)', 'Diff / Mo', 'Velocity %', 'Supply / Demand Dynamic', ''
+    'SKU Code', 'Product Description', 'Category', '2025 MoAvg (Baseline)', 'H1 MoAvg (Baseline)', 'Q3 MoAvg (Run-Rate)', 'Diff vs H1', 'Q3 vs H1 Vel.%', 'Q3 vs \'25 Grw.%', 'Supply / Demand Dynamic', '', ''
   ]);
   const pSubHead = wsS11.lastRow;
   pSubHead.font = { bold: true };
   pSubHead.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: GRAY_HEADER } };
 
   const prodVelocityKeys = [
-    { key: 'p1', name: 'Pediamil 1', cat: 'Core Infant', supply: 'Strong demand (+10.5%), supply stable' },
-    { key: 'p2', name: 'Pediamil 2', cat: 'Core Follow-up', supply: 'Slight dip (-8.4%) from peak Q2 promotions' },
-    { key: 'pg3', name: 'PediaGrow 3', cat: 'Growing Up Milk', supply: 'Supply constraint in Q3 (-80.6%)' },
-    { key: 'lf', name: 'Pediamil LF', cat: 'Specialty Lactose Free', supply: 'Supply quota restricted (-46.2%)' },
-    { key: 'ha', name: 'Pediamil HA', cat: 'Specialty Hypoallergenic', supply: 'Surge in hospital demand (+102.4%)' },
-    { key: 'ar', name: 'Pediamil AR', cat: 'Specialty Anti-Regurgitation', supply: 'Steady pediatric adoption (+30.1%)' },
-    { key: 'ac', name: 'Pediamil AC', cat: 'Specialty Anti-Colic', supply: 'Massive surge across clinics (+101.9%)' },
-    { key: 'mum', name: 'Pediamum', cat: 'Maternal Nutrition', supply: 'Niche pharmacy detailing (-10.4%)' },
-    { key: 'ps1', name: 'Pedia-Start 1', cat: 'Economy Infant', supply: 'Heavy clinic uptake across Upper Egypt (+35.7%)' },
-    { key: 'ps2', name: 'Pedia-Start 2', cat: 'Economy Follow-up', supply: 'Stable rural demand (-6.3%)' },
-    { key: 'lbw', name: 'LBW- Egy', cat: 'Specialty Low Birth Weight', supply: 'Severe temporary stockout in Q3 (-98.8%)' }
+    { key: 'p1', name: 'Pediamil 1', cat: 'Core Infant', supply: 'Strong demand (+14.9% vs H1 | +60.7% vs \'25), supply stable' },
+    { key: 'p2', name: 'Pediamil 2', cat: 'Core Follow-up', supply: 'Compounding steady run-rate (+5.9% vs H1 | +75.1% vs \'25)' },
+    { key: 'pg3', name: 'PediaGrow 3', cat: 'Growing Up Milk', supply: 'Temporary supply constraint in Q3 (-80.6% vs H1 | -70.5% vs \'25)' },
+    { key: 'lf', name: 'Pediamil LF', cat: 'Specialty Lactose Free', supply: 'Quota restricted in Q3 (-46.2% vs H1 | -24.1% vs \'25)' },
+    { key: 'ha', name: 'Pediamil HA', cat: 'Specialty Hypoallergenic', supply: 'Surge in hospital demand (+102.4% vs H1 | +119.6% vs \'25)' },
+    { key: 'ar', name: 'Pediamil AR', cat: 'Specialty Anti-Regurgitation', supply: 'Steady pediatric adoption (+27.7% vs H1 | -3.8% vs \'25)' },
+    { key: 'ac', name: 'Pediamil AC', cat: 'Specialty Anti-Colic', supply: 'Massive surge across clinics (+101.9% vs H1 | +188.5% vs \'25)' },
+    { key: 'mum', name: 'Pediamum', cat: 'Maternal Nutrition', supply: 'Niche pharmacy detailing (-19.3% vs H1 | -30.0% vs \'25)' },
+    { key: 'ps1', name: 'Pedia-Start 1', cat: 'Economy Infant', supply: 'Heavy clinic uptake in Upper Egypt (+35.7% vs H1 | +32.9% vs \'25)' },
+    { key: 'ps2', name: 'Pedia-Start 2', cat: 'Economy Follow-up', supply: 'Stable rural demand (-4.9% vs H1 | +33.0% vs \'25)' },
+    { key: 'lbw', name: 'LBW- Egy', cat: 'Specialty Low Birth Weight', supply: 'Severe temporary stockout in Q3 (-99.2% vs H1)' }
   ];
 
   prodVelocityKeys.forEach(p => {
+    const sum25 = Math.round(rawData2025.reduce((acc, r) => acc + (r[p.key] || 0), 0) / 12);
     const sumH1 = rawAvgH1_2026.reduce((acc, r) => acc + (r[p.key] || 0), 0);
     const sumQ3 = rawAvgQ3_2026.reduce((acc, r) => acc + (r[p.key] || 0), 0);
-    const diff = sumQ3 - sumH1;
-    const vel = sumH1 > 0 ? (sumQ3 / sumH1 - 1) : 0;
+    const diffH1 = sumQ3 - sumH1;
+    const velH1 = sumH1 > 0 ? (sumQ3 / sumH1 - 1) : 0;
+    const vel25 = sum25 > 0 ? (sumQ3 / sum25 - 1) : 1.0;
 
     const pr = wsS11.addRow([
-      p.key.toUpperCase(), p.name, p.cat, sumH1, sumQ3, diff, vel, p.supply, ''
+      p.key.toUpperCase(), p.name, p.cat, sum25, sumH1, sumQ3, diffH1, velH1, vel25, p.supply, '', ''
     ]);
     pr.getCell(4).numFmt = '#,##0';
     pr.getCell(5).numFmt = '#,##0';
-    pr.getCell(6).numFmt = '+#,##0;-#,##0';
-    pr.getCell(7).numFmt = '+0.0%';
+    pr.getCell(6).numFmt = '#,##0';
+    pr.getCell(7).numFmt = '+#,##0;-#,##0';
+    pr.getCell(8).numFmt = '+0.0%';
+    pr.getCell(9).numFmt = '+0.0%';
 
-    if (vel >= 0.20) {
-      pr.getCell(7).font = { color: { argb: GREEN_FONT }, bold: true };
-    } else if (vel < 0) {
-      pr.getCell(7).font = { color: { argb: RED_FONT }, bold: true };
+    if (velH1 >= 0.20) {
+      pr.getCell(8).font = { color: { argb: GREEN_FONT }, bold: true };
+    } else if (velH1 < 0) {
+      pr.getCell(8).font = { color: { argb: RED_FONT }, bold: true };
     }
   });
 

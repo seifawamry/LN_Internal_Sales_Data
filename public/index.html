@@ -1614,7 +1614,7 @@
     <button class="tab-btn" onclick="goToSlide(8)">08. Pedia-Start 1</button>
     <button class="tab-btn" onclick="goToSlide(9)">09. Pedia-Start 2</button>
     <button class="tab-btn" onclick="goToSlide(10)">10. Quadrant Matrix</button>
-    <button class="tab-btn" onclick="goToSlide(11)">11. Q3 vs H1 Rep Velocity</button>
+    <button class="tab-btn" onclick="goToSlide(11)">11. 3-Horizon Velocity (Q3 vs H1 vs '25)</button>
   </nav>
 
   <!-- Main Slides Content Area -->
@@ -2160,25 +2160,35 @@
           </div>
         </div>
       </div>
-    <!-- SLIDE 11: MEDICAL REP & AREA PERFORMANCE VELOCITY (Q3 vs H1) -->
+    </section>
+
+    <!-- SLIDE 11: 3-HORIZON RUN-RATE VELOCITY: Q3 2026 vs. H1 2026 BASELINE vs. 2025 -->
     <section class="slide-container" id="slide-11">
       <div class="slide-header">
         <div class="slide-header-left">
-          <h2><span class="slide-badge" style="background:#8B5CF6;">SLIDE 11</span> MEDICAL REP &amp; AREA PERFORMANCE VELOCITY: Q3 2026 vs. H1 BASELINE</h2>
-          <p>Quarterly Momentum Transition: Tracking Rep Acceleration, Volume Surges, and Specialty Product Mix Rotation (Monthly Sales AVG Q3 2026 vs H1 Baseline).</p>
+          <h2><span class="slide-badge" style="background:#8B5CF6;">SLIDE 11</span> 3-HORIZON COMMERCIAL VELOCITY: Q3 2026 vs. H1 BASELINE vs. 2025 FULL YEAR</h2>
+          <p>Commercial Velocity Trilogy: Tracking Medical Rep &amp; SKU Momentum from 2025 Baseline (103.4k/mo) through H1 2026 (138.3k/mo) to Q3 2026 Acceleration (156.1k/mo, +51.0% vs '25).</p>
         </div>
         <div class="kpi-pills">
           <div class="kpi-pill">
-            <span>Company Q3 Run-Rate</span>
-            <strong style="color:var(--primary);">156,178 Units/Mo</strong>
+            <span>2025 Baseline</span>
+            <strong style="color:var(--text-muted);">103,385 Units/Mo</strong>
           </div>
           <div class="kpi-pill">
-            <span>Quarterly Momentum Shift</span>
-            <strong style="color:var(--green);">+12.9% (+17.9k/mo)</strong>
+            <span>H1 2026 Baseline</span>
+            <strong style="color:var(--primary);">138,315 Units/Mo</strong>
           </div>
           <div class="kpi-pill">
-            <span>Top Velocity Surge</span>
-            <strong style="color:#8B5CF6;">Cairo (+58.7%)</strong>
+            <span>Q3 2026 Run-Rate</span>
+            <strong style="color:#8B5CF6;">156,126 Units/Mo</strong>
+          </div>
+          <div class="kpi-pill">
+            <span>Q3 vs H1 Velocity</span>
+            <strong style="color:var(--green);">+12.9% (+17.8k/mo)</strong>
+          </div>
+          <div class="kpi-pill">
+            <span>Q3 vs '25 Expansion</span>
+            <strong style="color:#10B981;">+51.0% (+52.7k/mo)</strong>
           </div>
         </div>
       </div>
@@ -2186,8 +2196,8 @@
       <div class="grid-2">
         <div class="card">
           <div class="card-title">
-            <span>Medical Rep Velocity: Q3 Avg vs. H1 Avg Monthly Run-Rate</span>
-            <small style="font-size:11px; color:var(--text-muted);">Blue = H1 Monthly Avg (Jan–Jun) | Purple = Q3 Monthly Avg (Jul–Sep) | Line = Velocity Growth %</small>
+            <span>Medical Rep Velocity: 2025 MoAvg vs. H1 MoAvg vs. Q3 MoAvg Run-Rate</span>
+            <small style="font-size:11px; color:var(--text-muted);">Gray = 2025 MoAvg | Navy = H1 MoAvg | Purple = Q3 MoAvg | Amber Line = Q3 vs H1 % | Green Line = Q3 vs '25 %</small>
           </div>
           <div class="chart-box-tall" style="height: 480px;">
             <canvas id="chartSlide11" width="600" height="480"></canvas>
@@ -2197,10 +2207,10 @@
         <div class="card">
           <div class="card-title">
             <span>Strategic Momentum Classification: 4 Velocity Tiers</span>
-            <small style="color:var(--text-muted); font-size:11px;">Rep Acceleration &amp; Portfolio Health</small>
+            <small style="color:var(--text-muted); font-size:11px;">Rep Acceleration &amp; 3-Horizon Expansion</small>
           </div>
 
-          <!-- Dynamic Selected ADM Q3 Velocity Spotlight Card -->
+          <!-- Dynamic Selected ADM 3-Horizon Velocity Spotlight Card -->
           <div id="chosenAdmVelocityCard" class="chosen-quad-highlight" style="border-left-color:#8B5CF6; margin-bottom:12px;">
           </div>
 
@@ -2212,9 +2222,9 @@
                 <small style="font-weight:700; color:#065F46; font-size:10px;">Breakout Momentum</small>
               </div>
               <ul style="font-size:11px; line-height:1.45; padding-left:14px; color:#1E293B;">
-                <li><strong>Cairo (Noher Adel):</strong> 8.8k → 13.9k/mo (<strong>+58.7%</strong>). Major turnaround led by AC (+225%) &amp; Pediamil 1 (+59%).</li>
-                <li><strong>KFR EL.SHK (Karim Shehab):</strong> 10.5k → 15.5k/mo (<strong>+47.9%</strong>). Broad recovery led by Pedia-Start 1 &amp; HA.</li>
-                <li><strong>Upper Egypt I (UE North):</strong> 16.5k → 23.6k/mo (<strong>+43.2%</strong>). Strong rural expansion via PS1 (6.7k) &amp; P1 (6.9k).</li>
+                <li><strong>Cairo (Noher Adel):</strong> 7.2k ('25) → 8.8k (H1) → <strong>13.9k/mo (Q3)</strong>. Surge of <strong>+58.7% vs H1</strong> and <strong>+94.3% vs '25</strong>! Staged massive turnaround led by AC (+225%) &amp; P1 (+59%).</li>
+                <li><strong>KFR EL.SHK (Karim Shehab):</strong> 9.3k ('25) → 10.5k (H1) → <strong>15.5k/mo (Q3)</strong>. <strong>+47.9% vs H1</strong>, <strong>+65.7% vs '25</strong>. Broad recovery via P-Start 1 &amp; HA.</li>
+                <li><strong>Upper Egypt I (UE North):</strong> 12.9k ('25) → 16.5k (H1) → <strong>23.6k/mo (Q3)</strong>. <strong>+43.2% vs H1</strong>, <strong>+83.0% vs '25</strong>. Heavy rural clinic uptake of PS1 &amp; P1.</li>
               </ul>
             </div>
 
@@ -2224,8 +2234,8 @@
                 <small style="font-weight:700; color:#1E40AF; font-size:10px;">Volume Pillars</small>
               </div>
               <ul style="font-size:11px; line-height:1.45; padding-left:14px; color:#1E293B;">
-                <li><strong>Upper Egypt II (Beshoy Youhanna):</strong> 22.3k → 25.7k/mo (<strong>+15.2%</strong>). National #1 volume leader; massive scale.</li>
-                <li><strong>Behera &amp; Dakahlia (Ahmed Sakr):</strong> 14.3k → 18.0k/mo (<strong>+26.1%</strong>). Compounding via PS1 (5.3k) &amp; P1 (4.9k).</li>
+                <li><strong>Upper Egypt II (Beshoy Youhanna):</strong> 14.9k ('25) → 22.3k (H1) → <strong>25.7k/mo (Q3)</strong>. <strong>+15.2% vs H1</strong>, <strong>+72.9% vs '25</strong>! National #1 volume powerhouse.</li>
+                <li><strong>Behera &amp; Dakahlia (Ahmed Sakr):</strong> 12.4k ('25) → 14.3k (H1) → <strong>18.0k/mo (Q3)</strong>. <strong>+26.1% vs H1</strong>, <strong>+45.0% vs '25</strong>. Compounding via PS1 &amp; P1.</li>
               </ul>
             </div>
 
@@ -2235,8 +2245,8 @@
                 <small style="font-weight:700; color:#92400E; font-size:10px;">Defensive Plateau</small>
               </div>
               <ul style="font-size:11px; line-height:1.45; padding-left:14px; color:#1E293B;">
-                <li><strong>Guiza (Youstina Farag):</strong> 12.9k → 13.9k/mo (<strong>+7.5%</strong>). Specialty expansion (AC, HA) offset core plateau.</li>
-                <li><strong>Alx (Ahmed Hassan):</strong> 10.2k → 10.3k/mo (<strong>+1.1%</strong>). Preserved baseline; action required on PS2 &amp; PG3.</li>
+                <li><strong>Guiza (Youstina Farag):</strong> 10.0k ('25) → 12.9k (H1) → <strong>13.9k/mo (Q3)</strong>. <strong>+7.5% vs H1</strong>, <strong>+39.3% vs '25</strong>. Specialty formulas offset core plateau.</li>
+                <li><strong>Alx (Ahmed Hassan):</strong> 7.3k ('25) → 10.2k (H1) → <strong>10.3k/mo (Q3)</strong>. <strong>+1.1% vs H1</strong>, <strong>+41.1% vs '25</strong>. Preserved baseline; action needed on PS2 &amp; PG3.</li>
               </ul>
             </div>
 
@@ -2246,8 +2256,8 @@
                 <small style="font-weight:700; color:#991B1B; font-size:10px;">Inventory &amp; Replenishment</small>
               </div>
               <ul style="font-size:11px; line-height:1.45; padding-left:14px; color:#1E293B;">
-                <li><strong>DELTA I (Shimaa Tarek):</strong> 20.1k → 18.6k/mo (<strong>-7.6%</strong>). High volume baseline; slight pull-back post H1 surge.</li>
-                <li><strong>Delta II (Mohamed Yousef):</strong> 22.8k → 16.7k/mo (<strong>-26.8%</strong>). Sharp drop; focus on trade credit &amp; stock replenishment.</li>
+                <li><strong>DELTA I (Shimaa Tarek):</strong> 15.2k ('25) → 20.1k (H1) → <strong>18.6k/mo (Q3)</strong>. <strong>-7.6% vs H1</strong>, but still <strong>+22.2% vs '25</strong>. High baseline pull-back.</li>
+                <li><strong>Delta II (Mohamed Yousef):</strong> 14.2k ('25) → 22.8k (H1) → <strong>16.7k/mo (Q3)</strong>. <strong>-26.8% vs H1</strong>, but still <strong>+17.2% vs '25</strong>. Focus on stock &amp; credit.</li>
               </ul>
             </div>
           </div>
@@ -2258,30 +2268,33 @@
       <div class="grid-2" style="margin-top:16px;">
         <div class="card">
           <div class="card-title">
-            <span>Product Mix Rotation: Q3 2026 vs. H1 2026 Monthly Velocity Shift</span>
-            <small style="font-size:11px; color:var(--text-muted);">Specialty boom (AC +102%, HA +102%, PS1 +36%) vs Supply constraints</small>
+            <span>Product Portfolio 3-Horizon Velocity: 2025 vs H1 2026 vs Q3 2026 Monthly Shift</span>
+            <small style="font-size:11px; color:var(--text-muted);">Specialty boom (AC +189% vs '25, HA +120% vs '25, PS1 +33% vs '25) vs Supply constraints</small>
           </div>
-          <div class="chart-box" style="height: 320px;">
-            <canvas id="chartSlide11Products" width="600" height="320"></canvas>
+          <div class="chart-box" style="height: 340px;">
+            <canvas id="chartSlide11Products" width="600" height="340"></canvas>
           </div>
         </div>
 
         <div class="card" style="overflow-x:auto;">
           <div class="card-title">
-            <span>Quarterly Rep Performance Scorecard (H1 vs Q3 Velocity Table)</span>
-            <small style="font-size:11px; color:var(--text-muted);">Ranked by Growth % | Click Manager dropdown above to highlight</small>
+            <span>Quarterly Rep Performance Scorecard (3-Horizon Comparison Table)</span>
+            <small style="font-size:11px; color:var(--text-muted);">Comparing 2025 MoAvg, H1 2026 Baseline &amp; Q3 2026 Run-Rate | Click Manager dropdown to highlight</small>
           </div>
           <div class="table-container" style="max-height:340px; overflow-y:auto;">
             <table class="data-table" id="tableSlide11">
               <thead>
                 <tr>
+                  <th>Rank</th>
                   <th>Territory</th>
                   <th>Medical Rep / ADM</th>
-                  <th>H1 Monthly Avg</th>
-                  <th>Q3 Monthly Avg</th>
-                  <th>Variance (Units/Mo)</th>
-                  <th>Velocity Growth %</th>
-                  <th>Q3 Share %</th>
+                  <th>2025 MoAvg</th>
+                  <th>H1 MoAvg</th>
+                  <th>Q3 MoAvg</th>
+                  <th>Q3 vs H1 Shift</th>
+                  <th>Q3 vs H1 Vel.%</th>
+                  <th>Q3 vs '25 Grw.%</th>
+                  <th>Q3 Share</th>
                   <th>Status</th>
                 </tr>
               </thead>
@@ -4259,65 +4272,111 @@
       });
     }
 
-    // SLIDE 11: MEDICAL REP & AREA PERFORMANCE VELOCITY (Q3 vs H1)
+    // SLIDE 11: 3-HORIZON RUN-RATE VELOCITY: Q3 2026 vs. H1 2026 BASELINE vs. 2025
     function renderSlide11() {
       const chosenPerson = getChosenPerson();
 
-      // Territory Velocity Analysis Data (July–Sept 2026 vs Jan–June 2026)
-      const territories = [
-        { t: 'Cairo', dm: 'NOHER ADEL ABD EL- HAKEEM HASSAN', h1: 8758, q3: 13898, tier: 'High Accelerator', badge: '🚀 TOP ACCELERATOR', badgeColor: '#10B981', action: 'Turnaround driven by Pediamil AC (+225%) and Pediamil 1 (+59%). Expand hospital NICU listings.' },
-        { t: 'KFR EL.SHK', dm: 'Karim Shehab', h1: 10461, q3: 15472, tier: 'High Accelerator', badge: '🚀 FAST RECOVERY', badgeColor: '#10B981', action: 'Pedia-Start 1 surge (+47%) and Pediamil HA recovery (+393%). Maintain pharmacy stocking cycles.' },
-        { t: 'Upper Egypt I', dm: 'UE North', h1: 16459, q3: 23564, tier: 'High Accelerator', badge: '🚀 RURAL SURGE', badgeColor: '#10B981', action: 'Massive rural clinic expansion. Core driver: P1 (6.9k) & PS1 (6.7k). Protect distribution pipeline.' },
-        { t: 'Behera & Dakahlia', dm: 'Ahmed Mohamed Sakr', h1: 14302, q3: 18041, tier: 'Scale Compounder', badge: '🛡️ SCALE COMPOUNDER', badgeColor: '#3B82F6', action: 'Double-digit compounding (+26.1%). Core driver: PS1 (5.3k) and Pediamil 1 (4.9k).' },
-        { t: 'Upper Egypt II', dm: 'Beshoy Youhanna', h1: 22305, q3: 25694, tier: 'Scale Compounder', badge: '🛡️ NATIONAL #1 VOLUME', badgeColor: '#3B82F6', action: 'Company #1 volume powerhouse (25.7k units/mo). Solid core formula prescription base.' },
-        { t: 'Guiza', dm: 'Youstina Farag Allah', h1: 12895, q3: 13858, tier: 'Steady Consolidator', badge: '⚖️ STEADY DEFENDER', badgeColor: '#F59E0B', action: 'Specialty expansion (AC, HA) offset core formula plateau. Deepen key clinic call frequency.' },
-        { t: 'Alx', dm: 'Ahmed Hassan Abd-Elmonem Abdallah', h1: 10206, q3: 10314, tier: 'Steady Consolidator', badge: '⚖️ STEADY PLATEAU', badgeColor: '#F59E0B', action: 'Baseline preserved (+1.1%). Action required to reactivate Pedia-Start 2 and PediaGrow 3.' },
-        { t: 'DELTA I', dm: 'Shimaa Tarek El- Shamy', h1: 20146, q3: 18614, tier: 'Contraction Watchlist', badge: '⚠️ VOLUME WATCHLIST', badgeColor: '#EF4444', action: 'High volume territory (-7.6% pullback post H1 record peak). Accelerate key account detailing.' },
-        { t: 'Delta II', dm: 'Mohamed Yousef M.', h1: 22783, q3: 16671, tier: 'Contraction Watchlist', badge: '⚠️ REPLENISHMENT ALERT', badgeColor: '#EF4444', action: 'Sharpest contraction (-26.8%). Focus on trade credit, distributor order processing, and rep activity.' }
-      ];
+      // Dynamic 3-Horizon Calculation for each territory
+      const territories = rawAvgQ3_2026.map((q, idx) => {
+        const h = rawAvgH1_2026[idx];
+        const y25 = rawData2025[idx];
+        const avg25 = Math.round((y25 ? y25.sum : 0) / shortageDivisor2025);
+        const avgH1 = h.sum;
+        const avgQ3 = q.sum;
+        const diffH1 = avgQ3 - avgH1;
+        const pctH1 = ((avgQ3 / avgH1) - 1) * 100;
+        const diff25 = avgQ3 - avg25;
+        const pct25 = ((avgQ3 / avg25) - 1) * 100;
 
-      // Sort by growth % descending
-      territories.forEach(d => {
-        d.diff = d.q3 - d.h1;
-        d.pct = ((d.diff) / d.h1) * 100;
-        const matchIdx = rawData2026.findIndex(r => r.territory.toLowerCase().includes(d.t.toLowerCase()) || d.t.toLowerCase().includes(r.territory.toLowerCase()));
-        d.isChosen = (matchIdx === chosenPerson.idx);
-        d.idx = matchIdx;
-      });
+        let tier = '';
+        let badge = '';
+        let badgeColor = '';
+        let action = '';
 
+        if (pctH1 >= 40) {
+          tier = 'High Accelerator';
+          badge = '🚀 TOP ACCELERATOR';
+          badgeColor = '#10B981';
+          action = 'Surge of +' + pctH1.toFixed(1) + '% vs H1 and +' + pct25.toFixed(1) + '% vs 2025. Turnaround breakout led by Pediamil AC (+225%) and core formula penetration. Expand hospital NICU listings and rural clinics.';
+        } else if (pctH1 >= 15) {
+          tier = 'Scale Compounder';
+          badge = '📈 SCALE COMPOUNDER';
+          badgeColor = '#3B82F6';
+          action = 'Compounding +' + pctH1.toFixed(1) + '% vs H1 and +' + pct25.toFixed(1) + '% vs 2025. Massive volume engine. Maintain mega-volume leadership, protect hospital listings from aggressive competitor discounts.';
+        } else if (pctH1 >= 0) {
+          tier = 'Steady Consolidator';
+          badge = '🛡️ STEADY CONSOLIDATOR';
+          badgeColor = '#F59E0B';
+          action = 'Stable baseline preserved (+' + pctH1.toFixed(1) + '% vs H1, +' + pct25.toFixed(1) + '% vs 2025). Action required to reactivate Pedia-Start 2 and PediaGrow 3 detailing to reignite acceleration.';
+        } else {
+          tier = 'Contraction Watchlist';
+          badge = '⚠️ CONTRACTION WATCHLIST';
+          badgeColor = '#EF4444';
+          action = 'Quarterly run-rate deceleration (' + pctH1.toFixed(1) + '% vs H1, though still +' + pct25.toFixed(1) + '% vs 2025). Immediate audit of distributor stock, credit limits, and field detailing call frequency.';
+        }
+
+        const isChosen = (idx === chosenPerson.idx);
+        return {
+          idx,
+          t: q.territory,
+          dm: q.dm,
+          avg25,
+          h1: avgH1,
+          q3: avgQ3,
+          diffH1,
+          pctH1,
+          diff25,
+          pct25,
+          tier,
+          badge,
+          badgeColor,
+          action,
+          isChosen
+        };
+      }).sort((a, b) => b.pctH1 - a.pctH1);
+
+      const tot25 = Math.round(rawData2025.reduce((acc, r) => acc + r.sum, 0) / shortageDivisor2025);
       const totalH1 = territories.reduce((acc, d) => acc + d.h1, 0);
       const totalQ3 = territories.reduce((acc, d) => acc + d.q3, 0);
+      const compQ3VsH1Diff = totalQ3 - totalH1;
+      const compQ3VsH1Pct = ((totalQ3 / totalH1) - 1) * 100;
+      const compQ3Vs25Diff = totalQ3 - tot25;
+      const compQ3Vs25Pct = ((totalQ3 / tot25) - 1) * 100;
 
       // Render Selected ADM Spotlight Card
       const spotCard = document.getElementById('chosenAdmVelocityCard');
       const chosenTerr = territories.find(d => d.isChosen) || territories[0];
       if (spotCard) {
         spotCard.innerHTML =
-          '<div style="display:flex; justify-content:space-between; align-items:center;">' +
-            '<h3 style="margin:0; font-size:13.5px; color:#1E293B;">🎯 SELECTED REP VELOCITY: ' + chosenTerr.dm.toUpperCase() + ' (' + chosenTerr.t.toUpperCase() + ')</h3>' +
+          '<div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px;">' +
+            '<h3 style="margin:0; font-size:13.5px; color:#1E293B;">🎯 SELECTED REP 3-HORIZON VELOCITY: ' + chosenTerr.dm.toUpperCase() + ' (' + chosenTerr.t.toUpperCase() + ')</h3>' +
             '<span class="badge-above" style="background:' + chosenTerr.badgeColor + '20; color:' + chosenTerr.badgeColor + '; border-color:' + chosenTerr.badgeColor + '; font-size:11px;">' + chosenTerr.badge + '</span>' +
           '</div>' +
-          '<div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:8px; margin-top:8px; background:#F8FAFC; padding:8px; border-radius:8px;">' +
-            '<div><span style="font-size:11px; color:#64748B;">H1 Monthly Avg</span><br><strong style="font-size:13px; color:#1B365D;">' + chosenTerr.h1.toLocaleString() + '</strong></div>' +
-            '<div><span style="font-size:11px; color:#64748B;">Q3 Monthly Avg</span><br><strong style="font-size:13px; color:#8B5CF6;">' + chosenTerr.q3.toLocaleString() + '</strong></div>' +
-            '<div><span style="font-size:11px; color:#64748B;">Volume Shift</span><br><strong style="font-size:13px; color:' + (chosenTerr.diff >= 0 ? '#10B981' : '#EF4444') + ';">' + (chosenTerr.diff >= 0 ? '+' : '') + chosenTerr.diff.toLocaleString() + '</strong></div>' +
-            '<div><span style="font-size:11px; color:#64748B;">Velocity Growth</span><br><strong style="font-size:13px; color:' + (chosenTerr.pct >= 0 ? '#10B981' : '#EF4444') + ';">' + (chosenTerr.pct >= 0 ? '+' : '') + chosenTerr.pct.toFixed(1) + '%</strong></div>' +
+          '<div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap:8px; margin-top:8px; background:#F8FAFC; padding:8px; border-radius:8px;">' +
+            '<div><span style="font-size:10.5px; color:#64748B;">2025 Mo Baseline</span><br><strong style="font-size:13px; color:#64748B;">' + chosenTerr.avg25.toLocaleString() + '</strong></div>' +
+            '<div><span style="font-size:10.5px; color:#64748B;">H1 2026 Mo Baseline</span><br><strong style="font-size:13px; color:#1B365D;">' + chosenTerr.h1.toLocaleString() + '</strong></div>' +
+            '<div><span style="font-size:10.5px; color:#64748B;">Q3 2026 Run-Rate</span><br><strong style="font-size:13px; color:#8B5CF6;">' + chosenTerr.q3.toLocaleString() + '</strong></div>' +
+            '<div><span style="font-size:10.5px; color:#64748B;">Q3 vs H1 Velocity</span><br><strong style="font-size:13px; color:' + (chosenTerr.pctH1 >= 0 ? '#10B981' : '#EF4444') + ';">' + (chosenTerr.pctH1 >= 0 ? '+' : '') + chosenTerr.pctH1.toFixed(1) + '%</strong> <small style="font-size:10px; color:#64748B;">(' + (chosenTerr.diffH1 >= 0 ? '+' : '') + chosenTerr.diffH1.toLocaleString() + ')</small></div>' +
+            '<div><span style="font-size:10.5px; color:#64748B;">Q3 vs 2025 Growth</span><br><strong style="font-size:13px; color:' + (chosenTerr.pct25 >= 0 ? '#10B981' : '#EF4444') + ';">' + (chosenTerr.pct25 >= 0 ? '+' : '') + chosenTerr.pct25.toFixed(1) + '%</strong> <small style="font-size:10px; color:#64748B;">(' + (chosenTerr.diff25 >= 0 ? '+' : '') + chosenTerr.diff25.toLocaleString() + ')</small></div>' +
           '</div>' +
-          '<p style="margin-top:8px; font-size:12px; color:#334155; line-height:1.5;"><strong>Strategic Rep Mandate:</strong> ' + chosenTerr.action + '</p>';
+          '<p style="margin-top:8px; font-size:11.5px; color:#334155; line-height:1.45;"><strong>Strategic Field Mandate:</strong> ' + chosenTerr.action + '</p>';
       }
 
-      // Render ChartSlide11 (Territory Run-rate & Velocity Combo)
+      // Render ChartSlide11 (3-Horizon Territory Velocity & Growth Combo)
       if (charts.s11) {
         try { charts.s11.destroy(); } catch (e) {}
       }
 
       const labels = territories.map(d => d.t);
+      const data25 = territories.map(d => d.avg25);
       const dataH1 = territories.map(d => d.h1);
       const dataQ3 = territories.map(d => d.q3);
-      const dataPct = territories.map(d => Number(d.pct.toFixed(1)));
+      const dataPctH1 = territories.map(d => Number(d.pctH1.toFixed(1)));
+      const dataPct25 = territories.map(d => Number(d.pct25.toFixed(1)));
 
-      const bgH1 = territories.map(d => d.isChosen ? '#4C1D95' : '#1B365D');
-      const bgQ3 = territories.map(d => d.isChosen ? '#8B5CF6' : '#0D9488');
+      const bg25 = territories.map(d => d.isChosen ? '#CBD5E1' : '#94A3B8');
+      const bgH1 = territories.map(d => d.isChosen ? '#4338CA' : '#1B365D');
+      const bgQ3 = territories.map(d => d.isChosen ? '#7C3AED' : '#0D9488');
 
       const ctx11 = document.getElementById('chartSlide11').getContext('2d');
       charts.s11 = new ChartLib(ctx11, {
@@ -4327,33 +4386,56 @@
           datasets: [
             {
               type: 'bar',
-              label: 'H1 Monthly Avg (Jan–Jun)',
-              data: dataH1,
-              backgroundColor: bgH1,
+              label: '2025 Monthly Baseline',
+              data: data25,
+              backgroundColor: bg25,
               borderRadius: 4,
-              order: 2
+              order: 3
             },
             {
               type: 'bar',
-              label: 'Q3 Monthly Avg (Jul–Sep)',
+              label: 'H1 2026 Monthly Baseline',
+              data: dataH1,
+              backgroundColor: bgH1,
+              borderRadius: 4,
+              order: 3
+            },
+            {
+              type: 'bar',
+              label: 'Q3 2026 Monthly Run-Rate',
               data: dataQ3,
               backgroundColor: bgQ3,
               borderRadius: 4,
-              order: 2
+              order: 3
             },
             {
               type: 'line',
-              label: 'Velocity Growth %',
-              data: dataPct,
+              label: 'Q3 vs H1 Velocity %',
+              data: dataPctH1,
               borderColor: '#F59E0B',
               backgroundColor: '#F59E0B',
               pointBackgroundColor: '#FFFFFF',
               pointBorderColor: '#F59E0B',
               pointBorderWidth: 2,
-              pointRadius: 5,
+              pointRadius: 4.5,
               borderWidth: 2.5,
               yAxisID: 'yPct',
               order: 1
+            },
+            {
+              type: 'line',
+              label: 'Q3 vs 2025 Growth %',
+              data: dataPct25,
+              borderColor: '#10B981',
+              backgroundColor: '#10B981',
+              pointBackgroundColor: '#FFFFFF',
+              pointBorderColor: '#10B981',
+              pointBorderWidth: 2,
+              pointRadius: 4.5,
+              borderWidth: 2.5,
+              borderDash: [5, 4],
+              yAxisID: 'yPct',
+              order: 2
             }
           ]
         },
@@ -4362,12 +4444,12 @@
           maintainAspectRatio: false,
           interaction: { mode: 'index', intersect: false },
           plugins: {
-            legend: { position: 'top', labels: { boxWidth: 12, font: { size: 11, weight: '600' } } },
+            legend: { position: 'top', labels: { boxWidth: 12, font: { size: 10.5, weight: '600' } } },
             tooltip: {
               callbacks: {
                 label: function(context) {
                   if (context.dataset.yAxisID === 'yPct') {
-                    return 'Velocity Shift: ' + (context.raw >= 0 ? '+' : '') + context.raw + '%';
+                    return context.dataset.label + ': ' + (context.raw >= 0 ? '+' : '') + context.raw + '%';
                   }
                   return context.dataset.label + ': ' + Number(context.raw).toLocaleString() + ' units/mo';
                 }
@@ -4377,16 +4459,16 @@
           scales: {
             x: {
               grid: { display: false },
-              ticks: { font: { size: 10, weight: 'bold' } }
+              ticks: { font: { size: 9.5, weight: 'bold' } }
             },
             y: {
-              title: { display: true, text: 'Monthly Average Sales (Units/Month)' },
+              title: { display: true, text: 'Monthly Average Sales (Units/Mo)' },
               ticks: { callback: v => (v / 1000).toFixed(0) + 'k' },
               grid: { color: 'rgba(0,0,0,0.06)' }
             },
             yPct: {
               position: 'right',
-              title: { display: true, text: 'Velocity Growth %' },
+              title: { display: true, text: 'Growth & Velocity %' },
               ticks: { callback: v => (v >= 0 ? '+' : '') + v + '%' },
               grid: { display: false }
             }
@@ -4394,27 +4476,29 @@
         }
       });
 
-      // Render ChartSlide11Products (Product Mix Rotation)
+      // Render ChartSlide11Products (3-Horizon Product Portfolio Velocity)
       if (charts.s11Prod) {
         try { charts.s11Prod.destroy(); } catch (e) {}
       }
 
-      const products = [
-        { name: 'Pediamil 1', h1: 39025, q3: 44832 },
-        { name: 'Pediamil 2', h1: 24417, q3: 25868 },
-        { name: 'Pedia-Start 1', h1: 24279, q3: 32951 },
-        { name: 'Pedia-Start 2', h1: 16234, q3: 15439 },
-        { name: 'Pediamil AC', h1: 7519, q3: 15180 },
-        { name: 'Pediamil HA', h1: 5899, q3: 11938 },
-        { name: 'Pediamil AR', h1: 4677, q3: 5969 },
-        { name: 'Pediamil LF', h1: 4335, q3: 2332 },
-        { name: 'PediaGrow 3', h1: 5337, q3: 1037 },
-        { name: 'Pediamum', h1: 721, q3: 583 }
+      const productsList = [
+        { key: 'p1', name: 'Pediamil 1' },
+        { key: 'p2', name: 'Pediamil 2' },
+        { key: 'ps1', name: 'Pedia-Start 1' },
+        { key: 'ps2', name: 'Pedia-Start 2' },
+        { key: 'ac', name: 'Pediamil AC' },
+        { key: 'ha', name: 'Pediamil HA' },
+        { key: 'ar', name: 'Pediamil AR' },
+        { key: 'lf', name: 'Pediamil LF' },
+        { key: 'pg3', name: 'PediaGrow 3' },
+        { key: 'mum', name: 'Pediamum' },
+        { key: 'lbw', name: 'LBW-Egy' }
       ];
 
-      const prodLabels = products.map(p => p.name);
-      const prodH1 = products.map(p => p.h1);
-      const prodQ3 = products.map(p => p.q3);
+      const prodLabels = productsList.map(p => p.name);
+      const prod25 = productsList.map(p => Math.round(rawData2025.reduce((a, r) => a + (r[p.key] || 0), 0) / shortageDivisor2025));
+      const prodH1 = productsList.map(p => rawAvgH1_2026.reduce((a, r) => a + (r[p.key] || 0), 0));
+      const prodQ3 = productsList.map(p => rawAvgQ3_2026.reduce((a, r) => a + (r[p.key] || 0), 0));
 
       const ctx11Prod = document.getElementById('chartSlide11Products').getContext('2d');
       charts.s11Prod = new ChartLib(ctx11Prod, {
@@ -4423,13 +4507,19 @@
           labels: prodLabels,
           datasets: [
             {
-              label: 'H1 Monthly Avg (Jan–Jun)',
+              label: '2025 MoAvg (Baseline)',
+              data: prod25,
+              backgroundColor: '#94A3B8',
+              borderRadius: 4
+            },
+            {
+              label: 'H1 2026 MoAvg',
               data: prodH1,
               backgroundColor: '#1B365D',
               borderRadius: 4
             },
             {
-              label: 'Q3 Monthly Avg (Jul–Sep)',
+              label: 'Q3 2026 MoAvg (Run-Rate)',
               data: prodQ3,
               backgroundColor: '#8B5CF6',
               borderRadius: 4
@@ -4440,20 +4530,27 @@
           responsive: true,
           maintainAspectRatio: false,
           plugins: {
-            legend: { position: 'top', labels: { boxWidth: 12, font: { size: 10.5 } } },
+            legend: { position: 'top', labels: { boxWidth: 12, font: { size: 10 } } },
             tooltip: {
               callbacks: {
                 label: function(ctx) {
-                  const p = products[ctx.dataIndex];
-                  const growth = ((p.q3 - p.h1) / p.h1) * 100;
-                  return ctx.dataset.label + ': ' + Number(ctx.raw).toLocaleString() + ' cans/mo (' + (growth >= 0 ? '+' : '') + growth.toFixed(1) + '%)';
+                  const p = productsList[ctx.dataIndex];
+                  const v25 = prod25[ctx.dataIndex];
+                  const vH1 = prodH1[ctx.dataIndex];
+                  const vQ3 = prodQ3[ctx.dataIndex];
+                  const q3VsH1 = vH1 > 0 ? ((vQ3 / vH1) - 1) * 100 : 0;
+                  const q3Vs25 = v25 > 0 ? ((vQ3 / v25) - 1) * 100 : 100;
+                  if (ctx.datasetIndex === 2) {
+                    return 'Q3 2026: ' + Number(ctx.raw).toLocaleString() + ' cans/mo (vs H1: ' + (q3VsH1 >= 0 ? '+' : '') + q3VsH1.toFixed(1) + '% | vs '25: ' + (q3Vs25 >= 0 ? '+' : '') + q3Vs25.toFixed(1) + '%)';
+                  }
+                  return ctx.dataset.label + ': ' + Number(ctx.raw).toLocaleString() + ' cans/mo';
                 }
               }
             }
           },
           scales: {
             x: {
-              ticks: { font: { size: 9.5, weight: '600' } },
+              ticks: { font: { size: 9, weight: '600' } },
               grid: { display: false }
             },
             y: {
@@ -4465,44 +4562,49 @@
         }
       });
 
-      // Render TableSlide11Body
+      // Render TableSlide11Body (3-Horizon Comparison Table)
       const tbody = document.getElementById('tableSlide11Body');
       if (tbody) {
         tbody.innerHTML = '';
-        territories.forEach((d) => {
+        territories.forEach((d, idx) => {
           const tr = document.createElement('tr');
           if (d.isChosen) {
             tr.style.background = '#EDE9FE';
             tr.style.fontWeight = 'bold';
           }
           const q3Share = ((d.q3 / totalQ3) * 100).toFixed(1) + '%';
-          const growthColor = d.pct >= 25 ? '#10B981' : (d.pct >= 0 ? '#3B82F6' : '#EF4444');
+          const growthColorH1 = d.pctH1 >= 25 ? '#10B981' : (d.pctH1 >= 0 ? '#3B82F6' : '#EF4444');
+          const growthColor25 = d.pct25 >= 39.5 ? '#10B981' : (d.pct25 >= 0 ? '#1B365D' : '#EF4444');
           tr.innerHTML =
-            '<td><strong>' + (d.isChosen ? '★ ' : '') + d.t + '</strong></td>' +
+            '<td>' + (idx + 1) + '</td>' +
+            '<td><strong>' + (d.isChosen ? '👉 ' : '') + d.t + '</strong></td>' +
             '<td>' + d.dm + '</td>' +
+            '<td style="text-align:right;">' + d.avg25.toLocaleString() + '</td>' +
             '<td style="text-align:right;">' + d.h1.toLocaleString() + '</td>' +
-            '<td style="text-align:right; font-weight:700; color:#1B365D;">' + d.q3.toLocaleString() + '</td>' +
-            '<td style="text-align:right; color:' + growthColor + '; font-weight:700;">' + (d.diff >= 0 ? '+' : '') + d.diff.toLocaleString() + '</td>' +
-            '<td style="text-align:right; color:' + growthColor + '; font-weight:800;">' + (d.pct >= 0 ? '+' : '') + d.pct.toFixed(1) + '%</td>' +
+            '<td style="text-align:right; font-weight:700; color:#8B5CF6;">' + d.q3.toLocaleString() + '</td>' +
+            '<td style="text-align:right; color:' + growthColorH1 + '; font-weight:700;">' + (d.diffH1 >= 0 ? '+' : '') + d.diffH1.toLocaleString() + '</td>' +
+            '<td style="text-align:right; color:' + growthColorH1 + '; font-weight:800;">' + (d.pctH1 >= 0 ? '+' : '') + d.pctH1.toFixed(1) + '%</td>' +
+            '<td style="text-align:right; color:' + growthColor25 + '; font-weight:800;">' + (d.pct25 >= 0 ? '+' : '') + d.pct25.toFixed(1) + '%</td>' +
             '<td style="text-align:right;">' + q3Share + '</td>' +
             '<td><span class="badge-above" style="background:' + d.badgeColor + '20; color:' + d.badgeColor + '; border-color:' + d.badgeColor + '; font-size:10px;">' + d.tier + '</span></td>';
           tbody.appendChild(tr);
         });
 
         // Summary Total Row
-        const totDiff = totalQ3 - totalH1;
-        const totPct = ((totDiff) / totalH1) * 100;
         const trTot = document.createElement('tr');
         trTot.style.background = '#F1F5F9';
         trTot.style.fontWeight = '800';
         trTot.style.borderTop = '2px solid #CBD5E1';
         trTot.innerHTML =
+          '<td>TOP</td>' +
           '<td>TOTAL EGYPT</td>' +
           '<td>National Medical Operations</td>' +
+          '<td style="text-align:right;">' + tot25.toLocaleString() + '</td>' +
           '<td style="text-align:right;">' + totalH1.toLocaleString() + '</td>' +
-          '<td style="text-align:right; color:#1B365D;">' + totalQ3.toLocaleString() + '</td>' +
-          '<td style="text-align:right; color:#10B981;">+' + totDiff.toLocaleString() + '</td>' +
-          '<td style="text-align:right; color:#10B981;">+' + totPct.toFixed(1) + '%</td>' +
+          '<td style="text-align:right; color:#8B5CF6;">' + totalQ3.toLocaleString() + '</td>' +
+          '<td style="text-align:right; color:#10B981;">+' + compQ3VsH1Diff.toLocaleString() + '</td>' +
+          '<td style="text-align:right; color:#10B981;">+' + compQ3VsH1Pct.toFixed(1) + '%</td>' +
+          '<td style="text-align:right; color:#10B981;">+' + compQ3Vs25Pct.toFixed(1) + '%</td>' +
           '<td style="text-align:right;">100.0%</td>' +
           '<td><span class="badge-above" style="background:#10B98120; color:#10B981; border-color:#10B981; font-size:10px;">National Benchmark</span></td>';
         tbody.appendChild(trTot);
