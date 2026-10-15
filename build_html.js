@@ -2750,7 +2750,6 @@ ${chartJsContent}
               </div>
               <ul>
                 <li><strong>Alx (Ahmed Hassan):</strong> +39.6% PPG, -2.7% Diff (61.2k units).</li>
-                <li><em>Core Action:</em> Closing the potential gap. Expand pediatrician advocacy & key pharmacy accounts.</li>
               </ul>
             </div>
 
@@ -2762,7 +2761,6 @@ ${chartJsContent}
               <ul>
                 <li><strong>Delta II (Mohamed Yousef):</strong> +60.2% PPG, +4.2% Diff (136.7k units).</li>
                 <li><strong>Upper Egypt II (Beshoy Youhanna):</strong> +50.1% PPG, +0.5% Diff (133.8k units).</li>
-                <li><em>Core Action:</em> Core volume engines. Protect baseline share and accelerate specialty cross-selling.</li>
               </ul>
             </div>
 
@@ -2775,7 +2773,6 @@ ${chartJsContent}
                 <li><strong>Cairo (Noher Adel):</strong> +22.5% PPG, -8.3% Diff (52.5k units).</li>
                 <li><strong>Guiza (Youstina Farag):</strong> +29.6% PPG, -5.2% Diff (77.4k units).</li>
                 <li><strong>Upper Egypt I (UE North):</strong> +27.8% PPG, -2.1% Diff.</li>
-                <li><em>Core Action:</em> Urgent commercial turnaround, field activity re-structuring, key clinic targeting.</li>
               </ul>
             </div>
 
@@ -2788,7 +2785,6 @@ ${chartJsContent}
                 <li><strong>DELTA I (Shimaa Tarek):</strong> +32.2% PPG, +7.3% Diff (120.9k units).</li>
                 <li><strong>KFR EL.SHK (Karim Shehab):</strong> +12.0% PPG, +5.8% Diff (62.8k units).</li>
                 <li><strong>Behera & Dak. (Ahmed Sakr):</strong> +15.0% PPG, +0.6% Diff (85.8k units).</li>
-                <li><em>Core Action:</em> Strong baseline share defenders. Focus detailing on high-growth formulations to re-ignite velocity above national target.</li>
               </ul>
             </div>
           </div>
@@ -3059,7 +3055,7 @@ ${chartJsContent}
           <span style="font-size:24px;">🏢</span>
           <div>
             <h3 style="margin:0; font-size:16px; font-weight:800; color:#FFFFFF; letter-spacing:0.5px;">TOP MANAGEMENT STRATEGIC EXECUTIVE REPORT</h3>
-            <p style="margin:0; font-size:11.5px; color:#CBD5E1;">Consolidated Commercial Audit, Parameter Insights &amp; Operational Field Directives</p>
+            <p style="margin:0; font-size:11.5px; color:#CBD5E1;">Consolidated Commercial Audit &amp; Status Quo Parameter Analysis</p>
           </div>
         </div>
         <button class="data-modal-close" onclick="closeTopMgmtModal()" style="color:#FFFFFF; font-size:18px;">✕</button>
@@ -3095,61 +3091,53 @@ ${chartJsContent}
           <h4><span style="background:#1B365D; color:white; padding:2px 8px; border-radius:4px; font-size:10px;">SLIDE 01</span> Territorial Share % &amp; Geographic Potential Gap</h4>
           <p><strong>Parameter Analysis:</strong> Actual Sales Contribution % vs. Potential Geo Demographic Share % (Contribution Difference Index).</p>
           <p><strong>Executive Takeaway:</strong> Upper Egypt II (16.2% share) and Delta II (14.4% share) are the primary national volume anchors, generating 30.6% of company sales. Conversely, <strong>Cairo</strong> (-7.36% gap vs 14.62% potential) and <strong>Alexandria</strong> (-3.00% gap vs 10.10% potential) represent the highest untapped sales opportunity in Egypt.</p>
-          <p class="mgmt-directive"><strong>Management Directive:</strong> Rebalance field detailing call quotas and promotional sampling kits away from saturated rural zones into high-density private hospital pediatric clinics in Greater Cairo and Alexandria.</p>
         </div>
 
         <div class="mgmt-section-card">
           <h4><span style="background:#1B365D; color:white; padding:2px 8px; border-radius:4px; font-size:10px;">SLIDE 02</span> Core Formula Portfolio (Pediamil 1, 2 &amp; Pedia-Start 1, 2)</h4>
           <p><strong>Parameter Analysis:</strong> Monthly Volume Run-Rates &amp; PPG% Growth vs. National Product Averages.</p>
           <p><strong>Executive Takeaway:</strong> Core formulas represent 67.5% of total business volume. <strong>Pediamil 1</strong> (+60.7% vs 2025, 44.8k cans/mo in Q3) and <strong>Pedia-Start 1</strong> (+32.9% vs 2025, 33.0k cans/mo in Q3) are the standout volume drivers nationally, driven by rapid hospital nursery adoption.</p>
-          <p class="mgmt-directive"><strong>Management Directive:</strong> Secure rolling buffer inventory for Pediamil 1 to prevent stockouts at key wholesalers; run physician conversion workshops on Pedia-Start 2 to maintain brand retention when infants graduate from Stage 1.</p>
         </div>
 
         <div class="mgmt-section-card">
           <h4><span style="background:#1B365D; color:white; padding:2px 8px; border-radius:4px; font-size:10px;">SLIDE 03</span> Specialty Product Lines (AC, HA, AR, LF, PG3, Mum, LBW)</h4>
           <p><strong>Parameter Analysis:</strong> High-Margin Specialty Prescription Adoption &amp; Supply Chain Resilience.</p>
           <p><strong>Executive Takeaway:</strong> Specialty lines deliver the highest commercial gross margins. <strong>Pediamil AC</strong> (+188.5% vs 2025, 15.2k cans/mo) and <strong>Pediamil HA</strong> (+119.6% vs 2025, 11.9k cans/mo) have staged massive breakout demand. However, severe supply chain deficits occurred in <strong>PediaGrow 3</strong> (-80.6% in Q3, down to 1,038 cans/mo) and <strong>Pediamil LF</strong> (-46.2% in Q3).</p>
-          <p class="mgmt-directive"><strong>Management Directive:</strong> Expedite emergency import clearance and raw-material procurement for PediaGrow 3 and Pediamil LF; increase production batch frequency for Pediamil AC to satisfy unfulfilled prescription demand.</p>
         </div>
 
         <div class="mgmt-section-card">
           <h4><span style="background:#1B365D; color:white; padding:2px 8px; border-radius:4px; font-size:10px;">SLIDE 04</span> Dual-Axis Territory Run-Rate &amp; Momentum Analysis</h4>
           <p><strong>Parameter Analysis:</strong> Absolute Volume Scale (Bars) vs. PPG Growth Rate (Secondary Markers).</p>
           <p><strong>Executive Takeaway:</strong> A clear commercial divergence exists: Upper Egypt II (25.7k cans/mo) provides volume stability, while Cairo (+58.7% velocity in Q3) provides growth acceleration. In contrast, Delta I (-7.6%) and Delta II (-24.1%) experienced post-H1 pullbacks driven by distributor inventory digestion.</p>
-          <p class="mgmt-directive"><strong>Management Directive:</strong> Conduct an immediate commercial terms and credit-limit audit across Delta distributor partners; maintain marketing co-investments in Cairo to support continued acceleration.</p>
         </div>
 
         <div class="mgmt-section-card">
           <h4><span style="background:#1B365D; color:white; padding:2px 8px; border-radius:4px; font-size:10px;">SLIDE 05</span> Total PPG% Growth Matrix</h4>
           <p><strong>Parameter Analysis:</strong> Territory Growth % vs. Egypt Benchmark (+33.8% H1 / +51.0% Q3).</p>
           <p><strong>Executive Takeaway:</strong> 5 out of 9 territories outperform national benchmark: Cairo (+94.3% vs '25), Upper Egypt I (+83.0%), Upper Egypt II (+72.9%), KFR EL.SHK (+65.7%), and Behera (+45.0%).</p>
-          <p class="mgmt-directive"><strong>Management Directive:</strong> Reward high-performing teams with Q3 commercial bonuses; introduce targeted clinical detailing modules in territories trailing behind the company benchmark.</p>
         </div>
 
         <div class="mgmt-section-card">
           <h4><span style="background:#1B365D; color:white; padding:2px 8px; border-radius:4px; font-size:10px;">SLIDES 06–09</span> Brand SKU Leaderboards &amp; Detailing Efficiency</h4>
           <p><strong>Parameter Analysis:</strong> Individual Territory Contribution per SKU &amp; Representative Prescription Delivery.</p>
           <p><strong>Executive Takeaway:</strong> Upper Egypt II leads nationally in Pediamil 1 (8,839 cans/mo) and Pediamil 2 (3,821 cans/mo). Upper Egypt I leads in Pedia-Start 1 (6,717 cans/mo). Best-practice detailing frequency in Upper Egypt has driven hospital clinic dominance.</p>
-          <p class="mgmt-directive"><strong>Management Directive:</strong> Package Upper Egypt's detailing playbooks and institutional tender negotiation tactics into a national training workshop for Delta and Cairo teams.</p>
         </div>
 
         <div class="mgmt-section-card">
           <h4><span style="background:#1B365D; color:white; padding:2px 8px; border-radius:4px; font-size:10px;">SLIDE 10</span> Strategic Performance Quadrant Matrix (ABCD Positioning)</h4>
           <p><strong>Parameter Analysis:</strong> PPG Growth % (Horizontal Intercept at Company PPG) vs Contribution Diff Index (Vertical Intercept at 0.00%).</p>
           <p><strong>Executive Takeaway:</strong>
-            <br>• <strong>Quadrant A (Stars):</strong> Upper Egypt II &amp; Delta II — Protect market leadership and accelerate cross-selling.
-            <br>• <strong>Quadrant B (Challengers):</strong> Alexandria, Behera, Upper Egypt I — High growth, expand physician reach to close potential gap.
-            <br>• <strong>Quadrant C (Consolidators):</strong> Stable baseline — re-invigorate core formula detailing.
-            <br>• <strong>Quadrant D (Underperformers):</strong> Cairo historical baseline — successfully staging rapid Q3 turnaround (+94.3% vs '25).
+            <br>• <strong>Quadrant A (Stars):</strong> Upper Egypt II &amp; Delta II — High volume contribution and above-average growth rate.
+            <br>• <strong>Quadrant B (Challengers):</strong> Alexandria, Behera, Upper Egypt I — High growth rate with remaining geographic potential.
+            <br>• <strong>Quadrant C (Consolidators):</strong> Established baseline volume with steady growth.
+            <br>• <strong>Quadrant D (Underperformers):</strong> Cairo historical baseline — staging rapid Q3 turnaround (+94.3% vs '25).
           </p>
-          <p class="mgmt-directive"><strong>Management Directive:</strong> Allocate discretionary promotional investments toward Quadrant B Challengers where return on incremental detailing calls yields the highest volume lift.</p>
         </div>
 
         <div class="mgmt-section-card">
           <h4><span style="background:#8B5CF6; color:white; padding:2px 8px; border-radius:4px; font-size:10px;">SLIDE 11</span> 3-Horizon Velocity Trilogy (2025 vs H1 2026 vs Q3 2026)</h4>
           <p><strong>Parameter Analysis:</strong> Monthly Run-Rate Progression across 3 distinct horizons (2025 Baseline vs H1 2026 Baseline vs Q3 2026 Run-Rate).</p>
           <p><strong>Executive Takeaway:</strong> Total Egypt has accelerated from 103.4k/mo in 2025 to 138.3k/mo in H1 2026, reaching an all-time high of <strong>156,126 cans/mo</strong> in Q3 (+12.9% vs H1, +51.0% vs '25). Top Velocity Stars: <strong>Cairo (+58.7% vs H1)</strong>, <strong>KFR EL.SHK (+47.9% vs H1)</strong>, and <strong>Upper Egypt I (+43.2% vs H1)</strong>.</p>
-          <p class="mgmt-directive"><strong>Management Directive:</strong> Maintain Q3 acceleration momentum into Q4 with expanded hospital tender deliveries to surpass the 170,000 cans/month milestone.</p>
         </div>
       </div>
 
@@ -3928,7 +3916,7 @@ ${chartJsContent}
         '<div class="outline-num" style="background:linear-gradient(135deg, #4338CA, #6D28D9); color:white;">📋</div>' +
         '<div class="outline-info">' +
           '<h4 style="color:#6D28D9;">Top Management Executive Report</h4>' +
-          '<span>National audit, portfolio insights & directives</span>' +
+          '<span>National audit &amp; portfolio status quo</span>' +
         '</div>';
       container.appendChild(execItem);
 
@@ -4419,8 +4407,7 @@ ${chartJsContent}
 
       if (p.isMgmt) {
         document.getElementById('s1BarLegendNotes').innerHTML =
-          '<div style="margin-bottom:6px; font-size:12px; color:#1E293B;"><strong>🏢 Top Management Strategic Overview:</strong> Upper Egypt II (16.2%) and Delta II (14.4%) lead national volume. Cairo (-7.36%) and Alexandria (-3.00%) present the largest untapped opportunities in Egypt.</div>' +
-          '<div style="font-size:11.5px; color:#2563EB;">• <strong>Executive Field Strategy:</strong> Direct medical detailing incentives towards Cairo and Alexandria private hospital pediatric clinics to capture high-density untapped market share.</div>';
+          '<div style="font-size:12px; color:#1E293B;"><strong>🏢 Top Management National Share Status:</strong> Upper Egypt II (16.2%) and Delta II (14.4%) lead national volume. Cairo (-7.36%) and Alexandria (-3.00%) represent the largest share gaps relative to 2025 geographic baseline.</div>';
       } else {
         document.getElementById('s1BarLegendNotes').innerHTML =
           '<div style="display:flex; justify-content:space-between; margin-bottom:6px;">' +
@@ -4542,8 +4529,7 @@ ${chartJsContent}
               '• <strong>Core Volume Anchor:</strong> The 4 core formulas represent <strong>' + coreShareOfTotal.toFixed(1) + '% of Egypt sales</strong> (' + Math.round(nationalCore26Sum).toLocaleString() + ' cans/month), accelerating at <strong>+' + nationalCorePpg.toFixed(1) + '% PPG</strong> over the 2025 baseline.<br>' +
               '• <strong>Primary Growth Engines:</strong> <strong>Pediamil 2 (+68.5% PPG, 24,900 cans/mo)</strong> and <strong>Pediamil 1 (+46.9% PPG, 40,960 cans/mo)</strong> generate the largest volume and cash flow expansion nationally.<br>' +
               '• <strong>Institutional Nursery Pillars:</strong> <strong>Pedia-Start 1 (+9.6% PPG, 27,170 cans/mo)</strong> and <strong>Pedia-Start 2 (+37.6% PPG, 15,969 cans/mo)</strong> anchor neonatal hospital listings and pediatric maternity discharge packs.<br>' +
-              '• <strong>National Average per ADM:</strong> An average ASM territory delivers <strong>' + Math.round(nationalCoreAvgPerAdm).toLocaleString() + ' cans/mo</strong> across the 4 core formulas (Pediamil 1: 4,551 | Pediamil 2: 2,767 | Pedia-Start 1: 3,019 | Pedia-Start 2: 1,774).<br>' +
-              '• <strong>Commercial Executive Mandate:</strong> Prevent distributor stockouts on Pediamil 1 & 2 in high-velocity hubs (Upper Egypt II & Delta), while intensifying stage-2 conversion detailing (Pedia-Start 2) to capture follow-on prescriptions.' +
+              '• <strong>National Average per ADM:</strong> An average ASM territory delivers <strong>' + Math.round(nationalCoreAvgPerAdm).toLocaleString() + ' cans/mo</strong> across the 4 core formulas (Pediamil 1: 4,551 | Pediamil 2: 2,767 | Pedia-Start 1: 3,019 | Pedia-Start 2: 1,774).' +
             '</p>';
         } else {
           // Identify star and lagging core formulas for this ASM
@@ -4575,8 +4561,7 @@ ${chartJsContent}
               '• <strong>Territory Core Volume:</strong> ' + p.dm + ' delivers <strong>' + Math.round(core26Sum).toLocaleString() + ' cans/month</strong> in core formulas (' + (vsLineTotal >= 0 ? '+' : '') + vsLineTotal.toFixed(1) + '% vs Company Line Avg of ' + Math.round(nationalCoreAvgPerAdm).toLocaleString() + ' cans/mo).<br>' +
               '• <strong>Core Growth Rate:</strong> <strong>' + (corePpg >= 0 ? '+' : '') + corePpg.toFixed(1) + '% PPG</strong> vs Company Core pace of +' + nationalCorePpg.toFixed(1) + '%.<br>' +
               '• <strong>Territory Star SKU:</strong> <strong>' + nameMap[bestProd] + '</strong> leading with <strong>' + (bestPpg >= 0 ? '+' : '') + bestPpg.toFixed(1) + '% PPG</strong> (' + Math.round((p.r26[bestProd]||0)/shortageDivisor2026).toLocaleString() + ' cans/mo).<br>' +
-              '• <strong>Priority Focus SKU:</strong> <strong>' + nameMap[worstProd] + '</strong> at <strong>' + (worstPpg >= 0 ? '+' : '') + worstPpg.toFixed(1) + '% PPG</strong> — targeted pediatric hospital coverage required.<br>' +
-              '• <strong>Field Action Mandate:</strong> ' + (corePpg >= nationalCorePpg ? 'Defend established preschool and hospital brand preference while aggressively driving multi-tin pharmacy bundle promotions.' : 'Audit representative call frequency in key hospital bricks and realign detailing priority toward high-growth stage-2 formulas.') +
+              '• <strong>Lowest Growth Core SKU:</strong> <strong>' + nameMap[worstProd] + '</strong> at <strong>' + (worstPpg >= 0 ? '+' : '') + worstPpg.toFixed(1) + '% PPG</strong> (' + Math.round((p.r26[worstProd]||0)/shortageDivisor2026).toLocaleString() + ' cans/mo).' +
             '</p>';
         }
       }
@@ -4849,8 +4834,7 @@ ${chartJsContent}
               '• <strong>Clinical High-Margin Volume:</strong> Specialty lines deliver <strong>' + Math.round(nationalSpec26Sum).toLocaleString() + ' cans/month</strong> (19.0% of company sales), expanding by <strong>+' + nationalSpecPpg.toFixed(1) + '% PPG</strong> over 2025.<br>' +
               '• <strong>Breakout Clinical Winner:</strong> <strong>Pediamil AC (+91.5% PPG, 10,073 cans/mo)</strong> has nearly doubled sales nationally, proving massive physician prescription uptake for colic/constipation management.<br>' +
               '• <strong>Solid Expansion Drivers:</strong> <strong>Pediamil HA (+45.5% PPG, 7,912 cans/mo)</strong> and <strong>Pediamil LF (+19.3% PPG, 3,667 cans/mo)</strong> provide steady hypoallergenic and lactose intolerance detailing gains.<br>' +
-              '• <strong>Areas for Clinical Action:</strong> <strong>Pediamil AR (-17.7% PPG, 5,108 cans/mo)</strong> and <strong>Pediamum (-19.0% PPG, 675 cans/mo)</strong> require refreshed clinical messaging to gynecologists and pediatric GI specialists.<br>' +
-              '• <strong>Commercial Executive Mandate:</strong> Bundle Pediamil AC detailing with core formulas to protect margin yield; launch hospital pediatric GI symposia to reverse Pediamil AR contraction.' +
+              '• <strong>Products in Contraction:</strong> <strong>Pediamil AR (-17.7% PPG, 5,108 cans/mo)</strong> and <strong>Pediamum (-19.0% PPG, 675 cans/mo)</strong> recorded negative year-over-year volume growth.' +
             '</p>';
         } else {
           // Identify star and lagging specialty formulas for this ASM
@@ -4882,8 +4866,7 @@ ${chartJsContent}
               '• <strong>Territory Specialty Volume:</strong> ' + p.dm + ' delivers <strong>' + Math.round(spec26Sum).toLocaleString() + ' cans/month</strong> in specialty formulas (' + (vsLineTotal >= 0 ? '+' : '') + vsLineTotal.toFixed(1) + '% vs Company Line Avg of ' + Math.round(nationalSpecAvgPerAdm).toLocaleString() + ' cans/mo).<br>' +
               '• <strong>Specialty Growth Pace:</strong> <strong>' + (specPpg >= 0 ? '+' : '') + specPpg.toFixed(1) + '% PPG</strong> vs National Specialty pace of +' + nationalSpecPpg.toFixed(1) + '%.<br>' +
               '• <strong>Territory Clinical Star:</strong> <strong>' + nameMap[bestProd] + '</strong> leading with <strong>' + (bestPpg >= 0 ? '+' : '') + bestPpg.toFixed(1) + '% PPG</strong> (' + Math.round((p.r26[bestProd]||0)/shortageDivisor2026).toLocaleString() + ' cans/mo).<br>' +
-              '• <strong>Prescription Opportunity SKU:</strong> <strong>' + nameMap[worstProd] + '</strong> at <strong>' + (worstPpg >= 0 ? '+' : '') + worstPpg.toFixed(1) + '% PPG</strong> — targeted KOL engagement needed.<br>' +
-              '• <strong>Field Action Mandate:</strong> ' + (specPpg >= nationalSpecPpg ? 'Leverage strong pediatric specialist endorsement for Pediamil AC to secure regional pharmacy key account shelf placement.' : 'Schedule focused detailing rounds on key pediatric clinics specializing in infant gastrointestinal and allergy conditions.') +
+              '• <strong>Lowest Growth Specialty SKU:</strong> <strong>' + nameMap[worstProd] + '</strong> at <strong>' + (worstPpg >= 0 ? '+' : '') + worstPpg.toFixed(1) + '% PPG</strong> (' + Math.round((p.r26[worstProd]||0)/shortageDivisor2026).toLocaleString() + ' cans/mo).' +
             '</p>';
         }
       }
@@ -5476,23 +5459,23 @@ ${chartJsContent}
       if (chosenPerson.isMgmt) {
         quadTitle = '🏢 NATIONAL COMMERCIAL STRATEGIC MATRIX (EGYPT TOTAL)';
         quadBadge = '<span class="badge-above" style="background:#1E3A8A20; color:#1E3A8A; border-color:#1E3A8A;">EXECUTIVE AUDIT</span>';
-        quadStrategy = '<strong>Executive Portfolio Diagnosis:</strong> Upper Egypt II (16.2% share) and Delta II (14.4% share) anchor Egypt volume.<br><strong>Primary Growth Drivers:</strong> Cairo (+94.3% vs 2025) and Upper Egypt I (+83.0% vs 2025) generate top expansion momentum.<br><strong>Commercial Mandate:</strong> Reallocate detailing resources to close Cairo demographic gap (-7.36%) while supporting distributor inventory recovery in Delta.';
+        quadStrategy = '<strong>Executive Portfolio Diagnosis:</strong> Upper Egypt II (16.2% share) and Delta II (14.4% share) anchor Egypt volume.<br><strong>Primary Growth Drivers:</strong> Cairo (+94.3% vs 2025) and Upper Egypt I (+83.0% vs 2025) generate top expansion momentum.<br><strong>Contribution Status Quo:</strong> Cairo presents a -7.36% demographic variance gap, while Delta territories anchor baseline distribution.';
       } else if (chosenPerson.quad === 'A') {
         quadTitle = 'QUADRANT A: COMPANY STAR 🌟';
         quadBadge = '<span class="badge-above">TOP PERFORMER</span>';
-        quadStrategy = '<strong>' + chosenPerson.dm + ' (' + chosenPerson.territory + ')</strong> is positioned firmly in <strong>Quadrant A</strong> with outstanding volume momentum (<strong>+' + chosenPerson.totalPpg.toFixed(1) + '% PPG</strong> vs. Company +' + compTotalPpg.toFixed(1) + '%) and a positive contribution gain (<strong>+' + chosenPerson.contrDiff.toFixed(2) + '%</strong>).<br><strong>Commercial Mandate:</strong> Defend market share against competitor detailing, secure neonatal intensive care listings for Pedia-Start & LBW, and drive multi-can specialty pharmacy bundling.';
+        quadStrategy = '<strong>' + chosenPerson.dm + ' (' + chosenPerson.territory + ')</strong> is positioned firmly in <strong>Quadrant A</strong> with outstanding volume momentum (<strong>+' + chosenPerson.totalPpg.toFixed(1) + '% PPG</strong> vs. Company +' + compTotalPpg.toFixed(1) + '%) and a positive contribution gain (<strong>+' + chosenPerson.contrDiff.toFixed(2) + '%</strong>).';
       } else if (chosenPerson.quad === 'B') {
         quadTitle = 'QUADRANT B: HIGH-GROWTH CHALLENGER 🚀';
         quadBadge = '<span class="badge-above" style="background:#DBEAFE; color:#1E40AF; border-color:#BFDBFE;">HIGH MOMENTUM</span>';
-        quadStrategy = '<strong>' + chosenPerson.dm + ' (' + chosenPerson.territory + ')</strong> is positioned in <strong>Quadrant B</strong>, generating high growth of <strong>+' + chosenPerson.totalPpg.toFixed(1) + '% PPG</strong> (exceeding company pace +' + compTotalPpg.toFixed(1) + '%) while working to close an initial potential gap (<strong>' + chosenPerson.contrDiff.toFixed(2) + '%</strong> vs. GEO share).<br><strong>Commercial Mandate:</strong> Capitalize on strong prescription velocity. Prioritize hospital tender listings and key chain pharmacy coverage to fully unlock geographic potential.';
+        quadStrategy = '<strong>' + chosenPerson.dm + ' (' + chosenPerson.territory + ')</strong> is positioned in <strong>Quadrant B</strong>, generating high growth of <strong>+' + chosenPerson.totalPpg.toFixed(1) + '% PPG</strong> (exceeding company pace +' + compTotalPpg.toFixed(1) + '%) alongside an initial potential gap (<strong>' + chosenPerson.contrDiff.toFixed(2) + '%</strong> vs. GEO share).';
       } else if (chosenPerson.quad === 'C') {
         quadTitle = 'QUADRANT C: VOLUME PILLAR & SHARE KEEPER 🛡️';
         quadBadge = '<span class="badge-above" style="background:#FEF3C7; color:#92400E; border-color:#FDE68A;">CORE BASELINE</span>';
-        quadStrategy = '<strong>' + chosenPerson.dm + ' (' + chosenPerson.territory + ')</strong> is positioned in <strong>Quadrant C</strong> (Volume Pillars), delivering strong baseline share exceeding geographic potential (<strong>+' + chosenPerson.contrDiff.toFixed(2) + '%</strong>), but running at a moderate growth pace (<strong>+' + chosenPerson.totalPpg.toFixed(1) + '% PPG</strong> vs. Company +' + compTotalPpg.toFixed(1) + '%).<br><strong>Commercial Mandate:</strong> Accelerate growth rate back above national benchmark (+' + compTotalPpg.toFixed(1) + '%). Drive high-growth stage-2 formulas (Pediamil 2 & Pedia-Start 2) and high-margin specialty lines (Pediamil AC & LF).';
+        quadStrategy = '<strong>' + chosenPerson.dm + ' (' + chosenPerson.territory + ')</strong> is positioned in <strong>Quadrant C</strong> (Volume Pillars), delivering strong baseline share exceeding geographic potential (<strong>+' + chosenPerson.contrDiff.toFixed(2) + '%</strong>), alongside a growth pace of <strong>+' + chosenPerson.totalPpg.toFixed(1) + '% PPG</strong> (vs. Company +' + compTotalPpg.toFixed(1) + '%).';
       } else {
         quadTitle = 'QUADRANT D: LOWEST PERFORMERS / CRITICAL ATTENTION ⚠️';
         quadBadge = '<span class="badge-below">CRITICAL LAGGARD</span>';
-        quadStrategy = '<strong>' + chosenPerson.dm + ' (' + chosenPerson.territory + ')</strong> is in <strong>Quadrant D</strong> (Lowest Performers), experiencing sub-benchmark growth (<strong>+' + chosenPerson.totalPpg.toFixed(1) + '% PPG</strong> vs. +' + compTotalPpg.toFixed(1) + '%) alongside a severe contribution share gap (<strong>' + chosenPerson.contrDiff.toFixed(2) + '%</strong> vs. GEO share).<br><strong>Commercial Mandate:</strong> Immediate review with Commercial Director. Audit medical rep call frequency, re-align territory brick targets, and execute urgent pediatric symposiums to reverse competitor conversion.';
+        quadStrategy = '<strong>' + chosenPerson.dm + ' (' + chosenPerson.territory + ')</strong> is in <strong>Quadrant D</strong> (Lowest Performers), experiencing sub-benchmark growth (<strong>+' + chosenPerson.totalPpg.toFixed(1) + '% PPG</strong> vs. +' + compTotalPpg.toFixed(1) + '%) alongside a contribution share gap of <strong>' + chosenPerson.contrDiff.toFixed(2) + '%</strong> vs. GEO share.';
       }
 
       diagCard.innerHTML =
@@ -5536,7 +5519,6 @@ ${chartJsContent}
             '</div>' +
             '<ul>' +
               qB.map(t => '<li>' + t + '</li>').join('') +
-              '<li style="margin-top:4px;"><em>Core Action:</em> Closing the potential gap. Expand pediatrician advocacy & key pharmacy accounts.</li>' +
             '</ul>' +
           '</div>' +
           '<div class="quad-card quad-a">' +
@@ -5546,7 +5528,6 @@ ${chartJsContent}
             '</div>' +
             '<ul>' +
               qA.map(t => '<li>' + t + '</li>').join('') +
-              '<li style="margin-top:4px;"><em>Core Action:</em> Core volume engines. Protect baseline share and accelerate specialty cross-selling.</li>' +
             '</ul>' +
           '</div>' +
           '<div class="quad-card quad-d">' +
@@ -5556,7 +5537,6 @@ ${chartJsContent}
             '</div>' +
             '<ul>' +
               qD.map(t => '<li>' + t + '</li>').join('') +
-              '<li style="margin-top:4px;"><em>Core Action:</em> Urgent commercial turnaround, field activity re-structuring, key clinic targeting.</li>' +
             '</ul>' +
           '</div>' +
           '<div class="quad-card quad-c">' +
@@ -5566,7 +5546,6 @@ ${chartJsContent}
             '</div>' +
             '<ul>' +
               qC.map(t => '<li>' + t + '</li>').join('') +
-              '<li style="margin-top:4px;"><em>Core Action:</em> Strong baseline share defenders. Focus detailing on high-growth formulations to re-ignite velocity above +' + compTotalPpg.toFixed(1) + '%.</li>' +
             '</ul>' +
           '</div>';
       }
@@ -5769,22 +5748,22 @@ ${chartJsContent}
           tier = 'High Accelerator';
           badge = '🚀 TOP ACCELERATOR';
           badgeColor = '#10B981';
-          action = 'Surge of +' + pctH1.toFixed(1) + '% vs H1 and +' + pct25.toFixed(1) + '% vs 2025. Turnaround breakout led by Pediamil AC (+225%) and core formula penetration. Expand hospital NICU listings and rural clinics.';
+          action = 'Surge of +' + pctH1.toFixed(1) + '% vs H1 (+' + diffH1.toLocaleString() + ' cans/mo) and +' + pct25.toFixed(1) + '% vs 2025 baseline. Leading quarterly acceleration rate.';
         } else if (pctH1 >= 15) {
           tier = 'Scale Compounder';
           badge = '📈 SCALE COMPOUNDER';
           badgeColor = '#3B82F6';
-          action = 'Compounding +' + pctH1.toFixed(1) + '% vs H1 and +' + pct25.toFixed(1) + '% vs 2025. Massive volume engine. Maintain mega-volume leadership, protect hospital listings from aggressive competitor discounts.';
+          action = 'Compounding +' + pctH1.toFixed(1) + '% vs H1 (+' + diffH1.toLocaleString() + ' cans/mo) and +' + pct25.toFixed(1) + '% vs 2025 baseline. Sustained volume expansion.';
         } else if (pctH1 >= 0) {
           tier = 'Steady Consolidator';
           badge = '🛡️ STEADY CONSOLIDATOR';
           badgeColor = '#F59E0B';
-          action = 'Stable baseline preserved (+' + pctH1.toFixed(1) + '% vs H1, +' + pct25.toFixed(1) + '% vs 2025). Action required to reactivate Pedia-Start 2 and PediaGrow 3 detailing to reignite acceleration.';
+          action = 'Stable baseline preserved (+' + pctH1.toFixed(1) + '% vs H1, +' + pct25.toFixed(1) + '% vs 2025 baseline). Running on par with earlier run-rates.';
         } else {
           tier = 'Contraction Watchlist';
           badge = '⚠️ CONTRACTION WATCHLIST';
           badgeColor = '#EF4444';
-          action = 'Quarterly run-rate deceleration (' + pctH1.toFixed(1) + '% vs H1, though still +' + pct25.toFixed(1) + '% vs 2025). Immediate audit of distributor stock, credit limits, and field detailing call frequency.';
+          action = 'Quarterly run-rate deceleration of ' + pctH1.toFixed(1) + '% vs H1 (' + diffH1.toLocaleString() + ' cans/mo), while remaining +' + pct25.toFixed(1) + '% vs 2025 baseline.';
         }
 
         const isChosen = (!isTopManagementView && idx === chosenPerson.idx);
@@ -5858,7 +5837,7 @@ ${chartJsContent}
               '<div><span style="font-size:10.5px; color:#64748B;">Q3 vs H1 Velocity</span><br><strong style="font-size:13px; color:#10B981;">+' + compQ3VsH1Pct.toFixed(1) + '%</strong> <small style="font-size:10px; color:#64748B;">(+' + compQ3VsH1Diff.toLocaleString() + ')</small></div>' +
               '<div><span style="font-size:10.5px; color:#64748B;">Q3 vs 2025 Growth</span><br><strong style="font-size:13px; color:#10B981;">+' + compQ3Vs25Pct.toFixed(1) + '%</strong> <small style="font-size:10px; color:#64748B;">(+' + compQ3Vs25Diff.toLocaleString() + ')</small></div>' +
             '</div>' +
-            '<p style="margin-top:8px; font-size:11.5px; color:#334155; line-height:1.45;"><strong>Executive Field Mandate:</strong> Egypt sales run-rate expanded by +12.9% in Q3 (+17,811 cans/mo vs H1) and +51.0% vs 2025. Protect Upper Egypt core volume, aggressively fund Cairo growth, and support inventory recovery across Delta distributor networks.</p>';
+            '<p style="margin-top:8px; font-size:11.5px; color:#334155; line-height:1.45;"><strong>National Sales Run-Rate Status:</strong> Egypt sales run-rate expanded by +12.9% in Q3 (+17,811 cans/mo vs H1) and +51.0% vs 2025 baseline (156.1k cans/mo vs 103.4k in 2025).</p>';
         } else {
           spotCard.innerHTML =
             '<div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px;">' +
@@ -5872,7 +5851,7 @@ ${chartJsContent}
               '<div><span style="font-size:10.5px; color:#64748B;">Q3 vs H1 Velocity</span><br><strong style="font-size:13px; color:' + (chosenTerr.pctH1 >= 0 ? '#10B981' : '#EF4444') + ';">' + (chosenTerr.pctH1 >= 0 ? '+' : '') + chosenTerr.pctH1.toFixed(1) + '%</strong> <small style="font-size:10px; color:#64748B;">(' + (chosenTerr.diffH1 >= 0 ? '+' : '') + chosenTerr.diffH1.toLocaleString() + ')</small></div>' +
               '<div><span style="font-size:10.5px; color:#64748B;">Q3 vs 2025 Growth</span><br><strong style="font-size:13px; color:' + (chosenTerr.pct25 >= 0 ? '#10B981' : '#EF4444') + ';">' + (chosenTerr.pct25 >= 0 ? '+' : '') + chosenTerr.pct25.toFixed(1) + '%</strong> <small style="font-size:10px; color:#64748B;">(' + (chosenTerr.diff25 >= 0 ? '+' : '') + chosenTerr.diff25.toLocaleString() + ')</small></div>' +
             '</div>' +
-            '<p style="margin-top:8px; font-size:11.5px; color:#334155; line-height:1.45;"><strong>Strategic Field Mandate:</strong> ' + chosenTerr.action + '</p>';
+            '<p style="margin-top:8px; font-size:11.5px; color:#334155; line-height:1.45;"><strong>Territory Run-Rate Status Quo:</strong> ' + chosenTerr.action + '</p>';
         }
       }
 
