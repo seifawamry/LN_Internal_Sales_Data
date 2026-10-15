@@ -1778,8 +1778,8 @@ ${chartJsContent}
   <!-- SECURITY ACCESS GATE / PASS KEY SCREEN -->
   <div id="appLockScreen" class="app-lock-overlay">
     <div class="lock-card">
-      <div class="lock-shield-icon" style="cursor:pointer;" onclick="quickUnlock()" title="Click to auto-unlock">🛡️</div>
-      <div class="lock-badge" style="cursor:pointer;" onclick="quickUnlock()" title="Click to auto-unlock">CONFIDENTIAL • TOP MANAGEMENT ONLY</div>
+      <div class="lock-shield-icon">🛡️</div>
+      <div class="lock-badge">CONFIDENTIAL • TOP MANAGEMENT ONLY</div>
       <h1 class="lock-title">LN SALES INTELLIGENCE</h1>
       <p class="lock-subtitle">Authorized Executive &amp; Commercial Management Access Required.<br>This system contains confidential sales volume, physician detailing metrics, and market share data.</p>
       
@@ -1787,16 +1787,15 @@ ${chartJsContent}
         <label for="passKeyInput" class="passkey-label">Enter Access Pass Key</label>
         <div class="passkey-input-wrapper">
           <span class="passkey-icon">🔑</span>
-          <input type="password" id="passKeyInput" class="passkey-input" placeholder="Enter key (e.g. LN2026)..." autofocus autocomplete="off" onkeydown="if(event.key==='Enter') verifyPassKey();" />
+          <input type="password" id="passKeyInput" class="passkey-input" placeholder="Enter Pass Key..." autofocus autocomplete="off" onkeydown="if(event.key==='Enter') verifyPassKey();" />
           <button type="button" class="passkey-eye-btn" onclick="togglePassKeyVisibility()" title="Show/Hide Key">👁️</button>
         </div>
-        <div id="passKeyError" class="passkey-error-msg" style="display:none;">⚠️ Invalid Access Pass Key. Please enter LN2026.</div>
+        <div id="passKeyError" class="passkey-error-msg" style="display:none;">⚠️ Invalid Access Pass Key. Access Denied.</div>
         <button type="button" class="unlock-app-btn" onclick="verifyPassKey()">🔓 Unlock Application</button>
       </div>
 
-      <div class="lock-footer-note" style="margin-top:14px; display:flex; flex-direction:column; gap:6px;">
-        <span style="color:#CBD5E1; font-size:11.5px;">🔑 Default Pass Key: <strong style="color:#D4AF37; letter-spacing:1px; cursor:pointer;" onclick="quickUnlock()">LN2026</strong> <small>(click to auto-fill)</small></span>
-        <span style="color:#64748B; font-size:10px;">🔒 256-Bit In-Memory Session Security • Protected Commercial Intelligence</span>
+      <div class="lock-footer-note" style="margin-top:16px;">
+        <span style="color:#64748B; font-size:11px;">🔒 256-Bit In-Memory Session Security • Confidential Commercial Intelligence</span>
       </div>
     </div>
   </div>
@@ -2836,22 +2835,16 @@ ${chartJsContent}
     const VALID_PASSKEYS = ['LN2026', '2026', 'LN', 'LN@MGMT2026', 'LN-EXECUTIVE-2026', 'LN1234', 'ADMIN', '1234', 'LIPTIS'];
     let isTopManagementView = true;
 
-    function quickUnlock() {
-      const input = document.getElementById('passKeyInput');
-      if (input) input.value = 'LN2026';
-      verifyPassKey();
-    }
-
     function verifyPassKey() {
       const input = document.getElementById('passKeyInput');
       const err = document.getElementById('passKeyError');
-      const rawVal = (input ? input.value : '').trim().toUpperCase();
-      const cleanVal = rawVal.replace(/[\s\-_@]/g, '');
+      const rawVal = (input ? input.value : '').trim();
+      const cleanVal = rawVal.toUpperCase().replace(/[^A-Z0-9]/g, '');
 
-      const isMatch = VALID_PASSKEYS.some(k => k.replace(/[\s\-_@]/g, '') === cleanVal);
+      const isMatch = VALID_PASSKEYS.some(k => k.toUpperCase().replace(/[^A-Z0-9]/g, '') === cleanVal);
 
-      if (isMatch || cleanVal === 'LN2026' || cleanVal === '2026' || cleanVal === 'LN') {
-        sessionStorage.setItem('ln_auth_passkey', 'unlocked');
+      if (isMatch) {
+        try { sessionStorage.setItem('ln_auth_passkey', 'unlocked'); } catch(e) {}
         const overlay = document.getElementById('appLockScreen');
         if (overlay) {
           overlay.classList.add('unlocked');
@@ -2864,7 +2857,7 @@ ${chartJsContent}
       } else {
         if (err) {
           err.style.display = 'block';
-          err.innerHTML = '⚠️ Invalid Pass Key. Enter <strong>LN2026</strong> or click the badge above.';
+          err.innerText = '⚠️ Invalid Access Pass Key. Access Denied.';
         }
         if (input) {
           input.classList.add('shake');
@@ -2875,7 +2868,7 @@ ${chartJsContent}
     }
 
     function lockApplication() {
-      sessionStorage.removeItem('ln_auth_passkey');
+      try { sessionStorage.removeItem('ln_auth_passkey'); } catch(e) {}
       const overlay = document.getElementById('appLockScreen');
       if (overlay) {
         overlay.classList.remove('unlocked');
@@ -2898,9 +2891,14 @@ ${chartJsContent}
     }
 
     function checkInitialLockState() {
-      const auth = sessionStorage.getItem('ln_auth_passkey');
+      let isUnlocked = false;
+      try {
+        isUnlocked = (sessionStorage.getItem('ln_auth_passkey') === 'unlocked');
+      } catch(e) {
+        isUnlocked = false;
+      }
       const overlay = document.getElementById('appLockScreen');
-      if (auth === 'unlocked') {
+      if (isUnlocked) {
         if (overlay) {
           overlay.classList.add('unlocked');
           overlay.style.display = 'none';
@@ -2918,6 +2916,10 @@ ${chartJsContent}
         }, 150);
       }
     }
+
+    window.verifyPassKey = verifyPassKey;
+    window.lockApplication = lockApplication;
+    window.togglePassKeyVisibility = togglePassKeyVisibility;
 
     function openTopMgmtModal() {
       const m = document.getElementById('topMgmtModal');
